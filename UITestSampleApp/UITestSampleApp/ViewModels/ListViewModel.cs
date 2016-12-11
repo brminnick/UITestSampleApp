@@ -1,24 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace UITestSampleApp
 {
 	public class ListViewModel : BaseViewModel
 	{
 		#region Fields
-		List<SampleDataModel> _dataList;
+		List<ListViewData> _dataList;
 		#endregion
 
 		#region Constructors
 		public ListViewModel()
 		{
-			DataList = SampleDataModelFactory.GetSampleData().ToList();
-			//var listViewData = Task.Run(async () => await DependencyService.Get<IDataService>().GetItems<ListViewData>()).Result;
+			//DataList = SampleDataModelFactory.GetSampleData().ToList();
+			DataList = Task.Run(async () => await DependencyService.Get<IDataService>().GetItems<ListViewData>()).Result.ToList();
 		}
 		#endregion
 
 		#region Properties
-		public List<SampleDataModel> DataList
+		public List<ListViewData> DataList
 		{
 			get { return _dataList; }
 			set { SetProperty(ref _dataList, value); }

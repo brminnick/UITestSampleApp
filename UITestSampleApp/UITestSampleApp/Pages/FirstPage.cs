@@ -20,13 +20,10 @@ namespace UITestSampleApp
 		#region Constructors
 		public FirstPage()
 		{
+			const string entryTextPaceHolder = "Enter text and click 'Go'";
 
 			var viewModel = new FirstPageViewModel();
 			BindingContext = viewModel;
-
-			Title = "First Page";
-
-			string entryTextPaceHolder = "Enter text and click 'Go'";
 
 			_goButton = new StyledButton(Borders.Thin, 1)
 			{
@@ -111,6 +108,7 @@ namespace UITestSampleApp
 			);
 
 			Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
+			Title = "First Page";
 			Content = relativeLayout;
 		}
 		#endregion

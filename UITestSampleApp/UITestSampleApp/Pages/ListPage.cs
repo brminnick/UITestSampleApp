@@ -48,15 +48,15 @@ namespace UITestSampleApp
 
 		void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
 		{
-			var item = e.Item as ImageCell;
+			var item = e.Item as SampleDataModel;
 
 			AnalyticsHelpers.TrackEvent(AnalyticsConstants.LIST_VIEW_ITEM_TAPPED,
 				new Dictionary<string, string> {
-					{ AnalyticsConstants.LIST_VIEW_ITEM_NUMBER, item.ToString() }
+					{ AnalyticsConstants.LIST_VIEW_ITEM_NUMBER, item.Number.ToString() }
 				}
 			);
 
-			DisplayAlert("Number Tapped", $"You Selected Number {item.Detail}", "OK");
+			DisplayAlert("Number Tapped", $"You Selected Number {item.Number.ToString()}", "OK");
 		}
 		#endregion
 	}

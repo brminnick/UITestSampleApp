@@ -36,7 +36,6 @@
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\NewUserSignUpPage.cs" />
     <Compile Include="Services\ILogin.cs" />
-    <Compile Include="Views\WhiteTextImageCell.cs" />
     <Compile Include="Services\AppLinkExtensions.cs" />
     <Compile Include="Services\IEnvironment.cs" />
     <Compile Include="Helpers\AnalyticsHelpers.cs" />
@@ -51,6 +50,7 @@
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="Models\SampleDataModel.cs" />
     <Compile Include="Pages\Base\BasePage.cs" />
+    <Compile Include="Views\List\WhiteTextImageCell.cs" />
   </ItemGroup>
   <Import Project="..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -66,6 +66,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Base\" />
     <Folder Include="Pages\Base\" />
+    <Folder Include="Views\List\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Insights">
