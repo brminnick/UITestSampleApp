@@ -22,7 +22,7 @@ namespace UITestSampleApp
 
 			var loadingAzureDataActivityIndicator = new ActivityIndicator
 			{
-				AutomationId = AutomationIdConstants.LoadingDataFromAzureActivityIndicator
+				AutomationId = AutomationIdConstants.LoadingDataFromBackendActivityIndicator
 			};
 			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, "IsDataLoadingFromBackend");
 			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, "IsDataLoadingFromBackend");
@@ -44,16 +44,16 @@ namespace UITestSampleApp
 			Func<RelativeLayout, double> getloadingAzureDataActivityIndicatorHeight = (p) => loadingAzureDataActivityIndicator.Measure(relativeLayout.Width, relativeLayout.Height).Request.Height;
 
 			relativeLayout.Children.Add(_listView,
-	        	Constraint.Constant(0),
-	            Constraint.Constant(0),
-	            Constraint.RelativeToParent(parent=> parent.Width),
-                Constraint.RelativeToParent(parent => parent.Height)
-           	);
+				Constraint.Constant(0),
+				Constraint.Constant(0),
+				Constraint.RelativeToParent(parent => parent.Width),
+				Constraint.RelativeToParent(parent => parent.Height)
+		   	);
 			relativeLayout.Children.Add(loadingAzureDataActivityIndicator,
 				Constraint.RelativeToParent((parent) => parent.Width / 2 - getloadingAzureDataActivityIndicatorWidth(parent) / 2),
 				Constraint.RelativeToParent((parent) => parent.Height / 2 - getloadingAzureDataActivityIndicatorHeight(parent) / 2)
-		   	);
-			Content = _listView;
+		  	);
+			Content = relativeLayout;
 		}
 		#endregion
 
@@ -93,7 +93,7 @@ namespace UITestSampleApp
 			_listView.EndRefresh();
 		}
 		#endregion
-		
+
 	}
 }
 

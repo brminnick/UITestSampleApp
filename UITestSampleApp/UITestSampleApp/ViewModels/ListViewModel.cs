@@ -22,7 +22,7 @@ namespace UITestSampleApp
 		#region Constructors
 		public ListViewModel()
 		{
-			RefreshDataFromAzure();
+			Task.Run(async () => await RefreshDataFromAzureAsync());
 		}
 		#endregion
 
@@ -45,17 +45,17 @@ namespace UITestSampleApp
 
 		public ICommand PullToRefreshCommanded =>
 		_pullToRefreshCommanded ??
-		(_pullToRefreshCommanded = new Command(ExecutePullToRefreshCommanded));
+		(_pullToRefreshCommanded = new Command(async () => await ExecutePullToRefreshCommanded()));
 		#endregion
 
 		#region Methods
-		async Task RefreshDataFromAzure()
+		async Task RefreshDataFromAzureAsync()
 		{
 			IsDataLoadingFromBackend = true;
 
 			try
 			{
-				DataList = (await DependencyService.Get<IDataService>().GetItems<ListViewPageData>()).ToList();
+				await Task.Run(async () => DataList = (await DependencyService.Get<IDataService>().GetItems<ListViewPageData>()).ToList());
 			}
 			catch (Exception e)
 			{
@@ -75,12 +75,13 @@ namespace UITestSampleApp
 			handle?.Invoke(null, EventArgs.Empty);
 		}
 
-		async void ExecutePullToRefreshCommanded()
+		async Task ExecutePullToRefreshCommanded()
 		{
 			AnalyticsHelpers.TrackEvent(AnalyticsConstants.PullToRefreshCommanded);
 
-			await RefreshDataFromAzure();
+			await RefreshDataFromAzureAsync();
 
+			OnLoadingDataFromBackendCompleted();
 		}
 		#endregion
 	}

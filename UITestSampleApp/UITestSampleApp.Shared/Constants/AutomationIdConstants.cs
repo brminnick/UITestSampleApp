@@ -11,7 +11,7 @@
 		#endregion
 
 		#region ListPage
-		public const string LoadingDataFromAzureActivityIndicator = "LoadingDataFromAzureActivityIndicator";
+		public const string LoadingDataFromBackendActivityIndicator = "LoadingDataFromBackendActivityIndicator";
 		#endregion
 
 		#region LoginPage 

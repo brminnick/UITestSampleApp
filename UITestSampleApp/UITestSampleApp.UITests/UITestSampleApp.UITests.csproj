@@ -67,7 +67,7 @@
     <Compile Include="Tests\ReplTest.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\FirstPage.cs" />
-    <Compile Include="Pages\ListViewPage.cs" />
+    <Compile Include="Pages\ListPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\NewUserSignUpPage.cs" />
     <Compile Include="Tests\LoginTests.cs" />
