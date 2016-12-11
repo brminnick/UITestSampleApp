@@ -11,7 +11,7 @@ using Xamarin.Forms.Platform.Android.AppLinks;
 
 namespace UITestSampleApp.Droid
 {
-	[Activity(Theme = "@style/MyTheme", Label = "SimpleUITestApp", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		App App;

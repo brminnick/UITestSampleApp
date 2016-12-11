@@ -15,7 +15,7 @@ namespace UITestSampleApp
 			var listViewData = SampleDataModelFactory.GetSampleData();
 
 			var cell = new DataTemplate(typeof(WhiteTextImageCell));
-			cell.SetValue(TextCell.TextProperty, "Number");
+			cell.SetValue(ImageCell.TextProperty, "Number");
 			cell.SetBinding(ImageCell.DetailProperty, "Number");
 			cell.SetValue(ImageCell.ImageSourceProperty, "Hash");
 
