@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -11,32 +11,60 @@ namespace UITestSampleApp
 	{
 		#region Constant Fields
 		readonly ListView _listView;
+		readonly ListViewModel _viewModel;
 		#endregion
 
+		#region Constructors
 		public ListPage()
 		{
-			var viewModel = new ListViewModel();
-			BindingContext = viewModel;
+			_viewModel = new ListViewModel();
+			BindingContext = _viewModel;
 
-			Title = "List Page";
+			var loadingAzureDataActivityIndicator = new ActivityIndicator
+			{
+				AutomationId = AutomationIdConstants.LoadingDataFromAzureActivityIndicator
+			};
+			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, "IsDataLoadingFromBackend");
+			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, "IsDataLoadingFromBackend");
 
 			_listView = new ListView
 			{
 				ItemTemplate = new DataTemplate(typeof(WhiteTextImageCell)),
-				BackgroundColor = Color.FromHex("#2980b9")
+				BackgroundColor = Color.FromHex("#2980b9"),
+				IsPullToRefreshEnabled = true
 			};
 			_listView.SetBinding(ListView.ItemsSourceProperty, "DataList");
+			_listView.SetBinding(ListView.RefreshCommandProperty, "PullToRefreshCommanded");
 
+			Title = "List Page";
+
+			var relativeLayout = new RelativeLayout();
+
+			Func<RelativeLayout, double> getloadingAzureDataActivityIndicatorWidth = (p) => loadingAzureDataActivityIndicator.Measure(relativeLayout.Width, relativeLayout.Height).Request.Width;
+			Func<RelativeLayout, double> getloadingAzureDataActivityIndicatorHeight = (p) => loadingAzureDataActivityIndicator.Measure(relativeLayout.Width, relativeLayout.Height).Request.Height;
+
+			relativeLayout.Children.Add(_listView,
+	        	Constraint.Constant(0),
+	            Constraint.Constant(0),
+	            Constraint.RelativeToParent(parent=> parent.Width),
+                Constraint.RelativeToParent(parent => parent.Height)
+           	);
+			relativeLayout.Children.Add(loadingAzureDataActivityIndicator,
+				Constraint.RelativeToParent((parent) => parent.Width / 2 - getloadingAzureDataActivityIndicatorWidth(parent) / 2),
+				Constraint.RelativeToParent((parent) => parent.Height / 2 - getloadingAzureDataActivityIndicatorHeight(parent) / 2)
+		   	);
 			Content = _listView;
 		}
+		#endregion
 
 		#region Methods
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.LIST_VIEW_PAGE_ON_APPEARING);
+			AnalyticsHelpers.TrackEvent(AnalyticsConstants.ListViewPageAppeared);
 
 			_listView.ItemTapped += HandleListViewItemTapped;
+			_viewModel.LoadingDataFromBackendCompleted += HandleLoadingDataFromBackendCompleted;
 		}
 
 		protected override void OnDisappearing()
@@ -44,21 +72,28 @@ namespace UITestSampleApp
 			base.OnDisappearing();
 
 			_listView.ItemTapped -= HandleListViewItemTapped;
+			_viewModel.LoadingDataFromBackendCompleted -= HandleLoadingDataFromBackendCompleted;
 		}
 
 		void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
 		{
 			var item = e.Item as ListViewPageData;
 
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.LIST_VIEW_ITEM_TAPPED,
+			AnalyticsHelpers.TrackEvent(AnalyticsConstants.ListViewItemTapped,
 				new Dictionary<string, string> {
-					{ AnalyticsConstants.LIST_VIEW_ITEM_NUMBER, item.DetailProperty }
+					{ AnalyticsConstants.ListViewItemNumber, item.DetailProperty }
 				}
 			);
 
 			DisplayAlert("Number Tapped", $"You Selected Number {item.DetailProperty}", "OK");
 		}
+
+		void HandleLoadingDataFromBackendCompleted(object sender, EventArgs e)
+		{
+			_listView.EndRefresh();
+		}
 		#endregion
+		
 	}
 }
 

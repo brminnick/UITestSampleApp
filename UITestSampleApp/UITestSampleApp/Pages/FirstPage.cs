@@ -117,7 +117,7 @@ namespace UITestSampleApp
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.FIRST_PAGE_ON_APPEARING);
+			AnalyticsHelpers.TrackEvent(AnalyticsConstants.FirstPageOnAppeared);
 
 			_goButton.Clicked += HandleButtonClicked;
 			_listPageButton.Clicked += HandleListPageButtonClicked;

@@ -41,8 +41,8 @@ namespace UITestSampleApp
 		#region Methods
 		async Task ExecuteGoButtonTapped()
 		{
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.GO_BUTTON_TAPPED, new Dictionary<string, string> {
-				{ AnalyticsConstants.TEXT_ENTERED, EntryText }
+			AnalyticsHelpers.TrackEvent(AnalyticsConstants.GoButtonTapped, new Dictionary<string, string> {
+				{ AnalyticsConstants.FirstPageTextEntered, EntryText }
 			});
 
 			IsActiityIndicatorRunning = true;

@@ -20,22 +20,18 @@ namespace UITestSampleApp
 
 		public App()
 		{
-			Task.Run(async () => ListPageData = (await DependencyService.Get<IDataService>().GetItems<ListViewPageData>()).ToList());
-
 			DependencyService.Register<IDataService, AzureService>();
 
 			var page = new LoginPage { LogoFileImageSource = "xamarin_logo" };
-
-			NavigationPage.SetHasNavigationBar(page, false);
 			Navigation = new NavigationPage(page)
 			{
 				BarBackgroundColor = Color.FromHex("#3498db"),
 				BarTextColor = Color.White,
 			};
+
+			NavigationPage.SetHasNavigationBar(page, false);
 			MainPage = Navigation;
 		}
-
-		public static List<ListViewPageData> ListPageData { get; set; }
 
 		protected override void OnStart()
 		{
