@@ -16,7 +16,7 @@ namespace UITestSampleApp
 		public ListViewModel()
 		{
 			//DataList = SampleDataModelFactory.GetSampleData().ToList();
-			DataList = Task.Run(async () => await DependencyService.Get<IDataService>().GetItems<ListViewPageData>()).Result.ToList();
+			DataList = App.ListPageData;
 		}
 		#endregion
 

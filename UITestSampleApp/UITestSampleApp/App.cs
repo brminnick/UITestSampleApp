@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using Xamarin.Forms;
 
@@ -17,6 +20,8 @@ namespace UITestSampleApp
 
 		public App()
 		{
+			Task.Run(async () => ListPageData = (await DependencyService.Get<IDataService>().GetItems<ListViewPageData>()).ToList());
+
 			DependencyService.Register<IDataService, AzureService>();
 
 			var page = new LoginPage { LogoFileImageSource = "xamarin_logo" };
@@ -30,11 +35,13 @@ namespace UITestSampleApp
 			MainPage = Navigation;
 		}
 
+		public static List<ListViewPageData> ListPageData { get; set; }
+
 		protected override void OnStart()
 		{
 			int majorVersion, minorVersion;
 
-			if(Device.OS == TargetPlatform.iOS)
+			if (Device.OS == TargetPlatform.iOS)
 			{
 				majorVersion = 9;
 				minorVersion = 0;
@@ -47,7 +54,7 @@ namespace UITestSampleApp
 
 			if (DependencyService.Get<IEnvironment>().IsOperatingSystemSupported(majorVersion, minorVersion))
 			{
-				var listViewPageLink = AppLinkExtensions.CreateAppLink("List View Page", "Open the List View Page", DeepLinkingIdConstants.ListViewPageId,"icon");
+				var listViewPageLink = AppLinkExtensions.CreateAppLink("List View Page", "Open the List View Page", DeepLinkingIdConstants.ListPageId, "icon");
 				AppLinks.RegisterLink(listViewPageLink);
 			}
 		}
@@ -64,7 +71,7 @@ namespace UITestSampleApp
 
 		protected override void OnAppLinkRequestReceived(Uri uri)
 		{
-			if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListViewPageId}"))
+			if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"))
 			{
 				NavigateToListViewPage();
 			}
@@ -74,7 +81,7 @@ namespace UITestSampleApp
 
 		public void OpenListViewPageUsingDeepLinking()
 		{
-			OnAppLinkRequestReceived(new Uri($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListViewPageId}"));
+			OnAppLinkRequestReceived(new Uri($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"));
 		}
 
 		public void OpenListViewPageUsingNavigation()
