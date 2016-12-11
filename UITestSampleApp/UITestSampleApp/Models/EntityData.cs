@@ -22,5 +22,8 @@ namespace UITestSampleApp
 
 		[Version]
 		public string AzureVersion { get; set; }
+
+		[Deleted]
+		public bool IsDeleted { get; set; }
 	}
 }

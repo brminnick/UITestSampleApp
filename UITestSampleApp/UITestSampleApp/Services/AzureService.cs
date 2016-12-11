@@ -1,15 +1,18 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
+using Xamarin.Forms;
+
 namespace UITestSampleApp
 {
 	public class AzureService : IDataService
 	{
-		const string _azureDataServiceUrl = @"https://mobile-864df958-bcca-401d-8f93-ae159cd5a9d3.azurewebsites.net/";
+		const string _azureDataServiceUrl = @"https://mobile-864df958-bcca-401d-8f93-ae159cd5a9d3.azurewebsites.net";
 
 		bool isInitialized;
 
@@ -21,19 +24,13 @@ namespace UITestSampleApp
 				return;
 
 			// MobileServiceClient handles communication with our backend, auth, and more for us.
-			MobileService = new MobileServiceClient(_azureDataServiceUrl, null)
-			{
-				// Saves us from having to name things camel-case, or use custom JsonProperty attributes.
-				SerializerSettings = new MobileServiceJsonSerializerSettings
-				{
-					CamelCasePropertyNames = true
-				}
-			};
+			MobileService = new MobileServiceClient(_azureDataServiceUrl);
 
 			// Configure online/offline sync.
-			var store = new MobileServiceSQLiteStore("app.db");
-			store.DefineTable<ListViewData>();
-			await MobileService.SyncContext.InitializeAsync(store, new SyncHandler(MobileService));
+			var path = DependencyService.Get<IEnvironment>().GetFilePath("app.db");
+			var store = new MobileServiceSQLiteStore(path);
+			store.DefineTable<ListViewPageData>();
+			await MobileService.SyncContext.InitializeAsync(store);//, new SyncHandler(MobileService));
 
 			isInitialized = true;
 		}
@@ -44,6 +41,7 @@ namespace UITestSampleApp
 			await Initialize();
 
 			await SyncItems<T>();
+
 			return await MobileService.GetSyncTable<T>().ToEnumerableAsync();
 		}
 

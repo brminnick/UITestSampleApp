@@ -1,4 +1,7 @@
-﻿using UIKit;
+﻿using System;
+using System.IO;
+using Microsoft.WindowsAzure.MobileServices;
+using UIKit;
 
 using UITestSampleApp.iOS;
 
@@ -12,6 +15,11 @@ namespace UITestSampleApp.iOS
 		public string GetOperatingSystemVersion()
 		{
 			return UIDevice.CurrentDevice.SystemVersion;
+		}
+
+		public string GetFilePath(string fileName)
+		{
+			return Path.Combine(MobileServiceClient.DefaultDatabasePath, fileName);
 		}
 
 		public bool IsOperatingSystemSupported(int majorVersion, int minorVersion)
