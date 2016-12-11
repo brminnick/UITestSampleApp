@@ -17,6 +17,8 @@ namespace UITestSampleApp
 
 		public App()
 		{
+			DependencyService.Register<IDataService, AzureService>();
+
 			var page = new LoginPage { LogoFileImageSource = "xamarin_logo" };
 
 			NavigationPage.SetHasNavigationBar(page, false);
@@ -86,7 +88,7 @@ namespace UITestSampleApp
 			Device.BeginInvokeOnMainThread(async () =>
 			{
 				await Navigation.PopToRootAsync();
-				await Navigation.PushAsync(new ListViewPage());
+				await Navigation.PushAsync(new ListPage());
 			});
 		}
 	}
