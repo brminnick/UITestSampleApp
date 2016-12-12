@@ -26,7 +26,6 @@ namespace UITestSampleApp.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Splat.Resource.String.library_name = global::UITestSampleApp.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::UITestSampleApp.Droid.Resource.Attribute.actionBarSize;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Attribute.buttonSize = global::UITestSampleApp.Droid.Resource.Attribute.buttonSize;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Attribute.circleCrop = global::UITestSampleApp.Droid.Resource.Attribute.circleCrop;
@@ -147,6 +146,7 @@ namespace UITestSampleApp.Droid
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_buttonSize = global::UITestSampleApp.Droid.Resource.Styleable.SignInButton_buttonSize;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_colorScheme = global::UITestSampleApp.Droid.Resource.Styleable.SignInButton_colorScheme;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_scopeUris = global::UITestSampleApp.Droid.Resource.Styleable.SignInButton_scopeUris;
+			global::Splat.Resource.String.library_name = global::UITestSampleApp.Droid.Resource.String.library_name;
 		}
 		
 		public partial class Animation

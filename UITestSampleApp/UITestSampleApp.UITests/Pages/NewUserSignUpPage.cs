@@ -8,18 +8,18 @@ namespace UITestSampleApp.UITests
 {
 	public class NewUserSignUpPage : BasePage
 	{
-		protected readonly Query CancelButton;
-		protected readonly Query PasswordEntry;
-		protected readonly Query SaveUsernameButton;
-		protected readonly Query UsernameEntry;
+		readonly Query _cancelButton;
+		readonly Query _passwordEntry;
+		readonly Query _saveUsernameButton;
+		readonly Query _usernameEntry;
 
 		public NewUserSignUpPage(IApp app, Platform platform)
 			: base(app, platform)
 		{
-			CancelButton = x => x.Marked(AutomationIdConstants.CancelButton);
-			PasswordEntry = x => x.Marked(AutomationIdConstants.NewPasswordEntry);
-			SaveUsernameButton = x => x.Marked(AutomationIdConstants.SaveUsernameButton);
-			UsernameEntry = x => x.Marked(AutomationIdConstants.NewUserNameEntry);
+			_cancelButton = x => x.Marked(AutomationIdConstants.CancelButton);
+			_passwordEntry = x => x.Marked(AutomationIdConstants.NewPasswordEntry);
+			_saveUsernameButton = x => x.Marked(AutomationIdConstants.SaveUsernameButton);
+			_usernameEntry = x => x.Marked(AutomationIdConstants.NewUserNameEntry);
 		}
 
 		public void CreateNewUserWithPassword(string username, string password)
@@ -31,7 +31,7 @@ namespace UITestSampleApp.UITests
 
 		public void EnterUsername(string username)
 		{
-			app.Tap(UsernameEntry);
+			app.Tap(_usernameEntry);
 			app.ClearText();
 			app.EnterText(username);
 			app.DismissKeyboard();
@@ -40,7 +40,7 @@ namespace UITestSampleApp.UITests
 
 		public void EnterPassword(string password)
 		{
-			app.Tap(PasswordEntry);
+			app.Tap(_passwordEntry);
 			app.ClearText();
 			app.EnterText(password);
 			app.DismissKeyboard();
@@ -49,13 +49,13 @@ namespace UITestSampleApp.UITests
 
 		public void TapSave()
 		{
-			app.Tap(SaveUsernameButton);
+			app.Tap(_saveUsernameButton);
 			app.Screenshot("Tapped Save Button");
 		}
 
 		public void TapCancel()
 		{
-			app.Tap(CancelButton);
+			app.Tap(_cancelButton);
 			app.Screenshot("Tapped Cancel Button");
 		}
 	}

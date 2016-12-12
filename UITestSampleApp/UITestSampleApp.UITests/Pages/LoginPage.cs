@@ -8,24 +8,24 @@ namespace UITestSampleApp.UITests
 {
 	public class LoginPage : BasePage
 	{
-		protected readonly Query ForgotPasswordButton;
-		protected readonly Query LoginButton;
-		protected readonly Query PasswordEntry;
-		protected readonly Query RememberMeSwitch;
-		protected readonly Query SignUpButton;
-		protected readonly Query UsernameEntry;
-		protected readonly Query CrashButton;
+		readonly Query _forgotPasswordButton;
+		readonly Query _loginButton;
+		readonly Query _passwordEntry;
+		readonly Query _rememberMeSwitch;
+		readonly Query _signUpButton;
+		readonly Query _usernameEntry;
+		readonly Query _crashButton;
 
 		public LoginPage(IApp app, Platform platform)
 			: base(app, platform)
 		{
-			ForgotPasswordButton = x => x.Marked(AutomationIdConstants.ForgotPasswordButton);
-			LoginButton = x => x.Marked(AutomationIdConstants.LoginButton);
-			PasswordEntry = x => x.Marked(AutomationIdConstants.PasswordEntry);
-			RememberMeSwitch = x => x.Marked(AutomationIdConstants.SaveUsernameSwitch);
-			SignUpButton = x => x.Marked(AutomationIdConstants.NewUserButton);
-			UsernameEntry = x => x.Marked(AutomationIdConstants.UsernameEntry);
-			CrashButton = x => x.Marked(AutomationIdConstants.CrashButton);
+			_forgotPasswordButton = x => x.Marked(AutomationIdConstants.ForgotPasswordButton);
+			_loginButton = x => x.Marked(AutomationIdConstants.LoginButton);
+			_passwordEntry = x => x.Marked(AutomationIdConstants.PasswordEntry);
+			_rememberMeSwitch = x => x.Marked(AutomationIdConstants.SaveUsernameSwitch);
+			_signUpButton = x => x.Marked(AutomationIdConstants.NewUserButton);
+			_usernameEntry = x => x.Marked(AutomationIdConstants.UsernameEntry);
+			_crashButton = x => x.Marked(AutomationIdConstants.CrashButton);
 		}
 
 		public void LoginWithUsernamePassword(string username, string password)
@@ -37,7 +37,7 @@ namespace UITestSampleApp.UITests
 
 		public void EnterUsername(string username)
 		{
-			app.Tap(UsernameEntry);
+			app.Tap(_usernameEntry);
 			app.ClearText();
 			app.EnterText(username);
 			app.DismissKeyboard();
@@ -46,7 +46,7 @@ namespace UITestSampleApp.UITests
 
 		public void EnterPassword(string password)
 		{
-			app.Tap(PasswordEntry);
+			app.Tap(_passwordEntry);
 			app.ClearText();
 			app.EnterText(password);
 			app.DismissKeyboard();
@@ -55,19 +55,19 @@ namespace UITestSampleApp.UITests
 
 		public void PressSignUpButton()
 		{
-			app.Tap(SignUpButton);
+			app.Tap(_signUpButton);
 			app.Screenshot("Tapped Sign Up Button");
 		}
 
 		public void PressForgotPasswordButton()
 		{
-			app.Tap(ForgotPasswordButton);
+			app.Tap(_forgotPasswordButton);
 			app.Screenshot("Tapped Forgot Password Button");
 		}
 
 		public void PressLoginButton()
 		{
-			app.Tap(LoginButton);
+			app.Tap(_loginButton);
 			app.Screenshot("Tapped Login Button");
 		}
 
@@ -98,12 +98,12 @@ namespace UITestSampleApp.UITests
 
         public void WaitForLoginScreen()
         {
-            app.WaitForElement(LoginButton);
+            app.WaitForElement(_loginButton);
         }
 
 		public void TapCrashButton()
 		{
-			app.Tap(CrashButton);
+			app.Tap(_crashButton);
 			app.Screenshot("Crash Button Tapped");
 		}
 	}

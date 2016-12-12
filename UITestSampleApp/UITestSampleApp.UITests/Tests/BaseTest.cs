@@ -13,7 +13,7 @@ namespace UITestSampleApp.UITests
 		protected Platform platform;
 
 		protected FirstPage FirstPage;
-		protected ListViewPage ListViewPage;
+		protected ListPage ListPage;
 		protected LoginPage LoginPage;
 		protected NewUserSignUpPage NewUserSignUpPage;
 
@@ -29,7 +29,7 @@ namespace UITestSampleApp.UITests
 			app.Screenshot("App Initialized");
 
 			FirstPage = new FirstPage(app, platform);
-			ListViewPage = new ListViewPage(app, platform);
+			ListPage = new ListPage(app, platform);
 			LoginPage = new LoginPage(app, platform);
 			NewUserSignUpPage = new NewUserSignUpPage(app, platform);
 		}

@@ -29,6 +29,8 @@ namespace UITestSampleApp.Droid
 			BlobCache.EnsureInitialized();
 
 			Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+
 
 			LoadApplication(App = new App());
 		}

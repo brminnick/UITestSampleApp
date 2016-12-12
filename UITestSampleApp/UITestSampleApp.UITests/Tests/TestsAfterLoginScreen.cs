@@ -48,10 +48,11 @@ namespace UITestSampleApp.UITests
 			//Act
 			BackdoorMethodHelpers.OpenListViewPage(app);
 
-			ListViewPage.TapListItemNumber(listItemNumber);
+			ListPage.WaitForNoActivityIndicator();
+			ListPage.TapListItemNumber(listItemNumber);
 
 			//Assert
-			Assert.AreEqual(expectedAlertString, ListViewPage.GetAlertText(listItemNumber));
+			Assert.AreEqual(expectedAlertString, ListPage.GetAlertText(listItemNumber));
 		}
 	}
 }

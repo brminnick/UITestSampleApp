@@ -11,11 +11,16 @@ namespace UITestSampleApp
 {
 	public class LoginPage : ReusableLoginPage
 	{
+		#region Fields
+		bool isInitialized = false;
+		#endregion
+
+		#region Constructors
 		public LoginPage()
 		{
 			AutomationId = "loginPage";
 
-			#if DEBUG
+#if DEBUG
 			var crashButton = new Button
 			{
 				Text = "x",
@@ -30,11 +35,13 @@ namespace UITestSampleApp
 
 			MainLayout.Children.Add(crashButton,
 				Constraint.RelativeToParent((parent) => parent.X),
-                Constraint.RelativeToParent((parent) => parent.Y)
+				Constraint.RelativeToParent((parent) => parent.Y)
 			);
-			#endif
+#endif
 		}
+		#endregion
 
+		#region Properties
 		public bool TouchIdSuccess
 		{
 			set
@@ -51,7 +58,9 @@ namespace UITestSampleApp
 				}
 			}
 		}
+		#endregion
 
+		#region Methods
 		public override async void Login(string userName, string passWord, bool saveUserName)
 		{
 			base.Login(userName, passWord, saveUserName);
@@ -102,7 +111,13 @@ namespace UITestSampleApp
 			Navigation.PushModalAsync(new NewUserSignUpPage());
 		}
 
-		bool isInitialized = false;
+		public override void RunAfterAnimation()
+		{
+			base.RunAfterAnimation();
+
+			if (App.UserName != null)
+				SetUsernameEntry(App.UserName);
+		}
 
 		protected override void OnAppearing()
 		{
@@ -118,13 +133,6 @@ namespace UITestSampleApp
 				isInitialized = true;
 			}
 		}
-
-		public override void RunAfterAnimation()
-		{
-			base.RunAfterAnimation();
-
-			if (App.UserName != null)
-				SetUsernameEntry(App.UserName);
-		}
+		#endregion
 	}
 }

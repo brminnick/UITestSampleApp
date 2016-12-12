@@ -11,16 +11,16 @@ namespace UITestSampleApp.UITests
 {
 	public class FirstPage : BasePage
 	{
-		protected readonly Query GoButton;
-		protected readonly Query TextEntry;
-		protected readonly Query TextLabel;
-		protected readonly Query ListViewButton;
+		readonly Query _goButton;
+		readonly Query _textEntry;
+		readonly Query _textLabel;
+		readonly Query _listViewButton;
 
-		protected readonly Query GoButtonUsingID;
-		protected readonly Query TextEntryUsingID;
-		protected readonly Query TextLabelUsingID;
-		protected readonly Query ListViewButtonUsingID;
-		protected readonly Query ActivityIndicatorUsingID;
+		readonly Query _goButtonUsingID;
+		readonly Query _textEntryUsingID;
+		readonly Query _textLabelUsingID;
+		readonly Query _listViewButtonUsingID;
+		readonly Query _activityIndicatorUsingID;
 
 		public FirstPage(IApp app, Platform platform) : base(app, platform)
 		{
@@ -28,11 +28,11 @@ namespace UITestSampleApp.UITests
 			//In Xamarin.Forms, set the UI ID by setting the control's "AutomationId"
 			//In Xamarin.Android, set the UI ID by setting the control's "ContentDescription"
 			//In Xamarin.iOS, set the UI ID by setting the control's "AccessibilityIdentifiers"
-			GoButtonUsingID = x => x.Marked(AutomationIdConstants.GoButton);
-			TextEntryUsingID = x => x.Marked(AutomationIdConstants.TextEntry);
-			TextLabelUsingID = x => x.Marked(AutomationIdConstants.TextLabel);
-			ListViewButtonUsingID = x => x.Marked(AutomationIdConstants.ListViewButton);
-			ActivityIndicatorUsingID = x => x.Marked(AutomationIdConstants.BusyActivityIndicator);
+			_goButtonUsingID = x => x.Marked(AutomationIdConstants.GoButton);
+			_textEntryUsingID = x => x.Marked(AutomationIdConstants.TextEntry);
+			_textLabelUsingID = x => x.Marked(AutomationIdConstants.TextLabel);
+			_listViewButtonUsingID = x => x.Marked(AutomationIdConstants.ListViewButton);
+			_activityIndicatorUsingID = x => x.Marked(AutomationIdConstants.BusyActivityIndicator);
 
 			//Below shows the improper way to initalize queries.
 			//This code would break if a developer added a third button...
@@ -40,21 +40,21 @@ namespace UITestSampleApp.UITests
 			//...the Go Button Index would change.
 			if (OnAndroid)
 			{
-				GoButton = x => x.Class("AppCompatButton").Index(0);
-				TextEntry = x => x.Class("EntryEditText");
-				ListViewButton = x => x.Class("AppCompatButton").Index(1);
+				_goButton = x => x.Class("AppCompatButton").Index(0);
+				_textEntry = x => x.Class("EntryEditText");
+				_listViewButton = x => x.Class("AppCompatButton").Index(1);
 			}
 			else if (OniOS)
 			{
-				GoButton = x => x.Class("UIButton").Index(1);
-				TextEntry = x => x.Class("UITextField");
-				ListViewButton = x => x.Class("UIButton").Index(0);
+				_goButton = x => x.Class("UIButton").Index(1);
+				_textEntry = x => x.Class("UITextField");
+				_listViewButton = x => x.Class("UIButton").Index(0);
 			}
 		}
 
 		public void EnterText(string text)
 		{
-			app.Tap(TextEntryUsingID);
+			app.Tap(_textEntryUsingID);
 			app.ClearText();
 			app.EnterText(text);
 			app.DismissKeyboard();
@@ -63,19 +63,19 @@ namespace UITestSampleApp.UITests
 
 		public void ClickGo()
 		{
-			app.Tap(GoButtonUsingID);
+			app.Tap(_goButtonUsingID);
 			app.Screenshot("Click Go Button");
 		}
 
 		public void ClickListViewButton()
 		{
-			app.Tap(ListViewButtonUsingID);
+			app.Tap(_listViewButtonUsingID);
 			app.Screenshot("Click ListView Button");
 		}
 
 		public void WaitForNoActivityIndicator()
 		{
-			app.WaitForNoElement(ActivityIndicatorUsingID);
+			app.WaitForNoElement(_activityIndicatorUsingID);
 			app.Screenshot("Activity Indicator Stopped Spinning");
 		}
 
@@ -93,7 +93,7 @@ namespace UITestSampleApp.UITests
 
 		public string GetEntryFieldText()
 		{
-			var entryFieldQuery = app.Query(TextEntryUsingID);
+			var entryFieldQuery = app.Query(_textEntryUsingID);
 			return entryFieldQuery?.FirstOrDefault()?.Text;
 		}
 

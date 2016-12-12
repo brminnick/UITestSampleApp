@@ -10,26 +10,39 @@ namespace UITestSampleApp
 {
 	public class NewUserSignUpPage : ContentPage
 	{
-		StyledButton saveUsernameButton, cancelButton;
-		StyledEntry usernameEntry, passwordEntry;
-		StackLayout layout;
+		#region Fields
+		StyledButton _saveUsernameButton, _cancelButton;
+		StyledEntry _usernameEntry, _passwordEntry;
+		StackLayout _layout;
+		#endregion
 
+		#region Constructos
 		public NewUserSignUpPage()
 		{
 			BackgroundColor = Color.FromHex("#2980b9");
 			ConstructUI();
 			AddChildrenToParentLayout();
 		}
+		#endregion
 
-		public void ConstructUI()
+		#region Methods
+		protected override void LayoutChildren(double x, double y, double width, double height)
 		{
-			layout = new StackLayout
+			_cancelButton.WidthRequest = width - 40;
+			_saveUsernameButton.WidthRequest = width - 40;
+
+			base.LayoutChildren(x, y, width, height);
+		}
+
+		void ConstructUI()
+		{
+			_layout = new StackLayout
 			{
 				Padding = new Thickness(20, 50, 20, 20),
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 
-			usernameEntry = new StyledEntry(1)
+			_usernameEntry = new StyledEntry(1)
 			{
 				Style = StyleConstants.UnderlinedEntry,
 				AutomationId = AutomationIdConstants.NewUserNameEntry,
@@ -39,7 +52,7 @@ namespace UITestSampleApp
 				PlaceholderColor = Color.FromHex("749FA8")
 			};
 
-			passwordEntry = new StyledEntry(1)
+			_passwordEntry = new StyledEntry(1)
 			{
 				Style = StyleConstants.UnderlinedEntry,
 				AutomationId = AutomationIdConstants.NewPasswordEntry,
@@ -51,7 +64,7 @@ namespace UITestSampleApp
 				PlaceholderColor = Color.FromHex("749FA8")
 			};
 
-			saveUsernameButton = new StyledButton(Borders.Thin, 1)
+			_saveUsernameButton = new StyledButton(Borders.Thin, 1)
 			{
 				Style = StyleConstants.BorderedButton,
 				AutomationId = AutomationIdConstants.SaveUsernameButton,
@@ -59,7 +72,7 @@ namespace UITestSampleApp
 				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.EndAndExpand
 			};
-			cancelButton = new StyledButton(Borders.Thin, 1)
+			_cancelButton = new StyledButton(Borders.Thin, 1)
 			{
 				Style = StyleConstants.BorderedButton,
 				AutomationId = AutomationIdConstants.CancelButton,
@@ -68,24 +81,24 @@ namespace UITestSampleApp
 				VerticalOptions = LayoutOptions.End
 			};
 
-			saveUsernameButton.Clicked += async (object sender, EventArgs e) =>
+			_saveUsernameButton.Clicked += async (object sender, EventArgs e) =>
 			{
-				var success = await DependencyService.Get<ILogin>().SetPasswordForUsername(usernameEntry.Text, passwordEntry.Text);
+				var success = await DependencyService.Get<ILogin>().SetPasswordForUsername(_usernameEntry.Text, _passwordEntry.Text);
 				if (success)
 					await Navigation.PopModalAsync();
 				else
 					await DisplayAlert("Error", "You must enter a username and a password", "Okay");
 			};
 
-			cancelButton.Clicked += (object sender, EventArgs e) =>
+			_cancelButton.Clicked += (object sender, EventArgs e) =>
 			{
 				Navigation.PopModalAsync();
 			};
 		}
 
-		public void AddChildrenToParentLayout()
+		void AddChildrenToParentLayout()
 		{
-			layout.Children.Add(
+			_layout.Children.Add(
 				new Label
 				{
 					Style = StyleConstants.WhiteTextLabel,
@@ -93,8 +106,8 @@ namespace UITestSampleApp
 					HorizontalOptions = LayoutOptions.Start
 				}
 			);
-			layout.Children.Add(usernameEntry);
-			layout.Children.Add(
+			_layout.Children.Add(_usernameEntry);
+			_layout.Children.Add(
 				new Label
 				{
 					Style = StyleConstants.WhiteTextLabel,
@@ -102,22 +115,15 @@ namespace UITestSampleApp
 					HorizontalOptions = LayoutOptions.Start
 				}
 			);
-			layout.Children.Add(passwordEntry);
-			layout.Children.Add(saveUsernameButton);
-			layout.Children.Add(cancelButton);
+			_layout.Children.Add(_passwordEntry);
+			_layout.Children.Add(_saveUsernameButton);
+			_layout.Children.Add(_cancelButton);
 
 			Content = new ScrollView
 			{
-				Content = layout
+				Content = _layout
 			};
 		}
-
-		protected override void LayoutChildren(double x, double y, double width, double height)
-		{
-			cancelButton.WidthRequest = width - 40;
-			saveUsernameButton.WidthRequest = width - 40;
-
-			base.LayoutChildren(x, y, width, height);
-		}
+		#endregion
 	}
 }

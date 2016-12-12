@@ -1,16 +1,24 @@
 ﻿using System;
+using System.IO;
 
 using Android.OS;
 
-using UITestSampleApp.Droid;
+using Microsoft.WindowsAzure.MobileServices;
 
 using Xamarin.Forms;
+
+using UITestSampleApp.Droid;
 
 [assembly: Dependency(typeof(Environment_Android))]
 namespace UITestSampleApp.Droid
 {
 	public class Environment_Android : IEnvironment
 	{
+		public string GetFilePath(string fileName)
+		{
+			return Path.Combine(MobileServiceClient.DefaultDatabasePath, fileName);
+		}
+
 		public string GetOperatingSystemVersion()
 		{
 			return Build.VERSION.Release;

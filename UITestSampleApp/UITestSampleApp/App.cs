@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using Xamarin.Forms;
 
@@ -17,14 +20,16 @@ namespace UITestSampleApp
 
 		public App()
 		{
-			var page = new LoginPage { LogoFileImageSource = "xamarin_logo" };
+			DependencyService.Register<IDataService, AzureService>();
 
-			NavigationPage.SetHasNavigationBar(page, false);
+			var page = new LoginPage { LogoFileImageSource = "xamarin_logo" };
 			Navigation = new NavigationPage(page)
 			{
 				BarBackgroundColor = Color.FromHex("#3498db"),
 				BarTextColor = Color.White,
 			};
+
+			NavigationPage.SetHasNavigationBar(page, false);
 			MainPage = Navigation;
 		}
 
@@ -32,7 +37,7 @@ namespace UITestSampleApp
 		{
 			int majorVersion, minorVersion;
 
-			if(Device.OS == TargetPlatform.iOS)
+			if (Device.OS == TargetPlatform.iOS)
 			{
 				majorVersion = 9;
 				minorVersion = 0;
@@ -45,7 +50,7 @@ namespace UITestSampleApp
 
 			if (DependencyService.Get<IEnvironment>().IsOperatingSystemSupported(majorVersion, minorVersion))
 			{
-				var listViewPageLink = AppLinkExtensions.CreateAppLink("List View Page", "Open the List View Page", DeepLinkingIdConstants.ListViewPageId,"icon");
+				var listViewPageLink = AppLinkExtensions.CreateAppLink("List View Page", "Open the List View Page", DeepLinkingIdConstants.ListPageId, "icon");
 				AppLinks.RegisterLink(listViewPageLink);
 			}
 		}
@@ -62,7 +67,7 @@ namespace UITestSampleApp
 
 		protected override void OnAppLinkRequestReceived(Uri uri)
 		{
-			if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListViewPageId}"))
+			if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"))
 			{
 				NavigateToListViewPage();
 			}
@@ -72,7 +77,7 @@ namespace UITestSampleApp
 
 		public void OpenListViewPageUsingDeepLinking()
 		{
-			OnAppLinkRequestReceived(new Uri($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListViewPageId}"));
+			OnAppLinkRequestReceived(new Uri($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"));
 		}
 
 		public void OpenListViewPageUsingNavigation()
@@ -86,7 +91,7 @@ namespace UITestSampleApp
 			Device.BeginInvokeOnMainThread(async () =>
 			{
 				await Navigation.PopToRootAsync();
-				await Navigation.PushAsync(new ListViewPage());
+				await Navigation.PushAsync(new ListPage());
 			});
 		}
 	}

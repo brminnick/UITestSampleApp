@@ -2,12 +2,18 @@
 
 using Xamarin.UITest;
 
+using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
+using UITestSampleApp.Shared;
+
 namespace UITestSampleApp.UITests
 {
-	public class ListViewPage : BasePage
+	public class ListPage : BasePage
 	{
-		public ListViewPage(IApp app, Platform platform) : base(app, platform)
+		readonly Query _loadingDataFromBackendActivityIndicator;
+
+		public ListPage(IApp app, Platform platform) : base(app, platform)
 		{
+			_loadingDataFromBackendActivityIndicator = x => x.Marked(AutomationIdConstants.LoadingDataFromBackendActivityIndicator);
 		}
 
 		public void TapListItemNumber(int listItemNumber)
@@ -35,6 +41,11 @@ namespace UITestSampleApp.UITests
 		{
 			app.Back();
 			app.Screenshot("Tap Back Button");
+		}
+
+		public void WaitForNoActivityIndicator()
+		{
+			app.WaitForNoElement(_loadingDataFromBackendActivityIndicator);
 		}
 	}
 }

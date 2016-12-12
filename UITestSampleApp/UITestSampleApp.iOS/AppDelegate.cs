@@ -1,7 +1,7 @@
 ﻿using UIKit;
 using Foundation;
 
-using Xamarin.Forms;
+using System.IO;
 
 namespace UITestSampleApp.iOS
 {
@@ -18,6 +18,8 @@ namespace UITestSampleApp.iOS
 #if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 #endif
+
+			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
 			LoadApplication(App = new App());
 

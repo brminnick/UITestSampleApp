@@ -13,51 +13,60 @@ namespace UITestSampleApp
 {
 	public class FirstPage : BasePage
 	{
-		Label textLabel = new StyledLabel();
-		StyledEntry textEntry = new StyledEntry(1);
-		Button goButton = new StyledButton(Borders.Thin, 1);
-		Button listViewButton = new StyledButton(Borders.Thin, 1);
-		ActivityIndicator activityIndicator = new ActivityIndicator();
+		#region Constant Fields
+		readonly Button _goButton, _listPageButton;
+		#endregion
 
+		#region Constructors
 		public FirstPage()
 		{
-			Title = "First Page";
+			const string entryTextPaceHolder = "Enter text and click 'Go'";
 
-			string entryTextPaceHolder = "Enter text and click 'Go'";
+			var viewModel = new FirstPageViewModel();
+			BindingContext = viewModel;
 
-			goButton.Text = "Go";
-			goButton.AutomationId = AutomationIdConstants.GoButton; // This provides an ID that can be referenced in UITests
-
-			textEntry.Placeholder = entryTextPaceHolder;
-			textEntry.AutomationId = AutomationIdConstants.TextEntry; // This provides an ID that can be referenced in UITests
-			textEntry.PlaceholderColor = Color.FromHex("749FA8");
-
-			textLabel.Text = "Your text will appear here";
-			textLabel.AutomationId = AutomationIdConstants.TextLabel; // This provides an ID that can be referenced in UITests
-			textLabel.HorizontalOptions = LayoutOptions.Center;
-
-			goButton.Clicked += OnButtonClick;
-
-			listViewButton.Text = "Go to List View Page";
-			listViewButton.AutomationId = AutomationIdConstants.ListViewButton; // This provides an ID that can be referenced in UITests
-
-			activityIndicator.AutomationId = AutomationIdConstants.BusyActivityIndicator;
-			activityIndicator.Color = Color.White;
-
-			listViewButton.Clicked += (sender, e) =>
+			_goButton = new StyledButton(Borders.Thin, 1)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Navigation.PushAsync(new ListViewPage());
-				});
+				Text = "Go",
+				AutomationId = AutomationIdConstants.GoButton, // This provides an ID that can be referenced in UITests
+			};
+			_goButton.SetBinding(Button.CommandProperty, "GoButtonTapped");
+
+			var textEntry = new StyledEntry(1)
+			{
+
+				Placeholder = entryTextPaceHolder,
+				AutomationId = AutomationIdConstants.TextEntry, // This provides an ID that can be referenced in UITests
+				PlaceholderColor = Color.FromHex("749FA8"),
+			};
+			textEntry.SetBinding(Entry.TextProperty, "EntryText");
+
+			var textLabel = new StyledLabel
+			{
+				AutomationId = AutomationIdConstants.TextLabel, // This provides an ID that can be referenced in UITests
+				HorizontalOptions = LayoutOptions.Center
+			};
+			textLabel.SetBinding(Label.TextProperty, "LabelText");
+
+			_listPageButton = new StyledButton(Borders.Thin, 1)
+			{
+				Text = "Go to List Page",
+				AutomationId = AutomationIdConstants.ListViewButton // This provides an ID that can be referenced in UITests
 			};
 
+			var activityIndicator = new ActivityIndicator
+			{
+				AutomationId = AutomationIdConstants.BusyActivityIndicator, // This provides an ID that can be referenced in UITests
+				Color = Color.White
+			};
+			activityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, "IsActiityIndicatorRunning");
+			activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, "IsActiityIndicatorRunning");
 
 			var stackLayout = new StackLayout
 			{
 				Children = {
 					textEntry,
-					goButton,
+					_goButton,
 					activityIndicator,
 					textLabel,
 				},
@@ -86,7 +95,7 @@ namespace UITestSampleApp
 				})
 			);
 
-			relativeLayout.Children.Add(listViewButton,
+			relativeLayout.Children.Add(_listPageButton,
 				Constraint.RelativeToParent((parent) =>
 				{
 					return parent.X;
@@ -99,49 +108,40 @@ namespace UITestSampleApp
 			);
 
 			Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
+			Title = "First Page";
 			Content = relativeLayout;
 		}
+		#endregion
 
-		public async void OnButtonClick(object sender, EventArgs e)
-		{
-			string entryText = textEntry.Text;
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.GO_BUTTON_TAPPED, new Dictionary<string, string> {
-				{ AnalyticsConstants.TEXT_ENTERED, entryText }
-			});
-
-			Device.BeginInvokeOnMainThread(() =>
-			{
-				//Hide the keyboard
-				textEntry.Unfocus();
-
-				//Show the activity indicator and hide the Go Button
-
-				activityIndicator.IsRunning = true;
-				activityIndicator.IsVisible = true;
-				goButton.IsVisible = false;
-				goButton.IsEnabled = false;
-			});
-			//Perform a task for 2000 miliseconds
-			await Task.Delay(2000);
-
-			Device.BeginInvokeOnMainThread(() =>
-			{
-				//Hide the activity indicator now that task has completed
-				activityIndicator.IsRunning = false;
-				activityIndicator.IsVisible = false;
-				goButton.IsVisible = true;
-				goButton.IsEnabled = true;
-
-				//display the 
-				textLabel.Text = entryText;
-			});
-		}
-
+		#region Methods
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.FIRST_PAGE_ON_APPEARING);
+			AnalyticsHelpers.TrackEvent(AnalyticsConstants.FirstPageOnAppeared);
+
+			_goButton.Clicked += HandleButtonClicked;
+			_listPageButton.Clicked += HandleListPageButtonClicked;
 		}
+
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+
+			_goButton.Clicked -= HandleButtonClicked;
+			_listPageButton.Clicked -= HandleListPageButtonClicked;
+		}
+
+		void HandleButtonClicked(object sender, EventArgs e)
+		{
+			var goButton = sender as Button;
+			Device.BeginInvokeOnMainThread(goButton.Unfocus);
+		}
+
+		async void HandleListPageButtonClicked(object sender, EventArgs e)
+		{
+			await Navigation.PushAsync(new ListPage());
+		}
+		#endregion
 	}
 }
 
