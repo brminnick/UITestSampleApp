@@ -16,7 +16,7 @@ namespace UITestSampleApp
 
 		ICommand _pullToRefreshCommanded;
 
-		List<ListViewPageData> _dataList;
+		List<ListPageDataModel> _dataList;
 		#endregion
 
 		#region Constructors
@@ -31,7 +31,7 @@ namespace UITestSampleApp
 		#endregion
 
 		#region Properties
-		public List<ListViewPageData> DataList
+		public List<ListPageDataModel> DataList
 		{
 			get { return _dataList; }
 			set { SetProperty(ref _dataList, value); }
@@ -55,7 +55,7 @@ namespace UITestSampleApp
 
 			try
 			{
-				await Task.Run(async () => DataList = (await DependencyService.Get<IDataService>().GetItems<ListViewPageData>()).ToList());
+				await Task.Run(async () => DataList = (await DependencyService.Get<IDataService>().GetItems<ListPageDataModel>()).ToList());
 			}
 			catch (Exception e)
 			{

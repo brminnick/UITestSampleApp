@@ -4,15 +4,29 @@ namespace UITestSampleApp
 {
 	public class WhiteTextImageCell : ImageCell
 	{
-		public WhiteTextImageCell() : base()
+		#region Constructors
+		public WhiteTextImageCell()
 		{
 			TextColor = Color.White;
 			DetailColor = Color.White;
-
-			this.SetBinding(ImageCell.TextProperty, "TextProperty");
-			this.SetBinding(ImageCell.DetailProperty, "DetailProperty");
-			this.SetValue(ImageCell.ImageSourceProperty, "Hash");
 		}
+		#endregion
+
+		#region Methods
+		protected override void OnBindingContextChanged()
+		{
+			base.OnBindingContextChanged();
+
+			Text = "";
+			Detail = "";
+			ImageSource = null;
+
+			var item = BindingContext as ListPageDataModel;
+
+			Text = item?.TextProperty ?? "";
+			Detail = item?.DetailProperty ?? "";
+			ImageSource = "Hash";
+		}
+		#endregion
 	}
 }
-

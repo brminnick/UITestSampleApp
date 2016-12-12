@@ -1,7 +1,6 @@
-﻿using System;
-namespace UITestSampleApp
+﻿namespace UITestSampleApp
 {
-	public class ListViewPageData : EntityData
+	public class ListPageDataModel : EntityData
 	{
 		public string DetailProperty { get; set;}
 		public string TextProperty { get; set;}

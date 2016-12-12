@@ -22,13 +22,15 @@ namespace UITestSampleApp
 
 			var loadingAzureDataActivityIndicator = new ActivityIndicator
 			{
-				AutomationId = AutomationIdConstants.LoadingDataFromBackendActivityIndicator
+				AutomationId = AutomationIdConstants.LoadingDataFromBackendActivityIndicator,
+				Color = Color.White
 			};
 			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, "IsDataLoadingFromBackend");
 			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, "IsDataLoadingFromBackend");
 
-			_listView = new ListView
+			_listView = new ListView(ListViewCachingStrategy.RetainElement)
 			{
+				//ToDo Change to ListViewCachingStrategy.RecycleElement once this bug has been fixed https://bugzilla.xamarin.com/show_bug.cgi?id=42678
 				ItemTemplate = new DataTemplate(typeof(WhiteTextImageCell)),
 				BackgroundColor = Color.FromHex("#2980b9"),
 				IsPullToRefreshEnabled = true
@@ -77,15 +79,15 @@ namespace UITestSampleApp
 
 		void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
 		{
-			var item = e.Item as ListViewPageData;
+			var tappedListPageDataModel = e.Item as ListPageDataModel;
 
 			AnalyticsHelpers.TrackEvent(AnalyticsConstants.ListViewItemTapped,
 				new Dictionary<string, string> {
-					{ AnalyticsConstants.ListViewItemNumber, item.DetailProperty }
+					{ AnalyticsConstants.ListViewItemNumber, tappedListPageDataModel.DetailProperty }
 				}
 			);
 
-			DisplayAlert("Number Tapped", $"You Selected Number {item.DetailProperty}", "OK");
+			DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.DetailProperty}", "OK");
 		}
 
 		void HandleLoadingDataFromBackendCompleted(object sender, EventArgs e)

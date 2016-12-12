@@ -29,7 +29,7 @@ namespace UITestSampleApp
 			// Configure online/offline sync.
 			var path = DependencyService.Get<IEnvironment>().GetFilePath("app.db");
 			var store = new MobileServiceSQLiteStore(path);
-			store.DefineTable<ListViewPageData>();
+			store.DefineTable<ListPageDataModel>();
 			await MobileService.SyncContext.InitializeAsync(store);//, new SyncHandler(MobileService));
 
 			isInitialized = true;
