@@ -51,7 +51,6 @@
     <Compile Include="Models\SampleDataModel.cs" />
     <Compile Include="Pages\Base\BasePage.cs" />
     <Compile Include="Views\List\WhiteTextImageCell.cs" />
-    <Compile Include="Services\IAuthenticate.cs" />
   </ItemGroup>
   <Import Project="..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
