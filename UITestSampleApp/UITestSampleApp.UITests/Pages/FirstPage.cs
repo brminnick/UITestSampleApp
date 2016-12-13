@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
@@ -73,9 +74,9 @@ namespace UITestSampleApp.UITests
 			app.Screenshot("Click ListView Button");
 		}
 
-		public void WaitForNoActivityIndicator()
+		public void WaitForNoActivityIndicator(int timeoutInSeconds = 60)
 		{
-			app.WaitForNoElement(_activityIndicatorUsingID);
+			app.WaitForNoElement(_activityIndicatorUsingID, "Activity Indicator Did Not Disappear", TimeSpan.FromSeconds(timeoutInSeconds));
 			app.Screenshot("Activity Indicator Stopped Spinning");
 		}
 
@@ -97,15 +98,15 @@ namespace UITestSampleApp.UITests
 			return entryFieldQuery?.FirstOrDefault()?.Text;
 		}
 
-		public string GetTitle()
+		public string GetTitle(int timeoutInSeconds = 60)
 		{
 			var title = "First Page";
 			AppResult[] titleQuery;
 
-			app.WaitForElement(title);
+			app.WaitForElement(title, "First Page Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
 
-			if(OniOS)
-				titleQuery = app.Query(x=>x.Class("UILabel").Marked("First Page"));
+			if (OniOS)
+				titleQuery = app.Query(x => x.Class("UILabel").Marked("First Page"));
 			else
 				titleQuery = app.Query(x => x.Class("TextView").Marked("First Page"));
 

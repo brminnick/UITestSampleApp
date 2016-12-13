@@ -1,4 +1,6 @@
-﻿using Xamarin.UITest;
+﻿using System;
+
+using Xamarin.UITest;
 
 using UITestSampleApp.Shared;
 
@@ -77,9 +79,9 @@ namespace UITestSampleApp.UITests
 			TapSignUpFromDialog();
 		}
 
-		public void TapSignUpFromDialog()
+		public void TapSignUpFromDialog(int timeoutInSeconds = 60)
 		{
-			app.WaitForElement("Sign up");
+			app.WaitForElement("Sign up", "Sign Up Dialog Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
 			app.Tap("Sign up");
 			app.Screenshot("Tapped Sign Up Button From Pop Up Dialog");
 		}
@@ -96,9 +98,9 @@ namespace UITestSampleApp.UITests
 			app.Screenshot("Tapped Okay on Error Dialog");
 		}
 
-        public void WaitForLoginScreen()
+        public void WaitForLoginScreen(int timeoutInSeconds = 60)
         {
-            app.WaitForElement(_loginButton);
+            app.WaitForElement(_loginButton, "Login Screen Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
         }
 
 		public void TapCrashButton()
