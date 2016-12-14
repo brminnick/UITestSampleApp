@@ -30,7 +30,7 @@ namespace UITestSampleApp
 				Text = "Go",
 				AutomationId = AutomationIdConstants.GoButton, // This provides an ID that can be referenced in UITests
 			};
-			_goButton.SetBinding(Button.CommandProperty, "GoButtonTapped");
+			_goButton.SetBinding(Button.CommandProperty, nameof(viewModel.GoButtonTapped));
 
 			var textEntry = new StyledEntry(1)
 			{
@@ -39,14 +39,14 @@ namespace UITestSampleApp
 				AutomationId = AutomationIdConstants.TextEntry, // This provides an ID that can be referenced in UITests
 				PlaceholderColor = Color.FromHex("749FA8"),
 			};
-			textEntry.SetBinding(Entry.TextProperty, "EntryText");
+			textEntry.SetBinding(Entry.TextProperty, nameof(viewModel.EntryText));
 
 			var textLabel = new StyledLabel
 			{
 				AutomationId = AutomationIdConstants.TextLabel, // This provides an ID that can be referenced in UITests
 				HorizontalOptions = LayoutOptions.Center
 			};
-			textLabel.SetBinding(Label.TextProperty, "LabelText");
+			textLabel.SetBinding(Label.TextProperty, nameof(viewModel.LabelText));
 
 			_listPageButton = new StyledButton(Borders.Thin, 1)
 			{
@@ -59,8 +59,8 @@ namespace UITestSampleApp
 				AutomationId = AutomationIdConstants.BusyActivityIndicator, // This provides an ID that can be referenced in UITests
 				Color = Color.White
 			};
-			activityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, "IsActiityIndicatorRunning");
-			activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, "IsActiityIndicatorRunning");
+			activityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, nameof(viewModel.IsActiityIndicatorRunning));
+			activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(viewModel.IsActiityIndicatorRunning));
 
 			var stackLayout = new StackLayout
 			{
