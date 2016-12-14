@@ -30,7 +30,7 @@ namespace UITestSampleApp
 				Text = "Go",
 				AutomationId = AutomationIdConstants.GoButton, // This provides an ID that can be referenced in UITests
 			};
-			_goButton.SetBinding(Button.CommandProperty, nameof(viewModel.GoButtonTapped));
+			_goButton.SetBinding<FirstPageViewModel>(Button.CommandProperty, vm => vm.GoButtonTapped);
 
 			var textEntry = new StyledEntry(1)
 			{
@@ -59,8 +59,8 @@ namespace UITestSampleApp
 				AutomationId = AutomationIdConstants.BusyActivityIndicator, // This provides an ID that can be referenced in UITests
 				Color = Color.White
 			};
-			activityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, nameof(viewModel.IsActiityIndicatorRunning));
-			activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(viewModel.IsActiityIndicatorRunning));
+			activityIndicator.SetBinding<FirstPageViewModel>(ActivityIndicator.IsVisibleProperty, vm => vm.IsActiityIndicatorRunning);
+			activityIndicator.SetBinding<FirstPageViewModel>(ActivityIndicator.IsRunningProperty, vm => vm.IsActiityIndicatorRunning);
 
 			var stackLayout = new StackLayout
 			{

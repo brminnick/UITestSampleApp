@@ -25,8 +25,8 @@ namespace UITestSampleApp
 				AutomationId = AutomationIdConstants.LoadingDataFromBackendActivityIndicator,
 				Color = Color.White
 			};
-			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(_viewModel.IsDataLoadingFromBackend));
-			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsVisibleProperty, nameof(_viewModel.IsDataLoadingFromBackend));
+			loadingAzureDataActivityIndicator.SetBinding<ListViewModel>(ActivityIndicator.IsRunningProperty, vm => vm.IsDataLoadingFromBackend);
+			loadingAzureDataActivityIndicator.SetBinding<ListViewModel>(ActivityIndicator.IsVisibleProperty, vm => vm.IsDataLoadingFromBackend);
 
 			_listView = new ListView(ListViewCachingStrategy.RetainElement)
 			{
@@ -35,8 +35,8 @@ namespace UITestSampleApp
 				BackgroundColor = Color.FromHex("#2980b9"),
 				IsPullToRefreshEnabled = true
 			};
-			_listView.SetBinding(ListView.ItemsSourceProperty, nameof(_viewModel.DataList));
-			_listView.SetBinding(ListView.RefreshCommandProperty, nameof(_viewModel.PullToRefreshCommanded));
+			_listView.SetBinding<ListViewModel>(ListView.ItemsSourceProperty, vm => vm.PullToRefreshCommanded);
+			_listView.SetBinding<ListViewModel>(ListView.RefreshCommandProperty, vm => vm.PullToRefreshCommanded);
 
 			Title = "List Page";
 
