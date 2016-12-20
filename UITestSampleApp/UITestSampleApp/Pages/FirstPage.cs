@@ -39,14 +39,14 @@ namespace UITestSampleApp
 				AutomationId = AutomationIdConstants.TextEntry, // This provides an ID that can be referenced in UITests
 				PlaceholderColor = Color.FromHex("749FA8"),
 			};
-			textEntry.SetBinding(Entry.TextProperty, nameof(viewModel.EntryText));
+			textEntry.SetBinding<FirstPageViewModel>(Entry.TextProperty, vm => vm.EntryText);
 
 			var textLabel = new StyledLabel
 			{
 				AutomationId = AutomationIdConstants.TextLabel, // This provides an ID that can be referenced in UITests
 				HorizontalOptions = LayoutOptions.Center
 			};
-			textLabel.SetBinding(Label.TextProperty, nameof(viewModel.LabelText));
+			textLabel.SetBinding<FirstPageViewModel>(Label.TextProperty, vm => vm.LabelText);
 
 			_listPageButton = new StyledButton(Borders.Thin, 1)
 			{
