@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 
 using Xamarin.UITest;
 
@@ -47,6 +48,7 @@ namespace UITestSampleApp.UITests
 
 		public void WaitForNoActivityIndicator(int timeoutInSeconds = 60)
 		{
+			Thread.Sleep(1000);
 			app.WaitForNoElement(_loadingDataFromBackendActivityIndicator, "Activity Indicator Did Not Disappear", TimeSpan.FromSeconds(timeoutInSeconds));
 		}
 	}

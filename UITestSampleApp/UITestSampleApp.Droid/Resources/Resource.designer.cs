@@ -147,9 +147,6 @@ namespace UITestSampleApp.Droid
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_colorScheme = global::UITestSampleApp.Droid.Resource.Styleable.SignInButton_colorScheme;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_scopeUris = global::UITestSampleApp.Droid.Resource.Styleable.SignInButton_scopeUris;
 			global::Splat.Resource.String.library_name = global::UITestSampleApp.Droid.Resource.String.library_name;
-			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.Id.agentWebView = global::UITestSampleApp.Droid.Resource.Id.agentWebView;
-			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.Layout.WebAuthenticationBroker = global::UITestSampleApp.Droid.Resource.Layout.WebAuthenticationBroker;
-			global::Microsoft.IdentityModel.Clients.ActiveDirectory.Resource.String.ApplicationName = global::UITestSampleApp.Droid.Resource.String.ApplicationName;
 		}
 		
 		public partial class Animation
@@ -2606,9 +2603,6 @@ namespace UITestSampleApp.Droid
 			// aapt resource value: 0x7f0d0012
 			public const int adjust_width = 2131558418;
 			
-			// aapt resource value: 0x7f0d00a2
-			public const int agentWebView = 2131558562;
-			
 			// aapt resource value: 0x7f0d0051
 			public const int alertTitle = 2131558481;
 			
@@ -3290,9 +3284,6 @@ namespace UITestSampleApp.Droid
 			// aapt resource value: 0x7f030038
 			public const int toolbar = 2130903096;
 			
-			// aapt resource value: 0x7f030039
-			public const int WebAuthenticationBroker = 2130903097;
-			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -3321,9 +3312,6 @@ namespace UITestSampleApp.Droid
 		
 		public partial class String
 		{
-			
-			// aapt resource value: 0x7f090045
-			public const int ApplicationName = 2131296325;
 			
 			// aapt resource value: 0x7f090031
 			public const int abc_action_bar_home_description = 2131296305;
@@ -3484,8 +3472,8 @@ namespace UITestSampleApp.Droid
 			// aapt resource value: 0x7f09001b
 			public const int common_signin_button_text_long = 2131296283;
 			
-			// aapt resource value: 0x7f090046
-			public const int library_name = 2131296326;
+			// aapt resource value: 0x7f090045
+			public const int library_name = 2131296325;
 			
 			// aapt resource value: 0x7f09001f
 			public const int mr_button_content_description = 2131296287;

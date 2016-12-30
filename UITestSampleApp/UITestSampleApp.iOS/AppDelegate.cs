@@ -1,8 +1,6 @@
 ﻿using UIKit;
 using Foundation;
 
-using System.IO;
-
 namespace UITestSampleApp.iOS
 {
 	[Register("AppDelegate")]
@@ -58,6 +56,16 @@ namespace UITestSampleApp.iOS
 			else
 				App.OpenListViewPageUsingNavigation();
 			return new NSString();
+		}
+
+		[Export("getListViewPageDataAsBase64String:")]
+		public NSString GetListViewPageDataAsBase64String(NSString noValue)
+		{
+			var listPageData = App.GetListPageData();
+
+			var listPageDataAsBase64String = ConverterHelpers.ConvertSerializableObjectToBase64String(listPageData);
+
+			return new NSString(listPageDataAsBase64String);
 		}
 #endif
 		#endregion

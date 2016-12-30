@@ -9,9 +9,9 @@ using UITestSampleApp.Shared;
 namespace UITestSampleApp.Droid
 {
 	[Application]
-	public class SimpleUITest_Application : Application
+	public class UITestSampleApp_Application : Application
 	{
-		public SimpleUITest_Application(IntPtr handle, JniHandleOwnership transer)
+		public UITestSampleApp_Application(IntPtr handle, JniHandleOwnership transer)
 		  : base(handle, transer)
 		{
 		}

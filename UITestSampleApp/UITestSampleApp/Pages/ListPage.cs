@@ -25,8 +25,8 @@ namespace UITestSampleApp
 				AutomationId = AutomationIdConstants.LoadingDataFromBackendActivityIndicator,
 				Color = Color.White
 			};
+			loadingAzureDataActivityIndicator.SetBinding<ListViewModel>(IsVisibleProperty, vm => vm.IsDataLoadingFromBackend);
 			loadingAzureDataActivityIndicator.SetBinding<ListViewModel>(ActivityIndicator.IsRunningProperty, vm => vm.IsDataLoadingFromBackend);
-			loadingAzureDataActivityIndicator.SetBinding<ListViewModel>(ActivityIndicator.IsVisibleProperty, vm => vm.IsDataLoadingFromBackend);
 
 			_listView = new ListView(ListViewCachingStrategy.RetainElement)
 			{
@@ -35,7 +35,7 @@ namespace UITestSampleApp
 				BackgroundColor = Color.FromHex("#2980b9"),
 				IsPullToRefreshEnabled = true
 			};
-			_listView.SetBinding<ListViewModel>(ListView.ItemsSourceProperty, vm => vm.PullToRefreshCommanded);
+			_listView.SetBinding<ListViewModel>(ListView.ItemsSourceProperty, vm => vm.DataList);
 			_listView.SetBinding<ListViewModel>(ListView.RefreshCommandProperty, vm => vm.PullToRefreshCommanded);
 
 			Title = "List Page";
@@ -77,8 +77,9 @@ namespace UITestSampleApp
 			_viewModel.LoadingDataFromBackendCompleted -= HandleLoadingDataFromBackendCompleted;
 		}
 
-		void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
+		async void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
 		{
+			var listView = sender as ListView;
 			var tappedListPageDataModel = e.Item as ListPageDataModel;
 
 			AnalyticsHelpers.TrackEvent(AnalyticsConstants.ListViewItemTapped,
@@ -87,7 +88,9 @@ namespace UITestSampleApp
 				}
 			);
 
-			DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.DetailProperty}", "OK");
+			await DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.DetailProperty}", "OK");
+
+			listView.SelectedItem = null;
 		}
 
 		void HandleLoadingDataFromBackendCompleted(object sender, EventArgs e)

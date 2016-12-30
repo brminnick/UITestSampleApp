@@ -4,7 +4,7 @@ using Xamarin.UITest;
 
 namespace UITestSampleApp.UITests
 {
-	[Category ("TestsAfterLoginScreen")]
+	[Category("TestsAfterLoginScreen")]
 	public class TestsAfterLoginScreen : BaseTest
 	{
 		public TestsAfterLoginScreen(Platform platform) : base(platform)
@@ -16,9 +16,9 @@ namespace UITestSampleApp.UITests
 		{
 			base.BeforeEachTest();
 
-            LoginPage.WaitForLoginScreen();
+			LoginPage.WaitForLoginScreen();
 
-			BackdoorMethodHelpers.BypassLoginScreen(app);
+			BackdoorHelpers.BypassLoginScreen(app);
 
 			app.WaitForElement("First Page");
 		}
@@ -46,13 +46,14 @@ namespace UITestSampleApp.UITests
 			var expectedAlertString = $"You Selected Number {listItemNumber}";
 
 			//Act
-			BackdoorMethodHelpers.OpenListViewPage(app);
+			BackdoorHelpers.OpenListViewPage(app);
 
 			ListPage.WaitForNoActivityIndicator();
 			ListPage.TapListItemNumber(listItemNumber);
 
 			//Assert
 			Assert.AreEqual(expectedAlertString, ListPage.GetAlertText(listItemNumber));
+			Assert.IsTrue(BackdoorHelpers.GetListPageData(app).Count > 30);
 		}
 	}
 }

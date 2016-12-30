@@ -18,8 +18,8 @@ namespace UITestSampleApp.UITests
 		{
 			base.BeforeEachTest();
 
-			BackdoorMethodHelpers.CleariOSKeyChain(app, _username);
-			BackdoorMethodHelpers.SetiOSXTCAgent(app);
+			BackdoorHelpers.CleariOSKeyChain(app, _username);
+			BackdoorHelpers.SetiOSXTCAgent(app);
 		}
 
 		[Test]

@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 
 namespace UITestSampleApp
 {
+	[Serializable]
 	public class EntityData
 	{
 		public EntityData()

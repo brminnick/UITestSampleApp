@@ -43,7 +43,10 @@
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.UITest">
-      <HintPath>..\..\packages\Xamarin.UITest.2.0.4\lib\Xamarin.UITest.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.UITest.2.0.5\lib\Xamarin.UITest.dll</HintPath>
+    </Reference>
+    <Reference Include="Shim">
+      <HintPath>..\..\packages\shim.2.0.1\lib\net40\Shim.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +62,10 @@
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\UITestSampleApp\UITestSampleApp.csproj">
+      <Project>{06291122-42A6-4585-AC8C-D481126D1B5D}</Project>
+      <Name>UITestSampleApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppInitializer.cs" />
@@ -71,7 +78,7 @@
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\NewUserSignUpPage.cs" />
     <Compile Include="Tests\LoginTests.cs" />
-    <Compile Include="Helpers\BackdoorMethodHelpers.cs" />
+    <Compile Include="Helpers\BackdoorHelpers.cs" />
   </ItemGroup>
   <Import Project="..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
