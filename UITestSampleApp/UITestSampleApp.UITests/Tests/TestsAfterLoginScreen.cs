@@ -4,7 +4,7 @@ using Xamarin.UITest;
 
 namespace UITestSampleApp.UITests
 {
-	[Category ("TestsAfterLoginScreen")]
+	[Category("TestsAfterLoginScreen")]
 	public class TestsAfterLoginScreen : BaseTest
 	{
 		public TestsAfterLoginScreen(Platform platform) : base(platform)
@@ -16,7 +16,7 @@ namespace UITestSampleApp.UITests
 		{
 			base.BeforeEachTest();
 
-            LoginPage.WaitForLoginScreen();
+			LoginPage.WaitForLoginScreen();
 
 			BackdoorHelpers.BypassLoginScreen(app);
 
@@ -53,7 +53,7 @@ namespace UITestSampleApp.UITests
 
 			//Assert
 			Assert.AreEqual(expectedAlertString, ListPage.GetAlertText(listItemNumber));
-			Assert.IsNotNull(BackdoorHelpers.GetListPageData(app));
+			Assert.IsTrue(BackdoorHelpers.GetListPageData(app).Count > 30);
 		}
 	}
 }
