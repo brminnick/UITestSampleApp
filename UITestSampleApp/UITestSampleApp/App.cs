@@ -54,27 +54,8 @@ namespace UITestSampleApp
 				AppLinks.RegisterLink(listViewPageLink);
 			}
 		}
-
-		protected override void OnSleep()
-		{
-			// Handle when your app sleeps
-		}
-
-		protected override void OnResume()
-		{
-			// Handle when your app resumes
-		}
-
-		protected override void OnAppLinkRequestReceived(Uri uri)
-		{
-			if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"))
-			{
-				NavigateToListViewPage();
-			}
-
-			base.OnAppLinkRequestReceived(uri);
-		}
-
+		#region Backdoor Methods
+#if DEBUG
 		public void OpenListViewPageUsingDeepLinking()
 		{
 			OnAppLinkRequestReceived(new Uri($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"));
@@ -85,6 +66,33 @@ namespace UITestSampleApp
 			NavigateToListViewPage();
 		}
 
+		public List<ListPageDataModel> GetListPageData()
+		{
+			ListPage listPage;
+
+			var currentNavigationPage = GetCurrentPage();
+
+			if (currentNavigationPage is ListPage)
+				listPage = currentNavigationPage as ListPage;
+			else
+				return null;
+
+			var listViewModel = listPage.BindingContext as ListViewModel;
+
+			return listViewModel.DataList;
+		}
+#endif
+		#endregion
+		protected override void OnAppLinkRequestReceived(Uri uri)
+		{
+			if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"))
+			{
+				NavigateToListViewPage();
+			}
+
+			base.OnAppLinkRequestReceived(uri);
+		}
+
 		void NavigateToListViewPage()
 		{
 			// Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
@@ -93,6 +101,11 @@ namespace UITestSampleApp
 				await Navigation.PopToRootAsync();
 				await Navigation.PushAsync(new ListPage());
 			});
+		}
+
+		Page GetCurrentPage()
+		{
+			return Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
 		}
 	}
 }

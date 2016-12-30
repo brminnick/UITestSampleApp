@@ -51,6 +51,16 @@ namespace UITestSampleApp.Droid
 			else
 				App.OpenListViewPageUsingNavigation();
 		}
+
+		[Export("GetListViewPageDataAsBase64String")]
+		public string GetListViewPageDataAsBase64String()
+		{
+			var listPageData = App.GetListPageData();
+
+			var listPageDataAsBase64String = ConverterHelpers.ConvertSerializableObjectToBase64String(listPageData);
+
+			return listPageDataAsBase64String;
+		}
 #endif
 		#endregion
 	}

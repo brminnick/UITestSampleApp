@@ -18,7 +18,7 @@ namespace UITestSampleApp.UITests
 
             LoginPage.WaitForLoginScreen();
 
-			BackdoorMethodHelpers.BypassLoginScreen(app);
+			BackdoorHelpers.BypassLoginScreen(app);
 
 			app.WaitForElement("First Page");
 		}
@@ -46,13 +46,14 @@ namespace UITestSampleApp.UITests
 			var expectedAlertString = $"You Selected Number {listItemNumber}";
 
 			//Act
-			BackdoorMethodHelpers.OpenListViewPage(app);
+			BackdoorHelpers.OpenListViewPage(app);
 
 			ListPage.WaitForNoActivityIndicator();
 			ListPage.TapListItemNumber(listItemNumber);
 
 			//Assert
 			Assert.AreEqual(expectedAlertString, ListPage.GetAlertText(listItemNumber));
+			Assert.IsNotNull(BackdoorHelpers.GetListPageData(app));
 		}
 	}
 }
