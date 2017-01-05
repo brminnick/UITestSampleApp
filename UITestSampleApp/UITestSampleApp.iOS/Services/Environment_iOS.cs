@@ -1,6 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
+
 using Microsoft.WindowsAzure.MobileServices;
+
 using UIKit;
 
 using UITestSampleApp.iOS;

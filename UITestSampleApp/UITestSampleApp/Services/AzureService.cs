@@ -30,7 +30,7 @@ namespace UITestSampleApp
 			var path = DependencyService.Get<IEnvironment>().GetFilePath("app.db");
 			var store = new MobileServiceSQLiteStore(path);
 			store.DefineTable<ListPageDataModel>();
-			await MobileService.SyncContext.InitializeAsync(store);//, new SyncHandler(MobileService));
+			await MobileService.SyncContext.InitializeAsync(store, new SyncHandler(MobileService));
 
 			isInitialized = true;
 		}

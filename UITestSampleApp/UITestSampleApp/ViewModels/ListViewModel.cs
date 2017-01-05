@@ -43,9 +43,8 @@ namespace UITestSampleApp
 			set { SetProperty(ref _isDataLoadingFromBackend, value); }
 		}
 
-		public ICommand PullToRefreshCommanded =>
-		_pullToRefreshCommanded ??
-		(_pullToRefreshCommanded = new Command(async () => await ExecutePullToRefreshCommanded()));
+		public ICommand PullToRefreshCommanded => _pullToRefreshCommanded ??
+			(_pullToRefreshCommanded = new Command(async () => await ExecutePullToRefreshCommanded()));
 		#endregion
 
 		#region Methods
@@ -55,7 +54,8 @@ namespace UITestSampleApp
 
 			try
 			{
-				await Task.Run(async () => DataList = (await DependencyService.Get<IDataService>().GetItems<ListPageDataModel>()).ToList());
+				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItems<ListPageDataModel>();
+				DataList = dataListAsIEnumerable.ToList();
 			}
 			catch (Exception e)
 			{

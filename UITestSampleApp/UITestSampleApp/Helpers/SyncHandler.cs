@@ -11,11 +11,11 @@ namespace UITestSampleApp
 {
     public class SyncHandler : IMobileServiceSyncHandler
     {
-        MobileServiceClient client;
+		MobileServiceClient _client;
 
         public SyncHandler(MobileServiceClient client)
         {
-            this.client = client;
+            this._client = client;
         }
 
         public async Task<JObject> ExecuteTableOperationAsync(IMobileServiceTableOperation operation)
@@ -28,7 +28,7 @@ namespace UITestSampleApp
                 ex = null;
                 try
                 {
-                    result = await operation.ExecuteAsync();
+                    result = await operation?.ExecuteAsync();
                 }
                 catch (MobileServicePreconditionFailedException e)
                 {
@@ -42,22 +42,17 @@ namespace UITestSampleApp
                     var serverItem = ex.Value;
                     if (serverItem == null)
                     {
-                        serverItem = (JObject)(await operation.Table.LookupAsync((string)operation.Item["id"]));
+						var operationItemId = operation?.Item["id"].ToString();
+						serverItem = await operation?.Table?.LookupAsync(operationItemId) as JObject;
                     }
 
-                    // Prompt user action
-                    var userAction = await App.Current.MainPage.DisplayAlert("Conflict Occurred", "Select which version to keep.", "Server", "Client");
+					var didUserSelectServe = await GetUserResponseToKeepServerDataOrLocalData();
 
-                    if (userAction)
-                    {
-                        return serverItem;
-                    }
-                    else
-                    {
-                        // Overwrite the server version and try the operation again by continuing the loop.
-                        operation.Item[MobileServiceSystemColumns.Version] = serverItem[MobileServiceSystemColumns.Version];
-                    }
-                }
+					if (didUserSelectServe)
+						return serverItem;
+					
+					OverwriteServerDataUsingLocalData(operation, serverItem);
+				}
             } while (ex != null);
 
             return result;
@@ -67,5 +62,18 @@ namespace UITestSampleApp
         {
             return Task.FromResult(0);
         }
+
+		void OverwriteServerDataUsingLocalData(IMobileServiceTableOperation operation, JObject serverItem)
+		{
+			if (operation == null || serverItem == null)
+				return;
+			
+			operation.Item[MobileServiceSystemColumns.Version] = serverItem[MobileServiceSystemColumns.Version];
+		}
+
+		async Task<bool> GetUserResponseToKeepServerDataOrLocalData()
+		{
+			return await App.Current?.MainPage?.DisplayAlert("Conflict Occurred", "Select which version to keep.", "Server", "Client");
+		}
     }
 }
