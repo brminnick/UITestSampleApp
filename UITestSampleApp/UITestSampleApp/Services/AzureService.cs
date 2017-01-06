@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -12,15 +11,22 @@ namespace UITestSampleApp
 {
 	public class AzureService : IDataService
 	{
+		#region Constant Fields
 		const string _azureDataServiceUrl = @"https://mobile-864df958-bcca-401d-8f93-ae159cd5a9d3.azurewebsites.net";
+		#endregion 
 
-		bool isInitialized;
+		#region Fields
+		bool _isInitialized;
+		#endregion
 
+		#region Properties
 		public MobileServiceClient MobileService { get; set; }
+		#endregion
 
+		#region Methods
 		public async Task Initialize()
 		{
-			if (isInitialized)
+			if (_isInitialized)
 				return;
 
 			// MobileServiceClient handles communication with our backend, auth, and more for us.
@@ -32,10 +38,9 @@ namespace UITestSampleApp
 			store.DefineTable<ListPageDataModel>();
 			await MobileService.SyncContext.InitializeAsync(store, new SyncHandler(MobileService));
 
-			isInitialized = true;
+			_isInitialized = true;
 		}
 
-		#region Data Access
 		public async Task<IEnumerable<T>> GetItems<T>() where T : EntityData
 		{
 			await Initialize();
