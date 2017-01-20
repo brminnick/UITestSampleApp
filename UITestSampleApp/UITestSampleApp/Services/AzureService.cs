@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -13,89 +14,112 @@ namespace UITestSampleApp
 	{
 		#region Constant Fields
 		const string _azureDataServiceUrl = @"https://mobile-864df958-bcca-401d-8f93-ae159cd5a9d3.azurewebsites.net";
-		#endregion 
-
-		#region Fields
-		bool _isInitialized;
+		readonly Dictionary<Type, bool> _isInitializedDictionary = new Dictionary<Type, bool>();
+		readonly Dictionary<Type, IMobileServiceTable> _localDataTableDictionary = new Dictionary<Type, IMobileServiceTable>();
 		#endregion
 
-		#region Properties
-		public MobileServiceClient MobileService { get; set; }
+		#region Fields
+		MobileServiceClient _mobileService;
 		#endregion
 
 		#region Methods
-		public async Task Initialize()
+		public async Task<IEnumerable<T>> GetItemsAsync<T>() where T : EntityData
 		{
-			if (_isInitialized)
-				return;
+			await Initialize<T>();
 
-			// MobileServiceClient handles communication with our backend, auth, and more for us.
-			MobileService = new MobileServiceClient(_azureDataServiceUrl);
+			await SyncItemsAsync<T>();
 
-			// Configure online/offline sync.
-			var path = DependencyService.Get<IEnvironment>().GetFilePath("app.db");
-			var store = new MobileServiceSQLiteStore(path);
-			store.DefineTable<ListPageDataModel>();
-			await MobileService.SyncContext.InitializeAsync(store, new SyncHandler(MobileService));
-
-			_isInitialized = true;
+			return await _mobileService.GetSyncTable<T>().ToEnumerableAsync();
 		}
 
-		public async Task<IEnumerable<T>> GetItems<T>() where T : EntityData
+		public async Task<IEnumerable<T>> GetItemsFromLocalDatabaseAsync<T>() where T : EntityData
 		{
-			await Initialize();
+			IMobileServiceTable<T> table = null;
 
-			await SyncItems<T>();
+			await Initialize<T>();
 
-			return await MobileService.GetSyncTable<T>().ToEnumerableAsync();
+			table = _localDataTableDictionary?.FirstOrDefault(x => x.Key == typeof(T)).Value as IMobileServiceTable<T>;
+
+			return await table?.ReadAsync();
 		}
 
 		public async Task<T> GetItem<T>(string id) where T : EntityData
 		{
-			await Initialize();
+			await Initialize<T>();
 
-			await SyncItems<T>();
+			await SyncItemsAsync<T>();
 
-			return await MobileService.GetSyncTable<T>().LookupAsync(id);
+			return await _mobileService.GetSyncTable<T>().LookupAsync(id);
 		}
 
-		public async Task AddItem<T>(T item) where T : EntityData
+		public async Task AddItemAsync<T>(T item) where T : EntityData
 		{
-			await Initialize();
+			await Initialize<T>();
 
-			await MobileService.GetSyncTable<T>().InsertAsync(item);
-			await SyncItems<T>();
+			await _mobileService.GetSyncTable<T>().InsertAsync(item);
+			await SyncItemsAsync<T>();
 		}
 
-		public async Task UpdateItem<T>(T item) where T : EntityData
+		public async Task UpdateItemAsync<T>(T item) where T : EntityData
 		{
-			await Initialize();
+			await Initialize<T>();
 
-			await MobileService.GetSyncTable<T>().UpdateAsync(item);
-			await SyncItems<T>();
+			await _mobileService.GetSyncTable<T>().UpdateAsync(item);
+			await SyncItemsAsync<T>();
 		}
 
-		public async Task RemoveItem<T>(T item) where T : EntityData
+		public async Task RemoveItemAsync<T>(T item) where T : EntityData
 		{
-			await Initialize();
+			await Initialize<T>();
 
-			await MobileService.GetSyncTable<T>().DeleteAsync(item);
-			await SyncItems<T>();
+			await _mobileService.GetSyncTable<T>().DeleteAsync(item);
+			await SyncItemsAsync<T>();
 		}
 
-		public async Task SyncItems<T>() where T : EntityData
+		public async Task SyncItemsAsync<T>() where T : EntityData
 		{
-			await Initialize();
+			await Initialize<T>();
 
 			try
 			{
-				await MobileService.SyncContext.PushAsync();
-				await MobileService.GetSyncTable<T>().PullAsync($"all{typeof(T).Name}", MobileService.GetSyncTable<T>().CreateQuery());
+				await _mobileService.SyncContext.PushAsync();
+				await _mobileService.GetSyncTable<T>().PullAsync($"all{typeof(T).Name}", _mobileService.GetSyncTable<T>().CreateQuery());
 			}
 			catch (Exception ex)
 			{
 				System.Diagnostics.Debug.WriteLine($"Error during Sync occurred: {ex.Message}");
 			}
+		}
+
+		async Task Initialize<T>() where T : EntityData
+		{
+			if (IsDataTypeInitialized<T>())
+				return;
+
+			_isInitializedDictionary?.Add(typeof(T), false);
+
+			_mobileService = new MobileServiceClient(_azureDataServiceUrl);
+
+			await ConfigureOnlineOfflineSync<T>();
+
+			_isInitializedDictionary[typeof(T)] = true;
+		}
+
+		async Task ConfigureOnlineOfflineSync<T>() where T : EntityData
+		{
+			var path = DependencyService.Get<IEnvironment>().GetFilePath("app.db");
+			var store = new MobileServiceSQLiteStore(path);
+			store.DefineTable<T>();
+
+			await _mobileService.SyncContext.InitializeAsync(store, new SyncHandler(_mobileService));
+
+			_localDataTableDictionary.Add(typeof(T), _mobileService.GetTable<T>());
+		}
+
+		bool IsDataTypeInitialized<T>() where T : EntityData
+		{
+			var isDataTypeInitalized = _isInitializedDictionary?.FirstOrDefault(x => x.Key == typeof(T)).Value;
+			return isDataTypeInitalized == true;
 		}
 		#endregion
 	}

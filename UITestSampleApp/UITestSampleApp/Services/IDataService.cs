@@ -5,11 +5,11 @@ namespace UITestSampleApp
 {
 	public interface IDataService
 	{
-		Task Initialize();
-		Task<IEnumerable<T>> GetItems<T>() where T : EntityData;
-		Task AddItem<T>(T item) where T : EntityData;
-		Task UpdateItem<T>(T item) where T : EntityData;
-		Task RemoveItem<T>(T item) where T : EntityData;
-		Task SyncItems<T>() where T : EntityData;
+		Task<IEnumerable<T>> GetItemsAsync<T>() where T : EntityData;
+		Task<IEnumerable<T>> GetItemsFromLocalDatabaseAsync<T>() where T : EntityData;
+		Task AddItemAsync<T>(T item) where T : EntityData;
+		Task UpdateItemAsync<T>(T item) where T : EntityData;
+		Task RemoveItemAsync<T>(T item) where T : EntityData;
+		Task SyncItemsAsync<T>() where T : EntityData;
 	}
 }

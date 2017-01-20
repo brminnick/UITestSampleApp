@@ -1,73 +1,72 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
-using Microsoft.WindowsAzure.MobileServices.Sync;
+﻿using System.Threading.Tasks;
+
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Microsoft.WindowsAzure.MobileServices;
+using Microsoft.WindowsAzure.MobileServices.Sync;
+
 
 namespace UITestSampleApp
 {
-    public class SyncHandler : IMobileServiceSyncHandler
-    {
+	public class SyncHandler : IMobileServiceSyncHandler
+	{
 		MobileServiceClient _client;
 
-        public SyncHandler(MobileServiceClient client)
-        {
-            this._client = client;
-        }
+		public SyncHandler(MobileServiceClient client)
+		{
+			this._client = client;
+		}
 
-        public async Task<JObject> ExecuteTableOperationAsync(IMobileServiceTableOperation operation)
-        {
-            MobileServicePreconditionFailedException ex;
-            JObject result = null;
+		public async Task<JObject> ExecuteTableOperationAsync(IMobileServiceTableOperation operation)
+		{
+			MobileServicePreconditionFailedException ex;
+			JObject result = null;
 
-            do
-            {
-                ex = null;
-                try
-                {
-                    result = await operation?.ExecuteAsync();
-                }
-                catch (MobileServicePreconditionFailedException e)
-                {
-                    ex = e;
-                }
+			do
+			{
+				ex = null;
+				try
+				{
+					result = await operation?.ExecuteAsync();
+				}
+				catch (MobileServicePreconditionFailedException e)
+				{
+					ex = e;
+				}
 
-                // There was a conflict in the server
-                if (ex != null)
-                {
-                    // Grabs the server item from the exception. If not available, fetch it.
-                    var serverItem = ex.Value;
-                    if (serverItem == null)
-                    {
+				// There was a conflict in the server
+				if (ex != null)
+				{
+					// Grabs the server item from the exception. If not available, fetch it.
+					var serverItem = ex.Value;
+					if (serverItem == null)
+					{
 						var operationItemId = operation?.Item["id"].ToString();
 						serverItem = await operation?.Table?.LookupAsync(operationItemId) as JObject;
-                    }
+					}
 
 					var didUserSelectServe = await GetUserResponseToKeepServerDataOrLocalData();
 
 					if (didUserSelectServe)
 						return serverItem;
-					
+
 					OverwriteServerDataUsingLocalData(operation, serverItem);
 				}
-            } while (ex != null);
+			} while (ex != null);
 
-            return result;
-        }
+			return result;
+		}
 
-        public Task OnPushCompleteAsync(MobileServicePushCompletionResult result)
-        {
-            return Task.FromResult(0);
-        }
+		public Task OnPushCompleteAsync(MobileServicePushCompletionResult result)
+		{
+			return Task.FromResult(0);
+		}
 
 		void OverwriteServerDataUsingLocalData(IMobileServiceTableOperation operation, JObject serverItem)
 		{
 			if (operation == null || serverItem == null)
 				return;
-			
+
 			operation.Item[MobileServiceSystemColumns.Version] = serverItem[MobileServiceSystemColumns.Version];
 		}
 
@@ -75,5 +74,5 @@ namespace UITestSampleApp
 		{
 			return await App.Current?.MainPage?.DisplayAlert("Conflict Occurred", "Select which version to keep.", "Server", "Client");
 		}
-    }
+	}
 }
