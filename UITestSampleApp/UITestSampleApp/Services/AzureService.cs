@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Microsoft.WindowsAzure.MobileServices;
+using Microsoft.WindowsAzure.MobileServices.Sync;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
 using Xamarin.Forms;
@@ -14,7 +15,7 @@ namespace UITestSampleApp
 	{
 		#region Constant Fields
 		readonly Dictionary<Type, bool> _isInitializedDictionary = new Dictionary<Type, bool>();
-		readonly Dictionary<Type, IMobileServiceTable> _localDataTableDictionary = new Dictionary<Type, IMobileServiceTable>();
+		readonly Dictionary<Type, IMobileServiceSyncTable> _localDataTableDictionary = new Dictionary<Type, IMobileServiceSyncTable>();
 		#endregion
 
 		#region Fields
@@ -33,11 +34,11 @@ namespace UITestSampleApp
 
 		public async Task<IEnumerable<T>> GetItemsFromLocalDatabaseAsync<T>() where T : EntityData
 		{
-			IMobileServiceTable<T> table = null;
+			IMobileServiceSyncTable<T> table = null;
 
 			await Initialize<T>();
 
-			table = _localDataTableDictionary?.FirstOrDefault(x => x.Key == typeof(T)).Value as IMobileServiceTable<T>;
+			table = _localDataTableDictionary?.FirstOrDefault(x => x.Key == typeof(T)).Value as IMobileServiceSyncTable<T>;
 
 			return await table?.ReadAsync();
 		}
@@ -112,7 +113,7 @@ namespace UITestSampleApp
 
 			await _mobileService.SyncContext.InitializeAsync(store, new SyncHandler(_mobileService));
 
-			_localDataTableDictionary.Add(typeof(T), _mobileService.GetTable<T>());
+			_localDataTableDictionary.Add(typeof(T), _mobileService.GetSyncTable<T>());
 		}
 
 		bool IsDataTypeInitialized<T>() where T : EntityData

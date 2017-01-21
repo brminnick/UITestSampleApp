@@ -10,13 +10,18 @@ namespace UITestSampleApp
 {
 	public class SyncHandler : IMobileServiceSyncHandler
 	{
+		#region Fields
 		MobileServiceClient _client;
+		#endregion
 
+		#region Constructors
 		public SyncHandler(MobileServiceClient client)
 		{
-			this._client = client;
+			_client = client;
 		}
+		#endregion
 
+		#region Methods
 		public async Task<JObject> ExecuteTableOperationAsync(IMobileServiceTableOperation operation)
 		{
 			MobileServicePreconditionFailedException ex;
@@ -74,5 +79,6 @@ namespace UITestSampleApp
 		{
 			return await App.Current?.MainPage?.DisplayAlert("Conflict Occurred", "Select which version to keep.", "Server", "Client");
 		}
+		#endregion
 	}
 }

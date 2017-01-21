@@ -56,20 +56,28 @@ namespace UITestSampleApp
 			if (!CrossConnectivity.Current.IsConnected || !isAzureDatabaseReachable)
 				return;
 
-			var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
-			DataList = dataListAsIEnumerable.ToList();
+			try
+			{
+				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
+				DataList = dataListAsIEnumerable.ToList();
+			}
+			catch (Exception e)
+			{
+				AnalyticsHelpers.Log("Error Retrieving Data From Azure", e.Message, e);
+			}
 		}
 
 		async Task RefreshDataFromLocalDatabaseAsync()
 		{
-			var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsFromLocalDatabaseAsync<ListPageDataModel>();
-			DataList = dataListAsIEnumerable?.ToList();
-		}
-
-		void OnLoadingDataFromBackendCompleted()
-		{
-			var handle = LoadingDataFromBackendCompleted;
-			handle?.Invoke(null, EventArgs.Empty);
+			try
+			{
+				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsFromLocalDatabaseAsync<ListPageDataModel>();
+				DataList = dataListAsIEnumerable?.ToList();
+			}
+			catch (Exception e)
+			{
+				AnalyticsHelpers.Log("Error Retriving Data From Local Database", e.Message, e);
+			}
 		}
 
 		async Task ExecutePullToRefreshCommanded()
@@ -85,20 +93,18 @@ namespace UITestSampleApp
 		{
 			IsDataLoading = true;
 
-			try
-			{
-				await RefreshDataFromLocalDatabaseAsync();
-				await RefreshDataFromAzureAsync();
-			}
-			catch (Exception e)
-			{
-				AnalyticsHelpers.Log("Error Retrieving Data From Azure", e.Message, e);
-			}
-			finally
-			{
-				OnLoadingDataFromBackendCompleted();
-				IsDataLoading = false;
-			}
+			await RefreshDataFromLocalDatabaseAsync();
+			await RefreshDataFromAzureAsync();
+
+			OnLoadingDataFromBackendCompleted();
+
+			IsDataLoading = false;
+		}
+
+		void OnLoadingDataFromBackendCompleted()
+		{
+			var handle = LoadingDataFromBackendCompleted;
+			handle?.Invoke(null, EventArgs.Empty);
 		}
 		#endregion
 	}
