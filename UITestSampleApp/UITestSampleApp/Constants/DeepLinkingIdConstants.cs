@@ -1,5 +1,4 @@
-﻿using System;
-namespace UITestSampleApp.Shared
+﻿namespace UITestSampleApp
 {
 	public static class DeepLinkingIdConstants
 	{

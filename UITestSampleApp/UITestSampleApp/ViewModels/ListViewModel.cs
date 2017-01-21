@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-using System.Windows.Input;
-using UITestSampleApp.Shared;
+
+using Plugin.Connectivity;
 
 namespace UITestSampleApp
 {
@@ -14,7 +15,7 @@ namespace UITestSampleApp
 		#region Fields
 		bool _isDataLoadingFromBackend;
 
-		ICommand _pullToRefreshCommanded;
+		ICommand _PullToRefreshCommand;
 
 		List<ListPageDataModel> _dataList;
 		#endregion
@@ -22,8 +23,9 @@ namespace UITestSampleApp
 		#region Constructors
 		public ListViewModel()
 		{
-			Task.Run(async () => await RefreshDataFromAzureAsync());
+			Task.Run(async () => await RefreshDataAsync());
 		}
+
 		#endregion
 
 		#region Events
@@ -37,51 +39,72 @@ namespace UITestSampleApp
 			set { SetProperty(ref _dataList, value); }
 		}
 
-		public bool IsDataLoadingFromBackend
+		public bool IsDataLoading
 		{
 			get { return _isDataLoadingFromBackend; }
 			set { SetProperty(ref _isDataLoadingFromBackend, value); }
 		}
 
-		public ICommand PullToRefreshCommanded =>
-		_pullToRefreshCommanded ??
-		(_pullToRefreshCommanded = new Command(async () => await ExecutePullToRefreshCommanded()));
+		public ICommand PullToRefreshCommand => _PullToRefreshCommand ??
+			(_PullToRefreshCommand = new Command(async () => await ExecutePullToRefreshCommanded()));
 		#endregion
 
 		#region Methods
 		async Task RefreshDataFromAzureAsync()
 		{
-			IsDataLoadingFromBackend = true;
+			var isAzureDatabaseReachable = await CrossConnectivity.Current.IsRemoteReachable(AzureConstants.AzureDataServiceUrl, 80, 1000);
+			if (!CrossConnectivity.Current.IsConnected || !isAzureDatabaseReachable)
+				return;
 
 			try
 			{
-				await Task.Run(async () => DataList = (await DependencyService.Get<IDataService>().GetItems<ListPageDataModel>()).ToList());
+				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
+				DataList = dataListAsIEnumerable.ToList();
 			}
 			catch (Exception e)
 			{
 				AnalyticsHelpers.Log("Error Retrieving Data From Azure", e.Message, e);
 			}
-			finally
-			{
-				OnLoadingDataFromBackendCompleted();
-				IsDataLoadingFromBackend = false;
-			}
-
 		}
 
-		void OnLoadingDataFromBackendCompleted()
+		async Task RefreshDataFromLocalDatabaseAsync()
 		{
-			var handle = LoadingDataFromBackendCompleted;
-			handle?.Invoke(null, EventArgs.Empty);
+			try
+			{
+				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsFromLocalDatabaseAsync<ListPageDataModel>();
+				DataList = dataListAsIEnumerable?.ToList();
+			}
+			catch (Exception e)
+			{
+				AnalyticsHelpers.Log("Error Retriving Data From Local Database", e.Message, e);
+			}
 		}
 
 		async Task ExecutePullToRefreshCommanded()
 		{
 			AnalyticsHelpers.TrackEvent(AnalyticsConstants.PullToRefreshCommanded);
 
+			await RefreshDataAsync();
+
+			OnLoadingDataFromBackendCompleted();
+		}
+
+		async Task RefreshDataAsync()
+		{
+			IsDataLoading = true;
+
+			await RefreshDataFromLocalDatabaseAsync();
 			await RefreshDataFromAzureAsync();
 
 			OnLoadingDataFromBackendCompleted();
+
+			IsDataLoading = false;
+		}
+
+		void OnLoadingDataFromBackendCompleted()
+		{
+			var handle = LoadingDataFromBackendCompleted;
+			handle?.Invoke(null, EventArgs.Empty);
 		}
 		#endregion
 	}

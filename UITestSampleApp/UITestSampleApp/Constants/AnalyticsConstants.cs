@@ -1,4 +1,4 @@
-﻿namespace UITestSampleApp.Shared
+﻿namespace UITestSampleApp
 {
 	public static class AnalyticsConstants
 	{

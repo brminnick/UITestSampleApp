@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace UITestSampleApp.Shared
+namespace UITestSampleApp
 {
 	public static class StyleConstants
 	{
