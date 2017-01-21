@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 
 using MyLoginUI.Views;
+
 using UITestSampleApp.Shared;
 
 namespace MyLoginUI.Pages

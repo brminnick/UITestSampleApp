@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Windows.Input;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using UITestSampleApp.Shared;
+using System.Collections.Generic;
+
 using Xamarin.Forms;
+
 namespace UITestSampleApp
 {
 	public class FirstPageViewModel : BaseViewModel

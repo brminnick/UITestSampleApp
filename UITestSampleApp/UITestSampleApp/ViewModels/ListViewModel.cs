@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-using UITestSampleApp.Shared;
+using Plugin.Connectivity;
 
 namespace UITestSampleApp
 {
@@ -52,6 +52,10 @@ namespace UITestSampleApp
 		#region Methods
 		async Task RefreshDataFromAzureAsync()
 		{
+			var isAzureDatabaseReachable = await CrossConnectivity.Current.IsRemoteReachable(AzureConstants.AzureDataServiceUrl, 80, 1000);
+			if (!CrossConnectivity.Current.IsConnected || !isAzureDatabaseReachable)
+				return;
+
 			var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
 			DataList = dataListAsIEnumerable.ToList();
 		}

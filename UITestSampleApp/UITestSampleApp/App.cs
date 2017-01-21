@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-
-using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
 
 	public class App : Application
 	{
-		public static bool XTCAgent;
-		public static bool IsLoggedIn;
-		public static string UserName;
-
-		public static NavigationPage Navigation;
-
+		#region Constructors
 		public App()
 		{
 			DependencyService.Register<IDataService, AzureService>();
@@ -32,7 +24,17 @@ namespace UITestSampleApp
 			NavigationPage.SetHasNavigationBar(page, false);
 			MainPage = Navigation;
 		}
+		#endregion
 
+		#region Properties
+		public static bool XTCAgent { get; set; }
+		public static bool IsLoggedIn { get; set; }
+		public static string UserName { get; set; }
+
+		public static NavigationPage Navigation { get; set; }
+		#endregion
+
+		#region Methods
 		protected override void OnStart()
 		{
 			int majorVersion, minorVersion;
@@ -54,6 +56,31 @@ namespace UITestSampleApp
 				AppLinks.RegisterLink(listViewPageLink);
 			}
 		}
+		protected override void OnAppLinkRequestReceived(Uri uri)
+		{
+			if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"))
+			{
+				NavigateToListViewPage();
+			}
+
+			base.OnAppLinkRequestReceived(uri);
+		}
+
+		void NavigateToListViewPage()
+		{
+			// Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
+			Device.BeginInvokeOnMainThread(async () =>
+			{
+				await Navigation.PopToRootAsync();
+				await Navigation.PushAsync(new ListPage());
+			});
+		}
+
+		Page GetCurrentPage()
+		{
+			return Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
+		}
+
 		#region Backdoor Methods
 #if DEBUG
 		public void OpenListViewPageUsingDeepLinking()
@@ -83,30 +110,7 @@ namespace UITestSampleApp
 		}
 #endif
 		#endregion
-		protected override void OnAppLinkRequestReceived(Uri uri)
-		{
-			if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"))
-			{
-				NavigateToListViewPage();
-			}
-
-			base.OnAppLinkRequestReceived(uri);
-		}
-
-		void NavigateToListViewPage()
-		{
-			// Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
-			Device.BeginInvokeOnMainThread(async () =>
-			{
-				await Navigation.PopToRootAsync();
-				await Navigation.PushAsync(new ListPage());
-			});
-		}
-
-		Page GetCurrentPage()
-		{
-			return Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
-		}
+		#endregion
 	}
 }
 

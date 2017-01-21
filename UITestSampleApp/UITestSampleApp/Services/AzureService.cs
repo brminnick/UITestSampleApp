@@ -13,7 +13,6 @@ namespace UITestSampleApp
 	public class AzureService : IDataService
 	{
 		#region Constant Fields
-		const string _azureDataServiceUrl = @"https://mobile-864df958-bcca-401d-8f93-ae159cd5a9d3.azurewebsites.net";
 		readonly Dictionary<Type, bool> _isInitializedDictionary = new Dictionary<Type, bool>();
 		readonly Dictionary<Type, IMobileServiceTable> _localDataTableDictionary = new Dictionary<Type, IMobileServiceTable>();
 		#endregion
@@ -98,7 +97,7 @@ namespace UITestSampleApp
 
 			_isInitializedDictionary?.Add(typeof(T), false);
 
-			_mobileService = new MobileServiceClient(_azureDataServiceUrl);
+			_mobileService = new MobileServiceClient(AzureConstants.AzureDataServiceUrl);
 
 			await ConfigureOnlineOfflineSync<T>();
 

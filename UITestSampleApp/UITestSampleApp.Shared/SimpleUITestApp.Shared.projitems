@@ -10,12 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Constants\AutomationIdConstants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Constants\DeepLinkingIdConstants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Constants\AnalyticsConstants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Constants\StyleConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Constants\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
   </ItemGroup>
 </Project>

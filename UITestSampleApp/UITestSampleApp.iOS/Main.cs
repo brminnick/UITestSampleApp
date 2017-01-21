@@ -1,7 +1,5 @@
 ﻿using UIKit;
 
-using UITestSampleApp.Shared;
-
 namespace UITestSampleApp.iOS
 {
 	public class Application
