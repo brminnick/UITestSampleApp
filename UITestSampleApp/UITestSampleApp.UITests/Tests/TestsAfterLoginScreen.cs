@@ -23,15 +23,26 @@ namespace UITestSampleApp.UITests
 			app.WaitForElement("First Page");
 		}
 
+		[TestCase(true)]
+		[TestCase(false)]
 		[Test]
-		public void EnterText()
+		public void EnterText(bool shouldUseKeyboardReturnButton)
 		{
 			//Arrange
 			var textInput = "Hello World";
 
 			//Act
-			FirstPage.EnterText(textInput);
-			FirstPage.ClickGo();
+			switch (shouldUseKeyboardReturnButton)
+			{
+				case true:
+					FirstPage.EnterTextAndPressEnter(textInput);
+					break;
+				case false:
+					FirstPage.EnterText(textInput);
+					FirstPage.ClickGo();
+					break;
+			}
+
 			FirstPage.WaitForNoActivityIndicator();
 
 			//Assert

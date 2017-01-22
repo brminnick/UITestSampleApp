@@ -36,7 +36,9 @@ namespace UITestSampleApp
 				Placeholder = entryTextPaceHolder,
 				AutomationId = AutomationIdConstants.TextEntry, // This provides an ID that can be referenced in UITests
 				PlaceholderColor = Color.FromHex("749FA8"),
+				ReturnType = ReturnType.Go
 			};
+			textEntry.Completed += (sender, e) => viewModel?.GoButtonTapped?.Execute(null);
 			textEntry.SetBinding<FirstPageViewModel>(Entry.TextProperty, vm => vm.EntryText);
 
 			var textLabel = new StyledLabel

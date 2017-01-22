@@ -53,13 +53,22 @@ namespace UITestSampleApp.UITests
 			}
 		}
 
+		public void EnterTextAndPressEnter(string text)
+		{
+			app.Tap(_textEntryUsingID);
+			app.ClearText();
+			app.EnterText(text);
+			app.PressEnter();
+			app.Screenshot($"Entered Text: {text}");
+		}
+
 		public void EnterText(string text)
 		{
 			app.Tap(_textEntryUsingID);
 			app.ClearText();
 			app.EnterText(text);
 			app.DismissKeyboard();
-			app.Screenshot($"Enter Text, \"{text}\"");
+			app.Screenshot($"Entered Text: {text}");
 		}
 
 		public void ClickGo()

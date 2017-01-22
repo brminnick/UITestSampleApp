@@ -1,6 +1,7 @@
 ﻿using Xamarin.UITest;
 
 using NUnit.Framework;
+using System.Configuration;
 
 namespace UITestSampleApp.UITests
 {
@@ -22,8 +23,10 @@ namespace UITestSampleApp.UITests
 			BackdoorHelpers.SetiOSXTCAgent(app);
 		}
 
+		[TestCase(true)]
+		[TestCase(false)]
 		[Test]
-		public void CreateNewUserAndLogin()
+		public void CreateNewUserAndLogin(bool shouldUseKeyboardReturnButton)
 		{
 			//Arrange
 			var username = _username;
@@ -32,8 +35,10 @@ namespace UITestSampleApp.UITests
 
 			//Act
 			LoginPage.PressSignUpButton();
-			NewUserSignUpPage.CreateNewUserWithPassword(username, password);
-			LoginPage.LoginWithUsernamePassword(username, password);
+			NewUserSignUpPage.CreateNewUserWithPassword(username, password, shouldUseKeyboardReturnButton);
+
+			LoginPage.WaitForLoginScreen();
+			LoginPage.LoginWithUsernamePassword(username, password, shouldUseKeyboardReturnButton);
 
 			//Assert
 			var actualFirstPageTitle = FirstPage.GetTitle();
@@ -50,8 +55,8 @@ namespace UITestSampleApp.UITests
 
 			//Act
 			LoginPage.PressSignUpButton();
-			NewUserSignUpPage.CreateNewUserWithPassword(username, password);
-			LoginPage.LoginWithUsernamePassword(username, incorrectPassword);
+			NewUserSignUpPage.CreateNewUserWithPassword(username, password, false);
+			LoginPage.LoginWithUsernamePassword(username, incorrectPassword, false);
 			LoginPage.TapTryAgainDialog();
 
 			//Assert

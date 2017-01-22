@@ -49,8 +49,10 @@ namespace UITestSampleApp
 				Placeholder = "Username",
 				HorizontalOptions = LayoutOptions.Fill,
 				HorizontalTextAlignment = TextAlignment.End,
-				PlaceholderColor = Color.FromHex("749FA8")
+				PlaceholderColor = Color.FromHex("749FA8"),
+				ReturnType = ReturnType.Next
 			};
+			_usernameEntry.Completed += (sender, e) => _passwordEntry.Focus();
 
 			_passwordEntry = new StyledEntry(1)
 			{
@@ -63,6 +65,7 @@ namespace UITestSampleApp
 				VerticalOptions = LayoutOptions.Fill,
 				PlaceholderColor = Color.FromHex("749FA8")
 			};
+			_passwordEntry.Completed += HandleSaveUsernameButtonClicked;
 
 			_saveUsernameButton = new StyledButton(Borders.Thin, 1)
 			{
@@ -72,6 +75,8 @@ namespace UITestSampleApp
 				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.EndAndExpand
 			};
+			_saveUsernameButton.Clicked += HandleSaveUsernameButtonClicked;
+
 			_cancelButton = new StyledButton(Borders.Thin, 1)
 			{
 				Style = StyleConstants.BorderedButton,
@@ -79,15 +84,6 @@ namespace UITestSampleApp
 				Text = "Cancel",
 				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.End
-			};
-
-			_saveUsernameButton.Clicked += async (object sender, EventArgs e) =>
-			{
-				var success = await DependencyService.Get<ILogin>().SetPasswordForUsername(_usernameEntry.Text, _passwordEntry.Text);
-				if (success)
-					await Navigation.PopModalAsync();
-				else
-					await DisplayAlert("Error", "You must enter a username and a password", "Okay");
 			};
 
 			_cancelButton.Clicked += (object sender, EventArgs e) =>
@@ -125,5 +121,14 @@ namespace UITestSampleApp
 			};
 		}
 		#endregion
+
+		async void HandleSaveUsernameButtonClicked(object sender, EventArgs e)
+		{
+			var success = await DependencyService.Get<ILogin>().SetPasswordForUsername(_usernameEntry.Text, _passwordEntry.Text);
+			if (success)
+				await Navigation.PopModalAsync();
+			else
+				await DisplayAlert("Error", "You must enter a username and a password", "Okay");
+		}
 	}
 }

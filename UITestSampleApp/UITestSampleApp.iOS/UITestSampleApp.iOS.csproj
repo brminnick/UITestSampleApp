@@ -201,6 +201,7 @@
     <Compile Include="Services\Login_iOS.cs" />
     <Compile Include="Helpers\KeychainHelpers.cs" />
     <Compile Include="Services\Environment_iOS.cs" />
+    <Compile Include="CustomRenderers\StyledEntryRenderer.cs" />
   </ItemGroup>
   <Import Project="..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -215,6 +216,7 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Helpers\" />
+    <Folder Include="CustomRenderers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UITestSampleApp\UITestSampleApp.csproj">

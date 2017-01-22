@@ -30,11 +30,17 @@ namespace UITestSampleApp.UITests
 			_crashButton = x => x.Marked(AutomationIdConstants.CrashButton);
 		}
 
-		public void LoginWithUsernamePassword(string username, string password)
+		public void LoginWithUsernamePassword(string username, string password, bool shouldUseKeyboardReturnButton)
 		{
-			EnterUsername(username);
-			EnterPassword(password);
-			PressLoginButton();
+			switch(shouldUseKeyboardReturnButton)
+			{
+				case true:
+					LoginWithUsernamePasswordUsingEnterButton(username, password);
+					break;
+				case false:
+					LoginWithUsernamePasswordNotUsingEnterButton(username, password);
+					break;
+			}
 		}
 
 		public void EnterUsername(string username)
@@ -75,7 +81,7 @@ namespace UITestSampleApp.UITests
 
 		public void SignUpNewUserFromDialog()
 		{
-			LoginWithUsernamePassword("incorrectUserName","incorrectPassword");
+			LoginWithUsernamePasswordNotUsingEnterButton("incorrectUserName", "incorrectPassword");
 			TapSignUpFromDialog();
 		}
 
@@ -98,15 +104,41 @@ namespace UITestSampleApp.UITests
 			app.Screenshot("Tapped Okay on Error Dialog");
 		}
 
-        public void WaitForLoginScreen(int timeoutInSeconds = 60)
-        {
-            app.WaitForElement(_loginButton, "Login Screen Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
-        }
+		public void WaitForLoginScreen(int timeoutInSeconds = 60)
+		{
+			app.WaitForElement(_loginButton, "Login Screen Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
+		}
 
 		public void TapCrashButton()
 		{
 			app.Tap(_crashButton);
 			app.Screenshot("Crash Button Tapped");
+		}
+
+		void LoginWithUsernamePasswordNotUsingEnterButton(string username, string password)
+		{
+			EnterUsername(username);
+			EnterPassword(password);
+			PressLoginButton();
+		}
+
+		void LoginWithUsernamePasswordUsingEnterButton(string username, string password)
+		{
+			app.Tap(_usernameEntry);
+			app.ClearText();
+			app.EnterText(username);
+			app.Screenshot($"Entered Username: {username}");
+
+			app.PressEnter();
+
+
+			app.ClearText();
+			app.EnterText(password);
+			app.Screenshot($"Entered Password: {password}");
+
+			app.PressEnter();
+
+			app.Screenshot("Logged In Using Enter Button");
 		}
 	}
 }
