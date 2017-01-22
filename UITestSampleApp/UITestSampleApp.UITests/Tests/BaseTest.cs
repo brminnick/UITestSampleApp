@@ -32,6 +32,8 @@ namespace UITestSampleApp.UITests
 			ListPage = new ListPage(app, platform);
 			LoginPage = new LoginPage(app, platform);
 			NewUserSignUpPage = new NewUserSignUpPage(app, platform);
+
+			LoginPage.WaitForLoginScreen();
 		}
 	}
 }

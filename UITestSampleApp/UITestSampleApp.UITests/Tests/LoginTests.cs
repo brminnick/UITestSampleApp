@@ -35,16 +35,10 @@ namespace UITestSampleApp.UITests
 
 			//Act
 			LoginPage.PressSignUpButton();
+			NewUserSignUpPage.CreateNewUserWithPassword(username, password, shouldUseKeyboardReturnButton);
 
-			if (shouldUseKeyboardReturnButton)
-				NewUserSignUpPage.CreateNewUserWithPasswordUsingEnterButton(username, password);
-			else
-				NewUserSignUpPage.CreateNewUserWithPassword(username, password);
-
-			if (shouldUseKeyboardReturnButton)
-				LoginPage.LoginWithUsernamePasswordUsingEnterButton(username, password);
-			else
-				LoginPage.LoginWithUsernamePassword(username, password);
+			LoginPage.WaitForLoginScreen();
+			LoginPage.LoginWithUsernamePassword(username, password, shouldUseKeyboardReturnButton);
 
 			//Assert
 			var actualFirstPageTitle = FirstPage.GetTitle();
@@ -61,8 +55,8 @@ namespace UITestSampleApp.UITests
 
 			//Act
 			LoginPage.PressSignUpButton();
-			NewUserSignUpPage.CreateNewUserWithPassword(username, password);
-			LoginPage.LoginWithUsernamePassword(username, incorrectPassword);
+			NewUserSignUpPage.CreateNewUserWithPassword(username, password, false);
+			LoginPage.LoginWithUsernamePassword(username, incorrectPassword, false);
 			LoginPage.TapTryAgainDialog();
 
 			//Assert

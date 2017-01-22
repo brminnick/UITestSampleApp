@@ -22,23 +22,17 @@ namespace UITestSampleApp.UITests
 			_usernameEntry = x => x.Marked(AutomationIdConstants.NewUserNameEntry);
 		}
 
-		public void CreateNewUserWithPassword(string username, string password)
+		public void CreateNewUserWithPassword(string username, string password, bool shouldUseKeyboardReturnButton)
 		{
-			EnterUsername(username);
-			EnterPassword(password);
-			TapSave();
-		}
-
-		public void CreateNewUserWithPasswordUsingEnterButton(string username, string password)
-		{
-			app.Tap(_usernameEntry);
-			app.ClearText();
-			app.EnterText(username);
-			app.PressEnter();
-
-			app.ClearText();
-			app.EnterText(password);
-			app.PressEnter();
+			switch(shouldUseKeyboardReturnButton)
+			{
+				case true:
+					CreateNewUserWithPasswordUsingEnterButton(username, password);
+					break;
+				case false:
+					CreateNewUserWithPasswordNotUsingEnterButton(username, password);
+					break;
+			}
 		}
 
 		public void EnterUsername(string username)
@@ -69,6 +63,32 @@ namespace UITestSampleApp.UITests
 		{
 			app.Tap(_cancelButton);
 			app.Screenshot("Tapped Cancel Button");
+		}
+
+		void CreateNewUserWithPasswordNotUsingEnterButton(string username, string password)
+		{
+			EnterUsername(username);
+			EnterPassword(password);
+			TapSave();
+		}
+
+		void CreateNewUserWithPasswordUsingEnterButton(string username, string password)
+		{
+			app.Tap(_usernameEntry);
+			app.ClearText();
+			app.EnterText(username);
+			app.Screenshot($"Entered Username: {username}");
+
+			app.PressEnter();
+
+
+			app.ClearText();
+			app.EnterText(password);
+			app.Screenshot($"Entered Password: {password}");
+
+			app.PressEnter();
+
+			app.Screenshot("New User Created Using Enter Button");
 		}
 	}
 }
