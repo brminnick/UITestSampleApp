@@ -29,6 +29,18 @@ namespace UITestSampleApp.UITests
 			TapSave();
 		}
 
+		public void CreateNewUserWithPasswordUsingEnterButton(string username, string password)
+		{
+			app.Tap(_usernameEntry);
+			app.ClearText();
+			app.EnterText(username);
+			app.PressEnter();
+
+			app.ClearText();
+			app.EnterText(password);
+			app.PressEnter();
+		}
+
 		public void EnterUsername(string username)
 		{
 			app.Tap(_usernameEntry);

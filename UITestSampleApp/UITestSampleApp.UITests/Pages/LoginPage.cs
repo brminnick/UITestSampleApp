@@ -37,6 +37,18 @@ namespace UITestSampleApp.UITests
 			PressLoginButton();
 		}
 
+		public void LoginWithUsernamePasswordUsingEnterButton(string username, string password)
+		{
+			app.Tap(_usernameEntry);
+			app.ClearText();
+			app.EnterText(username);
+			app.PressEnter();
+
+			app.ClearText();
+			app.EnterText(password);
+			app.PressEnter();
+		}
+
 		public void EnterUsername(string username)
 		{
 			app.Tap(_usernameEntry);
