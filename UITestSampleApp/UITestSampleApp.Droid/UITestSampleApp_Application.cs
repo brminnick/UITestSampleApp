@@ -1,10 +1,7 @@
 ﻿using System;
-using System.IO;
 
 using Android.App;
 using Android.Runtime;
-
-using UITestSampleApp.Shared;
 
 namespace UITestSampleApp.Droid
 {

@@ -101,7 +101,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StyledEntryRenderer.cs" />
     <Compile Include="LoginUIExtension.cs" />
   </ItemGroup>
   <ItemGroup>

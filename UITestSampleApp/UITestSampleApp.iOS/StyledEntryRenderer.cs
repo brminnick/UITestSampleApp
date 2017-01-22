@@ -4,7 +4,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 using MyLoginUI.Views;
-using MyLoginUI.iOS.Renderers;
+
+using UITestSampleApp.iOS;
 
 using UIKit;
 using CoreAnimation;
@@ -13,7 +14,7 @@ using Foundation;
 
 [assembly: ExportRenderer(typeof(StyledEntry), typeof(StyledEntryRenderer))]
 
-namespace MyLoginUI.iOS.Renderers
+namespace UITestSampleApp.iOS
 {
 	public class StyledEntryRenderer : EntryRenderer
 	{

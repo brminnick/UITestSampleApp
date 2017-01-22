@@ -199,6 +199,7 @@
     <Compile Include="Services\Login_Droid.cs" />
     <Compile Include="Services\Environment_Android.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
+    <Compile Include="StyledEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

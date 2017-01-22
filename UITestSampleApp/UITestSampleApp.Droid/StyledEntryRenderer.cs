@@ -2,14 +2,15 @@
 using Xamarin.Forms.Platform.Android;
 
 using MyLoginUI.Views;
-using MyLoginUI.Droid.Renderers;
+
+using UITestSampleApp.Droid;
 
 using Android.Widget;
 using Android.Graphics;
 
 [assembly:ExportRenderer(typeof(StyledEntry),typeof(StyledEntryRenderer))]
 
-namespace MyLoginUI.Droid.Renderers
+namespace UITestSampleApp.Droid
 {
 	public class StyledEntryRenderer : EntryRenderer
 	{
