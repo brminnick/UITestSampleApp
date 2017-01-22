@@ -199,7 +199,7 @@
     <Compile Include="Services\Login_Droid.cs" />
     <Compile Include="Services\Environment_Android.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
-    <Compile Include="StyledEntryRenderer.cs" />
+    <Compile Include="CustomRenderers\StyledEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -239,6 +239,9 @@
       <Project>{06291122-42A6-4585-AC8C-D481126D1B5D}</Project>
       <Name>UITestSampleApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomRenderers\" />
   </ItemGroup>
   <Import Project="..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

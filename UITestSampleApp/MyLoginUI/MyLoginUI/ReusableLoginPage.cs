@@ -77,13 +77,18 @@ namespace MyLoginUI.Pages
 			{
 				AutomationId = AutomationIdConstants.UsernameEntry,
 				Placeholder = "Username",
+				ReturnType = ReturnType.Next
 			};
+			loginEntry.Completed += (sender, e) => passwordEntry.Focus();
+
 			passwordEntry = new StyledEntry
 			{
 				AutomationId = AutomationIdConstants.PasswordEntry,
 				Placeholder = "Password",
 				IsPassword = true,
 			};
+			passwordEntry.Completed += HandleLoginButtonClicked;
+
 			loginButton = new StyledButton(Borders.Thin)
 			{
 				AutomationId = AutomationIdConstants.LoginButton,
@@ -116,16 +121,8 @@ namespace MyLoginUI.Pages
 				Opacity = 0
 			};
 
-			loginButton.Clicked += (object sender, EventArgs e) =>
-			{
-				if (string.IsNullOrEmpty(loginEntry.Text) || string.IsNullOrEmpty(passwordEntry.Text))
-				{
-					DisplayAlert("Error", "You must enter a username and password.", "Okay");
-					return;
-				}
+			loginButton.Clicked += HandleLoginButtonClicked;
 
-				Login(loginEntry.Text, passwordEntry.Text, saveUsername.IsToggled);
-			};
 			newUserSignUpButton.Clicked += (object sender, EventArgs e) =>
 			{
 				NewUserSignUp();
@@ -278,6 +275,17 @@ namespace MyLoginUI.Pages
 			}
 		}
 		#endregion
+
+		void HandleLoginButtonClicked(object sender, EventArgs e)
+		{
+			if (string.IsNullOrEmpty(loginEntry.Text) || string.IsNullOrEmpty(passwordEntry.Text))
+			{
+				DisplayAlert("Error", "You must enter a username and password.", "Okay");
+				return;
+			}
+
+			Login(loginEntry.Text, passwordEntry.Text, saveUsername.IsToggled);
+		}
 
 		#region Extension Methods
 
