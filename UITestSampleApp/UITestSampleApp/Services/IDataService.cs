@@ -10,6 +10,5 @@ namespace UITestSampleApp
 		Task AddItemAsync<T>(T item) where T : EntityData;
 		Task UpdateItemAsync<T>(T item) where T : EntityData;
 		Task RemoveItemAsync<T>(T item) where T : EntityData;
-		Task SyncItemsAsync<T>() where T : EntityData;
 	}
 }

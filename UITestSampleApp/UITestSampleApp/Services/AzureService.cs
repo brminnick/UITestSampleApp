@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -7,7 +8,6 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
-using Xamarin.Forms;
 
 namespace UITestSampleApp
 {
@@ -76,7 +76,7 @@ namespace UITestSampleApp
 			await SyncItemsAsync<T>();
 		}
 
-		public async Task SyncItemsAsync<T>() where T : EntityData
+		async Task SyncItemsAsync<T>() where T : EntityData
 		{
 			await Initialize<T>();
 
@@ -95,10 +95,11 @@ namespace UITestSampleApp
 		{
 			if (IsDataTypeInitialized<T>())
 				return;
-
+			
+			if (_mobileService == null)
+				_mobileService = new MobileServiceClient(AzureConstants.AzureDataServiceUrl);
+			
 			_isInitializedDictionary?.Add(typeof(T), false);
-
-			_mobileService = new MobileServiceClient(AzureConstants.AzureDataServiceUrl);
 
 			await ConfigureOnlineOfflineSync<T>();
 
@@ -107,7 +108,7 @@ namespace UITestSampleApp
 
 		async Task ConfigureOnlineOfflineSync<T>() where T : EntityData
 		{
-			var path = DependencyService.Get<IEnvironment>().GetFilePath("app.db");
+			var path = Path.Combine(MobileServiceClient.DefaultDatabasePath, "app.db");
 			var store = new MobileServiceSQLiteStore(path);
 			store.DefineTable<T>();
 
