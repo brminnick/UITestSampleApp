@@ -1,6 +1,6 @@
 [![Build Status](https://www.bitrise.io/app/7d55e4014e3f2164.svg?token=obxBTbr5cKzohmwZbTJJTQ)](https://www.bitrise.io/app/7d55e4014e3f2164)
 # Sample App Demonstrating UITests
-This app shows how to implement UITest and Unit Tests into a Xamarin.Forms project.
+This app shows how to implement UITests into a Xamarin.Forms project.
 
 The UITests follow the recommended practice of Page Object testing. In the views, we've added an `AutomationId` to each control to show how UITest can interact with controls most efficiently, using their AutomationId. 
 
