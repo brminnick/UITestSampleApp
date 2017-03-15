@@ -55,55 +55,55 @@ namespace UITestSampleApp.UITests
 
 		public void EnterTextAndPressEnter(string text)
 		{
-			app.Tap(_textEntryUsingID);
-			app.ClearText();
-			app.EnterText(text);
-			app.PressEnter();
-			app.Screenshot($"Entered Text: {text}");
+			App.Tap(_textEntryUsingID);
+			App.ClearText();
+			App.EnterText(text);
+			App.PressEnter();
+			App.Screenshot($"Entered Text: {text}");
 		}
 
 		public void EnterText(string text)
 		{
-			app.Tap(_textEntryUsingID);
-			app.ClearText();
-			app.EnterText(text);
-			app.DismissKeyboard();
-			app.Screenshot($"Entered Text: {text}");
+			App.Tap(_textEntryUsingID);
+			App.ClearText();
+			App.EnterText(text);
+			App.DismissKeyboard();
+			App.Screenshot($"Entered Text: {text}");
 		}
 
 		public void ClickGo()
 		{
-			app.Tap(_goButtonUsingID);
-			app.Screenshot("Click Go Button");
+			App.Tap(_goButtonUsingID);
+			App.Screenshot("Click Go Button");
 		}
 
 		public void ClickListViewButton()
 		{
-			app.Tap(_listViewButtonUsingID);
-			app.Screenshot("Click ListView Button");
+			App.Tap(_listViewButtonUsingID);
+			App.Screenshot("Click ListView Button");
 		}
 
 		public void WaitForNoActivityIndicator(int timeoutInSeconds = 60)
 		{
-			app.WaitForNoElement(_activityIndicatorUsingID, "Activity Indicator Did Not Disappear", TimeSpan.FromSeconds(timeoutInSeconds));
-			app.Screenshot("Activity Indicator Stopped Spinning");
+			App.WaitForNoElement(_activityIndicatorUsingID, "Activity Indicator Did Not Disappear", TimeSpan.FromSeconds(timeoutInSeconds));
+			App.Screenshot("Activity Indicator Stopped Spinning");
 		}
 
 		public void RotateScreenToLandscape()
 		{
-			app.SetOrientationLandscape();
-			app.Screenshot("Rotate Device to Landscape");
+			App.SetOrientationLandscape();
+			App.Screenshot("Rotate Device to Landscape");
 		}
 
 		public void RotateScreenToPortrait()
 		{
-			app.SetOrientationPortrait();
-			app.Screenshot("Rotate Device to Portrait");
+			App.SetOrientationPortrait();
+			App.Screenshot("Rotate Device to Portrait");
 		}
 
 		public string GetEntryFieldText()
 		{
-			var entryFieldQuery = app.Query(_textEntryUsingID);
+			var entryFieldQuery = App.Query(_textEntryUsingID);
 			return entryFieldQuery?.FirstOrDefault()?.Text;
 		}
 
@@ -112,12 +112,12 @@ namespace UITestSampleApp.UITests
 			var title = "First Page";
 			AppResult[] titleQuery;
 
-			app.WaitForElement(title, "First Page Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
+			App.WaitForElement(title, "First Page Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
 
 			if (OniOS)
-				titleQuery = app.Query(x => x.Class("UILabel").Marked("First Page"));
+				titleQuery = App.Query(x => x.Class("UILabel").Marked("First Page"));
 			else
-				titleQuery = app.Query(x => x.Class("TextView").Marked("First Page"));
+				titleQuery = App.Query(x => x.Class("TextView").Marked("First Page"));
 
 			return titleQuery?.FirstOrDefault()?.Text;
 		}

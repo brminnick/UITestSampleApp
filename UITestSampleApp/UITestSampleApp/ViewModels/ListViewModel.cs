@@ -58,6 +58,7 @@ namespace UITestSampleApp
 
 			try
 			{
+				await DependencyService.Get<IDataService>().SyncItemsAsync<ListPageDataModel>();
 				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
 				DataList = dataListAsIEnumerable.ToList();
 			}
@@ -71,7 +72,7 @@ namespace UITestSampleApp
 		{
 			try
 			{
-				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsFromLocalDatabaseAsync<ListPageDataModel>();
+				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
 				DataList = dataListAsIEnumerable?.ToList();
 			}
 			catch (Exception e)
@@ -101,11 +102,8 @@ namespace UITestSampleApp
 			IsDataLoading = false;
 		}
 
-		void OnLoadingDataFromBackendCompleted()
-		{
-			var handle = LoadingDataFromBackendCompleted;
-			handle?.Invoke(null, EventArgs.Empty);
-		}
+		void OnLoadingDataFromBackendCompleted() =>
+			LoadingDataFromBackendCompleted?.Invoke(null, EventArgs.Empty);
 		#endregion
 	}
 }

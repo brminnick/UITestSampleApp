@@ -10,17 +10,6 @@ namespace UITestSampleApp
 {
 	public class SyncHandler : IMobileServiceSyncHandler
 	{
-		#region Fields
-		MobileServiceClient _client;
-		#endregion
-
-		#region Constructors
-		public SyncHandler(MobileServiceClient client)
-		{
-			_client = client;
-		}
-		#endregion
-
 		#region Methods
 		public async Task<JObject> ExecuteTableOperationAsync(IMobileServiceTableOperation operation)
 		{

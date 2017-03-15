@@ -20,7 +20,6 @@
 		public const string LoginButton = "LoginButton";
 		public const string NewUserButton = "NewUserButton";
 		public const string ForgotPasswordButton = "ForgotPasswordButton";
-		public const string SaveUsernameSwitch = "SaveUsernameSwitch";
 		public const string CrashButton = "CrashButton";
 		#endregion
 

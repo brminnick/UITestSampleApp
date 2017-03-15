@@ -19,8 +19,8 @@ namespace UITestSampleApp.UITests
 		{
 			base.BeforeEachTest();
 
-			BackdoorHelpers.CleariOSKeyChain(app, _username);
-			BackdoorHelpers.SetiOSXTCAgent(app);
+			BackdoorHelpers.CleariOSKeyChain(App, _username);
+			BackdoorHelpers.SetiOSXTCAgent(App);
 		}
 
 		[TestCase(true)]
@@ -60,7 +60,7 @@ namespace UITestSampleApp.UITests
 			LoginPage.TapTryAgainDialog();
 
 			//Assert
-			Assert.IsTrue(app.Query("Login").Length > 0);
+			Assert.IsTrue(App.Query("Login").Length > 0);
 		}
 
 		[Test]
@@ -75,7 +75,7 @@ namespace UITestSampleApp.UITests
 			LoginPage.TapOkayOnErrorDialog();
 
 			//Assert
-			Assert.IsTrue(app.Query("Login").Length > 0);
+			Assert.IsTrue(App.Query("Login").Length > 0);
 		}
 
 		[Test]
@@ -90,10 +90,10 @@ namespace UITestSampleApp.UITests
 			LoginPage.TapOkayOnErrorDialog();
 
 			//Assert
-			Assert.IsTrue(app.Query("Login").Length > 0);
+			Assert.IsTrue(App.Query("Login").Length > 0);
 		}
 
-		[Ignore]
+		//[Ignore]
 		[Test]
 		public void CrashButtonTest()
 		{

@@ -14,10 +14,6 @@ namespace UITestSampleApp.Droid
 {
 	public class Login_Droid : ILogin
 	{
-		public void AuthenticateWithTouchId(LoginPage page)
-		{
-		}
-
 		public async Task<bool> SetPasswordForUsername(string username, string password)
 		{
 			await BlobCache.UserAccount.InsertObject("username", username);
@@ -51,15 +47,6 @@ namespace UITestSampleApp.Droid
 				return false;
 			}
 
-			try
-			{
-				IEnumerable<string> test = await BlobCache.UserAccount.GetAllKeys();
-			}
-			catch (Exception e)
-			{
-				AnalyticsHelpers.Log("Error Getting User Account Keys", e.Message, e);
-			}
-
 			if (_username == null || _password == null)
 				return false;
 
@@ -70,26 +57,6 @@ namespace UITestSampleApp.Droid
 			}
 
 			return false;
-		}
-
-		public async Task SaveUsername(string username)
-		{
-			await BlobCache.UserAccount.InsertObject<string>("username", username);
-		}
-
-		public async Task<string> GetSavedUsername()
-		{
-			string username = null;
-			try
-			{
-				username = await BlobCache.UserAccount.GetObject<string>("username");
-			}
-			catch (Exception e)
-			{
-				AnalyticsHelpers.Log("Username Not Found", e.Message, e);
-			}
-
-			return username;
 		}
 	}
 }

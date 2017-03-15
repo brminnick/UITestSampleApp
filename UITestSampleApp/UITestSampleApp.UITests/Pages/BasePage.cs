@@ -4,13 +4,13 @@ namespace UITestSampleApp.UITests
 {
 	public abstract class BasePage
 	{
-		protected readonly IApp app;
+		protected readonly IApp App;
 		protected readonly bool OnAndroid;
 		protected readonly bool OniOS;
 
 		protected BasePage(IApp app, Platform platform)
 		{
-			this.app = app;
+			App = app;
 
 			OnAndroid = platform == Platform.Android;
 			OniOS = platform == Platform.iOS;

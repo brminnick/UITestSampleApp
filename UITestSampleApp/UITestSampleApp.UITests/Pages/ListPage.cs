@@ -21,35 +21,35 @@ namespace UITestSampleApp.UITests
 
 		public void TapListItemNumber(int listItemNumber, int timeoutInSeconds = 60)
 		{
-			app.ScrollDownTo(listItemNumber.ToString());
-			app.Tap(x => x.Marked(listItemNumber.ToString()));
-			app.WaitForElement("OK", "Ok Alert Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
-			app.Screenshot($"Tap {listItemNumber} on List View Page");
+			App.ScrollDownTo(listItemNumber.ToString());
+			App.Tap(x => x.Marked(listItemNumber.ToString()));
+			App.WaitForElement("OK", "Ok Alert Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
+			App.Screenshot($"Tap {listItemNumber} on List View Page");
 		}
 
 		public void TapOKOnAlert(int timeoutInSeconds = 60)
 		{
-			app.WaitForElement("OK", "Ok Alert Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
-			app.Tap("OK");
-			app.Screenshot("Tap OK On Alert");
+			App.WaitForElement("OK", "Ok Alert Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
+			App.Tap("OK");
+			App.Screenshot("Tap OK On Alert");
 		}
 
 		public string GetAlertText(int numberSelected)
 		{
-			var alertTextQuery = app.Query($"You Selected Number {numberSelected}");
+			var alertTextQuery = App.Query($"You Selected Number {numberSelected}");
 			return alertTextQuery?.FirstOrDefault()?.Text;
 		}
 
 		public void TapBackButton()
 		{
-			app.Back();
-			app.Screenshot("Tap Back Button");
+			App.Back();
+			App.Screenshot("Tap Back Button");
 		}
 
 		public void WaitForNoActivityIndicator(int timeoutInSeconds = 60)
 		{
 			Thread.Sleep(1000);
-			app.WaitForNoElement(_loadingDataFromBackendActivityIndicator, "Activity Indicator Did Not Disappear", TimeSpan.FromSeconds(timeoutInSeconds));
+			App.WaitForNoElement(_loadingDataFromBackendActivityIndicator, "Activity Indicator Did Not Disappear", TimeSpan.FromSeconds(timeoutInSeconds));
 		}
 	}
 }

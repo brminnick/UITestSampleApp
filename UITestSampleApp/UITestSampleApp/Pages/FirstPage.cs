@@ -5,6 +5,8 @@ using Xamarin.Forms;
 using MyLoginUI;
 using MyLoginUI.Views;
 
+using EntryCustomReturn.Forms.Plugin.Abstractions;
+
 using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
@@ -32,13 +34,12 @@ namespace UITestSampleApp
 
 			var textEntry = new StyledEntry(1)
 			{
-
 				Placeholder = entryTextPaceHolder,
 				AutomationId = AutomationIdConstants.TextEntry, // This provides an ID that can be referenced in UITests
 				PlaceholderColor = Color.FromHex("749FA8"),
 				ReturnType = ReturnType.Go
 			};
-			textEntry.Completed += (sender, e) => viewModel?.GoButtonTapped?.Execute(null);
+			textEntry.SetBinding<FirstPageViewModel>(CustomReturnEntry.ReturnCommandProperty, vm => vm.GoButtonTapped);
 			textEntry.SetBinding<FirstPageViewModel>(Entry.TextProperty, vm => vm.EntryText);
 
 			var textLabel = new StyledLabel

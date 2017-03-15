@@ -6,6 +6,8 @@ using MyLoginUI.Views;
 
 using UITestSampleApp.Shared;
 
+using EntryCustomReturn.Forms.Plugin.Abstractions;
+
 namespace UITestSampleApp
 {
 	public class NewUserSignUpPage : ContentPage
@@ -52,7 +54,7 @@ namespace UITestSampleApp
 				PlaceholderColor = Color.FromHex("749FA8"),
 				ReturnType = ReturnType.Next
 			};
-			_usernameEntry.Completed += (sender, e) => _passwordEntry.Focus();
+			_usernameEntry.ReturnCommand = new Command(() => _passwordEntry.Focus());
 
 			_passwordEntry = new StyledEntry(1)
 			{
@@ -65,7 +67,7 @@ namespace UITestSampleApp
 				VerticalOptions = LayoutOptions.Fill,
 				PlaceholderColor = Color.FromHex("749FA8")
 			};
-			_passwordEntry.Completed += HandleSaveUsernameButtonClicked;
+			_passwordEntry.ReturnCommand = new Command(() => HandleSaveUsernameButtonClicked(_saveUsernameButton, EventArgs.Empty));
 
 			_saveUsernameButton = new StyledButton(Borders.Thin, 1)
 			{

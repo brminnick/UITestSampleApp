@@ -9,7 +9,7 @@ namespace UITestSampleApp.UITests
 	{
 		public TestsAfterLoginScreen(Platform platform) : base(platform)
 		{
-			this.platform = platform;
+			this.Platform = platform;
 		}
 
 		public override void BeforeEachTest()
@@ -18,9 +18,9 @@ namespace UITestSampleApp.UITests
 
 			LoginPage.WaitForLoginScreen();
 
-			BackdoorHelpers.BypassLoginScreen(app);
+			BackdoorHelpers.BypassLoginScreen(App);
 
-			app.WaitForElement("First Page");
+			App.WaitForElement("First Page");
 		}
 
 		[TestCase(true)]
@@ -57,14 +57,14 @@ namespace UITestSampleApp.UITests
 			var expectedAlertString = $"You Selected Number {listItemNumber}";
 
 			//Act
-			BackdoorHelpers.OpenListViewPage(app);
+			BackdoorHelpers.OpenListViewPage(App);
 
 			ListPage.WaitForNoActivityIndicator();
 			ListPage.TapListItemNumber(listItemNumber);
 
 			//Assert
 			Assert.AreEqual(expectedAlertString, ListPage.GetAlertText(listItemNumber));
-			Assert.IsTrue(BackdoorHelpers.GetListPageData(app).Count > 30);
+			Assert.IsTrue(BackdoorHelpers.GetListPageData(App).Count > 30);
 		}
 	}
 }

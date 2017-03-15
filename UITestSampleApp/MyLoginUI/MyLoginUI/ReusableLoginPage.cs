@@ -6,6 +6,8 @@ using Xamarin.Forms;
 
 using MyLoginUI.Views;
 
+using EntryCustomReturn.Forms.Plugin.Abstractions;
+
 using UITestSampleApp.Shared;
 
 namespace MyLoginUI.Pages
@@ -35,8 +37,7 @@ namespace MyLoginUI.Pages
 		Image logo;
 		StyledButton loginButton, newUserSignUpButton, forgotPasswordButton;
 		StyledEntry loginEntry, passwordEntry;
-		Label logoSlogan, rememberMe;
-		Switch saveUsername;
+		Label logoSlogan;
 
 		double _relativeLayoutPadding = 10;
 
@@ -79,7 +80,7 @@ namespace MyLoginUI.Pages
 				Placeholder = "Username",
 				ReturnType = ReturnType.Next
 			};
-			loginEntry.Completed += (sender, e) => passwordEntry.Focus();
+			loginEntry.ReturnCommand = new Command(() => passwordEntry.Focus());
 
 			passwordEntry = new StyledEntry
 			{
@@ -87,7 +88,7 @@ namespace MyLoginUI.Pages
 				Placeholder = "Password",
 				IsPassword = true,
 			};
-			passwordEntry.Completed += HandleLoginButtonClicked;
+			passwordEntry.ReturnCommand = new Command(() => HandleLoginButtonClicked(passwordEntry, EventArgs.Empty));
 
 			loginButton = new StyledButton(Borders.Thin)
 			{
@@ -104,45 +105,18 @@ namespace MyLoginUI.Pages
 				AutomationId = AutomationIdConstants.ForgotPasswordButton,
 				Text = "Forgot Password?",
 			};
-			rememberMe = new Label
-			{
-				Opacity = 0,
-				Text = "Remember Me",
-				TextColor = Color.White,
-				FontFamily = Device.OnPlatform(
-					iOS: "AppleSDGothicNeo-Light",
-					Android: "Droid Sans Mono",
-					WinPhone: "Comic Sans MS"),
-			};
-			saveUsername = new Switch
-			{
-				AutomationId = AutomationIdConstants.SaveUsernameSwitch,
-				IsToggled = true,
-				Opacity = 0
-			};
 
 			loginButton.Clicked += HandleLoginButtonClicked;
 
-			newUserSignUpButton.Clicked += (object sender, EventArgs e) =>
-			{
-				NewUserSignUp();
-			};
-			forgotPasswordButton.Clicked += (object sender, EventArgs e) =>
-			{
-				ForgotPassword();
-			};
+			newUserSignUpButton.Clicked += (object sender, EventArgs e) => NewUserSignUp();
+			forgotPasswordButton.Clicked += (object sender, EventArgs e) => ForgotPassword();
 		}
 
 		void AddConstraintsToChildren()
 		{
 			Func<RelativeLayout, double> getNewUserButtonWidth = (p) => newUserSignUpButton.Measure(MainLayout.Width, MainLayout.Height).Request.Width;
 			Func<RelativeLayout, double> getForgotButtonWidth = (p) => forgotPasswordButton.Measure(MainLayout.Width, MainLayout.Height).Request.Width;
-			Func<RelativeLayout, double> getForgotButtonHeight = (p) => forgotPasswordButton.Measure(MainLayout.Width, MainLayout.Height).Request.Height;
-			Func<RelativeLayout, double> getLogoHeight = (p) => logo.Measure(MainLayout.Width, MainLayout.Height).Request.Height;
 			Func<RelativeLayout, double> getLogoSloganWidth = (p) => logoSlogan.Measure(MainLayout.Width, MainLayout.Height).Request.Width;
-			Func<RelativeLayout, double> getRememberMeWidth = (p) => rememberMe.Measure(MainLayout.Width, MainLayout.Height).Request.Width;
-			Func<RelativeLayout, double> getRememberMeHeight = (p) => rememberMe.Measure(MainLayout.Width, MainLayout.Height).Request.Height;
-			Func<RelativeLayout, double> getSwitchWidth = (p) => saveUsername.Measure(MainLayout.Width, MainLayout.Height).Request.Width;
 
 			MainLayout.Children.Add(
 				logo,
@@ -171,20 +145,9 @@ namespace MyLoginUI.Pages
 			);
 
 			MainLayout.Children.Add(
-				rememberMe,
-				xConstraint: Constraint.RelativeToParent(p => p.Width - 40 - getSwitchWidth(p) - getRememberMeWidth(p) - 20),
-				yConstraint: Constraint.RelativeToView(passwordEntry, (p, v) => v.Y + v.Height + _relativeLayoutPadding)
-			);
-			MainLayout.Children.Add(
-				saveUsername,
-				xConstraint: Constraint.RelativeToParent(p => p.Width - 40 - getSwitchWidth(p)),
-				yConstraint: Constraint.RelativeToView(passwordEntry, (p, v) => v.Y + v.Height + _relativeLayoutPadding)
-			);
-
-			MainLayout.Children.Add(
 				loginButton,
 				xConstraint: Constraint.Constant(40),
-				yConstraint: Constraint.RelativeToView(saveUsername, (p, v) => v.Y + v.Height + _relativeLayoutPadding),
+				yConstraint: Constraint.RelativeToView(passwordEntry, (p, v) => v.Y + v.Height + _relativeLayoutPadding),
 				widthConstraint: Constraint.RelativeToParent(p => p.Width - 80)
 			);
 			MainLayout.Children.Add(
@@ -207,7 +170,7 @@ namespace MyLoginUI.Pages
 		{
 		}
 
-		public virtual void Login(string userName, string passWord, bool saveUserName)
+		public virtual void Login(string userName, string passWord)
 		{
 		}
 
@@ -251,8 +214,6 @@ namespace MyLoginUI.Pages
 					var forgotPasswordButtonAnimationTask = forgotPasswordButton?.FadeTo(1, 250);
 					var loginEntryAnimationTask = loginEntry?.FadeTo(1, 250);
 					var passwordEntryAnimationTask = passwordEntry?.FadeTo(1, 250);
-					var saveUsernameAnimationTask = saveUsername?.FadeTo(1, 250);
-					var rememberMeAnimationTask = rememberMe?.FadeTo(1, 250);
 					var loginButtonAnimationTask = loginButton?.FadeTo(1, 249);
 
 					animationTaskList = new List<Task>
@@ -262,8 +223,6 @@ namespace MyLoginUI.Pages
 						forgotPasswordButtonAnimationTask,
 						loginEntryAnimationTask,
 						passwordEntryAnimationTask,
-						saveUsernameAnimationTask,
-						rememberMeAnimationTask,
 						loginButtonAnimationTask
 					};
 
@@ -284,14 +243,14 @@ namespace MyLoginUI.Pages
 				return;
 			}
 
-			Login(loginEntry.Text, passwordEntry.Text, saveUsername.IsToggled);
+			Login(loginEntry.Text, passwordEntry.Text);
 		}
 
 		#region Extension Methods
 
 		public void SetUsernameEntry(string password)
 		{
-			if (!String.IsNullOrEmpty(password))
+			if (!string.IsNullOrEmpty(password))
 				loginEntry.Text = password;
 		}
 

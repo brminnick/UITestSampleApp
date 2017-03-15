@@ -15,7 +15,7 @@ namespace UITestSampleApp.UITests
 		[Test]
 		public void Repl()
 		{
-			app.Repl ();
+			App.Repl ();
 		}
 	}
 }

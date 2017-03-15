@@ -9,8 +9,8 @@ namespace UITestSampleApp.UITests
 
 	public abstract class BaseTest
 	{
-		protected IApp app;
-		protected Platform platform;
+		protected IApp App;
+		protected Platform Platform;
 
 		protected FirstPage FirstPage;
 		protected ListPage ListPage;
@@ -19,19 +19,19 @@ namespace UITestSampleApp.UITests
 
 		protected BaseTest (Platform platform)
 		{
-			this.platform = platform;
+			this.Platform = platform;
 		}
 
 		[SetUp]
 		virtual public void BeforeEachTest()
 		{
-			app = AppInitializer.StartApp(platform);
-			app.Screenshot("App Initialized");
+			App = AppInitializer.StartApp(Platform);
+			App.Screenshot("App Initialized");
 
-			FirstPage = new FirstPage(app, platform);
-			ListPage = new ListPage(app, platform);
-			LoginPage = new LoginPage(app, platform);
-			NewUserSignUpPage = new NewUserSignUpPage(app, platform);
+			FirstPage = new FirstPage(App, Platform);
+			ListPage = new ListPage(App, Platform);
+			LoginPage = new LoginPage(App, Platform);
+			NewUserSignUpPage = new NewUserSignUpPage(App, Platform);
 
 			LoginPage.WaitForLoginScreen();
 		}

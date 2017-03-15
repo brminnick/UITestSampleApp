@@ -24,6 +24,9 @@ namespace UITestSampleApp
 
 		public static void Log(string tag, string message, Exception exception = null, MobileCenterLogType type = MobileCenterLogType.Warn)
 		{
+			System.Diagnostics.Debug.WriteLine(exception.GetType());
+			System.Diagnostics.Debug.WriteLine($"Error: {exception.Message}");
+
 			switch (type)
 			{
 				case MobileCenterLogType.Info:

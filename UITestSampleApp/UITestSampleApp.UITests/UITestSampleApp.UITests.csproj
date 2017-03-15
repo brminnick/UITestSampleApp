@@ -70,6 +70,7 @@
     <Compile Include="Pages\NewUserSignUpPage.cs" />
     <Compile Include="Tests\LoginTests.cs" />
     <Compile Include="Helpers\BackdoorHelpers.cs" />
+    <Compile Include="Helpers\UITestHelpers.cs" />
   </ItemGroup>
   <Import Project="..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

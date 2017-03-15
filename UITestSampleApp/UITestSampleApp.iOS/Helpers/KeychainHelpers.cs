@@ -37,14 +37,14 @@ namespace UITestSampleApp.iOS
 			serviceId = serviceId.ToLower();
 
 			// Query and remove.
-			SecRecord queryRec = new SecRecord(SecKind.GenericPassword)
+			var queryRec = new SecRecord(SecKind.GenericPassword)
 			{
 				Service = serviceId,
 				Label = serviceId,
 				Account = username,
 				Synchronizable = synchronizable
 			};
-			SecStatusCode code = SecKeyChain.Remove(queryRec);
+			var code = SecKeyChain.Remove(queryRec);
 			return code;
 		}
 

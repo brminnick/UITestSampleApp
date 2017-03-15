@@ -45,61 +45,12 @@ namespace UITestSampleApp.iOS
 				nativeTextField = Control as UITextField;
 				nativeTextField.Font = UIFont.FromName("AppleSDGothicNeo-Light", 18);
 				nativeTextField.TextColor = UIColor.White;
-				nativeTextField.BorderStyle = UITextBorderStyle.None;
 
 				if (!String.IsNullOrEmpty(formsEntry.Placeholder))
 					nativeTextField.AttributedPlaceholder = new NSAttributedString(formsEntry.Placeholder, UIFont.FromName("AppleSDGothicNeo-Light", 18), UIColor.White);
 
-				bottomBorder = new CALayer();
-				bottomBorder.BackgroundColor = UIColor.White.CGColor;
-				Control.Layer.AddSublayer(bottomBorder);
-
 				isInitialized = true;
 			}
-
-			var customEntry = Element as StyledEntry;
-
-			if (Control != null && customEntry != null)
-			{
-				SetKeyboardButtonType(customEntry.ReturnType);
-
-				Control.ShouldReturn += (UITextField tf) =>
-				{
-					customEntry?.InvokeCompleted();
-					return true;
-				};
-			}
-		}
-
-		void SetKeyboardButtonType(ReturnType returnType)
-		{
-			switch (returnType)
-			{
-				case ReturnType.Go:
-					Control.ReturnKeyType = UIReturnKeyType.Go;
-					break;
-				case ReturnType.Next:
-					Control.ReturnKeyType = UIReturnKeyType.Next;
-					break;
-				case ReturnType.Send:
-					Control.ReturnKeyType = UIReturnKeyType.Send;
-					break;
-				case ReturnType.Search:
-					Control.ReturnKeyType = UIReturnKeyType.Search;
-					break;
-				case ReturnType.Done:
-					Control.ReturnKeyType = UIReturnKeyType.Done;
-					break;
-				default:
-					Control.ReturnKeyType = UIReturnKeyType.Default;
-					break;
-			}
-		}
-
-		public override CGSize SizeThatFits(CGSize size)
-		{
-			bottomBorder.Frame = new CGRect(0, size.Height - 1, size.Width, 1);
-			return base.SizeThatFits(size);
 		}
 	}
 }

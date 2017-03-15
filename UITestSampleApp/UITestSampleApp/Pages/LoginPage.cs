@@ -41,47 +41,14 @@ namespace UITestSampleApp
 		}
 		#endregion
 
-		#region Properties
-		public bool TouchIdSuccess
-		{
-			set
-			{
-				if (value)
-				{
-					Device.BeginInvokeOnMainThread(() =>
-					{
-						Navigation.PopAsync();
-					});
-				}
-				else {
-					DependencyService.Get<ILogin>().AuthenticateWithTouchId(this);
-				}
-			}
-		}
-		#endregion
-
 		#region Methods
-		public override async void Login(string userName, string passWord, bool saveUserName)
+		public override async void Login(string userName, string passWord)
 		{
-			base.Login(userName, passWord, saveUserName);
+			base.Login(userName, passWord);
 
 			var success = await DependencyService.Get<ILogin>().CheckLogin(userName, passWord);
 			if (success)
 			{
-				var insightsDict = new Dictionary<string, string> {
-					{ "User Type", "NonApprover" },
-					{ "Uses TouchId", "Yes" },
-				};
-
-				if (saveUserName)
-				{
-					await DependencyService.Get<ILogin>().SaveUsername(userName);
-					insightsDict.Add("Saves username", "Yes");
-				}
-				else {
-					insightsDict.Add("Saves username", "No");
-				}
-
 				App.IsLoggedIn = true;
 
 				if (Device.OS == TargetPlatform.iOS)
