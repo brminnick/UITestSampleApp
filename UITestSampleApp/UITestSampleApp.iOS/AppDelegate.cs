@@ -1,5 +1,6 @@
 ﻿using UIKit;
 using Foundation;
+using EntryCustomReturn.Forms.Plugin.iOS;
 
 namespace UITestSampleApp.iOS
 {
@@ -18,6 +19,7 @@ namespace UITestSampleApp.iOS
 #endif
 
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+			CustomReturnEntryRenderer.Init();
 
 			LoadApplication(App = new App());
 

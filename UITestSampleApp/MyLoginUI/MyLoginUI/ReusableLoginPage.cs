@@ -78,9 +78,9 @@ namespace MyLoginUI.Pages
 			{
 				AutomationId = AutomationIdConstants.UsernameEntry,
 				Placeholder = "Username",
-				ReturnType = ReturnType.Next
 			};
-			loginEntry.ReturnCommand = new Command(() => passwordEntry.Focus());
+			ReturnTypeEffect.SetReturnType(loginEntry,ReturnType.Next);
+			ReturnTypeEffect.SetReturnCommand(loginEntry,new Command(() => passwordEntry.Focus()));
 
 			passwordEntry = new StyledEntry
 			{
@@ -88,7 +88,8 @@ namespace MyLoginUI.Pages
 				Placeholder = "Password",
 				IsPassword = true,
 			};
-			passwordEntry.ReturnCommand = new Command(() => HandleLoginButtonClicked(passwordEntry, EventArgs.Empty));
+			ReturnTypeEffect.SetReturnType(passwordEntry, ReturnType.Go);
+			ReturnTypeEffect.SetReturnCommand(passwordEntry, new Command(() => HandleLoginButtonClicked(passwordEntry, EventArgs.Empty)));
 
 			loginButton = new StyledButton(Borders.Thin)
 			{

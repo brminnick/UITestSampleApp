@@ -1,12 +1,10 @@
-﻿using System;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 using EntryCustomReturn.Forms.Plugin.Abstractions;
 
 namespace MyLoginUI.Views
 {
-	public class StyledEntry : CustomReturnEntry
+	public class StyledEntry : Entry
 	{
 		public StyledEntry(double opacity = 0)
 		{
