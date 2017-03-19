@@ -7,10 +7,7 @@ namespace MyLoginUI
 		public StyledLabel()
 		{
 			TextColor = Color.White;
-			FontFamily = Device.OnPlatform(
-				iOS: "AppleSDGothicNeo-Light",
-				Android: "Droid Sans Mono",
-				WinPhone: "Comic Sans MS");
+			FontFamily = StyleHelpers.GetFontFamily();
 			FontSize = 14;
 		}
 	}

@@ -27,7 +27,6 @@ namespace UITestSampleApp.Droid
 		public static void UpdateIdValues()
 		{
 			global::Splat.Resource.String.library_name = global::UITestSampleApp.Droid.Resource.String.library_name;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::UITestSampleApp.Droid.Resource.Attribute.actionBarSize;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Attribute.buttonSize = global::UITestSampleApp.Droid.Resource.Attribute.buttonSize;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Attribute.circleCrop = global::UITestSampleApp.Droid.Resource.Attribute.circleCrop;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Attribute.colorScheme = global::UITestSampleApp.Droid.Resource.Attribute.colorScheme;
@@ -1933,6 +1932,7 @@ namespace UITestSampleApp.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_id = global::UITestSampleApp.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::UITestSampleApp.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_layout = global::UITestSampleApp.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::UITestSampleApp.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

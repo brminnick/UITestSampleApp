@@ -7,26 +7,22 @@ using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
-	public class ListPage : BasePage
+	public class ListPage : BaseContentPage<ListViewModel>
 	{
 		#region Constant Fields
 		readonly ListView _listView;
-		readonly ListViewModel _viewModel;
 		#endregion
 
 		#region Constructors
 		public ListPage()
 		{
-			_viewModel = new ListViewModel();
-			BindingContext = _viewModel;
-
 			var loadingAzureDataActivityIndicator = new ActivityIndicator
 			{
 				AutomationId = AutomationIdConstants.LoadingDataFromBackendActivityIndicator,
 				Color = Color.White
 			};
-			loadingAzureDataActivityIndicator.SetBinding<ListViewModel>(IsVisibleProperty, vm => vm.IsDataLoading);
-			loadingAzureDataActivityIndicator.SetBinding<ListViewModel>(ActivityIndicator.IsRunningProperty, vm => vm.IsDataLoading);
+			loadingAzureDataActivityIndicator.SetBinding(IsVisibleProperty, nameof(ViewModel.IsDataLoading));
+			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(ViewModel.IsDataLoading));
 
 			_listView = new ListView(ListViewCachingStrategy.RetainElement)
 			{
@@ -35,8 +31,8 @@ namespace UITestSampleApp
 				BackgroundColor = Color.FromHex("#2980b9"),
 				IsPullToRefreshEnabled = true
 			};
-			_listView.SetBinding<ListViewModel>(ListView.ItemsSourceProperty, vm => vm.DataList);
-			_listView.SetBinding<ListViewModel>(ListView.RefreshCommandProperty, vm => vm.PullToRefreshCommand);
+			_listView.SetBinding(ListView.ItemsSourceProperty, nameof(ViewModel.DataList));
+			_listView.SetBinding(ListView.RefreshCommandProperty, nameof(ViewModel.PullToRefreshCommand));
 
 			Title = "List Page";
 
@@ -66,7 +62,7 @@ namespace UITestSampleApp
 			AnalyticsHelpers.TrackEvent(AnalyticsConstants.ListViewPageAppeared);
 
 			_listView.ItemTapped += HandleListViewItemTapped;
-			_viewModel.LoadingDataFromBackendCompleted += HandleLoadingDataFromBackendCompleted;
+			ViewModel.LoadingDataFromBackendCompleted += HandleLoadingDataFromBackendCompleted;
 		}
 
 		protected override void OnDisappearing()
@@ -74,7 +70,7 @@ namespace UITestSampleApp
 			base.OnDisappearing();
 
 			_listView.ItemTapped -= HandleListViewItemTapped;
-			_viewModel.LoadingDataFromBackendCompleted -= HandleLoadingDataFromBackendCompleted;
+			ViewModel.LoadingDataFromBackendCompleted -= HandleLoadingDataFromBackendCompleted;
 		}
 
 		async void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)

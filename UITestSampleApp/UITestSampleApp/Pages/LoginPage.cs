@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -51,14 +52,10 @@ namespace UITestSampleApp
 			{
 				App.IsLoggedIn = true;
 
-				if (Device.OS == TargetPlatform.iOS)
-					await Navigation.PopAsync();
-				else {
-					await Navigation.PushAsync(new FirstPage(), false);
-					Navigation.RemovePage(this);
-				}
+				await RemoveLoginPage();
 			}
-			else {
+			else
+			{
 				var signUp = await DisplayAlert("Invalid Login", "Sorry, we didn't recoginize the username or password. Feel free to sign up for free if you haven't!", "Sign up", "Try again");
 
 				if (signUp)
@@ -94,10 +91,28 @@ namespace UITestSampleApp
 			//https://bugzilla.xamarin.com/show_bug.cgi?id=36907
 			if (!isInitialized)
 			{
-				if (Device.OS == TargetPlatform.iOS)
-					Navigation.InsertPageBefore(new FirstPage(), this);
+				switch (Device.RuntimePlatform)
+				{
+					case Device.iOS:
+						Navigation.InsertPageBefore(new FirstPage(), this);
+						break;
+				}
 
 				isInitialized = true;
+			}
+		}
+
+		async Task RemoveLoginPage()
+		{
+			switch (Device.RuntimePlatform)
+			{
+				case Device.iOS:
+					await Navigation.PopAsync();
+					break;
+				default:
+					await Navigation.PushAsync(new FirstPage(), false);
+					Navigation.RemovePage(this);
+					break;
 			}
 		}
 		#endregion

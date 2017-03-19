@@ -48,7 +48,7 @@ namespace MyLoginUI.Pages
 		public ReusableLoginPage()
 		{
 			BackgroundColor = Color.FromHex("#3498db");
-			Padding = new Thickness(0, Device.OnPlatform(20, 0, 0), 0, 0);
+			Padding = GetPagePadding();
 			MainLayout = new RelativeLayout();
 
 			CreateGlobalChildren();
@@ -79,8 +79,8 @@ namespace MyLoginUI.Pages
 				AutomationId = AutomationIdConstants.UsernameEntry,
 				Placeholder = "Username",
 			};
-			ReturnTypeEffect.SetReturnType(loginEntry,ReturnType.Next);
-			ReturnTypeEffect.SetReturnCommand(loginEntry,new Command(() => passwordEntry.Focus()));
+			CustomReturnEffect.SetReturnType(loginEntry, ReturnType.Next);
+			CustomReturnEffect.SetReturnCommand(loginEntry, new Command(() => passwordEntry.Focus()));
 
 			passwordEntry = new StyledEntry
 			{
@@ -88,8 +88,8 @@ namespace MyLoginUI.Pages
 				Placeholder = "Password",
 				IsPassword = true,
 			};
-			ReturnTypeEffect.SetReturnType(passwordEntry, ReturnType.Go);
-			ReturnTypeEffect.SetReturnCommand(passwordEntry, new Command(() => HandleLoginButtonClicked(passwordEntry, EventArgs.Empty)));
+			CustomReturnEffect.SetReturnType(passwordEntry, ReturnType.Go);
+			CustomReturnEffect.SetReturnCommand(passwordEntry, new Command(() => HandleLoginButtonClicked(passwordEntry, EventArgs.Empty)));
 
 			loginButton = new StyledButton(Borders.Thin)
 			{
@@ -191,7 +191,7 @@ namespace MyLoginUI.Pages
 		{
 			base.OnAppearing();
 
-			if (String.IsNullOrEmpty(LogoFileImageSource))
+			if (string.IsNullOrEmpty(LogoFileImageSource))
 				throw new Exception("You must set the LogoFileImageSource property to specify the logo");
 
 			logo.Source = LogoFileImageSource;
@@ -257,5 +257,17 @@ namespace MyLoginUI.Pages
 
 		#endregion
 
+		Thickness GetPagePadding()
+		{
+			switch (Device.RuntimePlatform)
+			{
+				case Device.Android:
+					return new Thickness(0, 20, 0, 0);
+				case Device.iOS:
+					return new Thickness(0, 0, 0, 0);
+				default:
+					throw new Exception("Platform Unsupported");
+			}
+		}
 	}
 }

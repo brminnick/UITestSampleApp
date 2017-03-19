@@ -26,7 +26,6 @@ namespace MyLoginUI.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::MyLoginUI.Droid.Resource.Attribute.actionBarSize;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Animation.abc_fade_in = global::MyLoginUI.Droid.Resource.Animation.abc_fade_in;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Animation.abc_fade_out = global::MyLoginUI.Droid.Resource.Animation.abc_fade_out;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Animation.abc_grow_fade_in_from_bottom = global::MyLoginUI.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -1813,6 +1812,7 @@ namespace MyLoginUI.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_id = global::MyLoginUI.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::MyLoginUI.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_layout = global::MyLoginUI.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::MyLoginUI.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation

@@ -39,15 +39,20 @@ namespace UITestSampleApp
 		{
 			int majorVersion, minorVersion;
 
-			if (Device.OS == TargetPlatform.iOS)
+			switch (Device.RuntimePlatform)
 			{
-				majorVersion = 9;
-				minorVersion = 0;
-			}
-			else
-			{
-				majorVersion = 4;
-				minorVersion = 2;
+				case Device.iOS:
+					majorVersion = 9;
+					minorVersion = 0;
+					break;
+
+				case Device.Android:
+					majorVersion = 4;
+					minorVersion = 2;
+					break;
+					
+				default:
+					throw new Exception("Platform Not Supported");
 			}
 
 			if (DependencyService.Get<IEnvironment>().IsOperatingSystemSupported(majorVersion, minorVersion))
