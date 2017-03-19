@@ -53,8 +53,8 @@ namespace UITestSampleApp
 				HorizontalTextAlignment = TextAlignment.End,
 				PlaceholderColor = Color.FromHex("749FA8"),
 			};
-			ReturnTypeEffect.SetReturnType(_usernameEntry, ReturnType.Next);
-			ReturnTypeEffect.SetReturnCommand(_usernameEntry, new Command(() => _passwordEntry.Focus()));
+			CustomReturnEffect.SetReturnType(_usernameEntry, ReturnType.Next);
+			CustomReturnEffect.SetReturnCommand(_usernameEntry, new Command(() => _passwordEntry.Focus()));
 
 			_passwordEntry = new StyledEntry(1)
 			{
@@ -67,8 +67,8 @@ namespace UITestSampleApp
 				VerticalOptions = LayoutOptions.Fill,
 				PlaceholderColor = Color.FromHex("749FA8")
 			};
-			ReturnTypeEffect.SetReturnType(_passwordEntry, ReturnType.Go);
-			ReturnTypeEffect.SetReturnCommand(_passwordEntry, new Command(() => HandleSaveUsernameButtonClicked(_saveUsernameButton, EventArgs.Empty)));
+			CustomReturnEffect.SetReturnType(_passwordEntry, ReturnType.Go);
+			CustomReturnEffect.SetReturnCommand(_passwordEntry, new Command(() => HandleSaveUsernameButtonClicked(_saveUsernameButton, EventArgs.Empty)));
 
 			_saveUsernameButton = new StyledButton(Borders.Thin, 1)
 			{

@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace UITestSampleApp
 {
-	public class FirstPageViewModel : BaseViewModel
+	public class FirstViewModel : BaseViewModel
 	{
 		#region Fields
 		bool _isActivityIndicatorRunning;

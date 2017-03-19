@@ -18,11 +18,7 @@ namespace MyLoginUI.Views
 			TextColor = Color.White;
 			FontSize = 18;
 			Opacity = opacity;
-			FontFamily = Device.OnPlatform(
-				iOS: "AppleSDGothicNeo-Light",
-				Android: "Droid Sans Mono",
-				WinPhone: "Comic Sans MS"
-			);
+			FontFamily = StyleHelpers.GetFontFamily();
 
 			switch (border)
 			{

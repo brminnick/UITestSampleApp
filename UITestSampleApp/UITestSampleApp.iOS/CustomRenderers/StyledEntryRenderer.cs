@@ -19,8 +19,7 @@ namespace UITestSampleApp.iOS
 	public class StyledEntryRenderer : EntryRenderer
 	{
 		UITextField nativeTextField;
-		CALayer bottomBorder;
-		bool isInitialized = false;
+		bool isInitialized;
 
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
@@ -46,7 +45,7 @@ namespace UITestSampleApp.iOS
 				nativeTextField.Font = UIFont.FromName("AppleSDGothicNeo-Light", 18);
 				nativeTextField.TextColor = UIColor.White;
 
-				if (!String.IsNullOrEmpty(formsEntry.Placeholder))
+				if (!string.IsNullOrEmpty(formsEntry.Placeholder))
 					nativeTextField.AttributedPlaceholder = new NSAttributedString(formsEntry.Placeholder, UIFont.FromName("AppleSDGothicNeo-Light", 18), UIColor.White);
 
 				isInitialized = true;

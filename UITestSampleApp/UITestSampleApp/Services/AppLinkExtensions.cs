@@ -20,8 +20,13 @@ namespace UITestSampleApp
 				IsLinkActive = true
 			};
 
-			if (iconName != "" && Device.OS == TargetPlatform.iOS)
-				entry.Thumbnail = ImageSource.FromFile(iconName);
+			switch (Device.RuntimePlatform)
+			{
+				case Device.iOS:
+					if (!string.IsNullOrEmpty(iconName))
+						entry.Thumbnail = ImageSource.FromFile(iconName);
+					break;
+			}
 
 			entry.KeyValues.Add("contentType", "Session");
 			entry.KeyValues.Add("appName", "SimpleUITestApp");

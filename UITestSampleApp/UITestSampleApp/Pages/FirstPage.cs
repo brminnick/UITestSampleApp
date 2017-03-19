@@ -11,7 +11,7 @@ using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
-	public class FirstPage : BasePage
+	public class FirstPage : BaseContentPage<FirstViewModel>
 	{
 		#region Constant Fields
 		readonly Button _goButton, _listPageButton;
@@ -22,15 +22,12 @@ namespace UITestSampleApp
 		{
 			const string entryTextPaceHolder = "Enter text and click 'Go'";
 
-			var viewModel = new FirstPageViewModel();
-			BindingContext = viewModel;
-
 			_goButton = new StyledButton(Borders.Thin, 1)
 			{
 				Text = "Go",
 				AutomationId = AutomationIdConstants.GoButton, // This provides an ID that can be referenced in UITests
 			};
-			_goButton.SetBinding<FirstPageViewModel>(Button.CommandProperty, vm => vm.GoButtonTapped);
+			_goButton.SetBinding(Button.CommandProperty, nameof(ViewModel.GoButtonTapped));
 
 			var textEntry = new StyledEntry(1)
 			{
@@ -38,16 +35,16 @@ namespace UITestSampleApp
 				AutomationId = AutomationIdConstants.TextEntry, // This provides an ID that can be referenced in UITests
 				PlaceholderColor = Color.FromHex("749FA8"),
 			};
-			ReturnTypeEffect.SetReturnType(textEntry, ReturnType.Go);
-			textEntry.SetBinding<FirstPageViewModel>(ReturnTypeEffect.ReturnCommandProperty, vm => vm.GoButtonTapped);
-			textEntry.SetBinding<FirstPageViewModel>(Entry.TextProperty, vm => vm.EntryText);
+			CustomReturnEffect.SetReturnType(textEntry, ReturnType.Go);
+			textEntry.SetBinding(CustomReturnEffect.ReturnCommandProperty, nameof(ViewModel.GoButtonTapped));
+			textEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.EntryText));
 
 			var textLabel = new StyledLabel
 			{
 				AutomationId = AutomationIdConstants.TextLabel, // This provides an ID that can be referenced in UITests
 				HorizontalOptions = LayoutOptions.Center
 			};
-			textLabel.SetBinding<FirstPageViewModel>(Label.TextProperty, vm => vm.LabelText);
+			textLabel.SetBinding(Label.TextProperty, nameof(ViewModel.LabelText));
 
 			_listPageButton = new StyledButton(Borders.Thin, 1)
 			{
@@ -60,8 +57,8 @@ namespace UITestSampleApp
 				AutomationId = AutomationIdConstants.BusyActivityIndicator, // This provides an ID that can be referenced in UITests
 				Color = Color.White
 			};
-			activityIndicator.SetBinding<FirstPageViewModel>(ActivityIndicator.IsVisibleProperty, vm => vm.IsActiityIndicatorRunning);
-			activityIndicator.SetBinding<FirstPageViewModel>(ActivityIndicator.IsRunningProperty, vm => vm.IsActiityIndicatorRunning);
+			activityIndicator.SetBinding(IsVisibleProperty, nameof(ViewModel.IsActiityIndicatorRunning));
+			activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(ViewModel.IsActiityIndicatorRunning));
 
 			var stackLayout = new StackLayout
 			{
@@ -108,7 +105,7 @@ namespace UITestSampleApp
 				})
 			);
 
-			Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
+			Padding = GetPagePadding();
 			Title = "First Page";
 			Content = relativeLayout;
 		}
@@ -141,6 +138,19 @@ namespace UITestSampleApp
 		async void HandleListPageButtonClicked(object sender, EventArgs e)
 		{
 			await Navigation.PushAsync(new ListPage());
+		}
+
+		Thickness GetPagePadding()
+		{
+			switch (Device.RuntimePlatform)
+			{
+				case Device.iOS:
+					return new Thickness(10, 20, 10, 5);
+				case Device.Android:
+					return new Thickness(10, 0, 10, 5);
+				default:
+					throw new Exception("Platform Not Supported");
+			}
 		}
 		#endregion
 	}

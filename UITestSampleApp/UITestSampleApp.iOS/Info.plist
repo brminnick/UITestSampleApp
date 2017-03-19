@@ -35,10 +35,10 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.0</string>
+	<string>3.2.1</string>
 	<key>CFBundleName</key>
 	<string>UITestSampleApp</string>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>8</string>
 </dict>
 </plist>
