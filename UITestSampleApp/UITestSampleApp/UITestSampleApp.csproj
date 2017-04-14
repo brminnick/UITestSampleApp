@@ -38,7 +38,7 @@
     <Compile Include="Services\ILogin.cs" />
     <Compile Include="Services\AppLinkExtensions.cs" />
     <Compile Include="Services\IEnvironment.cs" />
-    <Compile Include="Helpers\AnalyticsHelpers.cs" />
+    <Compile Include="Helpers\MobileCenterHelpers.cs" />
     <Compile Include="App.cs" />
     <Compile Include="Services\AzureService.cs" />
     <Compile Include="Services\IDataService.cs" />
@@ -52,7 +52,7 @@
     <Compile Include="Models\EntityData.cs" />
     <Compile Include="Models\ListPageDataModel.cs" />
     <Compile Include="Models\SampleDataModel.cs" />
-    <Compile Include="Constants\AnalyticsConstants.cs" />
+    <Compile Include="Constants\MobileCenterConstants.cs" />
     <Compile Include="Constants\DeepLinkingIdConstants.cs" />
     <Compile Include="Constants\StyleConstants.cs" />
     <Compile Include="Helpers\AzureConstants.cs" />

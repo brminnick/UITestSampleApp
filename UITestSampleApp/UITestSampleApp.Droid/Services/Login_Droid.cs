@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace UITestSampleApp.Droid
 			}
 			catch (Exception e)
 			{
-				AnalyticsHelpers.Log("No Username Stored", e.Message, e);
+				MobileCenterHelpers.Log("No Username Stored", e.Message, e);
 				return false;
 			}
 
@@ -43,7 +43,7 @@ namespace UITestSampleApp.Droid
 			}
 			catch (Exception e)
 			{
-				AnalyticsHelpers.Log("No Password Store", e.Message, e);
+				MobileCenterHelpers.Log("No Password Store", e.Message, e);
 				return false;
 			}
 

@@ -219,6 +219,7 @@
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <BundleResource Include="Resources\icon%403x.png" />
     <BundleResource Include="Resources\icon%402x.png" />
+    <BundleResource Include="Resources\58 - Settings.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />

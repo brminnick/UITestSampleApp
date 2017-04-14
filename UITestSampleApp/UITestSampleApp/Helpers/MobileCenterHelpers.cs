@@ -4,15 +4,20 @@ using System.Collections.Generic;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Crashes;
 using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Distribute;
 
 namespace UITestSampleApp
 {
-	public static class AnalyticsHelpers
+	public static class MobileCenterHelpers
 	{
-		public static void Start(string APIKey)
+		public static void Start()
 		{
-			MobileCenter.Configure(APIKey);
-			MobileCenter.Start(typeof(Analytics), typeof(Crashes));
+#if DEBUG
+			Distribute.Enabled = false;
+#else
+			Distribute.Enabled = true;
+#endif	
+			MobileCenter.Start($"ios={MobileCenterConstants.MobileCenteriOSApiKey};android={MobileCenterConstants.MobileCenterDroidApiKey}", typeof(Analytics), typeof(Crashes));
 			Analytics.Enabled = true;
 		}
 

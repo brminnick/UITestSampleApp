@@ -1,6 +1,7 @@
 ﻿using UIKit;
 using Foundation;
 using EntryCustomReturn.Forms.Plugin.iOS;
+using Microsoft.Azure.Mobile.Distribute;
 
 namespace UITestSampleApp.iOS
 {
@@ -24,6 +25,12 @@ namespace UITestSampleApp.iOS
 			LoadApplication(App = new App());
 
 			return base.FinishedLaunching(app, options);
+		}
+
+		public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+		{
+			Distribute.OpenUrl(url);
+			return base.OpenUrl(application, url, sourceApplication, annotation);
 		}
 
 		#region Xamarin Test Cloud Back Door Methods

@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -41,8 +41,8 @@ namespace UITestSampleApp
 		#region Methods
 		async Task ExecuteGoButtonTapped()
 		{
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.GoButtonTapped, new Dictionary<string, string> {
-				{ AnalyticsConstants.FirstPageTextEntered, EntryText }
+			MobileCenterHelpers.TrackEvent(MobileCenterConstants.GoButtonTapped, new Dictionary<string, string> {
+				{ MobileCenterConstants.FirstPageTextEntered, EntryText }
 			});
 
 			IsActiityIndicatorRunning = true;
