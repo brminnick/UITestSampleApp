@@ -17,7 +17,7 @@ namespace UITestSampleApp.Droid
 		{
 			base.OnCreate();
 
-            MobileCenterHelpers.Start();
+          
 		}
 	}
 }

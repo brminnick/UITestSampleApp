@@ -10,14 +10,14 @@ namespace UITestSampleApp
 {
 	public static class MobileCenterHelpers
 	{
-		public static void Start()
+		public static void Start(string appSecret)
 		{
+			MobileCenter.Start(appSecret, typeof(Analytics), typeof(Crashes), typeof(Distribute));
 #if DEBUG
 			Distribute.Enabled = false;
 #else
 			Distribute.Enabled = true;
 #endif	
-			MobileCenter.Start($"ios={MobileCenterConstants.MobileCenteriOSApiKey};android={MobileCenterConstants.MobileCenterDroidApiKey}", typeof(Analytics), typeof(Crashes));
 			Analytics.Enabled = true;
 		}
 
