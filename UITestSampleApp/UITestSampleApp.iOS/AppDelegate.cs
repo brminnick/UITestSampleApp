@@ -1,7 +1,9 @@
 ﻿using UIKit;
 using Foundation;
-using EntryCustomReturn.Forms.Plugin.iOS;
+
 using Microsoft.Azure.Mobile.Distribute;
+
+using EntryCustomReturn.Forms.Plugin.iOS;
 
 namespace UITestSampleApp.iOS
 {
@@ -18,6 +20,7 @@ namespace UITestSampleApp.iOS
 #if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 #endif
+			Distribute.DontCheckForUpdatesInDebug();
 
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 			CustomReturnEntryRenderer.Init();
