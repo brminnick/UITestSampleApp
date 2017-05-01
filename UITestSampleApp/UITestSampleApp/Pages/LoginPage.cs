@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -62,7 +62,7 @@ namespace UITestSampleApp
 				{
 					await Navigation.PushModalAsync(new NewUserSignUpPage());
 
-					AnalyticsHelpers.TrackEvent("NewUserSignUp", new Dictionary<string, string> {
+					MobileCenterHelpers.TrackEvent("NewUserSignUp", new Dictionary<string, string> {
 						{ "ActionPoint", "System Prompt" },
 					});
 				}

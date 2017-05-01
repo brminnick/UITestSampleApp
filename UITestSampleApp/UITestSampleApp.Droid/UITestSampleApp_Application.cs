@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Android.App;
 using Android.Runtime;
@@ -17,7 +17,7 @@ namespace UITestSampleApp.Droid
 		{
 			base.OnCreate();
 
-            AnalyticsHelpers.Start(AnalyticsConstants.MobileCenterDroidApiKey);
+          
 		}
 	}
 }

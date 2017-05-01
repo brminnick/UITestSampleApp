@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Xamarin.Forms;
 
@@ -115,7 +115,7 @@ namespace UITestSampleApp
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.FirstPageOnAppeared);
+			MobileCenterHelpers.TrackEvent(MobileCenterConstants.FirstPageOnAppeared);
 
 			_goButton.Clicked += HandleButtonClicked;
 			_listPageButton.Clicked += HandleListPageButtonClicked;

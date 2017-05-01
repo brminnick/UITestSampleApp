@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -59,7 +59,7 @@ namespace UITestSampleApp
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.ListViewPageAppeared);
+			MobileCenterHelpers.TrackEvent(MobileCenterConstants.ListViewPageAppeared);
 
 			_listView.ItemTapped += HandleListViewItemTapped;
 			ViewModel.LoadingDataFromBackendCompleted += HandleLoadingDataFromBackendCompleted;
@@ -78,9 +78,9 @@ namespace UITestSampleApp
 			var listView = sender as ListView;
 			var tappedListPageDataModel = e.Item as ListPageDataModel;
 
-			AnalyticsHelpers.TrackEvent(AnalyticsConstants.ListViewItemTapped,
+			MobileCenterHelpers.TrackEvent(MobileCenterConstants.ListViewItemTapped,
 				new Dictionary<string, string> {
-					{ AnalyticsConstants.ListViewItemNumber, tappedListPageDataModel.DetailProperty }
+					{ MobileCenterConstants.ListViewItemNumber, tappedListPageDataModel.DetailProperty }
 				}
 			);
 

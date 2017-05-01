@@ -37,6 +37,16 @@ namespace UITestSampleApp
 		#region Methods
 		protected override void OnStart()
 		{
+			switch (Device.RuntimePlatform)
+			{
+				case Device.iOS:
+					MobileCenterHelpers.Start(MobileCenterConstants.MobileCenteriOSApiKey);
+					break;
+				case Device.Android:
+					MobileCenterHelpers.Start(MobileCenterConstants.MobileCenterDroidApiKey);
+					break;
+			}
+
 			int majorVersion, minorVersion;
 
 			switch (Device.RuntimePlatform)
@@ -50,7 +60,7 @@ namespace UITestSampleApp
 					majorVersion = 4;
 					minorVersion = 2;
 					break;
-					
+
 				default:
 					throw new Exception("Platform Not Supported");
 			}

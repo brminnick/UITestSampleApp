@@ -1813,7 +1813,19 @@ namespace UITestSampleApp.Droid
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_id = global::UITestSampleApp.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::UITestSampleApp.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::EntryCustomReturn.Forms.Plugin.Android.Resource.Styleable.ViewStubCompat_android_layout = global::UITestSampleApp.Droid.Resource.Styleable.ViewStubCompat_android_layout;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::UITestSampleApp.Droid.Resource.Attribute.actionBarSize;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_dialog_actioned_on_disabled_toast = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_dialog_actioned_on_disabled_toast;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_download_progress_number_format = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_download_progress_number_format;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_download_successful_notification_message = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_download_successful_notification_message;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_download_successful_notification_title = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_download_successful_notification_title;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_downloading_mandatory_update = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_downloading_mandatory_update;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_install = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_install;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_unknown_sources_dialog_message = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_unknown_sources_dialog_message;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_unknown_sources_dialog_settings = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_unknown_sources_dialog_settings;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_download = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_dialog_download;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_ignore = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_dialog_ignore;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_message = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_dialog_message;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_postpone = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_dialog_postpone;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_title = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_dialog_title;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Attribute.buttonSize = global::UITestSampleApp.Droid.Resource.Attribute.buttonSize;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Attribute.circleCrop = global::UITestSampleApp.Droid.Resource.Attribute.circleCrop;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Attribute.colorScheme = global::UITestSampleApp.Droid.Resource.Attribute.colorScheme;
@@ -1933,6 +1945,7 @@ namespace UITestSampleApp.Droid
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_buttonSize = global::UITestSampleApp.Droid.Resource.Styleable.SignInButton_buttonSize;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_colorScheme = global::UITestSampleApp.Droid.Resource.Styleable.SignInButton_colorScheme;
 			global::Xamarin.Forms.Platform.Android.AppLinks.Resource.Styleable.SignInButton_scopeUris = global::UITestSampleApp.Droid.Resource.Styleable.SignInButton_scopeUris;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::UITestSampleApp.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation
@@ -5099,11 +5112,11 @@ namespace UITestSampleApp.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f090047
-			public const int ApplicationName = 2131296327;
+			// aapt resource value: 0x7f090054
+			public const int ApplicationName = 2131296340;
 			
-			// aapt resource value: 0x7f090046
-			public const int Hello = 2131296326;
+			// aapt resource value: 0x7f090053
+			public const int Hello = 2131296339;
 			
 			// aapt resource value: 0x7f090031
 			public const int abc_action_bar_home_description = 2131296305;
@@ -5266,6 +5279,45 @@ namespace UITestSampleApp.Droid
 			
 			// aapt resource value: 0x7f090045
 			public const int library_name = 2131296325;
+			
+			// aapt resource value: 0x7f090046
+			public const int mobile_center_distribute_dialog_actioned_on_disabled_toast = 2131296326;
+			
+			// aapt resource value: 0x7f090047
+			public const int mobile_center_distribute_download_progress_number_format = 2131296327;
+			
+			// aapt resource value: 0x7f090048
+			public const int mobile_center_distribute_download_successful_notification_message = 2131296328;
+			
+			// aapt resource value: 0x7f090049
+			public const int mobile_center_distribute_download_successful_notification_title = 2131296329;
+			
+			// aapt resource value: 0x7f09004a
+			public const int mobile_center_distribute_downloading_mandatory_update = 2131296330;
+			
+			// aapt resource value: 0x7f09004b
+			public const int mobile_center_distribute_install = 2131296331;
+			
+			// aapt resource value: 0x7f09004c
+			public const int mobile_center_distribute_unknown_sources_dialog_message = 2131296332;
+			
+			// aapt resource value: 0x7f09004d
+			public const int mobile_center_distribute_unknown_sources_dialog_settings = 2131296333;
+			
+			// aapt resource value: 0x7f09004e
+			public const int mobile_center_distribute_update_dialog_download = 2131296334;
+			
+			// aapt resource value: 0x7f09004f
+			public const int mobile_center_distribute_update_dialog_ignore = 2131296335;
+			
+			// aapt resource value: 0x7f090050
+			public const int mobile_center_distribute_update_dialog_message = 2131296336;
+			
+			// aapt resource value: 0x7f090051
+			public const int mobile_center_distribute_update_dialog_postpone = 2131296337;
+			
+			// aapt resource value: 0x7f090052
+			public const int mobile_center_distribute_update_dialog_title = 2131296338;
 			
 			// aapt resource value: 0x7f09001f
 			public const int mr_button_content_description = 2131296287;

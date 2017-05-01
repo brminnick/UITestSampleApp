@@ -1,5 +1,8 @@
 ﻿using UIKit;
 using Foundation;
+
+using Microsoft.Azure.Mobile.Distribute;
+
 using EntryCustomReturn.Forms.Plugin.iOS;
 
 namespace UITestSampleApp.iOS
@@ -17,6 +20,7 @@ namespace UITestSampleApp.iOS
 #if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 #endif
+			Distribute.DontCheckForUpdatesInDebug();
 
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 			CustomReturnEntryRenderer.Init();
@@ -24,6 +28,12 @@ namespace UITestSampleApp.iOS
 			LoadApplication(App = new App());
 
 			return base.FinishedLaunching(app, options);
+		}
+
+		public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+		{
+			Distribute.OpenUrl(url);
+			return base.OpenUrl(application, url, sourceApplication, annotation);
 		}
 
 		#region Xamarin Test Cloud Back Door Methods

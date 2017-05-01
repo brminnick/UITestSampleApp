@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 using Android.OS;
@@ -36,7 +36,7 @@ namespace UITestSampleApp.Droid
 			}
 			catch (Exception e)
 			{
-				AnalyticsHelpers.Log("Operating System Check Failed", e.Message, e);
+				MobileCenterHelpers.Log("Operating System Check Failed", e.Message, e);
 				return false;
 			}
 		}

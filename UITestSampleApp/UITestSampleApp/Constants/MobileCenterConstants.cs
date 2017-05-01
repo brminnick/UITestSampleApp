@@ -1,6 +1,6 @@
 ﻿namespace UITestSampleApp
 {
-	public static class AnalyticsConstants
+	public static class MobileCenterConstants
 	{
 		#region Mobile Center
 		public const string MobileCenteriOSApiKey = "36f454de-dbe0-4a38-a11b-68323a21a52e";
