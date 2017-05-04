@@ -181,29 +181,29 @@
     <Reference Include="Microsoft.Azure.Mobile.Analytics">
       <HintPath>..\..\packages\Microsoft.Azure.Mobile.Analytics.0.9.2\lib\MonoAndroid403\Microsoft.Azure.Mobile.Analytics.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.core">
-      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.4\lib\MonoAndroid\SQLitePCLRaw.core.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.provider.e_sqlite3">
-      <HintPath>..\..\packages\SQLitePCLRaw.provider.e_sqlite3.android.1.1.4\lib\MonoAndroid\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.lib.e_sqlite3">
-      <HintPath>..\..\packages\SQLitePCLRaw.lib.e_sqlite3.android.1.1.4\lib\MonoAndroid\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_green">
-      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.4\lib\MonoAndroid\SQLitePCLRaw.batteries_green.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_e_sqlite3">
-      <HintPath>..\..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.4\lib\MonoAndroid\SQLitePCLRaw.batteries_e_sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_v2">
-      <HintPath>..\..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.4\lib\MonoAndroid\SQLitePCLRaw.batteries_v2.dll</HintPath>
-    </Reference>
     <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions">
       <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="EntryCustomReturn.Forms.Plugin.Android">
       <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.lib.e_sqlite3">
+      <HintPath>..\..\packages\SQLitePCLRaw.lib.e_sqlite3.android.1.1.5\lib\MonoAndroid\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core">
+      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.5\lib\MonoAndroid\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3">
+      <HintPath>..\..\packages\SQLitePCLRaw.provider.e_sqlite3.android.1.1.5\lib\MonoAndroid\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\MonoAndroid\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_e_sqlite3">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.5\lib\MonoAndroid\SQLitePCLRaw.batteries_e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.5\lib\MonoAndroid\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
