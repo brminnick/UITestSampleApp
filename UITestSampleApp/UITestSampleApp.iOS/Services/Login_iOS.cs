@@ -12,8 +12,10 @@ namespace UITestSampleApp.iOS
 	public class Login_iOS : ILogin
 	{
 
-		public async Task<bool> SetPasswordForUsername(string username, string password)
-		{
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<bool> SetPasswordForUsername(string username, string password)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
 			if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
 				return false;
 
@@ -25,8 +27,10 @@ namespace UITestSampleApp.iOS
 			return true;
 		}
 
-		public async Task<bool> CheckLogin(string username, string password)
-		{
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<bool> CheckLogin(string username, string password)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        {
 			var _username = NSUserDefaults.StandardUserDefaults.ValueForKey(new NSString("username"));
 			var _password = KeychainHelpers.GetPasswordForUsername(username, "XamarinExpenses", true);
 

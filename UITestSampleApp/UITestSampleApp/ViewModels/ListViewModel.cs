@@ -25,7 +25,6 @@ namespace UITestSampleApp
 		{
 			Task.Run(async () => await RefreshDataAsync());
 		}
-
 		#endregion
 
 		#region Events
@@ -35,14 +34,14 @@ namespace UITestSampleApp
 		#region Properties
 		public List<ListPageDataModel> DataList
 		{
-			get { return _dataList; }
-			set { SetProperty(ref _dataList, value); }
+			get => _dataList;
+			set => SetProperty(ref _dataList, value);
 		}
 
 		public bool IsDataLoading
 		{
-			get { return _isDataLoadingFromBackend; }
-			set { SetProperty(ref _isDataLoadingFromBackend, value); }
+			get => _isDataLoadingFromBackend;
+			set => SetProperty(ref _isDataLoadingFromBackend, value);
 		}
 
 		public ICommand PullToRefreshCommand => _PullToRefreshCommand ??
