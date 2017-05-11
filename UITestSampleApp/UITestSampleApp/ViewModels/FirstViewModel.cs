@@ -11,31 +11,31 @@ namespace UITestSampleApp
 		#region Fields
 		bool _isActivityIndicatorRunning;
 		string _entryText, _labelText;
-		ICommand _goButtonTapped;
+		ICommand _goButtonTappedCommand;
 		#endregion
 
 		#region Properties
 		public bool IsActiityIndicatorRunning
 		{
-			get { return _isActivityIndicatorRunning; }
-			set { SetProperty(ref _isActivityIndicatorRunning, value); }
+			get => _isActivityIndicatorRunning;
+			set => SetProperty(ref _isActivityIndicatorRunning, value);
 		}
 
 		public string EntryText
 		{
-			get { return _entryText; }
-			set { SetProperty(ref _entryText, value); }
+			get => _entryText;
+			set => SetProperty(ref _entryText, value);
 		}
 
 		public string LabelText
 		{
-			get { return _labelText; }
-			set { SetProperty(ref _labelText, value); }
+			get => _labelText;
+			set => SetProperty(ref _labelText, value);
 		}
 
-		public ICommand GoButtonTapped =>
-		_goButtonTapped ??
-		(_goButtonTapped = new Command(async () => await ExecuteGoButtonTapped()));
+		public ICommand GoButtonTappedCommand =>
+            _goButtonTappedCommand ??
+		        (_goButtonTappedCommand = new Command(async () => await ExecuteGoButtonTapped()));
 		#endregion
 
 		#region Methods

@@ -27,7 +27,7 @@ namespace UITestSampleApp
 				Text = "Go",
 				AutomationId = AutomationIdConstants.GoButton, // This provides an ID that can be referenced in UITests
 			};
-			_goButton.SetBinding(Button.CommandProperty, nameof(ViewModel.GoButtonTapped));
+			_goButton.SetBinding(Button.CommandProperty, nameof(ViewModel.GoButtonTappedCommand));
 
 			var textEntry = new StyledEntry(1)
 			{
@@ -36,7 +36,7 @@ namespace UITestSampleApp
 				PlaceholderColor = Color.FromHex("749FA8"),
 			};
 			CustomReturnEffect.SetReturnType(textEntry, ReturnType.Go);
-			textEntry.SetBinding(CustomReturnEffect.ReturnCommandProperty, nameof(ViewModel.GoButtonTapped));
+			textEntry.SetBinding(CustomReturnEffect.ReturnCommandProperty, nameof(ViewModel.GoButtonTappedCommand));
 			textEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.EntryText));
 
 			var textLabel = new StyledLabel
