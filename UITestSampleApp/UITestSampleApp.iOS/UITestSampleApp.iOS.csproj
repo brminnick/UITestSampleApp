@@ -231,10 +231,6 @@
       <Project>{06291122-42A6-4585-AC8C-D481126D1B5D}</Project>
       <Name>UITestSampleApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyLoginUI\iOS\MyLoginUI.iOS.csproj">
-      <Project>{D4EAC19B-570E-416A-95E7-32E449F04EDF}</Project>
-      <Name>MyLoginUI.iOS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyLoginUI\MyLoginUI\MyLoginUI.csproj">
       <Project>{6E1B18A4-C150-4627-96FF-741A8AE36F58}</Project>
       <Name>MyLoginUI</Name>

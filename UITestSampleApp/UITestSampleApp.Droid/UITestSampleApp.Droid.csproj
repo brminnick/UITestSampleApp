@@ -244,12 +244,6 @@
       <Project>{6E1B18A4-C150-4627-96FF-741A8AE36F58}</Project>
       <Name>MyLoginUI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyLoginUI\Droid\MyLoginUI.Droid.csproj">
-      <IsAppExtension>true</IsAppExtension>
-      <Project>{76C86216-1BAD-4CAD-BF57-E7B970E67C78}</Project>
-      <Name>MyLoginUI.Droid</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\UITestSampleApp\UITestSampleApp.csproj">
       <Project>{06291122-42A6-4585-AC8C-D481126D1B5D}</Project>
       <Name>UITestSampleApp</Name>
