@@ -10,6 +10,9 @@ It also demonstrates how to utilize [App Links](https://blog.xamarin.com/deep-li
 
 The login page leverages the [Reusable Login Page](https://github.com/michael-watson/Forms-Expenses/tree/master/MyLoginUI) created by [Michael Watson](https://github.com/michael-watson).
 
+### C# 7.0 Compatibility
+The master branch contains features from C# 7.0. If your IDE does not support C# 7.0, you can use [this branch](https://github.com/brminnick/UITestSampleApp/tree/Remove-C%237), which does not contain C# 7.0 features.
+
 Author
 ===
 Brandon Minnick
