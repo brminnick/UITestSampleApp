@@ -20,7 +20,16 @@ namespace UITestSampleApp.UITests
 		public LoginPage(IApp app, Platform platform)
 			: base(app, platform)
 		{
-			_forgotPasswordButton = x => x.Marked(AutomationIdConstants.ForgotPasswordButton);
+            if(OnAndroid)
+            {
+                _forgotPasswordButton = x => x.Class("AppCompatButton").Index(2);
+            }
+            else
+            {
+                _forgotPasswordButton = x => x.Class("UIButton").Index(2);
+            }
+
+			_forgotPasswordButton = x => x.Marked("ForgotPasswordButton");
 			_loginButton = x => x.Marked(AutomationIdConstants.LoginButton);
 			_passwordEntry = x => x.Marked(AutomationIdConstants.PasswordEntry);
 			_signUpButton = x => x.Marked(AutomationIdConstants.NewUserButton);
