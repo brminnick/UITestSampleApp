@@ -41,18 +41,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\iOS\SimpleUITestApp.iOS.csproj">
-      <Project>{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}</Project>
-      <Name>UITestSampleApp.iOS</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Droid\SimpleUITestApp.Droid.csproj">
-      <Project>{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}</Project>
-      <Name>UITestSampleApp.Droid</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\UITestSampleApp\UITestSampleApp.csproj">
       <Project>{06291122-42A6-4585-AC8C-D481126D1B5D}</Project>
       <Name>UITestSampleApp</Name>
