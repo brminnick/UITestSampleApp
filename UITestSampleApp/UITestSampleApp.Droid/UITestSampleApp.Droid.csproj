@@ -139,12 +139,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="EntryCustomReturn.Forms.Plugin.Android">
-      <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
-    </Reference>
     <Reference Include="SQLitePCLRaw.lib.e_sqlite3">
       <HintPath>..\..\packages\SQLitePCLRaw.lib.e_sqlite3.android.1.1.5\lib\MonoAndroid\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
     </Reference>
@@ -204,6 +198,12 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.1.1-pre1\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="EntryCustomReturn.Forms.Plugin.Android">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.1.1-pre1\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

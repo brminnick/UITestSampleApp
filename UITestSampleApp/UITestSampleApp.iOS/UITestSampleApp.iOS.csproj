@@ -108,12 +108,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\Xamarin.iOS10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="EntryCustomReturn.Forms.Plugin.iOS">
-      <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.0.0\lib\Xamarin.iOS10\EntryCustomReturn.Forms.Plugin.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="SQLitePCLRaw.core">
       <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
     </Reference>
@@ -161,6 +155,12 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntryCustomReturn.Forms.Plugin.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.1.1-pre1\lib\Xamarin.iOS10\EntryCustomReturn.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="EntryCustomReturn.Forms.Plugin.iOS">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.1.1-pre1\lib\Xamarin.iOS10\EntryCustomReturn.Forms.Plugin.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
