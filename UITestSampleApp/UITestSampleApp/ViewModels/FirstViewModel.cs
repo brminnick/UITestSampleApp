@@ -15,6 +15,10 @@ namespace UITestSampleApp
 		#endregion
 
 		#region Properties
+		public ICommand GoButtonTappedCommand =>
+			_goButtonTappedCommand ??
+				(_goButtonTappedCommand = new Command(async () => await ExecuteGoButtonTapped()));
+
 		public bool IsActiityIndicatorRunning
 		{
 			get => _isActivityIndicatorRunning;
@@ -32,10 +36,6 @@ namespace UITestSampleApp
 			get => _labelText;
 			set => SetProperty(ref _labelText, value);
 		}
-
-		public ICommand GoButtonTappedCommand =>
-            _goButtonTappedCommand ??
-		        (_goButtonTappedCommand = new Command(async () => await ExecuteGoButtonTapped()));
 		#endregion
 
 		#region Methods
