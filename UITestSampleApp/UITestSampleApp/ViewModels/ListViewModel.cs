@@ -14,7 +14,7 @@ namespace UITestSampleApp
 	{
 		#region Fields
 		bool _isDataLoadingFromBackend;
-		ICommand _PullToRefreshCommand;
+        ICommand _pullToRefreshCommand;
 		List<ListPageDataModel> _dataList;
 		#endregion
 
@@ -23,8 +23,8 @@ namespace UITestSampleApp
 		#endregion
 
 		#region Properties
-		public ICommand PullToRefreshCommand => _PullToRefreshCommand ??
-			(_PullToRefreshCommand = new Command(async () => await ExecutePullToRefreshCommanded()));
+		public ICommand PullToRefreshCommand => _pullToRefreshCommand ??
+			(_pullToRefreshCommand = new Command(async () => await ExecutePullToRefreshCommanded()));
 
 		public List<ListPageDataModel> DataList
 		{
