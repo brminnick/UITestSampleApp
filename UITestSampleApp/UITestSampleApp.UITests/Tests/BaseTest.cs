@@ -17,10 +17,7 @@ namespace UITestSampleApp.UITests
 		protected LoginPage LoginPage;
 		protected NewUserSignUpPage NewUserSignUpPage;
 
-		protected BaseTest (Platform platform)
-		{
-			this.Platform = platform;
-		}
+		protected BaseTest (Platform platform) => Platform = platform;
 
 		[SetUp]
 		virtual public void BeforeEachTest()

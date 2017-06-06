@@ -18,11 +18,6 @@ namespace UITestSampleApp
 		List<ListPageDataModel> _dataList;
 		#endregion
 
-		#region Constructors
-		public ListViewModel() => 
-			Task.Run(async () => await RefreshDataAsync());
-		#endregion
-
 		#region Events
 		public event EventHandler LoadingDataFromBackendCompleted;
 		#endregion

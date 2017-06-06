@@ -30,11 +30,11 @@ namespace UITestSampleApp.iOS
 			return base.FinishedLaunching(app, options);
 		}
 
-		public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
-		{
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
 			Distribute.OpenUrl(url);
-			return base.OpenUrl(application, url, sourceApplication, annotation);
-		}
+            return base.OpenUrl(app, url, options);
+        }
 
 		#region Xamarin Test Cloud Back Door Methods
 #if ENABLE_TEST_CLOUD

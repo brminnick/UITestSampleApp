@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -11,10 +11,10 @@ namespace UITestSampleApp
 	{
 		#region Constant Fields
 		readonly ListView _listView;
-		#endregion
+        #endregion
 
-		#region Constructors
-		public ListPage()
+        #region Constructors
+        public ListPage()
 		{
 			var loadingAzureDataActivityIndicator = new ActivityIndicator
 			{
@@ -60,6 +60,8 @@ namespace UITestSampleApp
 		{
 			base.OnAppearing();
 			MobileCenterHelpers.TrackEvent(MobileCenterConstants.ListViewPageAppeared);
+
+            _listView.BeginRefresh();
 
 			_listView.ItemTapped += HandleListViewItemTapped;
 			ViewModel.LoadingDataFromBackendCompleted += HandleLoadingDataFromBackendCompleted;

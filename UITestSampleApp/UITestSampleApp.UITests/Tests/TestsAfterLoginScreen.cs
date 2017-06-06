@@ -9,7 +9,6 @@ namespace UITestSampleApp.UITests
 	{
 		public TestsAfterLoginScreen(Platform platform) : base(platform)
 		{
-			this.Platform = platform;
 		}
 
 		public override void BeforeEachTest()
