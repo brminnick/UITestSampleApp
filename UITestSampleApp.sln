@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26606.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReusableLoginPage", "ReusableLoginPage", "{B4BC40AE-EB0F-48D8-BB36-65DE380F32CB}"
 EndProject
@@ -19,12 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLoginUI", "UITestSampleAp
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		SimpleUITestApp.Shared\SimpleUITestApp.Shared.projitems*{06291122-42a6-4585-ac8c-d481126d1b5d}*SharedItemsImports = 4
-		SimpleUITestApp.Shared\SimpleUITestApp.Shared.projitems*{6e1b18a4-c150-4627-96ff-741a8ae36f58}*SharedItemsImports = 4
-		SimpleUITestApp.Shared\SimpleUITestApp.Shared.projitems*{74f83f09-82b3-47b4-93f8-59b6faa89efa}*SharedItemsImports = 4
-		SimpleUITestApp.Shared\SimpleUITestApp.Shared.projitems*{807ccd2a-05f5-4cc3-bd9e-8c5c4ddc6dee}*SharedItemsImports = 4
-		SimpleUITestApp.Shared\SimpleUITestApp.Shared.projitems*{b8c47bdd-0736-481b-847e-372f14a40303}*SharedItemsImports = 4
-		SimpleUITestApp.Shared\SimpleUITestApp.Shared.projitems*{dcc188b2-f589-4166-bbae-cc619fededa9}*SharedItemsImports = 13
+		UITestSampleApp\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems*{6e1b18a4-c150-4627-96ff-741a8ae36f58}*SharedItemsImports = 4
+		UITestSampleApp\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems*{b8c47bdd-0736-481b-847e-372f14a40303}*SharedItemsImports = 4
+		UITestSampleApp\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems*{dcc188b2-f589-4166-bbae-cc619fededa9}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,12 +46,16 @@ Global
 		{06291122-42A6-4585-AC8C-D481126D1B5D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Debug|iPhone.Deploy.0 = Debug|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Release|iPhone.Build.0 = Release|Any CPU
 		{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
@@ -63,6 +64,7 @@ Global
 		{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}.Debug|iPhone.Build.0 = Debug|iPhone
+		{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}.Debug|iPhone.Deploy.0 = Debug|iPhone
 		{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}.Release|Any CPU.ActiveCfg = Release|iPhone
