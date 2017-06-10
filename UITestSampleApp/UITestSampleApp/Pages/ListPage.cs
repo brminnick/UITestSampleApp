@@ -24,9 +24,8 @@ namespace UITestSampleApp
 			loadingAzureDataActivityIndicator.SetBinding(IsVisibleProperty, nameof(ViewModel.IsDataLoading));
 			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(ViewModel.IsDataLoading));
 
-			_listView = new ListView(ListViewCachingStrategy.RetainElement)
+			_listView = new ListView(ListViewCachingStrategy.RecycleElement)
 			{
-				//ToDo Change to ListViewCachingStrategy.RecycleElement once this bug has been fixed https://bugzilla.xamarin.com/show_bug.cgi?id=42678
 				ItemTemplate = new DataTemplate(typeof(WhiteTextImageCell)),
 				BackgroundColor = Color.FromHex("#2980b9"),
 				IsPullToRefreshEnabled = true
