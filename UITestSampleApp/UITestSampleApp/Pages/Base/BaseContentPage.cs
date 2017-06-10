@@ -2,16 +2,43 @@
 
 namespace UITestSampleApp
 {
-	public abstract class BaseContentPage<T> : ContentPage where T : BaseViewModel, new()
-	{
-		protected BaseContentPage()
-		{
-			BackgroundColor = Color.FromHex("#2980b9");
-            ViewModel = new T();
-            BindingContext = ViewModel;
-		}
+    public abstract class BaseContentPage<T> : ContentPage where T : BaseViewModel, new()
+    {
+        #region Fields
+        T _viewModel;
+        #endregion
 
-        protected T ViewModel { get; }
-	}
+        #region Constructors
+        protected BaseContentPage()
+        {
+            BindingContext = ViewModel;
+            BackgroundColor = Color.FromHex("#2980b9");
+            this.SetBinding(IsBusyProperty, nameof(ViewModel.IsAccessingInternet));
+        }
+        #endregion
+
+        #region Properties
+        protected T ViewModel => _viewModel ?? (_viewModel = new T());
+        #endregion
+
+        #region Methods
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            SubscribeEventHandlers();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            UnsubscribeEventHandlers();
+        }
+
+        protected abstract void SubscribeEventHandlers();
+        protected abstract void UnsubscribeEventHandlers();
+        #endregion
+    }
 }
 

@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -16,14 +16,6 @@ namespace UITestSampleApp
         #region Constructors
         public ListPage()
 		{
-			var loadingAzureDataActivityIndicator = new ActivityIndicator
-			{
-				AutomationId = AutomationIdConstants.LoadingDataFromBackendActivityIndicator,
-				Color = Color.White
-			};
-			loadingAzureDataActivityIndicator.SetBinding(IsVisibleProperty, nameof(ViewModel.IsDataLoading));
-			loadingAzureDataActivityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(ViewModel.IsDataLoading));
-
 			_listView = new ListView(ListViewCachingStrategy.RecycleElement)
 			{
 				ItemTemplate = new DataTemplate(typeof(WhiteTextImageCell)),
@@ -35,22 +27,7 @@ namespace UITestSampleApp
 
 			Title = "List Page";
 
-			var relativeLayout = new RelativeLayout();
-
-			Func<RelativeLayout, double> getloadingAzureDataActivityIndicatorWidth = (p) => loadingAzureDataActivityIndicator.Measure(relativeLayout.Width, relativeLayout.Height).Request.Width;
-			Func<RelativeLayout, double> getloadingAzureDataActivityIndicatorHeight = (p) => loadingAzureDataActivityIndicator.Measure(relativeLayout.Width, relativeLayout.Height).Request.Height;
-
-			relativeLayout.Children.Add(_listView,
-				Constraint.Constant(0),
-				Constraint.Constant(0),
-				Constraint.RelativeToParent(parent => parent.Width),
-				Constraint.RelativeToParent(parent => parent.Height)
-		   	);
-			relativeLayout.Children.Add(loadingAzureDataActivityIndicator,
-				Constraint.RelativeToParent((parent) => parent.Width / 2 - getloadingAzureDataActivityIndicatorWidth(parent) / 2),
-				Constraint.RelativeToParent((parent) => parent.Height / 2 - getloadingAzureDataActivityIndicatorHeight(parent) / 2)
-		  	);
-			Content = relativeLayout;
+			Content = _listView;
 		}
 		#endregion
 
@@ -60,19 +37,20 @@ namespace UITestSampleApp
 			base.OnAppearing();
 			MobileCenterHelpers.TrackEvent(MobileCenterConstants.ListViewPageAppeared);
 
-            _listView.BeginRefresh();
+            Device.BeginInvokeOnMainThread(_listView.BeginRefresh);
+		}
 
+        protected override void SubscribeEventHandlers()
+        {
 			_listView.ItemTapped += HandleListViewItemTapped;
 			ViewModel.LoadingDataFromBackendCompleted += HandleLoadingDataFromBackendCompleted;
-		}
+        }
 
-		protected override void OnDisappearing()
-		{
-			base.OnDisappearing();
-
+        protected override void UnsubscribeEventHandlers()
+        {
 			_listView.ItemTapped -= HandleListViewItemTapped;
 			ViewModel.LoadingDataFromBackendCompleted -= HandleLoadingDataFromBackendCompleted;
-		}
+        }
 
 		async void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
 		{
@@ -92,7 +70,7 @@ namespace UITestSampleApp
 
 		void HandleLoadingDataFromBackendCompleted(object sender, EventArgs e)
 		{
-			_listView.EndRefresh();
+            Device.BeginInvokeOnMainThread(_listView.EndRefresh);
 		}
 		#endregion
 

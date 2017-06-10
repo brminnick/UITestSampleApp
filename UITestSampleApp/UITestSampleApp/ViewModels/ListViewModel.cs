@@ -13,7 +13,6 @@ namespace UITestSampleApp
 	public class ListViewModel : BaseViewModel
 	{
 		#region Fields
-		bool _isDataLoadingFromBackend;
         ICommand _pullToRefreshCommand;
 		List<ListPageDataModel> _dataList;
 		#endregion
@@ -30,12 +29,6 @@ namespace UITestSampleApp
 		{
 			get => _dataList;
 			set => SetProperty(ref _dataList, value);
-		}
-
-		public bool IsDataLoading
-		{
-			get => _isDataLoadingFromBackend;
-			set => SetProperty(ref _isDataLoadingFromBackend, value);
 		}
 		#endregion
 
@@ -82,14 +75,14 @@ namespace UITestSampleApp
 
 		async Task RefreshDataAsync()
 		{
-			IsDataLoading = true;
+			IsAccessingInternet = true;
 
 			await RefreshDataFromLocalDatabaseAsync();
 			await RefreshDataFromAzureAsync();
 
 			OnLoadingDataFromBackendCompleted();
 
-			IsDataLoading = false;
+			IsAccessingInternet = false;
 		}
 
 		void OnLoadingDataFromBackendCompleted() =>

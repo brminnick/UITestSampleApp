@@ -17,8 +17,8 @@ namespace UITestSampleApp
 		{
 			base.OnBindingContextChanged();
 
-			Text = "";
-			Detail = "";
+            Text = string.Empty;
+			Detail = string.Empty;
 			ImageSource = null;
 
 			var item = BindingContext as ListPageDataModel;

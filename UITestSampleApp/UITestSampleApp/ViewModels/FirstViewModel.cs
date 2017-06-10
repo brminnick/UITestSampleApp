@@ -6,53 +6,52 @@ using Xamarin.Forms;
 
 namespace UITestSampleApp
 {
-	public class FirstViewModel : BaseViewModel
-	{
-		#region Fields
-		bool _isActivityIndicatorRunning;
-		string _entryText, _labelText;
-		ICommand _goButtonTappedCommand;
-		#endregion
+    public class FirstViewModel : BaseViewModel
+    {
+        #region Fields
+        bool _isActivityIndicatorRunning;
+        string _entryText, _labelText;
+        ICommand _goButtonCommand;
+        #endregion
 
-		#region Properties
-		public ICommand GoButtonTappedCommand =>
-			_goButtonTappedCommand ??
-				(_goButtonTappedCommand = new Command(async () => await ExecuteGoButtonTapped()));
+        #region Properties
+        public ICommand GoButtonCommand => 
+            _goButtonCommand ?? (_goButtonCommand = new Command(async () => await ExecuteGoButtonCommand()));
 
-		public bool IsActiityIndicatorRunning
-		{
-			get => _isActivityIndicatorRunning;
-			set => SetProperty(ref _isActivityIndicatorRunning, value);
-		}
+        public bool IsActiityIndicatorRunning
+        {
+            get => _isActivityIndicatorRunning;
+            set => SetProperty(ref _isActivityIndicatorRunning, value);
+        }
 
-		public string EntryText
-		{
-			get => _entryText;
-			set => SetProperty(ref _entryText, value);
-		}
+        public string EntryText
+        {
+            get => _entryText;
+            set => SetProperty(ref _entryText, value);
+        }
 
-		public string LabelText
-		{
-			get => _labelText;
-			set => SetProperty(ref _labelText, value);
-		}
-		#endregion
+        public string LabelText
+        {
+            get => _labelText;
+            set => SetProperty(ref _labelText, value);
+        }
+        #endregion
 
-		#region Methods
-		async Task ExecuteGoButtonTapped()
-		{
-			MobileCenterHelpers.TrackEvent(MobileCenterConstants.GoButtonTapped, new Dictionary<string, string> {
-				{ MobileCenterConstants.FirstPageTextEntered, EntryText }
-			});
+        #region Methods
+        async Task ExecuteGoButtonCommand()
+        {
+            MobileCenterHelpers.TrackEvent(MobileCenterConstants.GoButtonTapped, new Dictionary<string, string> {
+                { MobileCenterConstants.FirstPageTextEntered, EntryText }
+            });
 
-			IsActiityIndicatorRunning = true;
+            IsActiityIndicatorRunning = true;
 
-			await Task.Delay(2000);
+            await Task.Delay(1500);
 
-			IsActiityIndicatorRunning = false;
-			LabelText = EntryText;
-		}
+            IsActiityIndicatorRunning = false;
+            LabelText = EntryText;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
