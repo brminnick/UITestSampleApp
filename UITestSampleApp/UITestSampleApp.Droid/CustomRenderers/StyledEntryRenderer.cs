@@ -1,6 +1,5 @@
 ﻿using Android.Widget;
 using Android.Graphics;
-using Android.Views.InputMethods;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

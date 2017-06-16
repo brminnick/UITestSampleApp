@@ -7,8 +7,6 @@ using MyLoginUI.Views;
 
 using EntryCustomReturn.Forms.Plugin.Abstractions;
 
-using UITestSampleApp.Shared;
-
 namespace UITestSampleApp
 {
     public class FirstPage : BaseContentPage<FirstViewModel>

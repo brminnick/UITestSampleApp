@@ -41,10 +41,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UITestSampleApp\UITestSampleApp.csproj">
-      <Project>{06291122-42A6-4585-AC8C-D481126D1B5D}</Project>
-      <Name>UITestSampleApp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UITestSampleApp.iOS\UITestSampleApp.iOS.csproj">
       <Project>{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}</Project>
       <Name>UITestSampleApp.iOS</Name>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using BinaryFormatter;
 
 namespace UITestSampleApp
 {
@@ -8,28 +8,23 @@ namespace UITestSampleApp
 	{
 		public static string ConvertSerializableObjectToBase64String<T>(T objectToConvert)
 		{
-			var binaryFormatter = new BinaryFormatter();
 			var memoryStream = new MemoryStream();
+            var binaryFormatter = new BinaryConverter();
 
-			binaryFormatter.Serialize(memoryStream, objectToConvert);
+			var serializedObject = binaryFormatter.Serialize(objectToConvert);
 
-			var objectDataAsByteArray = memoryStream.ToArray();
-			var objectDataAsBase64String = Convert.ToBase64String(objectDataAsByteArray);
+			var objectDataAsBase64String = Convert.ToBase64String(serializedObject);
 
 			return objectDataAsBase64String;
 		}
 
 		public static T ConvertBase64StringToObject<T>(string base64String) where T : class
 		{
-			var objectDataAsByteArray = Convert.FromBase64String(base64String);
+			var binaryFormatter = new BinaryConverter();
 
-			var mStream = new MemoryStream();
-			var binFormatter = new BinaryFormatter();
+            var objectDataAsByteArray = Convert.FromBase64String(base64String);
 
-			mStream.Write(objectDataAsByteArray, 0, objectDataAsByteArray.Length);
-			mStream.Position = 0;
-
-			var objectDataAsType = binFormatter.Deserialize(mStream) as T;
+			var objectDataAsType = binaryFormatter.Deserialize<T>(objectDataAsByteArray);
 
 			return objectDataAsType;
 		}

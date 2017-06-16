@@ -9,9 +9,6 @@
     <Import_RootNamespace>UITestSampleApp.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Constants\AutomationIdConstants.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Constants\" />
   </ItemGroup>
 </Project>

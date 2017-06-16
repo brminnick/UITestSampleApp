@@ -8,8 +8,6 @@ using MyLoginUI.Views;
 
 using EntryCustomReturn.Forms.Plugin.Abstractions;
 
-using UITestSampleApp.Shared;
-
 namespace MyLoginUI.Pages
 {
 	public class ReusableLoginPage : ContentPage
