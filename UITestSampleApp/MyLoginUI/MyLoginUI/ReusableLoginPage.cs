@@ -115,9 +115,9 @@ namespace MyLoginUI.Pages
 
 		void AddConstraintsToChildren()
 		{
-			Func<RelativeLayout, double> getNewUserButtonWidth = (p) => newUserSignUpButton.Measure(MainLayout.Width, MainLayout.Height).Request.Width;
-			Func<RelativeLayout, double> getForgotButtonWidth = (p) => forgotPasswordButton.Measure(MainLayout.Width, MainLayout.Height).Request.Width;
-			Func<RelativeLayout, double> getLogoSloganWidth = (p) => logoSlogan.Measure(MainLayout.Width, MainLayout.Height).Request.Width;
+			Func<RelativeLayout, double> getNewUserButtonWidth = (p) => newUserSignUpButton.Measure(p.Width, p.Height).Request.Width;
+			Func<RelativeLayout, double> getForgotButtonWidth = (p) => forgotPasswordButton.Measure(p.Width, p.Height).Request.Width;
+			Func<RelativeLayout, double> getLogoSloganWidth = (p) => logoSlogan.Measure(p.Width, p.Height).Request.Width;
 
 			MainLayout.Children.Add(
 				logo,
