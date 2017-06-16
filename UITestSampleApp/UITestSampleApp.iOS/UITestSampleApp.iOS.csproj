@@ -181,6 +181,9 @@
     <Reference Include="Microsoft.Azure.Mobile.Client.SQLiteStore">
       <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.SQLiteStore.4.0.0\lib\netstandard1.4\Microsoft.Azure.Mobile.Client.SQLiteStore.dll</HintPath>
     </Reference>
+    <Reference Include="BinaryFormatter">
+      <HintPath>..\..\packages\BinaryFormatter.1.0.1\lib\netstandard1.1\BinaryFormatter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
