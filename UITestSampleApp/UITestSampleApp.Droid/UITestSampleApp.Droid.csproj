@@ -89,9 +89,6 @@
     <Reference Include="PCLCrypto">
       <HintPath>..\..\packages\PCLCrypto.2.0.147\lib\MonoAndroid23\PCLCrypto.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.CardView">
-      <HintPath>..\..\packages\Xamarin.Android.Support.v7.CardView.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
-    </Reference>
     <Reference Include="FormsViewGroup">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.5.239-pre3\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
@@ -248,6 +245,9 @@
     <Reference Include="PInvoke.NCrypt">
       <HintPath>..\..\packages\PInvoke.NCrypt.0.5.64\lib\portable-net45+win8+wpa81\PInvoke.NCrypt.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.CardView">
+      <HintPath>..\..\packages\Xamarin.Android.Support.v7.CardView.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -318,4 +318,5 @@
   <Import Project="..\..\packages\Xamarin.Android.Support.Design.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Design.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Design.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Design.targets')" />
   <Import Project="..\..\packages\Xamarin.Android.Support.v7.MediaRouter.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.v7.MediaRouter.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.v7.MediaRouter.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.v7.MediaRouter.targets')" />
   <Import Project="..\..\packages\Xamarin.Build.Download.0.4.5\build\Xamarin.Build.Download.targets" Condition="Exists('..\..\packages\Xamarin.Build.Download.0.4.5\build\Xamarin.Build.Download.targets')" />
+  <Import Project="..\..\packages\Xamarin.Android.Support.v7.CardView.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.v7.CardView.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.v7.CardView.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.v7.CardView.targets')" />
 </Project>
