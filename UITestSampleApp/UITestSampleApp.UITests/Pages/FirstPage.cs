@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
-
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
-using UITestSampleApp.Shared;
+using MyLoginUI;
 
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
 

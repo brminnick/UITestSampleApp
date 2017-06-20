@@ -2,7 +2,7 @@
 
 using Xamarin.UITest;
 
-using UITestSampleApp.Shared;
+using MyLoginUI;
 
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
 

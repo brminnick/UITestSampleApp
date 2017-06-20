@@ -1,6 +1,6 @@
-﻿using System;
+﻿﻿﻿using System;
 
-namespace UITestSampleApp
+namespace UITestSampleApp.Shared
 {
 	[Serializable]
 	public class ListPageDataModel : EntityData
