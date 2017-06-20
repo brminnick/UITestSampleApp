@@ -60,13 +60,12 @@ namespace UITestSampleApp
             activityIndicator.SetBinding(IsVisibleProperty, nameof(ViewModel.IsActiityIndicatorRunning));
             activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(ViewModel.IsActiityIndicatorRunning));
 
-            var relativeLayout = new RelativeLayout();
+            Func<RelativeLayout, double> getTextEntryWidth = (p) => textEntry.Measure(p.Width, p.Height).Request.Width;
+            Func<RelativeLayout, double> getGoButtonWidth = (p) => _goButton.Measure(p.Width, p.Height).Request.Width;
+            Func<RelativeLayout, double> getActivityIndicatorWidth = (p) => activityIndicator.Measure(p.Width, p.Height).Request.Width;
+            Func<RelativeLayout, double> getTextLabelWidth = (p) => textLabel.Measure(p.Width, p.Height).Request.Width;
 
-            Func<RelativeLayout, double> getTextEntryWidth = (p) => textEntry.Measure(relativeLayout.Width, relativeLayout.Height).Request.Width;
-            Func<RelativeLayout, double> getGoButtonWidth = (p) => _goButton.Measure(relativeLayout.Width, relativeLayout.Height).Request.Width;
-            Func<RelativeLayout, double> getActivityIndicatorWidth = (p) => activityIndicator.Measure(relativeLayout.Width, relativeLayout.Height).Request.Width;
-            Func<RelativeLayout, double> getTextLabelWidth = (p) => textLabel.Measure(relativeLayout.Width, relativeLayout.Height).Request.Width;
-
+			var relativeLayout = new RelativeLayout();
             relativeLayout.Children.Add(textEntry,
                                         Constraint.RelativeToParent((parent) => parent.X),
                                         Constraint.RelativeToParent((parent) => parent.Y),
