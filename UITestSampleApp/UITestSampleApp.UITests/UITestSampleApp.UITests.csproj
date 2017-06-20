@@ -33,9 +33,6 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Shim">
-      <HintPath>..\..\packages\shim.2.0.1\lib\net40\Shim.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.UITest">
       <HintPath>..\..\packages\Xamarin.UITest.2.0.9\lib\Xamarin.UITest.dll</HintPath>
     </Reference>
@@ -71,8 +68,8 @@
     <Compile Include="Tests\LoginTests.cs" />
     <Compile Include="Helpers\BackdoorHelpers.cs" />
     <Compile Include="Helpers\UITestHelpers.cs" />
+    <Compile Include="Models\ListPageDataModel.cs" />
   </ItemGroup>
-  <Import Project="..\..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems" Label="Shared" Condition="Exists('..\..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
@@ -80,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

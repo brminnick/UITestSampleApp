@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
+
 using BinaryFormatter;
 
-namespace UITestSampleApp
+namespace MyLoginUI
 {
 	public static class ConverterHelpers
 	{

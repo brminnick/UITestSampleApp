@@ -11,6 +11,8 @@ using Xamarin.Forms.Platform.Android.AppLinks;
 
 using EntryCustomReturn.Forms.Plugin.Android;
 
+using MyLoginUI;
+
 namespace UITestSampleApp.Droid
 {
 	[Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]

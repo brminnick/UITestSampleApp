@@ -1,14 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System.Collections.Generic;
 
 using Xamarin.UITest;
 using Xamarin.UITest.iOS;
 
+using MyLoginUI;
+
 namespace UITestSampleApp.UITests
 {
-	static class BackdoorHelpers
+    static class BackdoorHelpers
 	{
 		internal static void CleariOSKeyChain(IApp app, string username)
 		{
