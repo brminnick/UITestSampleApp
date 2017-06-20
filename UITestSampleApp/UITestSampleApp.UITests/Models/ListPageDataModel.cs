@@ -2,6 +2,7 @@
 
 namespace UITestSampleApp.UITests
 {
+    [Serializable]
     public class ListPageDataModel
     {
 		public string Id { get; set; }
