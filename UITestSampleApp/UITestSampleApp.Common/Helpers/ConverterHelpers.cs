@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿﻿using Newtonsoft.Json;
 
-namespace MyLoginUI
+namespace UITestSampleApp.Common
 {
 	public static class ConverterHelpers
 	{

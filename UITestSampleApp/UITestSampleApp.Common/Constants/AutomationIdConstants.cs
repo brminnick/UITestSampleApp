@@ -1,4 +1,4 @@
-﻿namespace MyLoginUI
+﻿namespace UITestSampleApp.Common
 {
 	public static class AutomationIdConstants
 	{

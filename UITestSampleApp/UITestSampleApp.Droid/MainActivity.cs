@@ -11,7 +11,7 @@ using Xamarin.Forms.Platform.Android.AppLinks;
 
 using EntryCustomReturn.Forms.Plugin.Android;
 
-using MyLoginUI;
+using UITestSampleApp.Common;
 
 namespace UITestSampleApp.Droid
 {

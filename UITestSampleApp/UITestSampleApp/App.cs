@@ -3,7 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-using MyLoginUI;
+
+using UITestSampleApp.Common;
 
 namespace UITestSampleApp
 {

@@ -7,25 +7,25 @@
 	<ItemGroup>
 		<Folder Include="Constants\" />
 		<Folder Include="Helpers\" />
-		<Folder Include="Models\" />
 		<Folder Include="Pages\" />
 		<Folder Include="Services\" />
 		<Folder Include="ViewModels\" />
 		<Folder Include="Views\" />
+		<Folder Include="Views\Base\" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Azure.Mobile" Version="0.12.0" />
 		<PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.0.0" />
 		<PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.0" />
-		<PackageReference Include="Microsoft.Azure.Mobile.Crashes" Version="0.12.0" />
-		<PackageReference Include="Microsoft.Azure.Mobile.Analytics" Version="0.12.0" />
-		<PackageReference Include="Microsoft.Azure.Mobile.Distribute" Version="0.12.0" />
 		<PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="3.1.1" />
 		<PackageReference Include="Xam.Plugin.Connectivity" Version="2.3.0" />
 		<PackageReference Include="Xamarin.Forms" Version="2.3.5.239-pre3" />
 		<PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+		<PackageReference Include="Microsoft.Azure.Mobile" Version="0.13.0" />
+		<PackageReference Include="Microsoft.Azure.Mobile.Analytics" Version="0.13.0" />
+		<PackageReference Include="Microsoft.Azure.Mobile.Crashes" Version="0.13.0" />
+		<PackageReference Include="Microsoft.Azure.Mobile.Distribute" Version="0.13.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\MyLoginUI\MyLoginUI\MyLoginUI.csproj" />
+		<ProjectReference Include="..\UITestSampleApp.Common\UITestSampleApp.Common.csproj" />
 	</ItemGroup>
 </Project>

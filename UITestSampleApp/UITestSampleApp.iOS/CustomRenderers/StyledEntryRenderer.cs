@@ -4,10 +4,8 @@ using Foundation;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-using MyLoginUI.Views;
-
+using UITestSampleApp;
 using UITestSampleApp.iOS;
-
 
 [assembly: ExportRenderer(typeof(StyledEntry), typeof(StyledEntryRenderer))]
 

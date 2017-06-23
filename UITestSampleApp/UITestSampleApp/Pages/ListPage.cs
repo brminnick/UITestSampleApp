@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
+using UITestSampleApp.Common;
+
 namespace UITestSampleApp
 {
 	public class ListPage : BaseContentPage<ListViewModel>

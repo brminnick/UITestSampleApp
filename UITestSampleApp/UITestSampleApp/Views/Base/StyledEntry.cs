@@ -2,7 +2,7 @@
 
 using EntryCustomReturn.Forms.Plugin.Abstractions;
 
-namespace MyLoginUI.Views
+namespace UITestSampleApp
 {
 	public class StyledEntry : Entry
 	{

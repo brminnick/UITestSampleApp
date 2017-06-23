@@ -3,7 +3,7 @@
 using Xamarin.UITest;
 using Xamarin.UITest.iOS;
 
-using MyLoginUI;
+using UITestSampleApp.Common;
 
 namespace UITestSampleApp.UITests
 {

@@ -5,7 +5,7 @@ using Microsoft.Azure.Mobile.Distribute;
 
 using EntryCustomReturn.Forms.Plugin.iOS;
 
-using MyLoginUI;
+using UITestSampleApp.Common;
 
 namespace UITestSampleApp.iOS
 {

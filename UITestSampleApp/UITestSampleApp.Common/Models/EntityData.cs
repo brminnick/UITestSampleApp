@@ -4,9 +4,8 @@ using Microsoft.WindowsAzure.MobileServices;
 
 using Newtonsoft.Json;
 
-namespace UITestSampleApp
+namespace UITestSampleApp.Common
 {
-    [Serializable]
     public class EntityData
     {
         public EntityData()
