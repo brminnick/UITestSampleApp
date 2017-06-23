@@ -35,6 +35,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Azure.Mobile.Client">
+      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.4.0.0\lib\net45\Microsoft.Azure.Mobile.Client.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppInitializer.cs" />
