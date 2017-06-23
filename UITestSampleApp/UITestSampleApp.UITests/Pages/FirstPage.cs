@@ -52,6 +52,9 @@ namespace UITestSampleApp.UITests
 			}
 		}
 
+        public string Title => GetTitle();
+        public string EntryFieldText => GetEntryFieldText();
+
 		public void EnterTextAndPressEnter(string text)
 		{
 			App.Tap(_textEntryUsingID);
@@ -100,13 +103,13 @@ namespace UITestSampleApp.UITests
 			App.Screenshot("Rotate Device to Portrait");
 		}
 
-		public string GetEntryFieldText()
+		string GetEntryFieldText()
 		{
 			var entryFieldQuery = App.Query(_textEntryUsingID);
 			return entryFieldQuery?.FirstOrDefault()?.Text;
 		}
 
-		public string GetTitle(int timeoutInSeconds = 60)
+		string GetTitle(int timeoutInSeconds = 60)
 		{
 			var title = "First Page";
 			AppResult[] titleQuery;
@@ -116,7 +119,7 @@ namespace UITestSampleApp.UITests
 			if (OniOS)
 				titleQuery = App.Query(x => x.Class("UILabel").Marked("First Page"));
 			else
-				titleQuery = App.Query(x => x.Class("TextView").Marked("First Page"));
+				titleQuery = App.Query(x => x.Class("AppCompatTextView").Marked("First Page"));
 
 			return titleQuery?.FirstOrDefault()?.Text;
 		}
