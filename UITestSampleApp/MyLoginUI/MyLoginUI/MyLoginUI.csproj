@@ -7,7 +7,6 @@
 	<ItemGroup>
 	  <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="3.1.1" />
 	  <PackageReference Include="Xamarin.Forms" Version="2.3.5.239-pre3" />
-	  <PackageReference Include="shim" Version="2.0.1" />
-	  <PackageReference Include="BinaryFormatter" Version="1.0.1" />
+	  <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
 	</ItemGroup>
 </Project>

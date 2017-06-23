@@ -50,7 +50,7 @@ namespace UITestSampleApp.UITests
 			else
 				listPageDataAsBase64String = app.Invoke("GetListViewPageDataAsBase64String").ToString();
 
-			return ConverterHelpers.ConvertBase64StringToObject<List<ListPageDataModel>>(listPageDataAsBase64String);
+			return ConverterHelpers.ConvertStringToObject<List<ListPageDataModel>>(listPageDataAsBase64String);
 		}
 	}
 }

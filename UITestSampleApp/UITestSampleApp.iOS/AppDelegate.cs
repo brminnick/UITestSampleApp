@@ -77,7 +77,7 @@ namespace UITestSampleApp.iOS
 		{
 			var listPageData = App.GetListPageData();
 
-			var listPageDataAsBase64String = ConverterHelpers.ConvertSerializableObjectToBase64String(listPageData);
+			var listPageDataAsBase64String = ConverterHelpers.ConvertSerializableObjectToString(listPageData);
 
 			return new NSString(listPageDataAsBase64String);
 		}

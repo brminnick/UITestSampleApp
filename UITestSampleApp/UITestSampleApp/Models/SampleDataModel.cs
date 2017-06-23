@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 
 namespace UITestSampleApp
 {
-
 	public class SampleDataModel : INotifyPropertyChanged
 	{
 		public int Number { get; set; }
