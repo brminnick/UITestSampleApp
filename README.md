@@ -1,4 +1,4 @@
-[![Build Status](https://www.bitrise.io/app/7d55e4014e3f2164.svg?token=obxBTbr5cKzohmwZbTJJTQ)](https://www.bitrise.io/app/7d55e4014e3f2164)
+
 # Sample App Demonstrating UITests
 This app shows how to implement UITests into a Xamarin.Forms project.
 
