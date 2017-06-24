@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-using UITestSampleApp.Shared;
+using UITestSampleApp.Common;
 
 namespace UITestSampleApp
 {

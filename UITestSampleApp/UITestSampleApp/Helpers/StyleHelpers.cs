@@ -2,7 +2,7 @@
 
 using Xamarin.Forms;
 
-namespace MyLoginUI
+namespace UITestSampleApp
 {
 	public static class StyleHelpers
 	{

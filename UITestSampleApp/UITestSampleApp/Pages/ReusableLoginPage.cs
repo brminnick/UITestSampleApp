@@ -4,13 +4,11 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-using MyLoginUI.Views;
-
 using EntryCustomReturn.Forms.Plugin.Abstractions;
 
-using UITestSampleApp.Shared;
+using UITestSampleApp.Common;
 
-namespace MyLoginUI.Pages
+namespace UITestSampleApp
 {
 	public class ReusableLoginPage : ContentPage
 	{

@@ -39,8 +39,8 @@ namespace UITestSampleApp.UITests
 			LoginPage.WaitForLoginScreen();
 			LoginPage.LoginWithUsernamePassword(username, password, shouldUseKeyboardReturnButton);
 
-			//Assert
-			var actualFirstPageTitle = FirstPage.GetTitle();
+            //Assert
+            var actualFirstPageTitle = FirstPage.Title;
 			Assert.AreEqual(expectedFirstPageTitle, actualFirstPageTitle);
 		}
 

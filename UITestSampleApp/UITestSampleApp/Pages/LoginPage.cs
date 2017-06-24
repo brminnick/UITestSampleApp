@@ -4,9 +4,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-using MyLoginUI.Pages;
-
-using UITestSampleApp.Shared;
+using UITestSampleApp.Common;
 
 namespace UITestSampleApp
 {

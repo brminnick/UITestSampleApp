@@ -1,4 +1,4 @@
-﻿namespace UITestSampleApp.Shared
+﻿namespace UITestSampleApp.Common
 {
 	public static class AutomationIdConstants
 	{

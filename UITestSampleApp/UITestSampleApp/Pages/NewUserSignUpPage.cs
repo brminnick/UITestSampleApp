@@ -2,11 +2,9 @@
 
 using Xamarin.Forms;
 
-using MyLoginUI.Views;
-
-using UITestSampleApp.Shared;
-
 using EntryCustomReturn.Forms.Plugin.Abstractions;
+
+using UITestSampleApp.Common;
 
 namespace UITestSampleApp
 {
