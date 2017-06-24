@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UITestSampleApp.Common\UITestSampleApp.Common.csproj">
+      <Project>{BC5AA1AB-2B58-448C-AE7F-81D9BD742D67}</Project>
+      <Name>UITestSampleApp.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UITestSampleApp.iOS\UITestSampleApp.iOS.csproj">
       <Project>{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}</Project>
       <Name>UITestSampleApp.iOS</Name>
@@ -68,10 +72,6 @@
       <Name>UITestSampleApp.Droid</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\UITestSampleApp.Common\UITestSampleApp.Common.csproj">
-      <Project>{BC5AA1AB-2B58-448C-AE7F-81D9BD742D67}</Project>
-      <Name>UITestSampleApp.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
