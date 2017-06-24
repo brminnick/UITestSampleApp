@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace UITestSampleApp
+namespace MyLoginUI
 {
 	public class StyledLabel : Label
 	{

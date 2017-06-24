@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 
-using UITestSampleApp.Common;
-
 namespace UITestSampleApp
 {
 	public interface IDataService

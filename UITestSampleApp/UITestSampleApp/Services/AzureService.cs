@@ -8,7 +8,6 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
-using UITestSampleApp.Common;
 
 namespace UITestSampleApp
 {

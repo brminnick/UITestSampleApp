@@ -8,8 +8,6 @@ using Xamarin.Forms;
 
 using Plugin.Connectivity;
 
-using UITestSampleApp.Common;
-
 namespace UITestSampleApp
 {
 	public class ListViewModel : BaseViewModel

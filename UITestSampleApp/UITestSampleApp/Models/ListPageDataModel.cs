@@ -1,7 +1,8 @@
-﻿﻿﻿﻿using System;
+﻿using System;
 
-namespace UITestSampleApp.Common
+namespace UITestSampleApp
 {
+	[Serializable]
 	public class ListPageDataModel : EntityData
 	{
 		public string DetailProperty { get; set; }

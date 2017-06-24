@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 
 using Xamarin.UITest;
 using Xamarin.UITest.iOS;
 
-using UITestSampleApp.Common;
-
 namespace UITestSampleApp.UITests
 {
-    static class BackdoorHelpers
+	static class BackdoorHelpers
 	{
 		internal static void CleariOSKeyChain(IApp app, string username)
 		{
@@ -50,7 +51,7 @@ namespace UITestSampleApp.UITests
 			else
 				listPageDataAsBase64String = app.Invoke("GetListViewPageDataAsBase64String").ToString();
 
-			return ConverterHelpers.ConvertStringToObject<List<ListPageDataModel>>(listPageDataAsBase64String);
+			return ConverterHelpers.ConvertBase64StringToObject<List<ListPageDataModel>>(listPageDataAsBase64String);
 		}
 	}
 }

@@ -11,8 +11,6 @@ using Xamarin.Forms.Platform.Android.AppLinks;
 
 using EntryCustomReturn.Forms.Plugin.Android;
 
-using UITestSampleApp.Common;
-
 namespace UITestSampleApp.Droid
 {
 	[Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -61,7 +59,7 @@ namespace UITestSampleApp.Droid
 		{
 			var listPageData = App.GetListPageData();
 
-			var listPageDataAsBase64String = ConverterHelpers.ConvertSerializableObjectToString(listPageData);
+			var listPageDataAsBase64String = ConverterHelpers.ConvertSerializableObjectToBase64String(listPageData);
 
 			return listPageDataAsBase64String;
 		}

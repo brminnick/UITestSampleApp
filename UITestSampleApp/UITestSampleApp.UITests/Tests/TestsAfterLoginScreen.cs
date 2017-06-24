@@ -45,7 +45,7 @@ namespace UITestSampleApp.UITests
 			FirstPage.WaitForNoActivityIndicator();
 
 			//Assert
-			Assert.AreEqual(FirstPage.EntryFieldText, textInput);
+			Assert.AreEqual(FirstPage.GetEntryFieldText(), textInput);
 		}
 
 		[Test]

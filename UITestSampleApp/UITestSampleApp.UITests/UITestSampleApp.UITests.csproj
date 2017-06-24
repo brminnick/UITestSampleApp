@@ -1,65 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CAABAF35-FA49-4926-82E6-A02C6942E719}</ProjectGuid>
+    <ProjectGuid>{B8C47BDD-0736-481B-847E-372F14A40303}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>UITestSampleApp.UITests</RootNamespace>
     <AssemblyName>UITestSampleApp.UITests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>
+    </DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Shim">
+      <HintPath>..\..\packages\shim.2.0.1\lib\net40\Shim.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.UITest">
       <HintPath>..\..\packages\Xamarin.UITest.2.0.9\lib\Xamarin.UITest.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Mobile.Client">
-      <HintPath>..\..\packages\Microsoft.Azure.Mobile.Client.4.0.0\lib\net45\Microsoft.Azure.Mobile.Client.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppInitializer.cs" />
-    <Compile Include="Helpers\BackdoorHelpers.cs" />
-    <Compile Include="Helpers\UITestHelpers.cs" />
-    <Compile Include="Pages\BasePage.cs" />
-    <Compile Include="Pages\FirstPage.cs" />
-    <Compile Include="Pages\ListPage.cs" />
-    <Compile Include="Pages\LoginPage.cs" />
-    <Compile Include="Pages\NewUserSignUpPage.cs" />
-    <Compile Include="Tests\BaseTest.cs" />
-    <Compile Include="Tests\LoginTests.cs" />
-    <Compile Include="Tests\ReplTest.cs" />
-    <Compile Include="Tests\TestsAfterLoginScreen.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UITestSampleApp.Common\UITestSampleApp.Common.csproj">
-      <Project>{BC5AA1AB-2B58-448C-AE7F-81D9BD742D67}</Project>
-      <Name>UITestSampleApp.Common</Name>
+    <ProjectReference Include="..\UITestSampleApp\UITestSampleApp.csproj">
+      <Project>{06291122-42A6-4585-AC8C-D481126D1B5D}</Project>
+      <Name>UITestSampleApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\UITestSampleApp.iOS\UITestSampleApp.iOS.csproj">
       <Project>{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}</Project>
@@ -74,5 +58,31 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppInitializer.cs" />
+    <Compile Include="Tests\TestsAfterLoginScreen.cs" />
+    <Compile Include="Tests\BaseTest.cs" />
+    <Compile Include="Tests\ReplTest.cs" />
+    <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\FirstPage.cs" />
+    <Compile Include="Pages\ListPage.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\NewUserSignUpPage.cs" />
+    <Compile Include="Tests\LoginTests.cs" />
+    <Compile Include="Helpers\BackdoorHelpers.cs" />
+    <Compile Include="Helpers\UITestHelpers.cs" />
+  </ItemGroup>
+  <Import Project="..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="..\packages\Xamarin.Forms.2.3.3.175\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.175\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
 </Project>

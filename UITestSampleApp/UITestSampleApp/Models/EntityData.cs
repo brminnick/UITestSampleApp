@@ -1,20 +1,19 @@
-﻿﻿using System;
-
+﻿using System;
 using Microsoft.WindowsAzure.MobileServices;
-
 using Newtonsoft.Json;
 
-namespace UITestSampleApp.Common
+namespace UITestSampleApp
 {
-    public class EntityData
-    {
-        public EntityData()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
+	[Serializable]
+	public class EntityData
+	{
+		public EntityData()
+		{
+			Id = Guid.NewGuid().ToString();
+		}
 
 		[JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+		public string Id { get; set; }
 
 		[CreatedAt]
 		public DateTimeOffset CreatedAt { get; set; }

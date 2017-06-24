@@ -1,7 +1,5 @@
 ﻿using Xamarin.Forms;
 
-using UITestSampleApp.Common;
-
 namespace UITestSampleApp
 {
 	public class WhiteTextImageCell : ImageCell

@@ -2,7 +2,7 @@
 
 using Xamarin.Forms;
 
-namespace UITestSampleApp
+namespace MyLoginUI.Views
 {
 	public enum Borders
 	{

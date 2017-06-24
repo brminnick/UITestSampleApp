@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
+
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
-using UITestSampleApp.Common;
+using UITestSampleApp.Shared;
 
 using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
 
@@ -51,9 +52,6 @@ namespace UITestSampleApp.UITests
 				_listViewButton = x => x.Class("UIButton").Index(0);
 			}
 		}
-
-        public string Title => GetTitle();
-        public string EntryFieldText => GetEntryFieldText();
 
 		public void EnterTextAndPressEnter(string text)
 		{
@@ -103,13 +101,13 @@ namespace UITestSampleApp.UITests
 			App.Screenshot("Rotate Device to Portrait");
 		}
 
-		string GetEntryFieldText()
+		public string GetEntryFieldText()
 		{
 			var entryFieldQuery = App.Query(_textEntryUsingID);
 			return entryFieldQuery?.FirstOrDefault()?.Text;
 		}
 
-		string GetTitle(int timeoutInSeconds = 60)
+		public string GetTitle(int timeoutInSeconds = 60)
 		{
 			var title = "First Page";
 			AppResult[] titleQuery;
@@ -119,7 +117,7 @@ namespace UITestSampleApp.UITests
 			if (OniOS)
 				titleQuery = App.Query(x => x.Class("UILabel").Marked("First Page"));
 			else
-				titleQuery = App.Query(x => x.Class("AppCompatTextView").Marked("First Page"));
+				titleQuery = App.Query(x => x.Class("TextView").Marked("First Page"));
 
 			return titleQuery?.FirstOrDefault()?.Text;
 		}
