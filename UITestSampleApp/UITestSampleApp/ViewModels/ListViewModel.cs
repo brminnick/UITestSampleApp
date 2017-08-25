@@ -10,83 +10,85 @@ using Plugin.Connectivity;
 
 namespace UITestSampleApp
 {
-	public class ListViewModel : BaseViewModel
-	{
-		#region Fields
+    public class ListViewModel : BaseViewModel
+    {
+        #region Fields
         ICommand _pullToRefreshCommand;
-		List<ListPageDataModel> _dataList;
-		#endregion
+        List<ListPageDataModel> _dataList;
+        #endregion
 
-		#region Events
-		public event EventHandler LoadingDataFromBackendCompleted;
-		#endregion
+        #region Events
+        public event EventHandler LoadingDataFromBackendCompleted;
+        #endregion
 
-		#region Properties
-		public ICommand PullToRefreshCommand => _pullToRefreshCommand ??
-			(_pullToRefreshCommand = new Command(async () => await ExecutePullToRefreshCommanded()));
+        #region Properties
+        public ICommand PullToRefreshCommand => _pullToRefreshCommand ??
+            (_pullToRefreshCommand = new Command(async () => await ExecutePullToRefreshCommanded()));
 
-		public List<ListPageDataModel> DataList
-		{
-			get => _dataList;
-			set => SetProperty(ref _dataList, value);
-		}
-		#endregion
+        public List<ListPageDataModel> DataList
+        {
+            get => _dataList;
+            set => SetProperty(ref _dataList, value);
+        }
+        #endregion
 
-		#region Methods
-		async Task RefreshDataFromAzureAsync()
-		{
-			var isAzureDatabaseReachable = await CrossConnectivity.Current.IsRemoteReachable(AzureConstants.AzureDataServiceUrl, 80, 1000);
-			if (!CrossConnectivity.Current.IsConnected || !isAzureDatabaseReachable)
-				return;
+        #region Methods
+        async Task RefreshDataFromAzureAsync()
+        {
+            var isAzureDatabaseReachable = await CrossConnectivity.Current.IsRemoteReachable(AzureConstants.AzureDataServiceUrl, 80, 1000);
+            if (!CrossConnectivity.Current.IsConnected || !isAzureDatabaseReachable)
+                return;
 
-			try
-			{
-				await DependencyService.Get<IDataService>().SyncItemsAsync<ListPageDataModel>();
-				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
-				DataList = dataListAsIEnumerable.ToList();
-			}
-			catch (Exception e)
-			{
+            try
+            {
+                await DependencyService.Get<IDataService>().SyncItemsAsync<ListPageDataModel>();
+                var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
+                DataList = dataListAsIEnumerable.ToList();
+            }
+            catch (Exception e)
+            {
                 MobileCenterHelpers.Log(e);
-			}
-		}
+            }
+        }
 
-		async Task RefreshDataFromLocalDatabaseAsync()
-		{
-			try
-			{
-				var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
-				DataList = dataListAsIEnumerable?.ToList();
-			}
-			catch (Exception e)
-			{
-				MobileCenterHelpers.Log(e);
-			}
-		}
+        async Task RefreshDataFromLocalDatabaseAsync()
+        {
+            try
+            {
+                var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
+                DataList = dataListAsIEnumerable?.ToList();
+            }
+            catch (Exception e)
+            {
+                MobileCenterHelpers.Log(e);
+            }
+        }
 
-		async Task ExecutePullToRefreshCommanded()
-		{
-			MobileCenterHelpers.TrackEvent(MobileCenterConstants.PullToRefreshCommanded);
+        async Task ExecutePullToRefreshCommanded()
+        {
+            MobileCenterHelpers.TrackEvent(MobileCenterConstants.PullToRefreshCommanded);
 
-			await RefreshDataAsync();
+            var showRefreshIndicatorForOneSecondTask = Task.Delay(1000);
 
-			OnLoadingDataFromBackendCompleted();
-		}
+            await Task.WhenAll(RefreshDataAsync(), showRefreshIndicatorForOneSecondTask);
 
-		async Task RefreshDataAsync()
-		{
-			IsAccessingInternet = true;
+            OnLoadingDataFromBackendCompleted();
+        }
 
-			await RefreshDataFromLocalDatabaseAsync();
-			await RefreshDataFromAzureAsync();
+        async Task RefreshDataAsync()
+        {
+            IsAccessingInternet = true;
 
-			OnLoadingDataFromBackendCompleted();
+            await RefreshDataFromLocalDatabaseAsync();
+            await RefreshDataFromAzureAsync();
 
-			IsAccessingInternet = false;
-		}
+            OnLoadingDataFromBackendCompleted();
 
-		void OnLoadingDataFromBackendCompleted() =>
-			LoadingDataFromBackendCompleted?.Invoke(null, EventArgs.Empty);
-		#endregion
-	}
+            IsAccessingInternet = false;
+        }
+
+        void OnLoadingDataFromBackendCompleted() =>
+            LoadingDataFromBackendCompleted?.Invoke(null, EventArgs.Empty);
+        #endregion
+    }
 }
