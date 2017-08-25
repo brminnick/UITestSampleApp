@@ -13,20 +13,11 @@ namespace UITestSampleApp.iOS
 {
 	public class Environment_iOS : IEnvironment
 	{
-		public string GetOperatingSystemVersion()
-		{
-			return UIDevice.CurrentDevice.SystemVersion;
-		}
+		public string GetOperatingSystemVersion() => 
+            UIDevice.CurrentDevice.SystemVersion;
 
-		public string GetFilePath(string fileName)
-		{
-			return Path.Combine(MobileServiceClient.DefaultDatabasePath, fileName);
-		}
-
-		public bool IsOperatingSystemSupported(int majorVersion, int minorVersion)
-		{
-			return UIDevice.CurrentDevice.CheckSystemVersion(majorVersion, minorVersion);
-		}
+		public bool IsOperatingSystemSupported(int majorVersion, int minorVersion)=>
+            UIDevice.CurrentDevice.CheckSystemVersion(majorVersion, minorVersion);
 	}
 }
 

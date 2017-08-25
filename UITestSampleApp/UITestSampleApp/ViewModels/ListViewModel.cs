@@ -47,7 +47,7 @@ namespace UITestSampleApp
 			}
 			catch (Exception e)
 			{
-				MobileCenterHelpers.Log("Error Retrieving Data From Azure", e.Message, e);
+                MobileCenterHelpers.Log(e);
 			}
 		}
 
@@ -60,7 +60,7 @@ namespace UITestSampleApp
 			}
 			catch (Exception e)
 			{
-				MobileCenterHelpers.Log("Error Retriving Data From Local Database", e.Message, e);
+				MobileCenterHelpers.Log(e);
 			}
 		}
 

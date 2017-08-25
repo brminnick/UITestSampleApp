@@ -7,46 +7,51 @@ using Xamarin.Forms;
 namespace UITestSampleApp
 {
 
-	public class App : Application
-	{
-		#region Constructors
-		public App()
+    public class App : Application
+    {
+        #region Constructors
+        public App()
+        {
+            DependencyService.Register<IDataService, AzureService>();
+
+            var page = new LoginPage { LogoFileImageSource = "xamarin_logo" };
+            Navigation = new NavigationPage(page)
+            {
+                BarBackgroundColor = Color.FromHex("#3498db"),
+                BarTextColor = Color.White,
+            };
+
+            NavigationPage.SetHasNavigationBar(page, false);
+            MainPage = Navigation;
+        }
+        #endregion
+
+        #region Properties
+        public static bool XTCAgent { get; set; }
+        public static bool IsLoggedIn { get; set; }
+        public static string UserName { get; set; }
+
+        public static NavigationPage Navigation { get; set; }
+        #endregion
+
+        #region Methods
+        protected override void OnStart()
+        {
+            MobileCenterHelpers.Start();
+
+            RegisterAppLinks();
+        }
+
+        protected override void OnAppLinkRequestReceived(Uri uri)
+        {
+            if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"))
+                NavigateToListViewPage();
+
+            base.OnAppLinkRequestReceived(uri);
+        }
+
+		void RegisterAppLinks()
 		{
-			DependencyService.Register<IDataService, AzureService>();
-
-			var page = new LoginPage { LogoFileImageSource = "xamarin_logo" };
-			Navigation = new NavigationPage(page)
-			{
-				BarBackgroundColor = Color.FromHex("#3498db"),
-				BarTextColor = Color.White,
-			};
-
-			NavigationPage.SetHasNavigationBar(page, false);
-			MainPage = Navigation;
-		}
-		#endregion
-
-		#region Properties
-		public static bool XTCAgent { get; set; }
-		public static bool IsLoggedIn { get; set; }
-		public static string UserName { get; set; }
-
-		public static NavigationPage Navigation { get; set; }
-		#endregion
-
-		#region Methods
-		protected override void OnStart()
-		{
-			switch (Device.RuntimePlatform)
-			{
-				case Device.iOS:
-					MobileCenterHelpers.Start(MobileCenterConstants.MobileCenteriOSApiKey);
-					break;
-				case Device.Android:
-					MobileCenterHelpers.Start(MobileCenterConstants.MobileCenterDroidApiKey);
-					break;
-			}
-
 			int majorVersion, minorVersion;
 
 			switch (Device.RuntimePlatform)
@@ -71,62 +76,53 @@ namespace UITestSampleApp
 				AppLinks.RegisterLink(listViewPageLink);
 			}
 		}
-		protected override void OnAppLinkRequestReceived(Uri uri)
-		{
-			if (uri.ToString().Equals($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"))
-			{
-				NavigateToListViewPage();
-			}
 
-			base.OnAppLinkRequestReceived(uri);
-		}
+        void NavigateToListViewPage()
+        {
+            // Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Navigation.PopToRootAsync();
+                await Navigation.PushAsync(new ListPage());
+            });
+        }
 
-		void NavigateToListViewPage()
-		{
-			// Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
-			Device.BeginInvokeOnMainThread(async () =>
-			{
-				await Navigation.PopToRootAsync();
-				await Navigation.PushAsync(new ListPage());
-			});
-		}
+        Page GetCurrentPage()
+        {
+            return Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
+        }
 
-		Page GetCurrentPage()
-		{
-			return Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
-		}
-
-		#region Backdoor Methods
+        #region Backdoor Methods
 #if DEBUG
-		public void OpenListViewPageUsingDeepLinking()
-		{
-			OnAppLinkRequestReceived(new Uri($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"));
-		}
+        public void OpenListViewPageUsingDeepLinking()
+        {
+            OnAppLinkRequestReceived(new Uri($"{AppLinkExtensions.BaseUrl}{DeepLinkingIdConstants.ListPageId}"));
+        }
 
-		public void OpenListViewPageUsingNavigation()
-		{
-			NavigateToListViewPage();
-		}
+        public void OpenListViewPageUsingNavigation()
+        {
+            NavigateToListViewPage();
+        }
 
-		public List<ListPageDataModel> GetListPageData()
-		{
-			ListPage listPage;
+        public List<ListPageDataModel> GetListPageData()
+        {
+            ListPage listPage;
 
-			var currentNavigationPage = GetCurrentPage();
+            var currentNavigationPage = GetCurrentPage();
 
-			if (currentNavigationPage is ListPage)
-				listPage = currentNavigationPage as ListPage;
-			else
-				return null;
+            if (currentNavigationPage is ListPage)
+                listPage = currentNavigationPage as ListPage;
+            else
+                return null;
 
-			var listViewModel = listPage.BindingContext as ListViewModel;
+            var listViewModel = listPage.BindingContext as ListViewModel;
 
-			return listViewModel.DataList;
-		}
+            return listViewModel.DataList;
+        }
 #endif
-		#endregion
-		#endregion
-	}
+        #endregion
+        #endregion
+    }
 }
 
 

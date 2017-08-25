@@ -5,7 +5,6 @@ namespace UITestSampleApp
 	{
 		string GetOperatingSystemVersion();
 		bool IsOperatingSystemSupported(int majorVersion, int minorVersion);
-		string GetFilePath(string fileName);
 	}
 }
 

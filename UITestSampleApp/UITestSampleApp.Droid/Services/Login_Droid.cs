@@ -33,7 +33,7 @@ namespace UITestSampleApp.Droid
 			}
 			catch (Exception e)
 			{
-				MobileCenterHelpers.Log("No Username Stored", e.Message, e);
+                MobileCenterHelpers.Log(e);
 				return false;
 			}
 
@@ -43,7 +43,7 @@ namespace UITestSampleApp.Droid
 			}
 			catch (Exception e)
 			{
-				MobileCenterHelpers.Log("No Password Store", e.Message, e);
+                MobileCenterHelpers.Log(e);
 				return false;
 			}
 
