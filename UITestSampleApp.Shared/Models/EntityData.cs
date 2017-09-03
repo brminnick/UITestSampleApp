@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 
 namespace UITestSampleApp.Shared
 {
-    [Serializable]
     public class EntityData
     {
         public EntityData() => Id = Guid.NewGuid().ToString();

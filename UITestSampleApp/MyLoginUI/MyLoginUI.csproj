@@ -11,7 +11,7 @@
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics" Version="0.15.0" />
     <PackageReference Include="Microsoft.Azure.Mobile.Crashes" Version="0.15.0" />
     <PackageReference Include="Microsoft.Azure.Mobile.Distribute" Version="0.15.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
-  <Import Project="..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
   <Import Project="..\..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems" Label="Shared" />
 </Project>
