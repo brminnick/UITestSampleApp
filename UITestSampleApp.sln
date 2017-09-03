@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26606.0
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReusableLoginPage", "ReusableLoginPage", "{B4BC40AE-EB0F-48D8-BB36-65DE380F32CB}"
 EndProject
@@ -13,13 +13,12 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UITestSampleApp.Shared", "U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp.UITests", "UITestSampleApp\UITestSampleApp.UITests\UITestSampleApp.UITests.csproj", "{B8C47BDD-0736-481B-847E-372F14A40303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp", "UITestSampleApp\UITestSampleApp\UITestSampleApp.csproj", "{5033C4CD-0404-4D7F-9305-0F9F7273CCDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UITestSampleApp", "UITestSampleApp\UITestSampleApp\UITestSampleApp.csproj", "{5033C4CD-0404-4D7F-9305-0F9F7273CCDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLoginUI", "UITestSampleApp\MyLoginUI\MyLoginUI.csproj", "{4201A0A8-8417-4BBE-9DB8-874DA68BB7FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLoginUI", "UITestSampleApp\MyLoginUI\MyLoginUI.csproj", "{4201A0A8-8417-4BBE-9DB8-874DA68BB7FD}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		UITestSampleApp\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems*{6e1b18a4-c150-4627-96ff-741a8ae36f58}*SharedItemsImports = 4
 		UITestSampleApp\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems*{b8c47bdd-0736-481b-847e-372f14a40303}*SharedItemsImports = 4
 		UITestSampleApp\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems*{dcc188b2-f589-4166-bbae-cc619fededa9}*SharedItemsImports = 13
 	EndGlobalSection
@@ -103,5 +102,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4201A0A8-8417-4BBE-9DB8-874DA68BB7FD} = {B4BC40AE-EB0F-48D8-BB36-65DE380F32CB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83F10F4B-917F-49E1-AC15-1EBCDD307FEC}
 	EndGlobalSection
 EndGlobal
