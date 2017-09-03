@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
+using UITestSampleApp.Shared;
+
 namespace UITestSampleApp
 {
 

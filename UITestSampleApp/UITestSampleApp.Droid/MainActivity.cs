@@ -11,20 +11,23 @@ using Xamarin.Forms.Platform.Android.AppLinks;
 
 using EntryCustomReturn.Forms.Plugin.Android;
 
+using UITestSampleApp.Shared;
+
 namespace UITestSampleApp.Droid
 {
 	[Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		App App;
-		protected override void OnCreate(Bundle bundle)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(bundle);
+			base.OnCreate(savedInstanceState);
 
 			TabLayoutResource = Resource.Layout.tabs;
 			ToolbarResource = Resource.Layout.toolbar;
 
-			global::Xamarin.Forms.Forms.Init(this, bundle);
+            Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
+			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 			AndroidAppLinks.Init(this);
 
 			BlobCache.ApplicationName = "SimpleUITestApp";

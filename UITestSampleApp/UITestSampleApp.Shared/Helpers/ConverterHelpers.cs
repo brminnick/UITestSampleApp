@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace UITestSampleApp
+namespace UITestSampleApp.Shared
 {
 	public static class ConverterHelpers
 	{

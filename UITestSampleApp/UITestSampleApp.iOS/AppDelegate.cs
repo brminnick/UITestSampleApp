@@ -5,6 +5,8 @@ using Microsoft.Azure.Mobile.Distribute;
 
 using EntryCustomReturn.Forms.Plugin.iOS;
 
+using UITestSampleApp.Shared;
+
 namespace UITestSampleApp.iOS
 {
 	[Register("AppDelegate")]

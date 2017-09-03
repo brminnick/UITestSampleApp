@@ -28,7 +28,7 @@
 		<DebugType>full</DebugType>
 		<Optimize>false</Optimize>
 		<OutputPath>bin\Debug</OutputPath>
-		<DefineConstants>DEBUG;</DefineConstants>
+		<DefineConstants>DEBUG;MOBILE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
 		<ConsolePause>false</ConsolePause>
@@ -39,9 +39,10 @@
 		<AndroidTlsProvider>btls</AndroidTlsProvider>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>full</DebugType>
+		<DebugType></DebugType>
 		<Optimize>true</Optimize>
 		<OutputPath>bin\Release</OutputPath>
+		<DefineConstants>MOBILE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
 		<ConsolePause>false</ConsolePause>
@@ -272,8 +273,8 @@
 	    <Project>{5033C4CD-0404-4D7F-9305-0F9F7273CCDA}</Project>
 	    <Name>UITestSampleApp</Name>
 	  </ProjectReference>
-	  <ProjectReference Include="..\MyLoginUI.PCL\MyLoginUI\MyLoginUI\MyLoginUI.csproj">
-	    <Project>{DB83EE5C-78E1-438A-AA77-2441F83164D1}</Project>
+	  <ProjectReference Include="..\MyLoginUI\MyLoginUI.csproj">
+	    <Project>{4201A0A8-8417-4BBE-9DB8-874DA68BB7FD}</Project>
 	    <Name>MyLoginUI</Name>
 	  </ProjectReference>
 	</ItemGroup>
