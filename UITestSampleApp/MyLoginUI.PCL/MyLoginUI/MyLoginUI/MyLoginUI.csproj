@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.269-pre2" />
+    <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="3.1.2-pre1" />
+    <PackageReference Include="Microsoft.Azure.Mobile" Version="0.15.0" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Analytics" Version="0.15.0" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Crashes" Version="0.15.0" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Distribute" Version="0.15.0" />
+  </ItemGroup>
+  <Import Project="..\..\..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\..\..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
+</Project>

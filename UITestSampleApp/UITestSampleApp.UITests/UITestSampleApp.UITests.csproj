@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>UITestSampleApp.UITests</RootNamespace>
     <AssemblyName>UITestSampleApp.UITests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,10 +41,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UITestSampleApp\UITestSampleApp.csproj">
-      <Project>{06291122-42A6-4585-AC8C-D481126D1B5D}</Project>
-      <Name>UITestSampleApp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UITestSampleApp.iOS\UITestSampleApp.iOS.csproj">
       <Project>{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}</Project>
       <Name>UITestSampleApp.iOS</Name>
@@ -56,6 +52,10 @@
       <Name>UITestSampleApp.Droid</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\UITestSampleApp\UITestSampleApp.csproj">
+      <Project>{5033C4CD-0404-4D7F-9305-0F9F7273CCDA}</Project>
+      <Name>UITestSampleApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using UIKit;
+using Foundation;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -6,11 +7,6 @@ using Xamarin.Forms.Platform.iOS;
 using MyLoginUI.Views;
 
 using UITestSampleApp.iOS;
-
-using UIKit;
-using CoreAnimation;
-using CoreGraphics;
-using Foundation;
 
 [assembly: ExportRenderer(typeof(StyledEntry), typeof(StyledEntryRenderer))]
 
