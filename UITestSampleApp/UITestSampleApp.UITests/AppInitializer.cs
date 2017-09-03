@@ -16,6 +16,7 @@ namespace UITestSampleApp.UITests
 
             return ConfigureApp
                 .iOS
+                .DeviceIdentifier("16448E96-55DE-4A80-A995-C133DF128704")
                 .InstalledApp("com.minnick.uitestsampleapp")
                 .StartApp();
         }
