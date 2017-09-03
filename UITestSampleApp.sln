@@ -9,18 +9,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp.Droid", "UI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp.iOS", "UITestSampleApp\UITestSampleApp.iOS\UITestSampleApp.iOS.csproj", "{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UITestSampleApp.Shared", "UITestSampleApp\UITestSampleApp.Shared\UITestSampleApp.Shared.shproj", "{DCC188B2-F589-4166-BBAE-CC619FEDEDA9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp.UITests", "UITestSampleApp\UITestSampleApp.UITests\UITestSampleApp.UITests.csproj", "{B8C47BDD-0736-481B-847E-372F14A40303}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UITestSampleApp", "UITestSampleApp\UITestSampleApp\UITestSampleApp.csproj", "{5033C4CD-0404-4D7F-9305-0F9F7273CCDA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLoginUI", "UITestSampleApp\MyLoginUI\MyLoginUI.csproj", "{4201A0A8-8417-4BBE-9DB8-874DA68BB7FD}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UITestSampleApp.Shared", "UITestSampleApp.Shared\UITestSampleApp.Shared.shproj", "{F9DD40BA-3417-4C9D-B9BC-11C003824F7A}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		UITestSampleApp\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems*{b8c47bdd-0736-481b-847e-372f14a40303}*SharedItemsImports = 4
-		UITestSampleApp\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems*{dcc188b2-f589-4166-bbae-cc619fededa9}*SharedItemsImports = 13
+		UITestSampleApp.Shared\UITestSampleApp.Shared.projitems*{b8c47bdd-0736-481b-847e-372f14a40303}*SharedItemsImports = 4
+		UITestSampleApp.Shared\UITestSampleApp.Shared.projitems*{f9dd40ba-3417-4c9d-b9bc-11c003824f7a}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -41,20 +41,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UITestSampleApp.iOS\UITestSampleApp.iOS.csproj">
-      <Project>{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}</Project>
-      <Name>UITestSampleApp.iOS</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\UITestSampleApp.Droid\UITestSampleApp.Droid.csproj">
-      <Project>{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}</Project>
-      <Name>UITestSampleApp.Droid</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="AppInitializer.cs" />
     <Compile Include="Tests\TestsAfterLoginScreen.cs" />
     <Compile Include="Tests\BaseTest.cs" />
@@ -68,17 +54,15 @@
     <Compile Include="Helpers\UITestHelpers.cs" />
     <Compile Include="Helpers\BackdoorHelpers.cs" />
   </ItemGroup>
-  <Import Project="..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\SimpleUITestApp.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems" Label="Shared" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.175\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.175\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
 </Project>
