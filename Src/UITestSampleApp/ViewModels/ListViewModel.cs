@@ -44,6 +44,7 @@ namespace UITestSampleApp
             try
             {
                 await DependencyService.Get<IDataService>().SyncItemsAsync<ListPageDataModel>();
+
                 var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
                 DataList = dataListAsIEnumerable.ToList();
             }
