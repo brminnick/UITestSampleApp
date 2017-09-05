@@ -1,7 +1,5 @@
 using UIKit;
 
-using Microsoft.Azure.Mobile.Distribute;
-
 namespace UITestSampleApp.iOS
 {
 	public class Application

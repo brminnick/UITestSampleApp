@@ -24,7 +24,6 @@ namespace UITestSampleApp.UITests
 
 		[TestCase(true)]
 		[TestCase(false)]
-		[Test]
 		public void EnterText(bool shouldUseKeyboardReturnButton)
 		{
 			//Arrange
