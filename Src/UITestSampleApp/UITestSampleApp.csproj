@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;MOBILE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+    <DefineConstants>TRACE;RELEASE;NETSTANDARD2_0;MOBILE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Constants\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.269-pre2" />
+    <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="3.1.2-pre1" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.0.1" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
+    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyLoginUI\MyLoginUI.csproj" />
+  </ItemGroup>
+</Project>
