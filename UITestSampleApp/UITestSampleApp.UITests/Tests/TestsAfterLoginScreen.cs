@@ -49,7 +49,7 @@ namespace UITestSampleApp.UITests
 		}
 
 		[Test]
-		public void SelectItemOnListView()
+        public void VerifyItemsInListView()
 		{
 			//Arrange
 			var listItemNumber = 9;
@@ -57,12 +57,9 @@ namespace UITestSampleApp.UITests
 
 			//Act
 			BackdoorHelpers.OpenListViewPage(App);
-
 			ListPage.WaitForNoActivityIndicator();
-			ListPage.TapListItemNumber(listItemNumber);
 
-			//Assert
-			Assert.AreEqual(expectedAlertString, ListPage.GetAlertText(listItemNumber));
+            //Assert
 			Assert.IsTrue(BackdoorHelpers.GetListPageData(App).Count > 30);
 		}
 	}

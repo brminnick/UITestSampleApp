@@ -39,33 +39,20 @@ namespace UITestSampleApp.Droid
 
 			LoadApplication(App = new App());
 		}
-		#region Xamarin Test Cloud Back Door Methods
+
+        #region Xamarin Test Cloud Back Door Methods
 #if DEBUG
-		[Export("BypassLoginScreen")]
-		public async void BypassLoginScreen()
-		{
-			await App.Navigation.PopToRootAsync();
-			await App.Navigation.PushAsync(new FirstPage(), false);
-		}
+        [Export("BypassLoginScreen")]
+        public void BypassLoginScreen() =>
+            BackdoorMethodHelpers.BypassLoginScreen().GetAwaiter().GetResult();
 
-		[Export("OpenListViewPage")]
-		public void OpenListViewPage()
-		{
-			if (Build.VERSION.SdkInt >= BuildVersionCodes.JellyBeanMr1)
-				App.OpenListViewPageUsingDeepLinking();
-			else
-				App.OpenListViewPageUsingNavigation();
-		}
+        [Export("OpenListViewPage")]
+        public void OpenListViewPage() =>
+            BackdoorMethodHelpers.OpenListViewPage().GetAwaiter().GetResult();
 
-		[Export("GetListViewPageDataAsBase64String")]
-		public string GetListViewPageDataAsBase64String()
-		{
-			var listPageData = App.GetListPageData();
-
-			var listPageDataAsBase64String = ConverterHelpers.ConvertSerializableObjectToBase64String(listPageData);
-
-			return listPageDataAsBase64String;
-		}
+        [Export("GetListViewPageDataAsBase64String")]
+        public string GetListViewPageDataAsBase64String() =>
+            BackdoorMethodHelpers.GetListViewPageDataAsBase64String();
 #endif
 		#endregion
 	}

@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp.iOS", "UITe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp.UITests", "UITestSampleApp\UITestSampleApp.UITests\UITestSampleApp.UITests.csproj", "{B8C47BDD-0736-481B-847E-372F14A40303}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UITestSampleApp", "UITestSampleApp\UITestSampleApp\UITestSampleApp.csproj", "{5033C4CD-0404-4D7F-9305-0F9F7273CCDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp", "UITestSampleApp\UITestSampleApp\UITestSampleApp.csproj", "{5033C4CD-0404-4D7F-9305-0F9F7273CCDA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLoginUI", "UITestSampleApp\MyLoginUI\MyLoginUI.csproj", "{4201A0A8-8417-4BBE-9DB8-874DA68BB7FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLoginUI", "UITestSampleApp\MyLoginUI\MyLoginUI.csproj", "{4201A0A8-8417-4BBE-9DB8-874DA68BB7FD}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UITestSampleApp.Shared", "UITestSampleApp.Shared\UITestSampleApp.Shared.shproj", "{F9DD40BA-3417-4C9D-B9BC-11C003824F7A}"
 EndProject
