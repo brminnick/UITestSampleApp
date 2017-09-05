@@ -13,5 +13,5 @@
     <PackageReference Include="Microsoft.Azure.Mobile.Distribute" Version="0.15.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
-  <Import Project="..\..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems" Label="Shared" />
+  <Import Project="..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems')" />
 </Project>
