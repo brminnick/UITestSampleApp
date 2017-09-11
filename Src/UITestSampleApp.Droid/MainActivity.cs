@@ -16,15 +16,15 @@ namespace UITestSampleApp.Droid
 	[Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
-		App App;
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
+
 			TabLayoutResource = Resource.Layout.tabs;
 			ToolbarResource = Resource.Layout.toolbar;
 
-            Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 			AndroidAppLinks.Init(this);
 
@@ -35,7 +35,7 @@ namespace UITestSampleApp.Droid
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 			CustomReturnEntryRenderer.Init();
 
-			LoadApplication(App = new App());
+			LoadApplication(new App());
 		}
 
         #region Xamarin Test Cloud Back Door Methods

@@ -19,7 +19,6 @@ namespace UITestSampleApp.UITests
 			base.BeforeEachTest();
 
 			BackdoorHelpers.CleariOSKeyChain(App, _username);
-			BackdoorHelpers.SetiOSXTCAgent(App);
 		}
 
 		[TestCase(true)]

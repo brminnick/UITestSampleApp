@@ -10,8 +10,6 @@ namespace UITestSampleApp.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
-        App App;
-
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
@@ -25,7 +23,7 @@ namespace UITestSampleApp.iOS
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
             CustomReturnEntryRenderer.Init();
 
-            LoadApplication(App = new App());
+            LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }

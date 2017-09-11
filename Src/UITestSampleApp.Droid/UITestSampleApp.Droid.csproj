@@ -16,7 +16,7 @@
 		<AndroidApplication>True</AndroidApplication>
 		<AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
 		<AssemblyName>UITestSampleApp.Droid</AssemblyName>
-		<TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+		<TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
 		<AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
 		<AndroidTlsProvider>
 		</AndroidTlsProvider>
@@ -88,33 +88,6 @@
 		<Reference Include="Microsoft.Azure.Mobile.Distribute">
 		  <HintPath>..\packages\Microsoft.Azure.Mobile.Distribute.0.15.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Distribute.dll</HintPath>
 		</Reference>
-		<Reference Include="PInvoke.Windows.Core">
-		  <HintPath>..\packages\PInvoke.Windows.Core.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Windows.Core.dll</HintPath>
-		</Reference>
-		<Reference Include="PInvoke.Kernel32">
-		  <HintPath>..\packages\PInvoke.Kernel32.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Kernel32.dll</HintPath>
-		</Reference>
-		<Reference Include="PInvoke.BCrypt">
-		  <HintPath>..\packages\PInvoke.BCrypt.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.BCrypt.dll</HintPath>
-		</Reference>
-		<Reference Include="PInvoke.NCrypt">
-		  <HintPath>..\packages\PInvoke.NCrypt.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.NCrypt.dll</HintPath>
-		</Reference>
-		<Reference Include="SQLitePCLRaw.core">
-		  <HintPath>..\packages\SQLitePCLRaw.core.1.1.2\lib\MonoAndroid\SQLitePCLRaw.core.dll</HintPath>
-		</Reference>
-		<Reference Include="SQLitePCLRaw.lib.e_sqlite3">
-		  <HintPath>..\packages\SQLitePCLRaw.lib.e_sqlite3.android.1.1.2\lib\MonoAndroid\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
-		</Reference>
-		<Reference Include="SQLitePCLRaw.provider.e_sqlite3">
-		  <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.android.1.1.2\lib\MonoAndroid\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
-		</Reference>
-		<Reference Include="SQLitePCLRaw.batteries_green">
-		  <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.2\lib\MonoAndroid\SQLitePCLRaw.batteries_green.dll</HintPath>
-		</Reference>
-		<Reference Include="Validation">
-		  <HintPath>..\packages\Validation.2.2.8\lib\dotnet\Validation.dll</HintPath>
-		</Reference>
 		<Reference Include="PCLCrypto">
 		  <HintPath>..\packages\PCLCrypto.2.0.147\lib\MonoAndroid23\PCLCrypto.dll</HintPath>
 		</Reference>
@@ -184,15 +157,6 @@
 		<Reference Include="System.Reactive.PlatformServices">
 		  <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.PlatformServices.dll</HintPath>
 		</Reference>
-		<Reference Include="Splat">
-		  <HintPath>..\packages\Splat.1.6.0\lib\monoandroid\Splat.dll</HintPath>
-		</Reference>
-		<Reference Include="SQLitePCLRaw.batteries_e_sqlite3">
-		  <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.0\lib\MonoAndroid\SQLitePCLRaw.batteries_e_sqlite3.dll</HintPath>
-		</Reference>
-		<Reference Include="SQLitePCLRaw.batteries_v2">
-		  <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.0\lib\MonoAndroid\SQLitePCLRaw.batteries_v2.dll</HintPath>
-		</Reference>
 		<Reference Include="Akavache">
 		  <HintPath>..\packages\akavache.core.5.0.0\lib\MonoAndroid\Akavache.dll</HintPath>
 		</Reference>
@@ -216,6 +180,42 @@
 		</Reference>
 		<Reference Include="Plugin.Connectivity">
 		  <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.2\lib\MonoAndroid10\Plugin.Connectivity.dll</HintPath>
+		</Reference>
+		<Reference Include="PInvoke.Windows.Core">
+		  <HintPath>..\packages\PInvoke.Windows.Core.0.5.97\lib\portable-net45+win8+wpa81\PInvoke.Windows.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="PInvoke.Kernel32">
+		  <HintPath>..\packages\PInvoke.Kernel32.0.5.97\lib\portable-net45+win8+wpa81\PInvoke.Kernel32.dll</HintPath>
+		</Reference>
+		<Reference Include="PInvoke.BCrypt">
+		  <HintPath>..\packages\PInvoke.BCrypt.0.5.97\lib\portable-net45+win8+wpa81\PInvoke.BCrypt.dll</HintPath>
+		</Reference>
+		<Reference Include="PInvoke.NCrypt">
+		  <HintPath>..\packages\PInvoke.NCrypt.0.5.97\lib\portable-net45+win8+wpa81\PInvoke.NCrypt.dll</HintPath>
+		</Reference>
+		<Reference Include="SQLitePCLRaw.core">
+		  <HintPath>..\packages\SQLitePCLRaw.core.1.1.8\lib\MonoAndroid\SQLitePCLRaw.core.dll</HintPath>
+		</Reference>
+		<Reference Include="SQLitePCLRaw.provider.e_sqlite3">
+		  <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.android.1.1.8\lib\MonoAndroid\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+		</Reference>
+		<Reference Include="SQLitePCLRaw.lib.e_sqlite3">
+		  <HintPath>..\packages\SQLitePCLRaw.lib.e_sqlite3.android.1.1.8\lib\MonoAndroid\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
+		</Reference>
+		<Reference Include="SQLitePCLRaw.batteries_green">
+		  <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\MonoAndroid\SQLitePCLRaw.batteries_green.dll</HintPath>
+		</Reference>
+		<Reference Include="SQLitePCLRaw.batteries_e_sqlite3">
+		  <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.8\lib\MonoAndroid\SQLitePCLRaw.batteries_e_sqlite3.dll</HintPath>
+		</Reference>
+		<Reference Include="SQLitePCLRaw.batteries_v2">
+		  <HintPath>..\packages\SQLitePCLRaw.bundle_e_sqlite3.1.1.8\lib\MonoAndroid\SQLitePCLRaw.batteries_v2.dll</HintPath>
+		</Reference>
+		<Reference Include="Splat">
+		  <HintPath>..\packages\Splat.2.0.0\lib\MonoAndroid403\Splat.dll</HintPath>
+		</Reference>
+		<Reference Include="Validation">
+		  <HintPath>..\packages\Validation.2.4.15\lib\netstandard1.3\Validation.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
@@ -267,4 +267,5 @@
 	<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 	<Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
 	<Import Project="..\packages\Xamarin.Forms.2.4.0.269-pre2\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.269-pre2\build\netstandard1.0\Xamarin.Forms.targets')" />
+	<Import Project="..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
 </Project>

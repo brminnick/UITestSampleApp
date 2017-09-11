@@ -15,12 +15,6 @@ namespace UITestSampleApp.UITests
                 app.Invoke("clearKeyChain:", username);
         }
 
-        internal static void SetiOSXTCAgent(IApp app)
-        {
-            if (app is iOSApp)
-                app.Invoke("xtcAgent:", "");
-        }
-
         internal static void BypassLoginScreen(IApp app)
         {
             if (app is iOSApp)
