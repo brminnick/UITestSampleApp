@@ -42,11 +42,11 @@ namespace UITestSampleApp.Droid
 #if DEBUG
         [Export("BypassLoginScreen")]
         public void BypassLoginScreen() =>
-            BackdoorMethodHelpers.BypassLoginScreen().GetAwaiter().GetResult();
+            BackdoorMethodHelpers.BypassLoginScreen();
 
         [Export("OpenListViewPage")]
         public void OpenListViewPage() =>
-            BackdoorMethodHelpers.OpenListViewPage().GetAwaiter().GetResult();
+            BackdoorMethodHelpers.OpenListViewPage();
 
         [Export("GetListViewPageDataAsBase64String")]
         public string GetListViewPageDataAsBase64String() =>

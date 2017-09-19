@@ -50,7 +50,7 @@ namespace UITestSampleApp.UITests
 			var password = "test";
 			var incorrectPassword = "incorrect";
 
-			//Act
+            //Act
 			LoginPage.PressSignUpButton();
 			NewUserSignUpPage.CreateNewUserWithPassword(username, password, false);
 			LoginPage.LoginWithUsernamePassword(username, incorrectPassword, false);

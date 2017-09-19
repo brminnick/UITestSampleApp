@@ -47,14 +47,14 @@ namespace UITestSampleApp.iOS
         [Export("bypassLoginScreen:")]
         public NSString BypassLoginScreen(NSString noValue)
         {
-            BackdoorMethodHelpers.BypassLoginScreen().GetAwaiter().GetResult();
+            BackdoorMethodHelpers.BypassLoginScreen();
             return new NSString();
         }
 
         [Export("openListViewPage:")]
         public NSString OpenListViewPage(NSString noValue)
         {
-            BackdoorMethodHelpers.OpenListViewPage().GetAwaiter().GetResult();
+            BackdoorMethodHelpers.OpenListViewPage();
             return new NSString();
         }
 

@@ -37,7 +37,7 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.UITest">
-      <HintPath>..\packages\Xamarin.UITest.2.0.12\lib\Xamarin.UITest.dll</HintPath>
+      <HintPath>..\packages\Xamarin.UITest.2.1.1\lib\net45\Xamarin.UITest.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +63,20 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UITestSampleApp.Droid\UITestSampleApp.Droid.csproj">
+      <Project>{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}</Project>
+      <Name>UITestSampleApp.Droid</Name>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\UITestSampleApp.iOS\UITestSampleApp.iOS.csproj">
+      <Project>{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}</Project>
+      <Name>UITestSampleApp.iOS</Name>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Forms.2.3.3.175\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.175\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
 </Project>

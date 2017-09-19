@@ -12,17 +12,13 @@ namespace UITestSampleApp
     public static class BackdoorMethodHelpers
     {
         #region Properties
-        static Page CurrentPage => Application.Current?.MainPage?.Navigation?.NavigationStack?.LastOrDefault();
+        static Page CurrentPage => GetCurrentPage();
         #endregion
 
         #region Methods
-        public static async Task BypassLoginScreen()
-        {
-            await App.Navigation.PopToRootAsync();
-            await App.Navigation.PushAsync(new FirstPage(), false);
-        }
+        public static void BypassLoginScreen() => App.Navigation.PopToRootAsync();
 
-        public static async Task OpenListViewPage()
+        public static void OpenListViewPage()
         {
             switch (AppLinkHelpers.IsDeepLinkingSupported)
             {
@@ -31,29 +27,24 @@ namespace UITestSampleApp
                     app.OpenListViewPageUsingDeepLinking();
                     break;
                 default:
-                    await NavigateToListViewPage();
+                    NavigateToListViewPage();
                     break;
             }
         }
 
-        public static Task NavigateToListViewPage()
+        public static void NavigateToListViewPage()
         {
-            var tcs = new TaskCompletionSource<object>();
             // Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
             Device.BeginInvokeOnMainThread(async () =>
             {
                 await Application.Current.MainPage.Navigation.PopToRootAsync();
                 await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
-
-                tcs.SetResult(null);
             });
-
-            return tcs.Task;
         }
 
         public static string GetListViewPageDataAsBase64String()
         {
-            var listPageData = BackdoorMethodHelpers.GetListPageData();
+            var listPageData = GetListPageData();
 
             var listPageDataAsBase64String = ConverterHelpers.SerializeObject(listPageData);
 
@@ -62,14 +53,20 @@ namespace UITestSampleApp
 
         static List<ListPageDataModel> GetListPageData()
         {
-            var currentNavigationPage = CurrentPage;
-
-            if (!(currentNavigationPage is ListPage listPage))
+            if (!(CurrentPage is ListPage listPage))
                 return null;
 
             var listViewModel = listPage.BindingContext as ListViewModel;
 
             return listViewModel.DataList;
+        }
+
+        static Page GetCurrentPage()
+        {
+            if (Application.Current.MainPage.Navigation.ModalStack.Any())
+                return Application.Current.MainPage.Navigation.ModalStack.LastOrDefault();
+
+            return Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
         }
         #endregion
     }
