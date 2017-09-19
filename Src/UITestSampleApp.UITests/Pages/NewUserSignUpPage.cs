@@ -14,7 +14,7 @@ namespace UITestSampleApp.UITests
 		readonly Query _usernameEntry;
 
 		public NewUserSignUpPage(IApp app, Platform platform)
-			: base(app, platform)
+			: base(app, platform, PageTitleConstants.NewUserSignUpPage)
 		{
 			_cancelButton = x => x.Marked(AutomationIdConstants.CancelButton);
 			_passwordEntry = x => x.Marked(AutomationIdConstants.NewPasswordEntry);

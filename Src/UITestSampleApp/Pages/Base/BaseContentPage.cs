@@ -9,10 +9,11 @@ namespace UITestSampleApp
         #endregion
 
         #region Constructors
-        protected BaseContentPage()
+        protected BaseContentPage(string pageTitle)
         {
             BindingContext = ViewModel;
             BackgroundColor = Color.FromHex("#2980b9");
+            Title = pageTitle;
             this.SetBinding(IsBusyProperty, nameof(ViewModel.IsAccessingInternet));
         }
         #endregion

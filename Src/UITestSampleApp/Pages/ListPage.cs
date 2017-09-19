@@ -14,7 +14,7 @@ namespace UITestSampleApp
         #endregion
 
         #region Constructors
-        public ListPage()
+        public ListPage() : base(PageTitleConstants.ListPage)
 		{
 			_listView = new ListView(ListViewCachingStrategy.RecycleElement)
 			{
@@ -24,8 +24,6 @@ namespace UITestSampleApp
 			};
 			_listView.SetBinding(ListView.ItemsSourceProperty, nameof(ViewModel.DataList));
 			_listView.SetBinding(ListView.RefreshCommandProperty, nameof(ViewModel.PullToRefreshCommand));
-
-			Title = "List Page";
 
 			Content = _listView;
 		}

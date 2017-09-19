@@ -30,7 +30,7 @@ namespace UITestSampleApp.UITests
 			LoginPage = new LoginPage(App, Platform);
 			NewUserSignUpPage = new NewUserSignUpPage(App, Platform);
 
-			LoginPage.WaitForLoginScreen();
+			LoginPage.WaitForPageToLoad();
 		}
 	}
 }

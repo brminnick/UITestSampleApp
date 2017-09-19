@@ -15,7 +15,7 @@ namespace UITestSampleApp.UITests
 		{
 			base.BeforeEachTest();
 
-			LoginPage.WaitForLoginScreen();
+			LoginPage.WaitForPageToLoad();
 
 			BackdoorHelpers.BypassLoginScreen(App);
 
@@ -56,10 +56,12 @@ namespace UITestSampleApp.UITests
 
 			//Act
 			BackdoorHelpers.OpenListViewPage(App);
+
+            ListPage.WaitForPageToLoad();
 			ListPage.WaitForNoActivityIndicator();
 
             //Assert
-			Assert.IsTrue(BackdoorHelpers.GetListPageData(App).Count > 30);
+			Assert.IsTrue(BackdoorHelpers.GetListPageData(App).Count > 30, "Less than 30 items found in List");
 		}
 	}
 }

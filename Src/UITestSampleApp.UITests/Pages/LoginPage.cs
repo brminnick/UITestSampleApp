@@ -18,7 +18,7 @@ namespace UITestSampleApp.UITests
 		readonly Query _crashButton;
 
 		public LoginPage(IApp app, Platform platform)
-			: base(app, platform)
+			: base(app, platform, PageTitleConstants.LoginPage)
 		{
 			_forgotPasswordButton = x => x.Marked(AutomationIdConstants.ForgotPasswordButton);
 			_loginButton = x => x.Marked(AutomationIdConstants.LoginButton);
@@ -96,9 +96,9 @@ namespace UITestSampleApp.UITests
 			App.Screenshot("Tapped Okay on Error Dialog");
 		}
 
-		public void WaitForLoginScreen(int timeoutInSeconds = 60)
+		public override void WaitForPageToLoad()
 		{
-			App.WaitForElement(_loginButton, "Login Screen Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
+            App.WaitForElement(_loginButton, "Login Screen Did Not Appear");
 		}
 
 		public void TapCrashButton()

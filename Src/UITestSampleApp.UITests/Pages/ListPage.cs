@@ -4,11 +4,13 @@ using System.Threading;
 
 using Xamarin.UITest;
 
+using UITestSampleApp.Shared;
+
 namespace UITestSampleApp.UITests
 {
     public class ListPage : BasePage
     {
-        public ListPage(IApp app, Platform platform) : base(app, platform)
+        public ListPage(IApp app, Platform platform) : base(app, platform, PageTitleConstants.ListPage)
         {
         }
 

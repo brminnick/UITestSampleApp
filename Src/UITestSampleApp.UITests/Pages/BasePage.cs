@@ -2,19 +2,24 @@
 
 namespace UITestSampleApp.UITests
 {
-	public abstract class BasePage
-	{
-		protected readonly IApp App;
-		protected readonly bool OnAndroid;
-		protected readonly bool OniOS;
+    public abstract class BasePage
+    {
+        protected readonly IApp App;
+        protected readonly bool OnAndroid, OniOS;
 
-		protected BasePage(IApp app, Platform platform)
-		{
-			App = app;
+        string _pageTitle;
 
-			OnAndroid = platform == Platform.Android;
-			OniOS = platform == Platform.iOS;
-		}
-	}
+		protected BasePage(IApp app, Platform platform, string pageTitle)
+        {
+            App = app;
+
+            OnAndroid = platform == Platform.Android;
+            OniOS = platform == Platform.iOS;
+
+            _pageTitle = pageTitle;
+        }
+
+        public virtual void WaitForPageToLoad() => App.WaitForElement(x => x.Marked(_pageTitle));
+    }
 }
 

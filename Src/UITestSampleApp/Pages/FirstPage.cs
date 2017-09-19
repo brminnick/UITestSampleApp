@@ -19,7 +19,7 @@ namespace UITestSampleApp
         #endregion
 
         #region Constructors
-        public FirstPage()
+        public FirstPage() : base(PageTitleConstants.FirstPage)
         {
             const string entryTextPaceHolder = "Enter text and click 'Go'";
 
@@ -88,7 +88,6 @@ namespace UITestSampleApp
                                         Constraint.RelativeToParent((parent) => parent.Width - 20));
 
             Padding = GetPagePadding();
-            Title = "First Page";
             Content = relativeLayout;
         }
         #endregion

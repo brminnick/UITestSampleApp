@@ -34,7 +34,7 @@ namespace UITestSampleApp.UITests
 			LoginPage.PressSignUpButton();
 			NewUserSignUpPage.CreateNewUserWithPassword(username, password, shouldUseKeyboardReturnButton);
 
-			LoginPage.WaitForLoginScreen();
+			LoginPage.WaitForPageToLoad();
 			LoginPage.LoginWithUsernamePassword(username, password, shouldUseKeyboardReturnButton);
 
 			//Assert

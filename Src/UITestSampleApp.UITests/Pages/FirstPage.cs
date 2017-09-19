@@ -23,7 +23,7 @@ namespace UITestSampleApp.UITests
 		readonly Query _listViewButtonUsingID;
 		readonly Query _activityIndicatorUsingID;
 
-		public FirstPage(IApp app, Platform platform) : base(app, platform)
+		public FirstPage(IApp app, Platform platform) : base(app, platform, PageTitleConstants.FirstPage)
 		{
 			//Always initialize the UITest queries using "x.Marked" and referencing the UI ID
 			//In Xamarin.Forms, set the UI ID by setting the control's "AutomationId"
