@@ -55,7 +55,7 @@ namespace UITestSampleApp.UITests
             App.Screenshot("Tap Back Button");
         }
 
-        public void WaitForNoActivityIndicator(int timeoutInSeconds = 10)
+        public void WaitForNoActivityIndicator(int timeoutInSeconds = 25)
         {
             int counter = 0;
             while (IsRefreshActivityIndicatorDisplayed && counter < timeoutInSeconds)
