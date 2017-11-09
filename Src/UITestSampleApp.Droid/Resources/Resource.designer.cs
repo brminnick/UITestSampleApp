@@ -1835,6 +1835,9 @@ namespace UITestSampleApp.Droid
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_postpone = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_dialog_postpone;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_title = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_dialog_title;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_view_release_notes = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_dialog_view_release_notes;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_failed_dialog_ignore = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_failed_dialog_ignore;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_failed_dialog_reinstall = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_failed_dialog_reinstall;
+			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_failed_dialog_title = global::UITestSampleApp.Droid.Resource.String.mobile_center_distribute_update_failed_dialog_title;
 			global::PCLCrypto.Resource.String.ApplicationName = global::UITestSampleApp.Droid.Resource.String.ApplicationName;
 			global::PCLCrypto.Resource.String.Hello = global::UITestSampleApp.Droid.Resource.String.Hello;
 			global::Splat.Resource.String.library_name = global::UITestSampleApp.Droid.Resource.String.library_name;
@@ -5336,6 +5339,15 @@ namespace UITestSampleApp.Droid
 			// aapt resource value: 0x7f060056
 			public const int mobile_center_distribute_update_dialog_view_release_notes = 2131099734;
 			
+			// aapt resource value: 0x7f060057
+			public const int mobile_center_distribute_update_failed_dialog_ignore = 2131099735;
+			
+			// aapt resource value: 0x7f060058
+			public const int mobile_center_distribute_update_failed_dialog_reinstall = 2131099736;
+			
+			// aapt resource value: 0x7f060059
+			public const int mobile_center_distribute_update_failed_dialog_title = 2131099737;
+			
 			// aapt resource value: 0x7f06001f
 			public const int mr_button_content_description = 2131099679;
 			
@@ -5384,8 +5396,8 @@ namespace UITestSampleApp.Droid
 			// aapt resource value: 0x7f060041
 			public const int status_bar_notification_info_overflow = 2131099713;
 			
-			// aapt resource value: 0x7f060057
-			public const int title_activity_webview = 2131099735;
+			// aapt resource value: 0x7f06005a
+			public const int title_activity_webview = 2131099738;
 			
 			static String()
 			{
