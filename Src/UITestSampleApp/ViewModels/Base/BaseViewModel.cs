@@ -5,37 +5,25 @@ using System.Runtime.CompilerServices;
 
 namespace UITestSampleApp
 {
-	public class BaseViewModel : INotifyPropertyChanged
-	{
-        #region Fields
-        bool _isAccessingInternet;
-        #endregion
-
+    public class BaseViewModel : INotifyPropertyChanged
+    {
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
-        #region Properties
-        public bool IsAccessingInternet
-        {
-            get => _isAccessingInternet;
-            set => SetProperty(ref _isAccessingInternet, value);
-        }
-        #endregion
-
         protected void SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyname = "", Action onChanged = null)
-		{
-			if (EqualityComparer<T>.Default.Equals(backingStore, value))
-				return;
+        {
+            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+                return;
 
-			backingStore = value;
+            backingStore = value;
 
-			onChanged?.Invoke();
+            onChanged?.Invoke();
 
-			OnPropertyChanged(propertyname);
-		}
+            OnPropertyChanged(propertyname);
+        }
 
-		void OnPropertyChanged([CallerMemberName]string name = "") =>
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-	} 
+        void OnPropertyChanged([CallerMemberName]string name = "") =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
 }

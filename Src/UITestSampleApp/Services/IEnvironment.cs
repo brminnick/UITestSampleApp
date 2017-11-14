@@ -1,5 +1,4 @@
-﻿using System;
-namespace UITestSampleApp
+﻿namespace UITestSampleApp
 {
 	public interface IEnvironment
 	{

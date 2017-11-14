@@ -80,14 +80,10 @@ namespace UITestSampleApp
 
         async Task RefreshDataAsync()
         {
-            IsAccessingInternet = true;
-
             await RefreshDataFromLocalDatabaseAsync();
             await RefreshDataFromAzureAsync();
 
             OnLoadingDataFromBackendCompleted();
-
-            IsAccessingInternet = false;
         }
 
         void OnLoadingDataFromBackendCompleted() =>

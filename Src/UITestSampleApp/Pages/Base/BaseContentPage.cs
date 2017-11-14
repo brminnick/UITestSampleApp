@@ -14,7 +14,6 @@ namespace UITestSampleApp
             BindingContext = ViewModel;
             BackgroundColor = Color.FromHex("#2980b9");
             Title = pageTitle;
-            this.SetBinding(IsBusyProperty, nameof(ViewModel.IsAccessingInternet));
         }
         #endregion
 

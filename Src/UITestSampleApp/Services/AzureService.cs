@@ -12,95 +12,117 @@ using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
-	public class AzureService : IDataService
-	{
-		#region Constant Fields
-		readonly Dictionary<Type, bool> _isInitializedDictionary = new Dictionary<Type, bool>();
-		#endregion
+    public class AzureService : IDataService
+    {
+        #region Constant Fields
+        readonly Dictionary<Type, bool> _isInitializedDictionary = new Dictionary<Type, bool>();
+        readonly Lazy<MobileServiceClient> _mobileServiceClientHolder = new Lazy<MobileServiceClient>(() => new MobileServiceClient(AzureConstants.AzureDataServiceUrl));
+        #endregion
 
-		#region Fields
-		MobileServiceClient _mobileService;
-		#endregion
+        #region Fields
+        int _networkIndicatorCount;
+        #endregion
 
-		#region Methods
-		public async Task<IEnumerable<T>> GetItemsAsync<T>() where T : EntityData
-		{
-			await Initialize<T>();
+        #region Properties
+        MobileServiceClient MobileServiceClient => _mobileServiceClientHolder.Value;
+        #endregion
 
-			return await _mobileService.GetSyncTable<T>().ToEnumerableAsync();
-		}
+        #region Methods
+        public async Task<IEnumerable<T>> GetItemsAsync<T>() where T : EntityData
+        {
+            await Initialize<T>();
 
-		public async Task<T> GetItem<T>(string id) where T : EntityData
-		{
-			await Initialize<T>();
+            return await MobileServiceClient.GetSyncTable<T>().ToEnumerableAsync();
+        }
 
-			return await _mobileService.GetSyncTable<T>().LookupAsync(id);
-		}
+        public async Task<T> GetItem<T>(string id) where T : EntityData
+        {
+            await Initialize<T>();
 
-		public async Task AddItemAsync<T>(T item) where T : EntityData
-		{
-			await Initialize<T>();
+            return await MobileServiceClient.GetSyncTable<T>().LookupAsync(id);
+        }
 
-			await _mobileService.GetSyncTable<T>().InsertAsync(item);
-		}
+        public async Task AddItemAsync<T>(T item) where T : EntityData
+        {
+            await Initialize<T>();
 
-		public async Task UpdateItemAsync<T>(T item) where T : EntityData
-		{
-			await Initialize<T>();
+            await MobileServiceClient.GetSyncTable<T>().InsertAsync(item);
+        }
 
-			await _mobileService.GetSyncTable<T>().UpdateAsync(item);
-		}
+        public async Task UpdateItemAsync<T>(T item) where T : EntityData
+        {
+            await Initialize<T>();
 
-		public async Task RemoveItemAsync<T>(T item) where T : EntityData
-		{
-			await Initialize<T>();
+            await MobileServiceClient.GetSyncTable<T>().UpdateAsync(item);
+        }
 
-			await _mobileService.GetSyncTable<T>().DeleteAsync(item);
-		}
+        public async Task RemoveItemAsync<T>(T item) where T : EntityData
+        {
+            await Initialize<T>();
 
-		public async Task SyncItemsAsync<T>() where T : EntityData
-		{
-			await Initialize<T>();
+            await MobileServiceClient.GetSyncTable<T>().DeleteAsync(item);
+        }
 
-			try
-			{
-				await _mobileService.GetSyncTable<T>().PullAsync($"all{typeof(T).Name}", _mobileService.GetSyncTable<T>().CreateQuery());
-			}
-			catch (Exception ex)
-			{
-				System.Diagnostics.Debug.WriteLine($"Error during Sync occurred: {ex.Message}");
-			}
-		}
+        public async Task SyncItemsAsync<T>() where T : EntityData
+        {
+            await Initialize<T>();
 
-		async Task Initialize<T>() where T : EntityData
-		{
-			if (IsDataTypeInitialized<T>())
-				return;
-			
-			if (_mobileService == null)
-				_mobileService = new MobileServiceClient(AzureConstants.AzureDataServiceUrl);
-			
-			_isInitializedDictionary?.Add(typeof(T), false);
+            UpdateNetworkActivityIndicatorStatus(true);
 
-			await ConfigureOnlineOfflineSync<T>();
+            try
+            {
+                await MobileServiceClient.GetSyncTable<T>().PullAsync($"all{typeof(T).Name}", MobileServiceClient.GetSyncTable<T>().CreateQuery());
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error during Sync occurred: {ex.Message}");
+            }
+            finally
+            {
+                UpdateNetworkActivityIndicatorStatus(false);
+            }
+        }
 
-			_isInitializedDictionary[typeof(T)] = true;
-		}
+        async Task Initialize<T>() where T : EntityData
+        {
+            if (IsDataTypeInitialized<T>())
+                return;
 
-		async Task ConfigureOnlineOfflineSync<T>() where T : EntityData
-		{
-			var path = Path.Combine(MobileServiceClient.DefaultDatabasePath, "app.db");
-			var store = new MobileServiceSQLiteStore(path);
-			store.DefineTable<T>();
+            _isInitializedDictionary?.Add(typeof(T), false);
 
-			await _mobileService.SyncContext.InitializeAsync(store, new SyncHandler());
-		}
+            await ConfigureOnlineOfflineSync<T>();
 
-		bool IsDataTypeInitialized<T>() where T : EntityData
-		{
-			var isDataTypeInitalized = _isInitializedDictionary?.FirstOrDefault(x => x.Key.Equals(typeof(T))).Value;
-			return isDataTypeInitalized == true;
-		}
-		#endregion
-	}
+            _isInitializedDictionary[typeof(T)] = true;
+        }
+
+        async Task ConfigureOnlineOfflineSync<T>() where T : EntityData
+        {
+            var path = Path.Combine(MobileServiceClient.DefaultDatabasePath, "app.db");
+            var store = new MobileServiceSQLiteStore(path);
+            store.DefineTable<T>();
+
+            await MobileServiceClient.SyncContext.InitializeAsync(store, new SyncHandler());
+        }
+
+        bool IsDataTypeInitialized<T>() where T : EntityData
+        {
+            var isDataTypeInitalized = _isInitializedDictionary?.FirstOrDefault(x => x.Key.Equals(typeof(T))).Value;
+            return isDataTypeInitalized == true;
+        }
+
+        void UpdateNetworkActivityIndicatorStatus(bool isActivityIndicatorDisplayed)
+        {
+            if (isActivityIndicatorDisplayed)
+            {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Xamarin.Forms.Application.Current.MainPage.IsBusy = true);
+                _networkIndicatorCount++;
+            }
+            else if (--_networkIndicatorCount <= 0)
+            {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Xamarin.Forms.Application.Current.MainPage.IsBusy = false);
+                _networkIndicatorCount = 0;
+            }
+        }
+        #endregion
+    }
 }
