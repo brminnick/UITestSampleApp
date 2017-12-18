@@ -15,12 +15,9 @@ namespace UITestSampleApp
     public class ListViewModel : BaseViewModel
     {
         #region Fields
+        bool _isRefreshing;
         ICommand _pullToRefreshCommand;
         List<ListPageDataModel> _dataList;
-        #endregion
-
-        #region Events
-        public event EventHandler LoadingDataFromBackendCompleted;
         #endregion
 
         #region Properties
@@ -31,6 +28,12 @@ namespace UITestSampleApp
         {
             get => _dataList;
             set => SetProperty(ref _dataList, value);
+        }
+
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set => SetProperty(ref _isRefreshing, value);
         }
         #endregion
 
@@ -50,7 +53,7 @@ namespace UITestSampleApp
             }
             catch (Exception e)
             {
-                MobileCenterHelpers.Log(e);
+                AppCenterHelpers.Log(e);
             }
         }
 
@@ -63,31 +66,33 @@ namespace UITestSampleApp
             }
             catch (Exception e)
             {
-                MobileCenterHelpers.Log(e);
+                AppCenterHelpers.Log(e);
             }
         }
 
         async Task ExecutePullToRefreshCommanded()
         {
-            MobileCenterHelpers.TrackEvent(MobileCenterConstants.PullToRefreshCommanded);
+            IsRefreshing = true;
 
-            var showRefreshIndicatorForOneSecondTask = Task.Delay(1000);
+            try
+            {
+                AppCenterHelpers.TrackEvent(MobileCenterConstants.PullToRefreshCommanded);
 
-            await Task.WhenAll(RefreshDataAsync(), showRefreshIndicatorForOneSecondTask);
+                var showRefreshIndicatorForOneSecondTask = Task.Delay(1000);
 
-            OnLoadingDataFromBackendCompleted();
+                await Task.WhenAll(RefreshDataAsync(), showRefreshIndicatorForOneSecondTask);
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
         }
 
         async Task RefreshDataAsync()
         {
             await RefreshDataFromLocalDatabaseAsync();
             await RefreshDataFromAzureAsync();
-
-            OnLoadingDataFromBackendCompleted();
         }
-
-        void OnLoadingDataFromBackendCompleted() =>
-            LoadingDataFromBackendCompleted?.Invoke(null, EventArgs.Empty);
         #endregion
     }
 }

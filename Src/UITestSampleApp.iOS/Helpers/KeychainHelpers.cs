@@ -23,14 +23,10 @@ namespace UITestSampleApp.iOS
 		public static SecStatusCode DeletePasswordForUsername(string username, string serviceId, bool synchronizable)
 		{
 			if (username == null)
-			{
 				throw new ArgumentNullException("userName");
-			}
 
 			if (serviceId == null)
-			{
 				throw new ArgumentNullException("serviceId");
-			}
 
 			// Querying is case sesitive - we don't want that.
 			username = username.ToLower();
@@ -63,19 +59,13 @@ namespace UITestSampleApp.iOS
 		public static SecStatusCode SetPasswordForUsername(string username, string password, string serviceId, SecAccessible secAccessible, bool synchronizable)
 		{
 			if (username == null)
-			{
 				throw new ArgumentNullException("userName");
-			}
 
 			if (serviceId == null)
-			{
 				throw new ArgumentNullException("serviceId");
-			}
 
 			if (password == null)
-			{
 				throw new ArgumentNullException("password");
-			}
 
 			// Querying is case sesitive - we don't want that.
 			username = username.ToLower();
@@ -114,14 +104,10 @@ namespace UITestSampleApp.iOS
 		public static string GetPasswordForUsername(string username, string serviceId, bool synchronizable)
 		{
 			if (username == null)
-			{
 				throw new ArgumentNullException("userName");
-			}
 
 			if (serviceId == null)
-			{
 				throw new ArgumentNullException("serviceId");
-			}
 
 			// Querying is case sesitive - we don't want that.
 			username = username.ToLower();

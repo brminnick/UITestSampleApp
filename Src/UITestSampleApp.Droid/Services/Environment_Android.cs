@@ -27,7 +27,7 @@ namespace UITestSampleApp.Droid
             }
             catch (Exception e)
             {
-                MobileCenterHelpers.Log(e);
+                AppCenterHelpers.Log(e);
                 return false;
             }
         }

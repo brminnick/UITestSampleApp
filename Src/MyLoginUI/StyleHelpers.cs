@@ -15,7 +15,7 @@ namespace MyLoginUI
 				case Device.Android:
 					return "Droid Sans Mono";
 				default:
-					throw new Exception("Platform Not Supported");
+					throw new NotSupportedException("Platform Not Supported");
 			}
 		}
 	}

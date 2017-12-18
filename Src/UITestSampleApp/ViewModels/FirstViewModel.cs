@@ -40,10 +40,11 @@ namespace UITestSampleApp
         #region Methods
         async Task ExecuteGoButtonCommand()
         {
-            MobileCenterHelpers.TrackEvent(MobileCenterConstants.GoButtonTapped, new Dictionary<string, string> {
+            AppCenterHelpers.TrackEvent(MobileCenterConstants.GoButtonTapped, new Dictionary<string, string> {
                 { MobileCenterConstants.FirstPageTextEntered, EntryText }
             });
 
+            LabelText = string.Empty;
             IsActiityIndicatorRunning = true;
 
             await Task.Delay(1500);
@@ -51,7 +52,6 @@ namespace UITestSampleApp
             IsActiityIndicatorRunning = false;
             LabelText = EntryText;
         }
-
         #endregion
     }
 }

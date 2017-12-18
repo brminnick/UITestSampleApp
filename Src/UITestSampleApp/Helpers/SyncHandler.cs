@@ -52,7 +52,7 @@ namespace UITestSampleApp
             return result;
         }
 
-        public Task OnPushCompleteAsync(MobileServicePushCompletionResult result) => Task.FromResult(0);
+        public Task OnPushCompleteAsync(MobileServicePushCompletionResult result) => Task.CompletedTask;
 
         void OverwriteServerDataUsingLocalData(IMobileServiceTableOperation operation, JObject serverItem)
         {

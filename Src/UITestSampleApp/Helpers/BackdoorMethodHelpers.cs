@@ -16,7 +16,7 @@ namespace UITestSampleApp
         #endregion
 
         #region Methods
-        public static void BypassLoginScreen() => App.Navigation.PopToRootAsync();
+        public static void BypassLoginScreen() => Application.Current.MainPage.Navigation.PopToRootAsync();
 
         public static void OpenListViewPage()
         {

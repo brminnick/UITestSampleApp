@@ -11,6 +11,7 @@ namespace UITestSampleApp
 		{
 			TextColor = Color.White;
 			DetailColor = Color.White;
+            ImageSource = "Hash";
 		}
 		#endregion
 
@@ -21,13 +22,11 @@ namespace UITestSampleApp
 
             Text = string.Empty;
 			Detail = string.Empty;
-			ImageSource = null;
 
 			var item = BindingContext as ListPageDataModel;
 
 			Text = item?.TextProperty ?? "";
-			Detail = item?.DetailProperty ?? "";
-			ImageSource = "Hash";
+            Detail = item?.DetailProperty ?? "";
 		}
 		#endregion
 	}

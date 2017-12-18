@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -7,72 +7,61 @@ using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
-	public class ListPage : BaseContentPage<ListViewModel>
-	{
-		#region Constant Fields
-		readonly ListView _listView;
+    public class ListPage : BaseContentPage<ListViewModel>
+    {
+        #region Constant Fields
+        readonly ListView _listView;
         #endregion
 
         #region Constructors
         public ListPage() : base(PageTitleConstants.ListPage)
-		{
-			_listView = new ListView(ListViewCachingStrategy.RecycleElement)
-			{
-				ItemTemplate = new DataTemplate(typeof(WhiteTextImageCell)),
-				BackgroundColor = Color.FromHex("#2980b9"),
-				IsPullToRefreshEnabled = true
-			};
-			_listView.SetBinding(ListView.ItemsSourceProperty, nameof(ViewModel.DataList));
-			_listView.SetBinding(ListView.RefreshCommandProperty, nameof(ViewModel.PullToRefreshCommand));
+        {
+            _listView = new ListView(ListViewCachingStrategy.RecycleElement)
+            {
+                ItemTemplate = new DataTemplate(typeof(WhiteTextImageCell)),
+                BackgroundColor = Color.FromHex("#2980b9"),
+                IsPullToRefreshEnabled = true
+            };
+            _listView.SetBinding(ListView.ItemsSourceProperty, nameof(ViewModel.DataList));
+			_listView.SetBinding(ListView.IsRefreshingProperty, nameof(ViewModel.IsRefreshing));
+            _listView.SetBinding(ListView.RefreshCommandProperty, nameof(ViewModel.PullToRefreshCommand));
 
-			Content = _listView;
-		}
-		#endregion
+            Content = _listView;
+        }
+        #endregion
 
-		#region Methods
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
-			MobileCenterHelpers.TrackEvent(MobileCenterConstants.ListViewPageAppeared);
+        #region Methods
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            AppCenterHelpers.TrackEvent(MobileCenterConstants.ListViewPageAppeared);
 
             Device.BeginInvokeOnMainThread(_listView.BeginRefresh);
-		}
-
-        protected override void SubscribeEventHandlers()
-        {
-			_listView.ItemTapped += HandleListViewItemTapped;
-			ViewModel.LoadingDataFromBackendCompleted += HandleLoadingDataFromBackendCompleted;
         }
 
-        protected override void UnsubscribeEventHandlers()
+        protected override void SubscribeEventHandlers() =>
+            _listView.ItemTapped += HandleListViewItemTapped;
+
+        protected override void UnsubscribeEventHandlers() =>
+            _listView.ItemTapped -= HandleListViewItemTapped;
+
+        async void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
         {
-			_listView.ItemTapped -= HandleListViewItemTapped;
-			ViewModel.LoadingDataFromBackendCompleted -= HandleLoadingDataFromBackendCompleted;
+            var listView = sender as ListView;
+            var tappedListPageDataModel = e.Item as ListPageDataModel;
+
+            AppCenterHelpers.TrackEvent(MobileCenterConstants.ListViewItemTapped,
+                new Dictionary<string, string> {
+                    { MobileCenterConstants.ListViewItemNumber, tappedListPageDataModel.DetailProperty }
+                }
+            );
+
+            await DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.DetailProperty}", "OK");
+
+            listView.SelectedItem = null;
         }
-
-		async void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
-		{
-			var listView = sender as ListView;
-			var tappedListPageDataModel = e.Item as ListPageDataModel;
-
-			MobileCenterHelpers.TrackEvent(MobileCenterConstants.ListViewItemTapped,
-				new Dictionary<string, string> {
-					{ MobileCenterConstants.ListViewItemNumber, tappedListPageDataModel.DetailProperty }
-				}
-			);
-
-			await DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.DetailProperty}", "OK");
-
-			listView.SelectedItem = null;
-		}
-
-		void HandleLoadingDataFromBackendCompleted(object sender, EventArgs e)
-		{
-            Device.BeginInvokeOnMainThread(_listView.EndRefresh);
-		}
-		#endregion
-
-	}
+        #endregion
+    }
 }
 
 

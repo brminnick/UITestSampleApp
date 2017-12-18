@@ -97,7 +97,7 @@ namespace UITestSampleApp
         {
             base.OnAppearing();
 
-            MobileCenterHelpers.TrackEvent(MobileCenterConstants.FirstPageOnAppeared);
+            AppCenterHelpers.TrackEvent(MobileCenterConstants.FirstPageOnAppeared);
         }
 
         protected override void SubscribeEventHandlers()

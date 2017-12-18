@@ -17,7 +17,7 @@ namespace UITestSampleApp
         #endregion
 
         #region Constructors
-        public LoginPage()
+        public LoginPage() : base("xamarin_logo")
         {
             AutomationId = "loginPage";
 
@@ -40,45 +40,27 @@ namespace UITestSampleApp
         #endregion
 
         #region Methods
-        public override async void Login(string userName, string passWord)
+        protected override async Task Login(string username, string password)
         {
-            base.Login(userName, passWord);
-
-            var success = await DependencyService.Get<ILogin>().CheckLogin(userName, passWord);
+            var success = await DependencyService.Get<ILogin>().CheckLogin(username, password);
             if (success)
-            {
-                App.IsLoggedIn = true;
-
                 await Navigation.PopAsync();
-            }
             else
             {
-                var signUp = await DisplayAlert("Invalid Login", "Sorry, we didn't recoginize the username or password. Feel free to sign up for free if you haven't!", "Sign up", "Try again");
+                var isSignupSelected = await DisplayAlert("Invalid Login", "Sorry, we didn't recoginize the username or password. Feel free to sign up for free if you haven't!", "Sign up", "Try again");
 
-                if (signUp)
+                if (isSignupSelected)
                 {
                     await Navigation.PushModalAsync(new NewUserSignUpPage());
 
-                    MobileCenterHelpers.TrackEvent("NewUserSignUp", new Dictionary<string, string> {
+                    AppCenterHelpers.TrackEvent("NewUserSignUp", new Dictionary<string, string> {
                         { "ActionPoint", "System Prompt" },
                     });
                 }
             }
         }
 
-        public override void NewUserSignUp()
-        {
-            base.NewUserSignUp();
-            Navigation.PushModalAsync(new NewUserSignUpPage());
-        }
-
-        public override void RunAfterAnimation()
-        {
-            base.RunAfterAnimation();
-
-            if (App.UserName != null)
-                SetUsernameEntry(App.UserName);
-        }
+        protected override async Task NewUserSignUp() => await Navigation.PushModalAsync(new NewUserSignUpPage());
 
         protected override void OnAppearing()
         {

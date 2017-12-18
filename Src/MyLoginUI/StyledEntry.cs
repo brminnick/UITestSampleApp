@@ -1,7 +1,5 @@
 ﻿using Xamarin.Forms;
 
-using EntryCustomReturn.Forms.Plugin.Abstractions;
-
 namespace MyLoginUI.Views
 {
 	public class StyledEntry : Entry
