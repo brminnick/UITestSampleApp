@@ -6,10 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="3.1.2" />
     <PackageReference Include="Microsoft.Azure.Mobile.Distribute" Version="0.17.1" />
     <PackageReference Include="Microsoft.Azure.Mobile.Crashes" Version="0.17.1" />
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics" Version="0.17.1" />
+    <PackageReference Include="Xam.Plugins.Forms.CustomReturnEntry" Version="3.2.1" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.121934" />
   </ItemGroup>
   <Import Project="..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems')" />
 </Project>
