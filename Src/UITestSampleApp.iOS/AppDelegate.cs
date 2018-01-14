@@ -1,10 +1,6 @@
 ﻿using UIKit;
 using Foundation;
 
-using Microsoft.Azure.Mobile.Distribute;
-
-using EntryCustomReturn.Forms.Plugin.iOS;
-
 namespace UITestSampleApp.iOS
 {
     [Register(nameof(AppDelegate))]
@@ -18,10 +14,10 @@ namespace UITestSampleApp.iOS
 #if ENABLE_TEST_CLOUD
             Xamarin.Calabash.Start();
 #endif
-            Distribute.DontCheckForUpdatesInDebug();
+            Microsoft.AppCenter.Distribute.Distribute.DontCheckForUpdatesInDebug();
 
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-            CustomReturnEntryRenderer.Init();
+            EntryCustomReturn.Forms.Plugin.iOS.CustomReturnEntryRenderer.Init();
 
             LoadApplication(new App());
 
@@ -30,7 +26,7 @@ namespace UITestSampleApp.iOS
 
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
-            Distribute.OpenUrl(url);
+            Microsoft.AppCenter.Distribute.Distribute.OpenUrl(url);
             return base.OpenUrl(app, url, options);
         }
 

@@ -9,8 +9,6 @@ using Java.Interop;
 
 using Xamarin.Forms.Platform.Android.AppLinks;
 
-using EntryCustomReturn.Forms.Plugin.Android;
-
 namespace UITestSampleApp.Droid
 {
     [Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -50,7 +48,7 @@ namespace UITestSampleApp.Droid
 
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-            CustomReturnEntryRenderer.Init();
+            EntryCustomReturn.Forms.Plugin.Android.CustomReturnEntryRenderer.Init();
 
             LoadApplication(new App());
         }

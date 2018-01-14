@@ -11,12 +11,12 @@ namespace UITestSampleApp
         #region Fields
         bool _isActivityIndicatorRunning;
         string _entryText, _labelText;
-        ICommand _goButtonCommand;
+        Command<string> _goButtonCommand;
         #endregion
 
         #region Properties
-        public ICommand GoButtonCommand => 
-            _goButtonCommand ?? (_goButtonCommand = new Command(async () => await ExecuteGoButtonCommand()));
+        public Command<string> GoButtonCommand => 
+            _goButtonCommand ?? (_goButtonCommand = new Command<string>(async goButtonText => await ExecuteGoButtonCommand(goButtonText)));
 
         public bool IsActiityIndicatorRunning
         {
@@ -38,10 +38,10 @@ namespace UITestSampleApp
         #endregion
 
         #region Methods
-        async Task ExecuteGoButtonCommand()
+        async Task ExecuteGoButtonCommand(string goButtonText)
         {
             AppCenterHelpers.TrackEvent(AppCenterConstants.GoButtonTapped, new Dictionary<string, string> {
-                { AppCenterConstants.FirstPageTextEntered, EntryText }
+                { AppCenterConstants.FirstPageTextEntered, goButtonText }
             });
 
             LabelText = string.Empty;
@@ -50,7 +50,7 @@ namespace UITestSampleApp
             await Task.Delay(1500).ConfigureAwait(false);
 
             IsActiityIndicatorRunning = false;
-            LabelText = EntryText;
+            LabelText = goButtonText;
         }
         #endregion
     }

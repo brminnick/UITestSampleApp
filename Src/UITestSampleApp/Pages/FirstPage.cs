@@ -38,8 +38,9 @@ namespace UITestSampleApp
                 HorizontalTextAlignment = TextAlignment.Center
             };
             CustomReturnEffect.SetReturnType(textEntry, ReturnType.Go);
+			textEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.EntryText));
             textEntry.SetBinding(CustomReturnEffect.ReturnCommandProperty, nameof(ViewModel.GoButtonCommand));
-            textEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.EntryText));
+			textEntry.SetBinding(CustomReturnEffect.ReturnCommandParameterProperty, nameof(ViewModel.EntryText));
 
             var textLabel = new StyledLabel
             {
@@ -69,23 +70,23 @@ namespace UITestSampleApp
 
 			var relativeLayout = new RelativeLayout();
             relativeLayout.Children.Add(textEntry,
-                                        Constraint.RelativeToParent((parent) => parent.X),
-                                        Constraint.RelativeToParent((parent) => parent.Y),
-                                        Constraint.RelativeToParent((parent) => parent.Width - 20));
+                                        Constraint.RelativeToParent(parent => parent.X),
+                                        Constraint.RelativeToParent(parent => parent.Y),
+                                        Constraint.RelativeToParent(parent => parent.Width - 20));
             relativeLayout.Children.Add(_goButton,
-                                        Constraint.RelativeToParent((parent) => parent.X),
+                                        Constraint.RelativeToParent(parent => parent.X),
                                         Constraint.RelativeToView(textEntry, (parent, view) => view.Y + view.Height + _relativeLayoutPadding),
-                                        Constraint.RelativeToParent((parent) => parent.Width - 20));
+                                        Constraint.RelativeToParent(parent => parent.Width - 20));
             relativeLayout.Children.Add(activityIndicator,
-                                        Constraint.RelativeToParent((parent) => parent.Width / 2 - getActivityIndicatorWidth(parent) / 2),
+                                        Constraint.RelativeToParent(parent => parent.Width / 2 - getActivityIndicatorWidth(parent) / 2),
                                         Constraint.RelativeToView(_goButton, (parent, view) => view.Y + view.Height + _relativeLayoutPadding));
             relativeLayout.Children.Add(textLabel,
-                                        Constraint.RelativeToParent((parent) => parent.Width / 2 - getTextLabelWidth(parent) / 2),
+                                        Constraint.RelativeToParent(parent => parent.Width / 2 - getTextLabelWidth(parent) / 2),
                                         Constraint.RelativeToView(_goButton, (parent, view) => view.Y + view.Height + _relativeLayoutPadding));
             relativeLayout.Children.Add(_listPageButton,
-                                        Constraint.RelativeToParent((parent) => parent.X),
+                                        Constraint.RelativeToParent(parent => parent.X),
                                         Constraint.RelativeToView(_goButton, (parent, view) => view.Y + view.Height + _relativeLayoutPadding * 15),
-                                        Constraint.RelativeToParent((parent) => parent.Width - 20));
+                                        Constraint.RelativeToParent(parent => parent.Width - 20));
 
             Padding = GetPagePadding();
             Content = relativeLayout;

@@ -28,7 +28,7 @@ namespace MyLoginUI.Pages
         #endregion
 
         #region Properties
-        protected RelativeLayout MainLayout { get; set; }
+        protected RelativeLayout MainLayout { get; }
 
         string LogoFileImageSource
         {
@@ -55,10 +55,7 @@ namespace MyLoginUI.Pages
             CreateGlobalChildren();
             AddConstraintsToChildren();
 
-            Content = new ScrollView
-            {
-                Content = MainLayout
-            };
+            Content = new ScrollView { Content = MainLayout };
         }
         #endregion
 
@@ -99,24 +96,12 @@ namespace MyLoginUI.Pages
                     await _logo?.TranslateTo(0, -200 + 5, 100);
                     await _logo?.TranslateTo(0, -200, 50);
 
-                    var logoSloginAnimationTask = _logoSlogan?.FadeTo(1, 5);
-                    var newUserSignUpButtonAnimationTask = _newUserSignUpButton?.FadeTo(1, 250);
-                    var forgotPasswordButtonAnimationTask = _forgotPasswordButton?.FadeTo(1, 250);
-                    var loginEntryAnimationTask = _loginEntry?.FadeTo(1, 250);
-                    var passwordEntryAnimationTask = _passwordEntry?.FadeTo(1, 250);
-                    var loginButtonAnimationTask = _loginButton?.FadeTo(1, 249);
-
-                    animationTaskList = new List<Task>
-                    {
-                        logoSloginAnimationTask,
-                        newUserSignUpButtonAnimationTask,
-                        forgotPasswordButtonAnimationTask,
-                        loginEntryAnimationTask,
-                        passwordEntryAnimationTask,
-                        loginButtonAnimationTask
-                    };
-
-                    await Task.WhenAll(animationTaskList);
+                    await Task.WhenAll(_logoSlogan?.FadeTo(1, 5),
+                                        _newUserSignUpButton?.FadeTo(1, 250),
+                                        _forgotPasswordButton?.FadeTo(1, 250),
+                                        _loginEntry?.FadeTo(1, 250),
+                                        _passwordEntry?.FadeTo(1, 250),
+                                        _loginButton?.FadeTo(1, 249));
 
                     _isInitialized = true;
 
@@ -125,7 +110,7 @@ namespace MyLoginUI.Pages
             }
         }
 
-        private async void HandleNewUserSignUpButtonClicked(object sender, EventArgs e) => await NewUserSignUp();
+        async void HandleNewUserSignUpButtonClicked(object sender, EventArgs e) => await NewUserSignUp();
 
         void CreateGlobalChildren()
         {
@@ -235,7 +220,7 @@ namespace MyLoginUI.Pages
                 case Device.iOS:
                     return new Thickness(0, 0, 0, 0);
                 default:
-                    throw new Exception("Platform Unsupported");
+                    throw new NotSupportedException("Runtime Platform Unsupported");
             }
         }
         #endregion

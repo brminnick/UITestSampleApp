@@ -32,8 +32,8 @@ namespace UITestSampleApp
             crashButton.Clicked += (s, e) => throw new Exception("Crash Button Tapped");
 
             MainLayout.Children.Add(crashButton,
-                Constraint.RelativeToParent((parent) => parent.X),
-                Constraint.RelativeToParent((parent) => parent.Y)
+                Constraint.RelativeToParent(parent => parent.X),
+                Constraint.RelativeToParent(parent => parent.Y)
             );
 #endif
         }
