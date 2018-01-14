@@ -203,30 +203,6 @@
 		<Reference Include="PInvoke.NCrypt">
 		  <HintPath>..\packages\PInvoke.NCrypt.0.5.111\lib\portable-net45+win8+wpa81\PInvoke.NCrypt.dll</HintPath>
 		</Reference>
-		<Reference Include="Microsoft.Azure.Mobile.Android.Bindings">
-		  <HintPath>..\packages\Microsoft.Azure.Mobile.0.18.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Android.Bindings.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Azure.Mobile">
-		  <HintPath>..\packages\Microsoft.Azure.Mobile.0.18.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Azure.Mobile.Crashes.Android.Bindings">
-		  <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.18.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Crashes.Android.Bindings.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Azure.Mobile.Crashes">
-		  <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.18.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Crashes.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Azure.Mobile.Distribute.Android.Bindings">
-		  <HintPath>..\packages\Microsoft.Azure.Mobile.Distribute.0.18.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Distribute.Android.Bindings.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Azure.Mobile.Distribute">
-		  <HintPath>..\packages\Microsoft.Azure.Mobile.Distribute.0.18.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Distribute.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Azure.Mobile.Analytics.Android.Bindings">
-		  <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.18.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Analytics.Android.Bindings.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Azure.Mobile.Analytics">
-		  <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.18.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Analytics.dll</HintPath>
-		</Reference>
 		<Reference Include="FormsViewGroup">
 		  <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
 		</Reference>
@@ -250,6 +226,30 @@
 		</Reference>
 		<Reference Include="EntryCustomReturn.Forms.Plugin.Android">
 		  <HintPath>..\packages\Xam.Plugins.Forms.CustomReturnEntry.3.3.0-pre2\lib\MonoAndroid10\EntryCustomReturn.Forms.Plugin.Android.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.AppCenter.Android.Bindings">
+		  <HintPath>..\packages\Microsoft.AppCenter.1.1.0\lib\MonoAndroid403\Microsoft.AppCenter.Android.Bindings.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.AppCenter">
+		  <HintPath>..\packages\Microsoft.AppCenter.1.1.0\lib\MonoAndroid403\Microsoft.AppCenter.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.AppCenter.Distribute.Android.Bindings">
+		  <HintPath>..\packages\Microsoft.AppCenter.Distribute.1.1.0\lib\MonoAndroid403\Microsoft.AppCenter.Distribute.Android.Bindings.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.AppCenter.Distribute">
+		  <HintPath>..\packages\Microsoft.AppCenter.Distribute.1.1.0\lib\MonoAndroid403\Microsoft.AppCenter.Distribute.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.AppCenter.Crashes.Android.Bindings">
+		  <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.1.0\lib\MonoAndroid403\Microsoft.AppCenter.Crashes.Android.Bindings.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.AppCenter.Crashes">
+		  <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.1.0\lib\MonoAndroid403\Microsoft.AppCenter.Crashes.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.AppCenter.Analytics.Android.Bindings">
+		  <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.1.0\lib\MonoAndroid403\Microsoft.AppCenter.Analytics.Android.Bindings.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.AppCenter.Analytics">
+		  <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.1.0\lib\MonoAndroid403\Microsoft.AppCenter.Analytics.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>

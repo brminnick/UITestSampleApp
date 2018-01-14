@@ -1,10 +1,10 @@
 ﻿namespace UITestSampleApp
 {
-	public static class MobileCenterConstants
+	public static class AppCenterConstants
 	{
 		#region Mobile Center
-		public const string MobileCenteriOSApiKey = "36f454de-dbe0-4a38-a11b-68323a21a52e";
-        public const string MobileCenterDroidApiKey = "844c6c8e-2c35-473f-b920-8e283333b60c";
+		public const string AppCenteriOSApiKey = "36f454de-dbe0-4a38-a11b-68323a21a52e";
+        public const string AppCenterDroidApiKey = "844c6c8e-2c35-473f-b920-8e283333b60c";
 		#endregion
 
 		#region First Page

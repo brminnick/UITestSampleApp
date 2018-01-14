@@ -40,8 +40,8 @@ namespace UITestSampleApp
         #region Methods
         async Task ExecuteGoButtonCommand()
         {
-            AppCenterHelpers.TrackEvent(MobileCenterConstants.GoButtonTapped, new Dictionary<string, string> {
-                { MobileCenterConstants.FirstPageTextEntered, EntryText }
+            AppCenterHelpers.TrackEvent(AppCenterConstants.GoButtonTapped, new Dictionary<string, string> {
+                { AppCenterConstants.FirstPageTextEntered, EntryText }
             });
 
             LabelText = string.Empty;
