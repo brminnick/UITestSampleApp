@@ -55,7 +55,7 @@ namespace UITestSampleApp
                     break;
 
                 default:
-                    throw new Exception("Platform Not Supported");
+                    throw new NotSupportedException("Runtime Platform Not Supported");
             }
 
             return DependencyService.Get<IEnvironment>().IsOperatingSystemSupported(majorVersion, minorVersion);

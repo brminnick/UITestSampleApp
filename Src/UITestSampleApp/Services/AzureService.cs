@@ -30,48 +30,48 @@ namespace UITestSampleApp
         #region Methods
         public async Task<IEnumerable<T>> GetItemsAsync<T>() where T : EntityData
         {
-            await Initialize<T>();
+            await Initialize<T>().ConfigureAwait(false);
 
-            return await MobileServiceClient.GetSyncTable<T>().ToEnumerableAsync();
+            return await MobileServiceClient.GetSyncTable<T>().ToEnumerableAsync().ConfigureAwait(false);
         }
 
         public async Task<T> GetItem<T>(string id) where T : EntityData
         {
-            await Initialize<T>();
+            await Initialize<T>().ConfigureAwait(false);
 
-            return await MobileServiceClient.GetSyncTable<T>().LookupAsync(id);
+            return await MobileServiceClient.GetSyncTable<T>().LookupAsync(id).ConfigureAwait(false);
         }
 
         public async Task AddItemAsync<T>(T item) where T : EntityData
         {
-            await Initialize<T>();
+            await Initialize<T>().ConfigureAwait(false);
 
-            await MobileServiceClient.GetSyncTable<T>().InsertAsync(item);
+            await MobileServiceClient.GetSyncTable<T>().InsertAsync(item).ConfigureAwait(false);
         }
 
         public async Task UpdateItemAsync<T>(T item) where T : EntityData
         {
-            await Initialize<T>();
+            await Initialize<T>().ConfigureAwait(false);
 
-            await MobileServiceClient.GetSyncTable<T>().UpdateAsync(item);
+            await MobileServiceClient.GetSyncTable<T>().UpdateAsync(item).ConfigureAwait(false);
         }
 
         public async Task RemoveItemAsync<T>(T item) where T : EntityData
         {
-            await Initialize<T>();
+            await Initialize<T>().ConfigureAwait(false);
 
-            await MobileServiceClient.GetSyncTable<T>().DeleteAsync(item);
+            await MobileServiceClient.GetSyncTable<T>().DeleteAsync(item).ConfigureAwait(false);
         }
 
         public async Task SyncItemsAsync<T>() where T : EntityData
         {
-            await Initialize<T>();
+            await Initialize<T>().ConfigureAwait(false);
 
             UpdateNetworkActivityIndicatorStatus(true);
 
             try
             {
-                await MobileServiceClient.GetSyncTable<T>().PullAsync($"all{typeof(T).Name}", MobileServiceClient.GetSyncTable<T>().CreateQuery());
+                await MobileServiceClient.GetSyncTable<T>().PullAsync($"all{typeof(T).Name}", MobileServiceClient.GetSyncTable<T>().CreateQuery()).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -90,18 +90,18 @@ namespace UITestSampleApp
 
             _isInitializedDictionary?.Add(typeof(T), false);
 
-            await ConfigureOnlineOfflineSync<T>();
+            await ConfigureOnlineOfflineSync<T>().ConfigureAwait(false);
 
             _isInitializedDictionary[typeof(T)] = true;
         }
 
-        async Task ConfigureOnlineOfflineSync<T>() where T : EntityData
+        Task ConfigureOnlineOfflineSync<T>() where T : EntityData
         {
             var path = Path.Combine(MobileServiceClient.DefaultDatabasePath, "app.db");
             var store = new MobileServiceSQLiteStore(path);
             store.DefineTable<T>();
 
-            await MobileServiceClient.SyncContext.InitializeAsync(store, new SyncHandler());
+            return MobileServiceClient.SyncContext.InitializeAsync(store, new SyncHandler());
         }
 
         bool IsDataTypeInitialized<T>() where T : EntityData

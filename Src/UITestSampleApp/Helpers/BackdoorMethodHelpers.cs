@@ -53,12 +53,13 @@ namespace UITestSampleApp
 
         static List<ListPageDataModel> GetListPageData()
         {
-            if (!(CurrentPage is ListPage listPage))
-                return null;
+            if (CurrentPage is ListPage listPage)
+            {
+                var listViewModel = listPage.BindingContext as ListViewModel;
+                return listViewModel.DataList;
+            }
 
-            var listViewModel = listPage.BindingContext as ListViewModel;
-
-            return listViewModel.DataList;
+            return null;
         }
 
         static Page GetCurrentPage()

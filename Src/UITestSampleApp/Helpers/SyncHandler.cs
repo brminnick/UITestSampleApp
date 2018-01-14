@@ -40,7 +40,7 @@ namespace UITestSampleApp
                         serverItem = await operation?.Table?.LookupAsync(operationItemId) as JObject;
                     }
 
-                    var didUserSelectServe = await GetUserResponseToKeepServerDataOrLocalData();
+                    var didUserSelectServe = await GetUserResponseToKeepServerDataOrLocalData().ConfigureAwait(false);
 
                     if (didUserSelectServe)
                         return serverItem;

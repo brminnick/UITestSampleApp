@@ -47,7 +47,7 @@ namespace UITestSampleApp
             LabelText = string.Empty;
             IsActiityIndicatorRunning = true;
 
-            await Task.Delay(1500);
+            await Task.Delay(1500).ConfigureAwait(false);
 
             IsActiityIndicatorRunning = false;
             LabelText = EntryText;

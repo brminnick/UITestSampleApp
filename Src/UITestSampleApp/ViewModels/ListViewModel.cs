@@ -40,15 +40,15 @@ namespace UITestSampleApp
         #region Methods
         async Task RefreshDataFromAzureAsync()
         {
-            var isAzureDatabaseReachable = await CrossConnectivity.Current.IsRemoteReachable(AzureConstants.AzureDataServiceUrl, 80, 1000);
+            var isAzureDatabaseReachable = await CrossConnectivity.Current.IsRemoteReachable(AzureConstants.AzureDataServiceUrl, 80, 1000).ConfigureAwait(false);
             if (!CrossConnectivity.Current.IsConnected || !isAzureDatabaseReachable)
                 return;
 
             try
             {
-                await DependencyService.Get<IDataService>().SyncItemsAsync<ListPageDataModel>();
+                await DependencyService.Get<IDataService>().SyncItemsAsync<ListPageDataModel>().ConfigureAwait(false);
 
-                var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
+                var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>().ConfigureAwait(false);
                 DataList = dataListAsIEnumerable.ToList();
             }
             catch (Exception e)
@@ -61,7 +61,7 @@ namespace UITestSampleApp
         {
             try
             {
-                var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>();
+                var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>().ConfigureAwait(false);
                 DataList = dataListAsIEnumerable?.ToList();
             }
             catch (Exception e)
@@ -80,7 +80,7 @@ namespace UITestSampleApp
 
                 var showRefreshIndicatorForOneSecondTask = Task.Delay(1000);
 
-                await Task.WhenAll(RefreshDataAsync(), showRefreshIndicatorForOneSecondTask);
+                await Task.WhenAll(RefreshDataAsync(), showRefreshIndicatorForOneSecondTask).ConfigureAwait(false);
             }
             finally
             {
@@ -90,8 +90,8 @@ namespace UITestSampleApp
 
         async Task RefreshDataAsync()
         {
-            await RefreshDataFromLocalDatabaseAsync();
-            await RefreshDataFromAzureAsync();
+            await RefreshDataFromLocalDatabaseAsync().ConfigureAwait(false);
+            await RefreshDataFromAzureAsync().ConfigureAwait(false);
         }
         #endregion
     }

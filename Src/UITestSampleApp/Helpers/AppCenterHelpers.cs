@@ -26,7 +26,7 @@ namespace UITestSampleApp
                     Start(MobileCenterConstants.MobileCenterDroidApiKey);
                     break;
                 default:
-                    throw new Exception("Runtime Platform Not Supported");
+                    throw new NotSupportedException("Runtime Platform Not Supported");
             }
         }
 

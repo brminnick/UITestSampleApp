@@ -129,7 +129,7 @@ namespace UITestSampleApp
                 case Device.Android:
                     return new Thickness(10, 0, 10, 5);
                 default:
-                    throw new Exception("Platform Not Supported");
+                    throw new NotSupportedException("Runtime Platform Not Supported");
             }
         }
         #endregion
