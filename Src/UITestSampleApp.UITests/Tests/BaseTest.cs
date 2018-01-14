@@ -4,34 +4,41 @@ using Xamarin.UITest;
 
 namespace UITestSampleApp.UITests
 {
-	[TestFixture(Platform.Android)]
-	[TestFixture(Platform.iOS)]
+    [TestFixture(Platform.Android)]
+    [TestFixture(Platform.iOS)]
+    abstract class BaseTest
+    {
+        #region Constant Fields
+        readonly Platform _platform;
+        #endregion
 
-	public abstract class BaseTest
-	{
-		protected IApp App;
-		protected Platform Platform;
+        #region Constructors
+        protected BaseTest(Platform platform) => _platform = platform;
+        #endregion
 
-		protected FirstPage FirstPage;
-		protected ListPage ListPage;
-		protected LoginPage LoginPage;
-		protected NewUserSignUpPage NewUserSignUpPage;
+        #region Properties
+        protected IApp App { get; private set; }
+        protected FirstPage FirstPage { get; private set; }
+        protected ListPage ListPage { get; private set; }
+        protected LoginPage LoginPage { get; private set; }
+        protected NewUserSignUpPage NewUserSignUpPage { get; private set; }
+        #endregion
 
-		protected BaseTest (Platform platform) => Platform = platform;
+        #region Methods
+        [SetUp]
+        virtual public void BeforeEachTest()
+        {
+            App = AppInitializer.StartApp(_platform);
+            App.Screenshot("App Initialized");
 
-		[SetUp]
-		virtual public void BeforeEachTest()
-		{
-			App = AppInitializer.StartApp(Platform);
-			App.Screenshot("App Initialized");
+            FirstPage = new FirstPage(App);
+            ListPage = new ListPage(App);
+            LoginPage = new LoginPage(App);
+            NewUserSignUpPage = new NewUserSignUpPage(App);
 
-			FirstPage = new FirstPage(App, Platform);
-			ListPage = new ListPage(App, Platform);
-			LoginPage = new LoginPage(App, Platform);
-			NewUserSignUpPage = new NewUserSignUpPage(App, Platform);
-
-			LoginPage.WaitForPageToLoad();
-		}
-	}
+            LoginPage.WaitForPageToLoad();
+        }
+        #endregion
+    }
 }
 

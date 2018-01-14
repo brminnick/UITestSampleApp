@@ -8,129 +8,128 @@ using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Querie
 
 namespace UITestSampleApp.UITests
 {
-	public class LoginPage : BasePage
-	{
-		readonly Query _forgotPasswordButton;
-		readonly Query _loginButton;
-		readonly Query _passwordEntry;
-		readonly Query _signUpButton;
-		readonly Query _usernameEntry;
-		readonly Query _crashButton;
+    class LoginPage : BasePage
+    {
+        readonly Query _forgotPasswordButton;
+        readonly Query _loginButton;
+        readonly Query _passwordEntry;
+        readonly Query _signUpButton;
+        readonly Query _usernameEntry;
+        readonly Query _crashButton;
 
-		public LoginPage(IApp app, Platform platform)
-			: base(app, platform, PageTitleConstants.LoginPage)
-		{
-			_forgotPasswordButton = x => x.Marked(AutomationIdConstants.ForgotPasswordButton);
-			_loginButton = x => x.Marked(AutomationIdConstants.LoginButton);
-			_passwordEntry = x => x.Marked(AutomationIdConstants.PasswordEntry);
-			_signUpButton = x => x.Marked(AutomationIdConstants.NewUserButton);
-			_usernameEntry = x => x.Marked(AutomationIdConstants.UsernameEntry);
-			_crashButton = x => x.Marked(AutomationIdConstants.CrashButton);
-		}
+        public LoginPage(IApp app) : base(app, PageTitleConstants.LoginPage)
+        {
+            _forgotPasswordButton = x => x.Marked(AutomationIdConstants.ForgotPasswordButton);
+            _loginButton = x => x.Marked(AutomationIdConstants.LoginButton);
+            _passwordEntry = x => x.Marked(AutomationIdConstants.PasswordEntry);
+            _signUpButton = x => x.Marked(AutomationIdConstants.NewUserButton);
+            _usernameEntry = x => x.Marked(AutomationIdConstants.UsernameEntry);
+            _crashButton = x => x.Marked(AutomationIdConstants.CrashButton);
+        }
 
-		public void LoginWithUsernamePassword(string username, string password, bool shouldUseKeyboardReturnButton)
-		{
-			switch (shouldUseKeyboardReturnButton)
-			{
-				case true:
-					LoginWithUsernamePasswordUsingEnterButton(username, password);
-					break;
-				case false:
-					LoginWithUsernamePasswordNotUsingEnterButton(username, password);
-					break;
-			}
-		}
+        public void LoginWithUsernamePassword(string username, string password, bool shouldUseKeyboardReturnButton)
+        {
+            switch (shouldUseKeyboardReturnButton)
+            {
+                case true:
+                    LoginWithUsernamePasswordUsingEnterButton(username, password);
+                    break;
+                case false:
+                    LoginWithUsernamePasswordNotUsingEnterButton(username, password);
+                    break;
+            }
+        }
 
-		public void EnterUsername(string username)
-		{
-			UITestHelpers.EnterText(_usernameEntry, username, App);
-			App.Screenshot($"Entered Username: {username}");
-		}
+        public void EnterUsername(string username)
+        {
+            UITestHelpers.EnterText(_usernameEntry, username, App);
+            App.Screenshot($"Entered Username: {username}");
+        }
 
-		public void EnterPassword(string password)
-		{
-			UITestHelpers.EnterText(_passwordEntry, password, App);
-			App.Screenshot($"Entered Password: {password}");
-		}
+        public void EnterPassword(string password)
+        {
+            UITestHelpers.EnterText(_passwordEntry, password, App);
+            App.Screenshot($"Entered Password: {password}");
+        }
 
-		public void PressSignUpButton()
-		{
-			App.Tap(_signUpButton);
-			App.Screenshot("Tapped Sign Up Button");
-		}
+        public void PressSignUpButton()
+        {
+            App.Tap(_signUpButton);
+            App.Screenshot("Tapped Sign Up Button");
+        }
 
-		public void PressForgotPasswordButton()
-		{
-			App.Tap(_forgotPasswordButton);
-			App.Screenshot("Tapped Forgot Password Button");
-		}
+        public void PressForgotPasswordButton()
+        {
+            App.Tap(_forgotPasswordButton);
+            App.Screenshot("Tapped Forgot Password Button");
+        }
 
-		public void PressLoginButton()
-		{
-			App.Tap(_loginButton);
-			App.Screenshot("Tapped Login Button");
-		}
+        public void PressLoginButton()
+        {
+            App.Tap(_loginButton);
+            App.Screenshot("Tapped Login Button");
+        }
 
-		public void SignUpNewUserFromDialog()
-		{
-			LoginWithUsernamePasswordNotUsingEnterButton("incorrectUserName", "incorrectPassword");
-			TapSignUpFromDialog();
-		}
+        public void SignUpNewUserFromDialog()
+        {
+            LoginWithUsernamePasswordNotUsingEnterButton("incorrectUserName", "incorrectPassword");
+            TapSignUpFromDialog();
+        }
 
-		public void TapSignUpFromDialog(int timeoutInSeconds = 60)
-		{
-			App.WaitForElement("Sign up", "Sign Up Dialog Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
-			App.Tap("Sign up");
-			App.Screenshot("Tapped Sign Up Button From Pop Up Dialog");
-		}
+        public void TapSignUpFromDialog(int timeoutInSeconds = 60)
+        {
+            App.WaitForElement("Sign up", "Sign Up Dialog Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
+            App.Tap("Sign up");
+            App.Screenshot("Tapped Sign Up Button From Pop Up Dialog");
+        }
 
-		public void TapTryAgainDialog()
-		{
-			App.Tap("Try again");
-			App.Screenshot("Tapped Try Again Button From Pop Up Dialog");
-		}
+        public void TapTryAgainDialog()
+        {
+            App.Tap("Try again");
+            App.Screenshot("Tapped Try Again Button From Pop Up Dialog");
+        }
 
-		public void TapOkayOnErrorDialog()
-		{
-			App.Tap("Okay");
-			App.Screenshot("Tapped Okay on Error Dialog");
-		}
+        public void TapOkayOnErrorDialog()
+        {
+            App.Tap("Okay");
+            App.Screenshot("Tapped Okay on Error Dialog");
+        }
 
-		public override void WaitForPageToLoad()
-		{
+        public override void WaitForPageToLoad()
+        {
             App.WaitForElement(_loginButton, "Login Screen Did Not Appear");
-		}
+        }
 
-		public void TapCrashButton()
-		{
-			App.Tap(_crashButton);
-			App.Screenshot("Crash Button Tapped");
-		}
+        public void TapCrashButton()
+        {
+            App.Tap(_crashButton);
+            App.Screenshot("Crash Button Tapped");
+        }
 
-		void LoginWithUsernamePasswordNotUsingEnterButton(string username, string password)
-		{
-			EnterUsername(username);
-			EnterPassword(password);
-			PressLoginButton();
-		}
+        void LoginWithUsernamePasswordNotUsingEnterButton(string username, string password)
+        {
+            EnterUsername(username);
+            EnterPassword(password);
+            PressLoginButton();
+        }
 
-		void LoginWithUsernamePasswordUsingEnterButton(string username, string password)
-		{
-			App.Tap(_usernameEntry);
-			App.ClearText();
-			App.EnterText(username);
-			App.Screenshot($"Entered Username: {username}");
+        void LoginWithUsernamePasswordUsingEnterButton(string username, string password)
+        {
+            App.Tap(_usernameEntry);
+            App.ClearText();
+            App.EnterText(username);
+            App.Screenshot($"Entered Username: {username}");
 
-			App.PressEnter();
+            App.PressEnter();
 
 
-			App.ClearText();
-			App.EnterText(password);
-			App.Screenshot($"Entered Password: {password}");
+            App.ClearText();
+            App.EnterText(password);
+            App.Screenshot($"Entered Password: {password}");
 
-			App.PressEnter();
+            App.PressEnter();
 
-			App.Screenshot("Logged In Using Enter Button");
-		}
-	}
+            App.Screenshot("Logged In Using Enter Button");
+        }
+    }
 }

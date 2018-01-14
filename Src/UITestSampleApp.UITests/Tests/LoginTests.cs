@@ -1,11 +1,15 @@
-﻿using Xamarin.UITest;
+﻿using System.Linq;
+
+using Xamarin.UITest;
 
 using NUnit.Framework;
 
+using UITestSampleApp.Shared;
+
 namespace UITestSampleApp.UITests
 {
-	[Category("LoginTests")]
-	public class LoginTests : BaseTest
+    [Category(nameof(LoginTests))]
+	class LoginTests : BaseTest
 	{
 		const string _username = "Brandon";
 
@@ -28,7 +32,6 @@ namespace UITestSampleApp.UITests
 			//Arrange
 			var username = _username;
 			var password = "test";
-			var expectedFirstPageTitle = "First Page";
 
 			//Act
 			LoginPage.PressSignUpButton();
@@ -37,9 +40,8 @@ namespace UITestSampleApp.UITests
 			LoginPage.WaitForPageToLoad();
 			LoginPage.LoginWithUsernamePassword(username, password, shouldUseKeyboardReturnButton);
 
-			//Assert
-			var actualFirstPageTitle = FirstPage.GetTitle();
-			Assert.AreEqual(expectedFirstPageTitle, actualFirstPageTitle);
+            //Assert
+            FirstPage.WaitForPageToLoad();
 		}
 
 		[Test]
@@ -57,7 +59,7 @@ namespace UITestSampleApp.UITests
 			LoginPage.TapTryAgainDialog();
 
 			//Assert
-			Assert.IsTrue(App.Query("Login").Length > 0);
+			Assert.IsTrue(App.Query("Login").Any());
 		}
 
 		[Test]
@@ -71,8 +73,8 @@ namespace UITestSampleApp.UITests
 			LoginPage.PressLoginButton();
 			LoginPage.TapOkayOnErrorDialog();
 
-			//Assert
-			Assert.IsTrue(App.Query("Login").Length > 0);
+            //Assert
+            Assert.IsTrue(App.Query("Login").Any());
 		}
 
 		[Test]
@@ -87,7 +89,7 @@ namespace UITestSampleApp.UITests
 			LoginPage.TapOkayOnErrorDialog();
 
 			//Assert
-			Assert.IsTrue(App.Query("Login").Length > 0);
+			Assert.IsTrue(App.Query("Login").Any());
 		}
 
 		//[Ignore]

@@ -3,14 +3,16 @@ using System.Linq;
 using System.Threading;
 
 using Xamarin.UITest;
+using Xamarin.UITest.iOS;
+using Xamarin.UITest.Android;
 
 using UITestSampleApp.Shared;
 
 namespace UITestSampleApp.UITests
 {
-    public class ListPage : BasePage
+    class ListPage : BasePage
     {
-        public ListPage(IApp app, Platform platform) : base(app, platform, PageTitleConstants.ListPage)
+        public ListPage(IApp app) : base(app, PageTitleConstants.ListPage)
         {
         }
 
@@ -18,13 +20,17 @@ namespace UITestSampleApp.UITests
         {
             get
             {
-                if (OnAndroid)
-                    return (bool)App.Query(x => x.Class("SwipeRefreshLayout").Invoke("isRefreshing")).FirstOrDefault();
+                switch (App)
+                {
+                    case AndroidApp androidApp:
+                        return (bool)App.Query(x => x.Class("SwipeRefreshLayout").Invoke("isRefreshing")).FirstOrDefault();
 
-                if (OniOS)
-                    return App.Query(x => x.Class("UIRefreshControl")).Any();
+                    case iOSApp iosApp:
+                        return App.Query(x => x.Class("UIRefreshControl")).Any();
 
-                throw new Exception("Platform Not Recognized");
+                    default:
+                        throw new NotSupportedException();
+                }
             }
         }
 
