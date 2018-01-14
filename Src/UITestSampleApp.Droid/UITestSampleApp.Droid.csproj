@@ -256,7 +256,6 @@
 		<Compile Include="MainActivity.cs" />
 		<Compile Include="Resources\Resource.designer.cs" />
 		<Compile Include="Properties\AssemblyInfo.cs" />
-		<Compile Include="UITestSampleApp_Application.cs" />
 		<Compile Include="Services\Login_Droid.cs" />
 		<Compile Include="Services\Environment_Android.cs" />
 		<Compile Include="CustomRenderers\StyledEntryRenderer.cs" />
