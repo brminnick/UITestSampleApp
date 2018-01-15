@@ -52,11 +52,11 @@ namespace UITestSampleApp
 
             AppCenterHelpers.TrackEvent(AppCenterConstants.ListViewItemTapped,
                 new Dictionary<string, string> {
-                    { AppCenterConstants.ListViewItemNumber, tappedListPageDataModel.DetailProperty }
+                    { AppCenterConstants.ListViewItemNumber, tappedListPageDataModel.Detail }
                 }
             );
 
-            await DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.DetailProperty}", "OK");
+            await DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.Detail}", "OK");
 
             listView.SelectedItem = null;
         }

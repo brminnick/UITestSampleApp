@@ -25,8 +25,8 @@ namespace UITestSampleApp
 
 			var item = BindingContext as ListPageDataModel;
 
-			Text = item?.TextProperty ?? "";
-            Detail = item?.DetailProperty ?? "";
+			Text = item?.Text ?? "";
+            Detail = item?.Detail ?? "";
 		}
 		#endregion
 	}

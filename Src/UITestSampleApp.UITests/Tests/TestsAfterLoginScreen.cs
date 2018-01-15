@@ -61,7 +61,7 @@ namespace UITestSampleApp.UITests
             ListPage.WaitForNoActivityIndicator();
 
             //Assert
-            Assert.IsTrue(BackdoorHelpers.GetListPageData(App).Count > 30, "Less than 30 items found in List");
+            Assert.IsTrue(BackdoorHelpers.GetListPageData(App).Count >= 30, "Less than 30 items found in List");
         }
     }
 }
