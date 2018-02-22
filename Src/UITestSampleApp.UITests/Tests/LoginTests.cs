@@ -4,104 +4,102 @@ using Xamarin.UITest;
 
 using NUnit.Framework;
 
-using UITestSampleApp.Shared;
-
 namespace UITestSampleApp.UITests
 {
     [Category(nameof(LoginTests))]
-	class LoginTests : BaseTest
-	{
-		const string _username = "Brandon";
+    class LoginTests : BaseTest
+    {
+        const string _username = "Brandon";
 
-		public LoginTests(Platform platform)
-			: base(platform)
-		{
-		}
+        public LoginTests(Platform platform) : base(platform)
+        {
+        }
 
-		public override void BeforeEachTest()
-		{
-			base.BeforeEachTest();
+        public override void BeforeEachTest()
+        {
+            base.BeforeEachTest();
 
-			BackdoorHelpers.CleariOSKeyChain(App, _username);
-		}
+            BackdoorHelpers.CleariOSKeyChain(App, _username);
+        }
 
-		[TestCase(true)]
-		[TestCase(false)]
-		public void CreateNewUserAndLogin(bool shouldUseKeyboardReturnButton)
-		{
-			//Arrange
-			var username = _username;
-			var password = "test";
+        [TestCase(true)]
+        [TestCase(false)]
+        public void CreateNewUserAndLogin(bool shouldUseKeyboardReturnButton)
+        {
+            //Arrange
+            var username = _username;
+            var password = "test";
 
-			//Act
-			LoginPage.PressSignUpButton();
-			NewUserSignUpPage.CreateNewUserWithPassword(username, password, shouldUseKeyboardReturnButton);
+            //Act
+            LoginPage.PressSignUpButton();
+            NewUserSignUpPage.CreateNewUserWithPassword(username, password, shouldUseKeyboardReturnButton);
 
-			LoginPage.WaitForPageToLoad();
-			LoginPage.LoginWithUsernamePassword(username, password, shouldUseKeyboardReturnButton);
+            LoginPage.WaitForPageToLoad();
+            LoginPage.LoginWithUsernamePassword(username, password, shouldUseKeyboardReturnButton);
 
             //Assert
             FirstPage.WaitForPageToLoad();
-		}
+        }
 
-		[Test]
-		public void CreateNewUserAndUnsuccessfullyLogin()
-		{
-			//Arrange
-			var username = _username;
-			var password = "test";
-			var incorrectPassword = "incorrect";
+        [Test]
+        public void CreateNewUserAndUnsuccessfullyLogin()
+        {
+            //Arrange
+            var username = _username;
+            var password = "test";
+            var incorrectPassword = "incorrect";
 
             //Act
-			LoginPage.PressSignUpButton();
-			NewUserSignUpPage.CreateNewUserWithPassword(username, password, false);
-			LoginPage.LoginWithUsernamePassword(username, incorrectPassword, false);
-			LoginPage.TapTryAgainDialog();
-
-			//Assert
-			Assert.IsTrue(App.Query("Login").Any());
-		}
-
-		[Test]
-		public void TryLoginWithNoPasswordEntered()
-		{
-			//Arrange
-			var username = _username;
-
-			//Act
-			LoginPage.EnterUsername(username);
-			LoginPage.PressLoginButton();
-			LoginPage.TapOkayOnErrorDialog();
+            LoginPage.PressSignUpButton();
+            NewUserSignUpPage.CreateNewUserWithPassword(username, password, false);
+            LoginPage.LoginWithUsernamePassword(username, incorrectPassword, false);
+            LoginPage.TapTryAgainDialog();
 
             //Assert
             Assert.IsTrue(App.Query("Login").Any());
-		}
+        }
 
-		[Test]
-		public void TryLoginWithNoUsernameEntered()
-		{
-			//Arrange
-			var password = "xamarin";
+        [Test]
+        public void TryLoginWithNoPasswordEntered()
+        {
+            //Arrange
+            var username = _username;
 
-			//Act	
-			LoginPage.EnterPassword(password);
-			LoginPage.PressLoginButton();
-			LoginPage.TapOkayOnErrorDialog();
+            //Act
+            LoginPage.EnterUsername(username);
+            LoginPage.PressLoginButton();
+            LoginPage.TapOkayOnErrorDialog();
 
-			//Assert
-			Assert.IsTrue(App.Query("Login").Any());
-		}
+            //Assert
+            Assert.IsTrue(App.Query("Login").Any());
+        }
 
-		//[Ignore]
-		[Test]
-		public void CrashButtonTest()
-		{
-			//Arrange
+        [Test]
+        public void TryLoginWithNoUsernameEntered()
+        {
+            //Arrange
+            var password = "xamarin";
 
-			//Act
-			LoginPage.TapCrashButton();
+            //Act	
+            LoginPage.EnterPassword(password);
+            LoginPage.PressLoginButton();
+            LoginPage.TapOkayOnErrorDialog();
 
-			//Assert
-		}
-	}
+            //Assert
+            Assert.IsTrue(App.Query("Login").Any());
+        }
+
+        //[Ignore]
+        [Test]
+        public void CrashButtonTest()
+        {
+            //Arrange
+
+            //Act
+            LoginPage.TapCrashButton();
+
+            //Assert
+            Assert.IsTrue(App.Query("Login").Any());
+        }
+    }
 }

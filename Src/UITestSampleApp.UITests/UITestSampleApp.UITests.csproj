@@ -53,6 +53,7 @@
     <Compile Include="Tests\LoginTests.cs" />
     <Compile Include="Helpers\UITestHelpers.cs" />
     <Compile Include="Helpers\BackdoorHelpers.cs" />
+    <Compile Include="Tests\LaunchTests.cs" />
   </ItemGroup>
   <Import Project="..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
