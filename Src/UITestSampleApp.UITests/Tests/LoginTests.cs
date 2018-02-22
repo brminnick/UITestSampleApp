@@ -99,7 +99,7 @@ namespace UITestSampleApp.UITests
             LoginPage.TapCrashButton();
 
             //Assert
-            Assert.IsTrue(App.Query("Login").Any());
+            LoginPage.WaitForPageToLoad();
         }
     }
 }
