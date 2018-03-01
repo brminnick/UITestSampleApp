@@ -1,4 +1,5 @@
 ﻿using Android.Widget;
+using Android.Content;
 using Android.Graphics;
 
 using Xamarin.Forms;
@@ -15,6 +16,11 @@ namespace UITestSampleApp.Droid
 {
 	public class StyledEntryRenderer : EntryRenderer
 	{
+        public StyledEntryRenderer(Context context) : base(context)
+        {
+            
+        }
+
 		protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
 		{
 			base.OnElementChanged(e);

@@ -52,7 +52,7 @@ namespace UITestSampleApp
 
             AppCenterHelpers.TrackEvent(AppCenterConstants.ListViewItemTapped,
                 new Dictionary<string, string> {
-                    { AppCenterConstants.ListViewItemNumber, tappedListPageDataModel.Detail }
+                    { AppCenterConstants.ListViewItemNumber, tappedListPageDataModel.Detail.ToString() }
                 }
             );
 

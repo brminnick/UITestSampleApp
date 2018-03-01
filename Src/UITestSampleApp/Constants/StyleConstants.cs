@@ -35,7 +35,7 @@ namespace UITestSampleApp
 		{
 			Setters = {
 				new Setter {
-					Property = Button.BorderRadiusProperty, Value = 3
+					Property = Button.CornerRadiusProperty, Value = 3
 				},
 				new Setter{
 					Property = Button.TextColorProperty, Value = Color.White

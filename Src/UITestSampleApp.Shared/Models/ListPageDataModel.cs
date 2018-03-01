@@ -2,7 +2,7 @@
 {
 	public class ListPageDataModel : EntityData
 	{
-		public string Detail { get; set; }
+		public int Detail { get; set; }
 		public string Text { get; set; }
 	}
 }

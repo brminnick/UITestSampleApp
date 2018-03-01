@@ -46,12 +46,14 @@ namespace UITestSampleApp.UITests
                     _goButton = x => x.Class("AppCompatButton").Index(0);
                     _textEntry = x => x.Class("EntryEditText");
                     _listViewButton = x => x.Class("AppCompatButton").Index(1);
+                    _textLabel = x => x.Class("AppCompatTextView").Index(0);
                     break;
 
                 case iOSApp iosApp:
                     _goButton = x => x.Class("UIButton").Index(1);
                     _textEntry = x => x.Class("UITextField");
                     _listViewButton = x => x.Class("UIButton").Index(0);
+					_textLabel = x => x.Class("UILabel").Index(0);
                     break;
 
                 default:

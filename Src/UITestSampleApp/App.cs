@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 
 using Xamarin.Forms;
-
-using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
@@ -14,8 +10,6 @@ namespace UITestSampleApp
         #region Constructors
         public App()
         {
-            DependencyService.Register<IDataService, AzureService>();
-
             var page = new LoginPage();
             NavigationPage.SetHasNavigationBar(page, false);
 

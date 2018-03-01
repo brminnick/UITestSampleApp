@@ -27,7 +27,11 @@ namespace UITestSampleApp
         public List<ListPageDataModel> DataList
         {
             get => _dataList;
-            set => SetProperty(ref _dataList, value);
+            set
+            {
+                value = value.OrderBy(x => x.Detail).ToList();
+                SetProperty(ref _dataList, value);
+            }
         }
 
         public bool IsRefreshing
@@ -46,10 +50,10 @@ namespace UITestSampleApp
 
             try
             {
-                await DependencyService.Get<IDataService>().SyncItemsAsync<ListPageDataModel>().ConfigureAwait(false);
+                await AzureService.Instance.SyncItemsAsync<ListPageDataModel>().ConfigureAwait(false);
 
-                var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>().ConfigureAwait(false);
-                DataList = dataListAsIEnumerable.ToList();
+                var dataList = await AzureService.Instance.GetItemsAsync<ListPageDataModel>().ConfigureAwait(false);
+                DataList = dataList.ToList();
             }
             catch (Exception e)
             {
@@ -61,8 +65,8 @@ namespace UITestSampleApp
         {
             try
             {
-                var dataListAsIEnumerable = await DependencyService.Get<IDataService>().GetItemsAsync<ListPageDataModel>().ConfigureAwait(false);
-                DataList = dataListAsIEnumerable?.ToList();
+                var dataList = await AzureService.Instance.GetItemsAsync<ListPageDataModel>().ConfigureAwait(false);
+                DataList = dataList?.ToList();
             }
             catch (Exception e)
             {

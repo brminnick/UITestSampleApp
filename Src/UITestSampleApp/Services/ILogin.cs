@@ -6,7 +6,6 @@ namespace UITestSampleApp
 	{
 		Task<bool> SetPasswordForUsername(string username, string password);
 		Task<bool> CheckLogin(string username, string password);
-
 	}
 }
 

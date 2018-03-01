@@ -28,6 +28,13 @@ namespace UITestSampleApp
 		#endregion
 
 		#region Methods
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            _usernameEntry.Focus();
+        }
+
 		protected override void LayoutChildren(double x, double y, double width, double height)
 		{
 			_cancelButton.WidthRequest = width - 40;

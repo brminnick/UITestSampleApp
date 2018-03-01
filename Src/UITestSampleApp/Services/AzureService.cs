@@ -12,9 +12,10 @@ using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
-    public class AzureService : IDataService
+    public class AzureService
     {
         #region Constant Fields
+        readonly static Lazy<AzureService> _instanceHolder = new Lazy<AzureService>(() => new AzureService());
         readonly Dictionary<Type, bool> _isInitializedDictionary = new Dictionary<Type, bool>();
         readonly Lazy<MobileServiceClient> _mobileServiceClientHolder = new Lazy<MobileServiceClient>(() => new MobileServiceClient(AzureConstants.AzureDataServiceUrl));
         #endregion
@@ -23,16 +24,25 @@ namespace UITestSampleApp
         int _networkIndicatorCount;
         #endregion
 
+        #region Constructors
+        AzureService()
+        {
+            
+        }
+        #endregion
+
         #region Properties
+        public static AzureService Instance => _instanceHolder.Value;
+
         MobileServiceClient MobileServiceClient => _mobileServiceClientHolder.Value;
         #endregion
 
         #region Methods
-        public async Task<IEnumerable<T>> GetItemsAsync<T>() where T : EntityData
+        public async Task<List<T>> GetItemsAsync<T>() where T : EntityData
         {
             await Initialize<T>().ConfigureAwait(false);
 
-            return await MobileServiceClient.GetSyncTable<T>().ToEnumerableAsync().ConfigureAwait(false);
+            return await MobileServiceClient.GetSyncTable<T>().ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<T> GetItem<T>(string id) where T : EntityData
