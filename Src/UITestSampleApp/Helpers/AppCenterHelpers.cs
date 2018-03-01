@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 
 using Microsoft.AppCenter;
@@ -25,6 +26,9 @@ namespace UITestSampleApp
             }
         }
 
+        [Conditional("DEBUG")]
+        public static void CrashApp() => Crashes.GenerateTestCrash();
+
         public static void TrackEvent(string trackIdentifier, IDictionary<string, string> table = null) =>
             Analytics.TrackEvent(trackIdentifier, table);
 
@@ -38,13 +42,15 @@ namespace UITestSampleApp
             TrackEvent(trackIdentifier, table);
         }
 
-        public static void LogException(Exception exception)
+        public static void LogException(Exception exception, IDictionary<string, string> properties = null)
         {
             var exceptionType = exception.GetType().ToString();
             var message = exception.Message;
 
-            System.Diagnostics.Debug.WriteLine(exceptionType);
-            System.Diagnostics.Debug.WriteLine($"Error: {message}");
+            Debug.WriteLine(exceptionType);
+            Debug.WriteLine($"Error: {message}");
+
+            Crashes.TrackError(exception, properties);
         }
 
         static void Start(string appSecret) =>

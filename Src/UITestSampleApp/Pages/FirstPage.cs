@@ -26,14 +26,14 @@ namespace UITestSampleApp
             _goButton = new StyledButton(Borders.Thin, 1)
             {
                 Text = "Go",
-                AutomationId = AutomationIdConstants.GoButton, // This provides an ID that can be referenced in UITests
+                AutomationId = AutomationIdConstants.FirstPage_GoButton, // This provides an ID that can be referenced in UITests
             };
             _goButton.SetBinding(Button.CommandProperty, nameof(ViewModel.GoButtonCommand));
 
             var textEntry = new StyledEntry(1)
             {
                 Placeholder = entryTextPaceHolder,
-                AutomationId = AutomationIdConstants.TextEntry, // This provides an ID that can be referenced in UITests
+                AutomationId = AutomationIdConstants.FirstPage_TextEntry, // This provides an ID that can be referenced in UITests
                 PlaceholderColor = Color.FromHex("749FA8"),
                 HorizontalTextAlignment = TextAlignment.Center
             };
@@ -44,7 +44,7 @@ namespace UITestSampleApp
 
             var textLabel = new StyledLabel
             {
-                AutomationId = AutomationIdConstants.TextLabel, // This provides an ID that can be referenced in UITests
+                AutomationId = AutomationIdConstants.FirstPage_TextLabel, // This provides an ID that can be referenced in UITests
                 HorizontalOptions = LayoutOptions.Center
             };
             textLabel.SetBinding(Label.TextProperty, nameof(ViewModel.LabelText));
@@ -52,12 +52,12 @@ namespace UITestSampleApp
             _listPageButton = new StyledButton(Borders.Thin, 1)
             {
                 Text = "Go to List Page",
-                AutomationId = AutomationIdConstants.ListViewButton // This provides an ID that can be referenced in UITests
+                AutomationId = AutomationIdConstants.FirstPage_ListViewButton // This provides an ID that can be referenced in UITests
             };
 
             var activityIndicator = new ActivityIndicator
             {
-                AutomationId = AutomationIdConstants.BusyActivityIndicator, // This provides an ID that can be referenced in UITests
+                AutomationId = AutomationIdConstants.FirstPage_BusyActivityIndicator, // This provides an ID that can be referenced in UITests
                 Color = Color.White
             };
             activityIndicator.SetBinding(IsVisibleProperty, nameof(ViewModel.IsActiityIndicatorRunning));

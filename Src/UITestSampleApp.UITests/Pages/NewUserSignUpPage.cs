@@ -15,10 +15,10 @@ namespace UITestSampleApp.UITests
 
         public NewUserSignUpPage(IApp app) : base(app, PageTitleConstants.NewUserSignUpPage)
         {
-            _cancelButton = x => x.Marked(AutomationIdConstants.CancelButton);
-            _passwordEntry = x => x.Marked(AutomationIdConstants.NewPasswordEntry);
-            _saveUsernameButton = x => x.Marked(AutomationIdConstants.SaveUsernameButton);
-            _usernameEntry = x => x.Marked(AutomationIdConstants.NewUserNameEntry);
+            _cancelButton = x => x.Marked(AutomationIdConstants.NewUserSignUpPage_CancelButton);
+            _passwordEntry = x => x.Marked(AutomationIdConstants.NewUserSignUpPage_NewPasswordEntry);
+            _saveUsernameButton = x => x.Marked(AutomationIdConstants.NewUserSignUpPage_SaveUsernameButton);
+            _usernameEntry = x => x.Marked(AutomationIdConstants.NewUserSignUpPage_NewUserNameEntry);
         }
 
         public void CreateNewUserWithPassword(string username, string password, bool shouldUseKeyboardReturnButton)

@@ -121,7 +121,7 @@ namespace MyLoginUI.Pages
             };
             _loginEntry = new StyledEntry
             {
-                AutomationId = AutomationIdConstants.UsernameEntry,
+                AutomationId = AutomationIdConstants.LoginPage_UsernameEntry,
                 Placeholder = "Username",
             };
             CustomReturnEffect.SetReturnType(_loginEntry, ReturnType.Next);
@@ -129,7 +129,7 @@ namespace MyLoginUI.Pages
 
             _passwordEntry = new StyledEntry
             {
-                AutomationId = AutomationIdConstants.PasswordEntry,
+                AutomationId = AutomationIdConstants.LoginPage_PasswordEntry,
                 Placeholder = "Password",
                 IsPassword = true,
             };
@@ -138,17 +138,17 @@ namespace MyLoginUI.Pages
 
             _loginButton = new StyledButton(Borders.Thin)
             {
-                AutomationId = AutomationIdConstants.LoginButton,
+                AutomationId = AutomationIdConstants.LoginPage_LoginButton,
                 Text = "Login",
             };
             _newUserSignUpButton = new StyledButton(Borders.None)
             {
-                AutomationId = AutomationIdConstants.NewUserButton,
+                AutomationId = AutomationIdConstants.LoginPage_NewUserSignUpButton,
                 Text = "Sign-up",
             };
             _forgotPasswordButton = new StyledButton(Borders.None)
             {
-                AutomationId = AutomationIdConstants.ForgotPasswordButton,
+                AutomationId = AutomationIdConstants.LoginPage_ForgotPasswordButton,
                 Text = "Forgot Password?",
             };
         }

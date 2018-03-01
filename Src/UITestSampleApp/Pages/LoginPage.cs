@@ -12,6 +12,12 @@ namespace UITestSampleApp
 {
     public class LoginPage : ReusableLoginPage
     {
+        #region Constant Fields
+#if DEBUG
+        readonly Button _crashButton;
+#endif
+        #endregion
+
         #region Fields
         bool isInitialized = false;
         #endregion
@@ -22,16 +28,15 @@ namespace UITestSampleApp
             AutomationId = "loginPage";
 
 #if DEBUG
-            var crashButton = new Button
+            _crashButton = new Button
             {
                 Text = "x",
                 TextColor = Color.White,
                 BackgroundColor = Color.Transparent,
-                AutomationId = AutomationIdConstants.CrashButton
+                AutomationId = AutomationIdConstants.LoginPage_CrashButton
             };
-            crashButton.Clicked += (s, e) => throw new Exception("Crash Button Tapped");
 
-            MainLayout.Children.Add(crashButton,
+            MainLayout.Children.Add(_crashButton,
                 Constraint.RelativeToParent(parent => parent.X),
                 Constraint.RelativeToParent(parent => parent.Y)
             );
@@ -66,11 +71,42 @@ namespace UITestSampleApp
         {
             base.OnAppearing();
 
+#if DEBUG
+            _crashButton.Clicked += HandleCrashButtonClicked;
+#endif
+
             if (isInitialized)
                 return;
 
             Navigation.InsertPageBefore(new FirstPage(), this);
             isInitialized = true;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+#if DEBUG
+            _crashButton.Clicked -= HandleCrashButtonClicked;
+#endif
+        }
+
+
+        async void HandleCrashButtonClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                AppCenterHelpers.CrashApp();
+            }
+            catch (Exception ex)
+            {
+                AppCenterHelpers.LogException(ex);
+
+                var isCrashConfirmed = await DisplayAlert(CrashDialogConstants.Title, CrashDialogConstants.Message, CrashDialogConstants.Yes, CrashDialogConstants.No);
+
+                if (isCrashConfirmed)
+                    throw;
+            }
         }
         #endregion
     }

@@ -16,15 +16,19 @@ namespace UITestSampleApp.UITests
         readonly Query _signUpButton;
         readonly Query _usernameEntry;
         readonly Query _crashButton;
+        readonly Query _crashButtonDialogYesButton;
+        readonly Query _crashButtonDialogNoButton;
 
         public LoginPage(IApp app) : base(app, PageTitleConstants.LoginPage)
         {
-            _forgotPasswordButton = x => x.Marked(AutomationIdConstants.ForgotPasswordButton);
-            _loginButton = x => x.Marked(AutomationIdConstants.LoginButton);
-            _passwordEntry = x => x.Marked(AutomationIdConstants.PasswordEntry);
-            _signUpButton = x => x.Marked(AutomationIdConstants.NewUserButton);
-            _usernameEntry = x => x.Marked(AutomationIdConstants.UsernameEntry);
-            _crashButton = x => x.Marked(AutomationIdConstants.CrashButton);
+            _forgotPasswordButton = x => x.Marked(AutomationIdConstants.LoginPage_ForgotPasswordButton);
+            _loginButton = x => x.Marked(AutomationIdConstants.LoginPage_LoginButton);
+            _passwordEntry = x => x.Marked(AutomationIdConstants.LoginPage_PasswordEntry);
+            _signUpButton = x => x.Marked(AutomationIdConstants.LoginPage_NewUserSignUpButton);
+            _usernameEntry = x => x.Marked(AutomationIdConstants.LoginPage_UsernameEntry);
+            _crashButton = x => x.Marked(AutomationIdConstants.LoginPage_CrashButton);
+            _crashButtonDialogYesButton = x => x.Marked(CrashDialogConstants.Yes);
+            _crashButtonDialogNoButton = x => x.Marked(CrashDialogConstants.No);
         }
 
         public void LoginWithUsernamePassword(string username, string password, bool shouldUseKeyboardReturnButton)
@@ -104,6 +108,18 @@ namespace UITestSampleApp.UITests
         {
             App.Tap(_crashButton);
             App.Screenshot("Crash Button Tapped");
+        }
+
+        public void TapYes_CrashButtonDialog()
+        {
+            App.Tap(_crashButtonDialogYesButton);
+            App.Screenshot("Yes Tapped on Crash Button Dialog");
+        }
+
+        public void TapNo_CrashButtonDialog()
+        {
+            App.Tap(_crashButtonDialogNoButton);
+            App.Screenshot("No Tapped on Crash Button Dialog");
         }
 
         void LoginWithUsernamePasswordNotUsingEnterButton(string username, string password)

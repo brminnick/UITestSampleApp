@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-#if DEBUG
 using Xamarin.Forms;
 
 using UITestSampleApp.Shared;
@@ -16,6 +15,7 @@ namespace UITestSampleApp
         #endregion
 
         #region Methods
+#if DEBUG
         public static void BypassLoginScreen() => Application.Current.MainPage.Navigation.PopToRootAsync();
 
         public static void OpenListViewPage()
@@ -32,16 +32,6 @@ namespace UITestSampleApp
             }
         }
 
-        public static void NavigateToListViewPage()
-        {
-            // Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await Application.Current.MainPage.Navigation.PopToRootAsync();
-                await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
-            });
-        }
-
         public static string GetListViewPageDataAsBase64String()
         {
             var listPageData = GetListPageData();
@@ -50,18 +40,31 @@ namespace UITestSampleApp
 
             return listPageDataAsBase64String;
         }
+#endif
+
+        internal static void NavigateToListViewPage()
+        {
+            // Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PopToRootAsync();
+                await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
+            });
+        }
+#if DEBUG
 
         static List<ListPageDataModel> GetListPageData()
         {
             if (CurrentPage is ListPage listPage)
             {
                 var listViewModel = listPage.BindingContext as ListViewModel;
-                return listViewModel.DataList;
+                return listViewModel?.DataList;
             }
 
             return null;
         }
 
+#endif
         static Page GetCurrentPage()
         {
             if (Application.Current.MainPage.Navigation.ModalStack.Any())
@@ -72,4 +75,3 @@ namespace UITestSampleApp
         #endregion
     }
 }
-#endif

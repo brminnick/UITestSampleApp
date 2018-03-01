@@ -89,14 +89,19 @@ namespace UITestSampleApp.UITests
             Assert.IsTrue(App.Query("Login").Any());
         }
 
-        //[Ignore]
-        [Test]
-        public void CrashButtonTest()
+        [TestCase(true)]
+        [TestCase(false)]
+        public void CrashButtonTest(bool shouldAcceptCrashConfirmationDialog)
         {
             //Arrange
 
             //Act
             LoginPage.TapCrashButton();
+
+            if (shouldAcceptCrashConfirmationDialog)
+                LoginPage.TapYes_CrashButtonDialog();
+            else
+                LoginPage.TapNo_CrashButtonDialog();
 
             //Assert
             LoginPage.WaitForPageToLoad();

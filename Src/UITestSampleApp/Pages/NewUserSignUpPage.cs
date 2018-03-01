@@ -54,7 +54,7 @@ namespace UITestSampleApp
 			_usernameEntry = new StyledEntry(1)
 			{
 				Style = StyleConstants.UnderlinedEntry,
-				AutomationId = AutomationIdConstants.NewUserNameEntry,
+				AutomationId = AutomationIdConstants.NewUserSignUpPage_NewUserNameEntry,
 				Placeholder = "Username",
 				HorizontalOptions = LayoutOptions.Fill,
 				HorizontalTextAlignment = TextAlignment.End,
@@ -66,7 +66,7 @@ namespace UITestSampleApp
 			_passwordEntry = new StyledEntry(1)
 			{
 				Style = StyleConstants.UnderlinedEntry,
-				AutomationId = AutomationIdConstants.NewPasswordEntry,
+				AutomationId = AutomationIdConstants.NewUserSignUpPage_NewPasswordEntry,
 				Placeholder = "Password",
 				IsPassword = true,
 				HorizontalOptions = LayoutOptions.Fill,
@@ -80,7 +80,7 @@ namespace UITestSampleApp
 			_saveUsernameButton = new StyledButton(Borders.Thin, 1)
 			{
 				Style = StyleConstants.BorderedButton,
-				AutomationId = AutomationIdConstants.SaveUsernameButton,
+				AutomationId = AutomationIdConstants.NewUserSignUpPage_SaveUsernameButton,
 				Text = "Save Username",
 				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.EndAndExpand
@@ -90,7 +90,7 @@ namespace UITestSampleApp
 			_cancelButton = new StyledButton(Borders.Thin, 1)
 			{
 				Style = StyleConstants.BorderedButton,
-				AutomationId = AutomationIdConstants.CancelButton,
+				AutomationId = AutomationIdConstants.NewUserSignUpPage_CancelButton,
 				Text = "Cancel",
 				HorizontalOptions = LayoutOptions.Center,
 				VerticalOptions = LayoutOptions.End
