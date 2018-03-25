@@ -4,6 +4,8 @@ using Android.App;
 using Android.OS;
 using Android.Runtime;
 
+using Firebase;
+
 using Plugin.CurrentActivity;
 
 namespace UITestSampleApp.Droid
@@ -18,6 +20,9 @@ namespace UITestSampleApp.Droid
 		public override void OnCreate()
 		{
 			base.OnCreate();
+
+			FirebaseApp.InitializeApp(this);
+
 			RegisterActivityLifecycleCallbacks(this);
 		}
 

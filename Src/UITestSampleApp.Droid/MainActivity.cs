@@ -5,11 +5,7 @@ using Android.Content.PM;
 
 using Akavache;
 
-using Firebase;
-
 using Java.Interop;
-
-using Plugin.CurrentActivity;
 
 using Xamarin.Forms.Platform.Android.AppLinks;
 
@@ -38,8 +34,6 @@ namespace UITestSampleApp.Droid
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-
-			FirebaseApp.InitializeApp(CrossCurrentActivity.Current.Activity);
 
 			TabLayoutResource = Resource.Layout.tabs;
 			ToolbarResource = Resource.Layout.toolbar;
