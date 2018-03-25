@@ -39,7 +39,7 @@ namespace UITestSampleApp.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			FirebaseApp.InitializeApp((Android.Content.Context)CrossCurrentActivity.Current);
+			FirebaseApp.InitializeApp(CrossCurrentActivity.Current.Activity);
 
 			TabLayoutResource = Resource.Layout.tabs;
 			ToolbarResource = Resource.Layout.toolbar;
