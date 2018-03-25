@@ -267,6 +267,9 @@
 		<Reference Include="Xamarin.GooglePlayServices.AppIndexing">
 		  <HintPath>..\packages\Xamarin.GooglePlayServices.AppIndexing.60.1142.1\lib\MonoAndroid80\Xamarin.GooglePlayServices.AppIndexing.dll</HintPath>
 		</Reference>
+		<Reference Include="Plugin.CurrentActivity">
+		  <HintPath>..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="MainActivity.cs" />
@@ -276,6 +279,7 @@
 		<Compile Include="Services\Environment_Android.cs" />
 		<Compile Include="CustomRenderers\StyledEntryRenderer.cs" />
 		<Compile Include="AkavacheSqliteLinkerOverride.cs" />
+		<Compile Include="MainApplication.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="app.config" />
