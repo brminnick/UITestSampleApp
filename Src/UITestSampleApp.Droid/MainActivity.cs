@@ -7,8 +7,6 @@ using Akavache;
 
 using Java.Interop;
 
-using Xamarin.Forms.Platform.Android.AppLinks;
-
 namespace UITestSampleApp.Droid
 {
 	[Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -37,10 +35,10 @@ namespace UITestSampleApp.Droid
 
 			TabLayoutResource = Resource.Layout.tabs;
 			ToolbarResource = Resource.Layout.toolbar;
-
+            
 			global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-			AndroidAppLinks.Init(this);
+			global::Xamarin.Forms.Platform.Android.AppLinks.AndroidAppLinks.Init(this);
 
 			BlobCache.ApplicationName = "SimpleUITestApp";
 			BlobCache.EnsureInitialized();
