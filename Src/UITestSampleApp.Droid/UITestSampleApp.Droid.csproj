@@ -270,6 +270,9 @@
 		<Reference Include="SQLitePCLRaw.batteries_v2">
 		  <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.10\lib\MonoAndroid\SQLitePCLRaw.batteries_v2.dll</HintPath>
 		</Reference>
+		<Reference Include="Xamarin.Firebase.AppIndexing">
+		  <HintPath>..\packages\Xamarin.Firebase.AppIndexing.60.1142.1\lib\MonoAndroid80\Xamarin.Firebase.AppIndexing.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="MainActivity.cs" />
