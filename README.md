@@ -1,4 +1,4 @@
-[![Build Status](https://www.bitrise.io/app/11181afaa98b018c/status.svg?token=z-g5yWBiGPMGVKssTfkVhA&branch=master)](https://www.bitrise.io/app/11181afaa98b018c)
+[![Build status](https://build.appcenter.ms/v0.1/apps/864df958-bcca-401d-8f93-ae159cd5a9d3/branches/master/badge)](https://appcenter.ms)
 
 # Sample App Demonstrating UITests
 This app shows how to implement UITests into a Xamarin.Forms project.
