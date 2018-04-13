@@ -18,7 +18,7 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     msbuild "$UITestProject" /property:Configuration=$APPCENTER_XAMARIN_CONFIGURATION
 
-    UITestDLL=`find "$APPCENTER_SOURCE_DIRECTORY" -name "UITestSampleApp.UITests.dll" | grep bin`
+    UITestDLL=`find "$APPCENTER_OUTPUT_DIRECTORY" -name "UITestSampleApp.UITests.dll" | grep bin`
     UITestBuildDir=`dirname $UITestDLL`
 
     APKFile=`find "$APPCENTER_OUTPUT_DIRECTORY" -name *.apk | head -1`
