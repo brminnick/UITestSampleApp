@@ -12,7 +12,9 @@ namespace UITestSampleApp.iOS
 		{
 			global::Xamarin.Forms.Forms.Init();
 
-			EnableUIAutomationAPIs();
+#if DEBUG
+			Xamarin.Calabash.Start();
+#endif
 
 			Microsoft.AppCenter.Distribute.Distribute.DontCheckForUpdatesInDebug();
 
@@ -22,12 +24,6 @@ namespace UITestSampleApp.iOS
 			LoadApplication(new App());
 
 			return base.FinishedLaunching(uiApplication, launchOptions);
-		}
-
-		public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
-		{
-			Microsoft.AppCenter.Distribute.Distribute.OpenUrl(url);
-			return base.OpenUrl(app, url, options);
 		}
 
 #if DEBUG
@@ -59,9 +55,6 @@ namespace UITestSampleApp.iOS
 			new NSString(BackdoorMethodHelpers.GetListViewPageDataAsBase64String());
 		#endregion
 #endif
-
-		[Conditional("DEBUG")]
-		void EnableUIAutomationAPIs() => Xamarin.Calabash.Start();
 	}
 }
 
