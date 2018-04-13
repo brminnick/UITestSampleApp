@@ -27,5 +27,5 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     appcenter login --token 6547aa966256fcc9fbf6e3c0734f644683c57bc5
 
-    appcenter test run uitest --app "bminnick/uitestsampleapp" --devices "bminnick/all-supported-os-versions" --app-path $BITRISE_APK_PATH --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --async
+    appcenter test run uitest --app "bminnick/uitestsampleapp" --devices "bminnick/all-supported-os-versions" --app-path $APKFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --async
 fi
