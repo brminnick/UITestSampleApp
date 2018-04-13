@@ -4,29 +4,25 @@ using Xamarin.UITest;
 
 namespace UITestSampleApp.UITests
 {
-    abstract class BasePage
-    {
-        #region Constructors
-        protected BasePage(IApp app, string pageTitle)
-        {
-            App = app;
+	abstract class BasePage
+	{
+		#region Constructors
+		protected BasePage(IApp app, string pageTitle)
+		{
+			App = app;
 
-            PageTitle = pageTitle;
-        }
-        #endregion
+			PageTitle = pageTitle;
+		}
+		#endregion
 
-        #region Properties
-        public string PageTitle { get; }
-        protected IApp App { get; }
+		#region Properties
+		public string PageTitle { get; }
+		protected IApp App { get; }
 		#endregion
 
 		#region Methods
-		public virtual Task WaitForPageToLoad()
-		{
-			App.WaitForElement(x => x.Marked(PageTitle));
-			return Task.CompletedTask;
-		}
-        #endregion
-    }
+		public virtual void WaitForPageToLoad() => App.WaitForElement(x => x.Marked(PageTitle));
+		#endregion
+	}
 }
 
