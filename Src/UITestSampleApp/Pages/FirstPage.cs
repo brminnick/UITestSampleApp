@@ -29,6 +29,7 @@ namespace UITestSampleApp
                 AutomationId = AutomationIdConstants.FirstPage_GoButton, // This provides an ID that can be referenced in UITests
             };
             _goButton.SetBinding(Button.CommandProperty, nameof(ViewModel.GoButtonCommand));
+			_goButton.SetBinding(Button.CommandParameterProperty, nameof(ViewModel.EntryText));
 
             var textEntry = new StyledEntry(1)
             {

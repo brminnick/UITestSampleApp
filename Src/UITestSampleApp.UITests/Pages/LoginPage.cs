@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using Xamarin.UITest;
 
@@ -99,9 +100,10 @@ namespace UITestSampleApp.UITests
             App.Screenshot("Tapped Okay on Error Dialog");
         }
 
-        public override void WaitForPageToLoad()
+        public override Task WaitForPageToLoad()
         {
             App.WaitForElement(_loginButton, "Login Screen Did Not Appear");
+			return Task.Delay(1000);
         }
 
         public void TapCrashButton()

@@ -1,4 +1,6 @@
-﻿using Xamarin.UITest;
+﻿using System.Threading.Tasks;
+
+using Xamarin.UITest;
 
 namespace UITestSampleApp.UITests
 {
@@ -16,10 +18,14 @@ namespace UITestSampleApp.UITests
         #region Properties
         public string PageTitle { get; }
         protected IApp App { get; }
-        #endregion
+		#endregion
 
-        #region Methods
-        public virtual void WaitForPageToLoad() => App.WaitForElement(x => x.Marked(PageTitle));
+		#region Methods
+		public virtual Task WaitForPageToLoad()
+		{
+			App.WaitForElement(x => x.Marked(PageTitle));
+			return Task.CompletedTask;
+		}
         #endregion
     }
 }
