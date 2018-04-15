@@ -16,7 +16,7 @@ namespace UITestSampleApp
 
         #region Methods
 #if DEBUG
-        public static void BypassLoginScreen() => Application.Current.MainPage.Navigation.PopToRootAsync();
+        public static void BypassLoginScreen() => Application.Current.MainPage.Navigation.PopAsync();
 
         public static void OpenListViewPage()
         {
@@ -47,7 +47,7 @@ namespace UITestSampleApp
             // Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
             Device.BeginInvokeOnMainThread(async () =>
             {
-                await Application.Current.MainPage.Navigation.PopToRootAsync();
+                await Application.Current.MainPage.Navigation.PopAsync();
                 await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
             });
         }
