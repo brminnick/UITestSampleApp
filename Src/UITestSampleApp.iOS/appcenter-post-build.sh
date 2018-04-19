@@ -21,9 +21,12 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     IPAFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.ipa | head -1`
 
+    DSYMFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.dsym | head -1`
+    DSYMDirectory=`dirname $DSYMFile`
+
     npm install -g appcenter-cli
 
     appcenter login --token 6547aa966256fcc9fbf6e3c0734f644683c57bc5
 
-    appcenter test run uitest --app "bminnick/UITestSampleApp-1" --devices "bminnick/ios10-plus" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --async
+    appcenter test run uitest --app "bminnick/UITestSampleApp-1" --devices "bminnick/ios10-plus" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMDirectory --async
 fi
