@@ -1,4 +1,7 @@
-[![Build status](https://build.appcenter.ms/v0.1/apps/864df958-bcca-401d-8f93-ae159cd5a9d3/branches/master/badge)](https://appcenter.ms)
+|CI Tool                    |Build Status|
+|---------------------------|---|
+| App Center, iOS           |  [![Build status](https://build.appcenter.ms/v0.1/apps/0184bf48-f102-400c-aed0-629fdeb38696/branches/master/badge)](https://appcenter.ms)|
+| App Center, Android       | [![Build status](https://build.appcenter.ms/v0.1/apps/864df958-bcca-401d-8f93-ae159cd5a9d3/branches/master/badge)](https://appcenter.ms)  |
 
 # Sample App Demonstrating UITests
 This app shows how to implement UITests into a Xamarin.Forms project.
