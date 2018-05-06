@@ -21,7 +21,7 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     IPAFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.ipa | head -1`
 
-    DSYMFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.dsym | head -1`
+    DSYMFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.dSYM | head -1`
     DSYMDirectory=`dirname $DSYMFile`
 
     npm install -g appcenter-cli
