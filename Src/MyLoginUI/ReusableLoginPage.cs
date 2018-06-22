@@ -6,8 +6,6 @@ using Xamarin.Forms;
 
 using MyLoginUI.Views;
 
-using EntryCustomReturn.Forms.Plugin.Abstractions;
-
 using UITestSampleApp.Shared;
 
 namespace MyLoginUI.Pages
@@ -82,8 +80,6 @@ namespace MyLoginUI.Pages
 
             _logo.Source = LogoFileImageSource;
 
-            List<Task> animationTaskList;
-
             if (!_isInitialized)
             {
                 Device.BeginInvokeOnMainThread(async () =>
@@ -123,18 +119,18 @@ namespace MyLoginUI.Pages
             {
                 AutomationId = AutomationIdConstants.LoginPage_UsernameEntry,
                 Placeholder = "Username",
+                ReturnType = ReturnType.Next,
+                ReturnCommand = new Command(() => _passwordEntry.Focus())
             };
-            CustomReturnEffect.SetReturnType(_loginEntry, ReturnType.Next);
-            CustomReturnEffect.SetReturnCommand(_loginEntry, new Command(() => _passwordEntry.Focus()));
 
             _passwordEntry = new StyledEntry
             {
                 AutomationId = AutomationIdConstants.LoginPage_PasswordEntry,
                 Placeholder = "Password",
                 IsPassword = true,
+                ReturnType = ReturnType.Go,
+                ReturnCommand = new Command(() => HandleLoginButtonClicked(_passwordEntry, EventArgs.Empty))
             };
-            CustomReturnEffect.SetReturnType(_passwordEntry, ReturnType.Go);
-            CustomReturnEffect.SetReturnCommand(_passwordEntry, new Command(() => HandleLoginButtonClicked(_passwordEntry, EventArgs.Empty)));
 
             _loginButton = new StyledButton(Borders.Thin)
             {
@@ -205,7 +201,7 @@ namespace MyLoginUI.Pages
 
         async void HandleLoginButtonClicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_loginEntry.Text) || string.IsNullOrEmpty(_passwordEntry.Text))
+            if (string.IsNullOrWhiteSpace(_loginEntry.Text) || string.IsNullOrWhiteSpace(_passwordEntry.Text))
                 await DisplayAlert("Error", "You must enter a username and password.", "Okay");
             else
                 await Login(_loginEntry.Text, _passwordEntry.Text);

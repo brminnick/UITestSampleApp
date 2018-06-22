@@ -19,7 +19,6 @@ namespace UITestSampleApp.iOS
 			Microsoft.AppCenter.Distribute.Distribute.DontCheckForUpdatesInDebug();
 
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-			EntryCustomReturn.Forms.Plugin.iOS.CustomReturnEntryRenderer.Init();
 
 			LoadApplication(new App());
 

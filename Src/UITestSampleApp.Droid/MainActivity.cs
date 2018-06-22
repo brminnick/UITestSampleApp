@@ -1,15 +1,17 @@
-﻿using Android.OS;
-using Android.App;
-using Android.Views;
-using Android.Content.PM;
+﻿using Akavache;
 
-using Akavache;
+using Android.App;
+using Android.Content.PM;
+using Android.OS;
+using Android.Views;
 
 using Java.Interop;
 
+using Plugin.CurrentActivity;
+
 namespace UITestSampleApp.Droid
 {
-	[Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		#region Methods
@@ -35,6 +37,8 @@ namespace UITestSampleApp.Droid
 
 			TabLayoutResource = Resource.Layout.tabs;
 			ToolbarResource = Resource.Layout.toolbar;
+
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             
 			global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -43,9 +47,10 @@ namespace UITestSampleApp.Droid
 			BlobCache.ApplicationName = "SimpleUITestApp";
 			BlobCache.EnsureInitialized();
 
+            Firebase.FirebaseApp.InitializeApp(this);
+
 			Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-			EntryCustomReturn.Forms.Plugin.Android.CustomReturnEntryRenderer.Init();
 
 			LoadApplication(new App());
 		}

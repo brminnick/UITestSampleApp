@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-
-using Plugin.Connectivity;
+using Xamarin.Essentials;
 
 using UITestSampleApp.Shared;
 
@@ -44,8 +43,7 @@ namespace UITestSampleApp
         #region Methods
         async Task RefreshDataFromAzureAsync()
         {
-            var isAzureDatabaseReachable = await CrossConnectivity.Current.IsRemoteReachable(AzureConstants.AzureDataServiceUrl, 80, 1000).ConfigureAwait(false);
-            if (!CrossConnectivity.Current.IsConnected || !isAzureDatabaseReachable)
+            if (!(Connectivity.NetworkAccess == NetworkAccess.Internet))
                 return;
 
             try

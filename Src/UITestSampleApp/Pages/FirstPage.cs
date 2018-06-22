@@ -5,8 +5,6 @@ using Xamarin.Forms;
 using MyLoginUI;
 using MyLoginUI.Views;
 
-using EntryCustomReturn.Forms.Plugin.Abstractions;
-
 using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
@@ -36,12 +34,12 @@ namespace UITestSampleApp
                 Placeholder = entryTextPaceHolder,
                 AutomationId = AutomationIdConstants.FirstPage_TextEntry, // This provides an ID that can be referenced in UITests
                 PlaceholderColor = Color.FromHex("749FA8"),
-                HorizontalTextAlignment = TextAlignment.Center
+                HorizontalTextAlignment = TextAlignment.Center,
+                ReturnType = ReturnType.Go
             };
-            CustomReturnEffect.SetReturnType(textEntry, ReturnType.Go);
 			textEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.EntryText));
-            textEntry.SetBinding(CustomReturnEffect.ReturnCommandProperty, nameof(ViewModel.GoButtonCommand));
-			textEntry.SetBinding(CustomReturnEffect.ReturnCommandParameterProperty, nameof(ViewModel.EntryText));
+            textEntry.SetBinding(Entry.ReturnCommandProperty, nameof(ViewModel.GoButtonCommand));
+            textEntry.SetBinding(Entry.ReturnCommandParameterProperty, nameof(ViewModel.EntryText));
 
             var textLabel = new StyledLabel
             {

@@ -21,7 +21,7 @@ namespace MyLoginUI.Views
                 case Borders.None:
                     break;
                 case Borders.Thin:
-                    BorderRadius = 3;
+                    CornerRadius = 3;
                     BorderColor = Color.White;
                     BorderWidth = 1;
                     break;
