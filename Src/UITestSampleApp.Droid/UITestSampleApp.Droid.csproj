@@ -264,7 +264,7 @@
       <HintPath>..\packages\Xamarin.Forms.AppLinks.3.1.0.583944\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.AppLinks.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Essentials">
-      <HintPath>..\packages\Xamarin.Essentials.0.7.0.17-preview\lib\monoandroid81\Xamarin.Essentials.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Essentials.0.8.0-preview\lib\monoandroid81\Xamarin.Essentials.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
