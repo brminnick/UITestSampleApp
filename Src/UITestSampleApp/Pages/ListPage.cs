@@ -34,7 +34,7 @@ namespace UITestSampleApp
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            AppCenterHelpers.TrackEvent(AppCenterConstants.ListViewPageAppeared);
+            AnalyticsHelpers.TrackEvent(AppCenterConstants.ListViewPageAppeared);
 
             Device.BeginInvokeOnMainThread(_listView.BeginRefresh);
         }
@@ -50,7 +50,7 @@ namespace UITestSampleApp
             var listView = sender as ListView;
             var tappedListPageDataModel = e.Item as ListPageDataModel;
 
-            AppCenterHelpers.TrackEvent(AppCenterConstants.ListViewItemTapped,
+            AnalyticsHelpers.TrackEvent(AppCenterConstants.ListViewItemTapped,
                 new Dictionary<string, string> {
                     { AppCenterConstants.ListViewItemNumber, tappedListPageDataModel.Detail.ToString() }
                 }

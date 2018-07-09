@@ -33,7 +33,7 @@ namespace UITestSampleApp.Droid
 			}
 			catch (Exception e)
 			{
-                AppCenterHelpers.LogException(e);
+                AnalyticsHelpers.LogException(e);
 				return false;
 			}
 
@@ -43,7 +43,7 @@ namespace UITestSampleApp.Droid
 			}
 			catch (Exception e)
 			{
-                AppCenterHelpers.LogException(e);
+                AnalyticsHelpers.LogException(e);
 				return false;
 			}
 

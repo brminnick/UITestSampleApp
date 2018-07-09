@@ -1,36 +1,30 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Collections.Generic;
-
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Crashes;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Distribute;
+using SharpRaven;
 
 namespace UITestSampleApp
 {
-    public static class AppCenterHelpers
+    public static class AnalyticsHelpers
     {
+        #region Constant Fields
+        readonly static Lazy<RavenClient> _ravenClientHolder = new Lazy<RavenClient>(() => new RavenClient("https://cd4cb9b3afe34881ae3bf8057d6b54e6@sentry.io/1240065"));
+        #endregion
+
+        #region Properties
+        static RavenClient RavenClient => _ravenClientHolder.Value;
+        #endregion
+
         public static void Start()
         {
-            switch (Xamarin.Forms.Device.RuntimePlatform)
-            {
-                case Xamarin.Forms.Device.iOS:
-                    Start(AppCenterConstants.AppCenteriOSApiKey);
-                    break;
-                case Xamarin.Forms.Device.Android:
-                    Start(AppCenterConstants.AppCenterDroidApiKey);
-                    break;
-                default:
-                    throw new NotSupportedException("Runtime Platform Not Supported");
-            }
+         
         }
 
         [Conditional("DEBUG")]
-        public static void CrashApp() => Crashes.GenerateTestCrash();
+        public static void CrashApp() => throw new Exception("Auto-Generated Exception");
 
         public static void TrackEvent(string trackIdentifier, IDictionary<string, string> table = null) =>
-            Analytics.TrackEvent(trackIdentifier, table);
+            RavenClient.AddTrail(new SharpRaven.Data.Breadcrumb(trackIdentifier) { Data = table });
 
         public static void TrackEvent(string trackIdentifier, string key, string value)
         {
@@ -50,10 +44,7 @@ namespace UITestSampleApp
             Debug.WriteLine(exceptionType);
             Debug.WriteLine($"Error: {message}");
 
-            Crashes.TrackError(exception, properties);
+            RavenClient.Capture(new SharpRaven.Data.SentryEvent(exception));
         }
-
-        static void Start(string appSecret) =>
-            AppCenter.Start(appSecret, typeof(Analytics), typeof(Crashes), typeof(Distribute));
     }
 }

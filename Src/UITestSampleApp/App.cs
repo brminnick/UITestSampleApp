@@ -30,7 +30,7 @@ namespace UITestSampleApp
 #endif
 		protected override void OnStart()
 		{
-			AppCenterHelpers.Start();
+			AnalyticsHelpers.Start();
 
 			RegisterAppLinks();
 		}

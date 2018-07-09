@@ -58,7 +58,7 @@ namespace UITestSampleApp
                 {
                     await Navigation.PushModalAsync(new NewUserSignUpPage());
 
-                    AppCenterHelpers.TrackEvent("NewUserSignUp", new Dictionary<string, string> {
+                    AnalyticsHelpers.TrackEvent("NewUserSignUp", new Dictionary<string, string> {
                         { "ActionPoint", "System Prompt" },
                     });
                 }
@@ -96,11 +96,11 @@ namespace UITestSampleApp
         {
             try
             {
-                AppCenterHelpers.CrashApp();
+                AnalyticsHelpers.CrashApp();
             }
             catch (Exception ex)
             {
-                AppCenterHelpers.LogException(ex);
+                AnalyticsHelpers.LogException(ex);
 
                 var isCrashConfirmed = await DisplayAlert(CrashDialogConstants.Title, CrashDialogConstants.Message, CrashDialogConstants.Yes, CrashDialogConstants.No);
 

@@ -16,8 +16,6 @@ namespace UITestSampleApp.iOS
 			Xamarin.Calabash.Start();
 #endif
 
-			Microsoft.AppCenter.Distribute.Distribute.DontCheckForUpdatesInDebug();
-
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
 			LoadApplication(new App());

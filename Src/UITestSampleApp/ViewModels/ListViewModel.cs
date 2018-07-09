@@ -55,7 +55,7 @@ namespace UITestSampleApp
             }
             catch (Exception e)
             {
-                AppCenterHelpers.LogException(e);
+                AnalyticsHelpers.LogException(e);
             }
         }
 
@@ -68,7 +68,7 @@ namespace UITestSampleApp
             }
             catch (Exception e)
             {
-                AppCenterHelpers.LogException(e);
+                AnalyticsHelpers.LogException(e);
             }
         }
 
@@ -78,7 +78,7 @@ namespace UITestSampleApp
 
             try
             {
-                AppCenterHelpers.TrackEvent(AppCenterConstants.PullToRefreshCommanded);
+                AnalyticsHelpers.TrackEvent(AppCenterConstants.PullToRefreshCommanded);
 
                 var showRefreshIndicatorForOneSecondTask = Task.Delay(1000);
 

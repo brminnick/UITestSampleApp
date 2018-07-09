@@ -40,7 +40,7 @@ namespace UITestSampleApp
         #region Methods
         async Task ExecuteGoButtonCommand(string goButtonText)
         {
-            AppCenterHelpers.TrackEvent(AppCenterConstants.GoButtonTapped, new Dictionary<string, string> {
+            AnalyticsHelpers.TrackEvent(AppCenterConstants.GoButtonTapped, new Dictionary<string, string> {
                 { AppCenterConstants.FirstPageTextEntered, goButtonText }
             });
 
