@@ -17,7 +17,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>UITestSampleApp.Droid</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidTlsProvider>
     </AndroidTlsProvider>
@@ -206,30 +206,6 @@
     <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
       <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AppCenter.Android.Bindings">
-      <HintPath>..\packages\Microsoft.AppCenter.1.8.0\lib\MonoAndroid403\Microsoft.AppCenter.Android.Bindings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AppCenter">
-      <HintPath>..\packages\Microsoft.AppCenter.1.8.0\lib\MonoAndroid403\Microsoft.AppCenter.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AppCenter.Analytics.Android.Bindings">
-      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.8.0\lib\MonoAndroid403\Microsoft.AppCenter.Analytics.Android.Bindings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AppCenter.Analytics">
-      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.8.0\lib\MonoAndroid403\Microsoft.AppCenter.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AppCenter.Crashes.Android.Bindings">
-      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.8.0\lib\MonoAndroid403\Microsoft.AppCenter.Crashes.Android.Bindings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AppCenter.Crashes">
-      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.8.0\lib\MonoAndroid403\Microsoft.AppCenter.Crashes.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AppCenter.Distribute.Android.Bindings">
-      <HintPath>..\packages\Microsoft.AppCenter.Distribute.1.8.0\lib\MonoAndroid403\Microsoft.AppCenter.Distribute.Android.Bindings.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AppCenter.Distribute">
-      <HintPath>..\packages\Microsoft.AppCenter.Distribute.1.8.0\lib\MonoAndroid403\Microsoft.AppCenter.Distribute.dll</HintPath>
-    </Reference>
     <Reference Include="PInvoke.Windows.Core">
       <HintPath>..\packages\PInvoke.Windows.Core.0.5.155\lib\portable-net45+win8+wpa81\PInvoke.Windows.Core.dll</HintPath>
     </Reference>
@@ -241,12 +217,6 @@
     </Reference>
     <Reference Include="PInvoke.NCrypt">
       <HintPath>..\packages\PInvoke.NCrypt.0.5.155\lib\portable-net45+win8+wpa81\PInvoke.NCrypt.dll</HintPath>
-    </Reference>
-    <Reference Include="Splat">
-      <HintPath>..\packages\Splat.4.0.2\lib\monoandroid80\Splat.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Essentials">
-      <HintPath>..\packages\Xamarin.Essentials.0.9.1-preview\lib\monoandroid81\Xamarin.Essentials.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
@@ -267,6 +237,36 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Platform.Android.AppLinks">
       <HintPath>..\packages\Xamarin.Forms.AppLinks.3.1.0.697729\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.AppLinks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Android.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.1.9.0\lib\MonoAndroid403\Microsoft.AppCenter.Android.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter">
+      <HintPath>..\packages\Microsoft.AppCenter.1.9.0\lib\MonoAndroid403\Microsoft.AppCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics.Android.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.9.0\lib\MonoAndroid403\Microsoft.AppCenter.Analytics.Android.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics">
+      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.9.0\lib\MonoAndroid403\Microsoft.AppCenter.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes.Android.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.9.0\lib\MonoAndroid403\Microsoft.AppCenter.Crashes.Android.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes">
+      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.9.0\lib\MonoAndroid403\Microsoft.AppCenter.Crashes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Distribute.Android.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.Distribute.1.9.0\lib\MonoAndroid403\Microsoft.AppCenter.Distribute.Android.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Distribute">
+      <HintPath>..\packages\Microsoft.AppCenter.Distribute.1.9.0\lib\MonoAndroid403\Microsoft.AppCenter.Distribute.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat">
+      <HintPath>..\packages\Splat.5.0.2\lib\monoandroid80\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\packages\Xamarin.Essentials.0.10.0-preview\lib\monoandroid81\Xamarin.Essentials.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

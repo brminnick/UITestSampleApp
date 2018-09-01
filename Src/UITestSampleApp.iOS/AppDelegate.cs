@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-using UIKit;
+﻿using UIKit;
 using Foundation;
 
 namespace UITestSampleApp.iOS
