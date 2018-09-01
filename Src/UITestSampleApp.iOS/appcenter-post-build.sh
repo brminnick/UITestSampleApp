@@ -27,7 +27,7 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     npm install -g appcenter-cli
 
-    appcenter login --token 6547aa966256fcc9fbf6e3c0734f644683c57bc5
+    appcenter login --token $AppCenterAPIToken
 
     appcenter test run uitest --app "bminnick/UITestSampleApp-1" --devices "bminnick/ios10-plus" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMFile --async
 fi
