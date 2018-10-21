@@ -25,7 +25,7 @@ namespace UITestSampleApp.iOS
 
 #if DEBUG
 		#region Xamarin Test Cloud Back Door Methods
-		[Export("clearKeyChain:")]
+		[Preserve, Export("clearKeyChain:")]
 		public NSString ClearKeychain(NSString username)
 		{
 			NSUserDefaults.StandardUserDefaults.RemoveObject("username");
@@ -33,21 +33,21 @@ namespace UITestSampleApp.iOS
 			return new NSString();
 		}
 
-		[Export("bypassLoginScreen:")]
+        [Preserve, Export("bypassLoginScreen:")]
 		public NSString BypassLoginScreen(NSString noValue)
 		{
 			BackdoorMethodHelpers.BypassLoginScreen();
 			return new NSString();
 		}
 
-		[Export("openListViewPage:")]
+        [Preserve, Export("openListViewPage:")]
 		public NSString OpenListViewPage(NSString noValue)
 		{
 			BackdoorMethodHelpers.OpenListViewPage();
 			return new NSString();
 		}
 
-		[Export("getListViewPageDataAsBase64String:")]
+        [Preserve, Export("getListViewPageDataAsBase64String:")]
 		public NSString GetListViewPageDataAsBase64String(NSString noValue) =>
 			new NSString(BackdoorMethodHelpers.GetListViewPageDataAsBase64String());
 		#endregion

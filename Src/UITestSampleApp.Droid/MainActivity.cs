@@ -18,15 +18,15 @@ namespace UITestSampleApp.Droid
         #region Methods
         #region Xamarin Test Cloud Back Door Methods
 #if DEBUG
-        [Export(nameof(BypassLoginScreen))]
+        [Preserve, Export(nameof(BypassLoginScreen))]
         public void BypassLoginScreen() =>
             BackdoorMethodHelpers.BypassLoginScreen();
 
-        [Export(nameof(OpenListViewPage))]
+        [Preserve, Export(nameof(OpenListViewPage))]
         public void OpenListViewPage() =>
             BackdoorMethodHelpers.OpenListViewPage();
 
-        [Export(nameof(GetListViewPageDataAsBase64String))]
+        [Preserve, Export(nameof(GetListViewPageDataAsBase64String))]
         public string GetListViewPageDataAsBase64String() =>
             BackdoorMethodHelpers.GetListViewPageDataAsBase64String();
 #endif
