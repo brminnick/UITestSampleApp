@@ -9,10 +9,10 @@ namespace UITestSampleApp.UITests
             switch (platform)
             {
                 case Platform.Android:
-                    return ConfigureApp.Android.StartApp();
+                    return ConfigureApp.Android.StartApp(Xamarin.UITest.Configuration.AppDataMode.Clear);
 
                 case Platform.iOS:
-                    return ConfigureApp.iOS.StartApp();
+                    return ConfigureApp.iOS.StartApp(Xamarin.UITest.Configuration.AppDataMode.Clear);
 
                 default:
                     throw new System.NotSupportedException();
