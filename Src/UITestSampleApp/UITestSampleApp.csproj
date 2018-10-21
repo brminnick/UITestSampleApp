@@ -23,7 +23,7 @@
     <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.11" />
-    <PackageReference Include="Xamarin.Essentials" Version="0.8.0-preview" />
+    <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
