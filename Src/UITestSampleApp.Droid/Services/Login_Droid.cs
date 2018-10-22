@@ -14,7 +14,7 @@ namespace UITestSampleApp.Droid
     public class Login_Droid : ILogin
     {
         const string _userNameKey = "username";
-        const string _passwordKey = "username";
+        const string _passwordKey = "password";
 
         public async Task<bool> SetPasswordForUsername(string username, string password)
         {
