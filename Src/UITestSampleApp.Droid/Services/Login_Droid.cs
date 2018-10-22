@@ -1,7 +1,6 @@
 using System;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 using Akavache;
 
@@ -12,51 +11,55 @@ using UITestSampleApp.Droid;
 [assembly: Dependency(typeof(Login_Droid))]
 namespace UITestSampleApp.Droid
 {
-	public class Login_Droid : ILogin
-	{
-		public async Task<bool> SetPasswordForUsername(string username, string password)
-		{
-			await BlobCache.UserAccount.InsertObject("username", username);
-			await BlobCache.UserAccount.InsertObject("password", password);
+    public class Login_Droid : ILogin
+    {
+        const string _userNameKey = "username";
+        const string _passwordKey = "username";
 
-			return true;
-		}
+        public async Task<bool> SetPasswordForUsername(string username, string password)
+        {
+            try
+            {
+                await BlobCache.Secure.InsertObject(_userNameKey, username);
+                await BlobCache.Secure.InsertObject(_passwordKey, password);
 
-		public async Task<bool> CheckLogin(string username, string password)
-		{
-			string _username = null;
-			string _password = null;
-
-			try
-			{
-				_username = await BlobCache.UserAccount.GetObject<string>("username");
-			}
-			catch (Exception e)
-			{
+                return true;
+            }
+            catch (Exception e)
+            {
                 AppCenterHelpers.LogException(e);
-				return false;
-			}
+                return false;
+            }
+        }
 
-			try
-			{
-				_password = await BlobCache.UserAccount.GetObject<string>("password");
-			}
-			catch (Exception e)
-			{
+        public async Task<bool> CheckLogin(string username, string password)
+        {
+            string usernameFromDevice, passwordFromDevice;
+
+            try
+            {
+                usernameFromDevice = await BlobCache.Secure.GetObject<string>(_userNameKey);
+            }
+            catch (Exception e)
+            {
                 AppCenterHelpers.LogException(e);
-				return false;
-			}
+                return false;
+            }
 
-			if (_username == null || _password == null)
-				return false;
+            try
+            {
+                passwordFromDevice = await BlobCache.Secure.GetObject<string>(_passwordKey);
+            }
+            catch (Exception e)
+            {
+                AppCenterHelpers.LogException(e);
+                return false;
+            }
 
-			if (password == _password &&
-				username == _username.ToString())
-			{
-				return true;
-			}
-
-			return false;
-		}
-	}
+            return !string.IsNullOrWhiteSpace(usernameFromDevice)
+                          && !string.IsNullOrWhiteSpace(passwordFromDevice)
+                          && password == passwordFromDevice
+                          && username == usernameFromDevice;
+        }
+    }
 }
