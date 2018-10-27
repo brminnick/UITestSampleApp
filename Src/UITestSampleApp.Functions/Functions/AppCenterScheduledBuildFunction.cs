@@ -28,12 +28,26 @@ namespace UITestSampleApp.Functions
 
         #region Methods
         [FunctionName(nameof(AppCenterScheduledBuildFunction))]
-        public static Task Run([TimerTrigger("0 0 0 * * *", RunOnStartup = true)]TimerInfo myTimer, ILogger log)
+        public static async Task Run([TimerTrigger("0 0 0 * * *", RunOnStartup = true)]TimerInfo myTimer, ILogger log)
         {
-            var iOSBuildTask = ExecutePollyFunction(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_iOS, _appCenterMasterBranchName));
-            var androidBuildTask = ExecutePollyFunction(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_Android, _appCenterMasterBranchName));
+            var iOSBuildTask = ExecutePollyFunction(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_iOS, _appCenterMasterBranchName, new BuildParameters(true)));
+            var androidBuildTask = ExecutePollyFunction(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_Android, _appCenterMasterBranchName, new BuildParameters(true)));
 
-            return Task.WhenAll(iOSBuildTask, androidBuildTask);
+            try
+            {
+                await Task.WhenAll(iOSBuildTask, androidBuildTask).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                log.LogError(e, e.Message);
+                throw;
+            }
+
+            var iOSBuildResponse = await iOSBuildTask.ConfigureAwait(false);
+            var androidBuildResponse = await iOSBuildTask.ConfigureAwait(false);
+
+            log.LogInformation($"{nameof(iOSBuildResponse)} {nameof(iOSBuildResponse.IsSuccessStatusCode)}: {iOSBuildResponse.IsSuccessStatusCode}");
+            log.LogInformation($"{nameof(androidBuildResponse)} {nameof(androidBuildResponse.IsSuccessStatusCode)}: {androidBuildResponse.IsSuccessStatusCode}");
         }
 
         static HttpClient CreateHttpClient(TimeSpan timeout)
