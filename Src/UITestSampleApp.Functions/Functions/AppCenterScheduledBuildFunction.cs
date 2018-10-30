@@ -28,7 +28,7 @@ namespace UITestSampleApp.Functions
 
         #region Methods
         [FunctionName(nameof(AppCenterScheduledBuildFunction))]
-        public static async Task Run([TimerTrigger("0 0 0 * * *")]TimerInfo myTimer, ILogger log)
+        public static async Task Run([TimerTrigger("0 0 9 * * *")]TimerInfo myTimer, ILogger log)
         {
             var iOSBuildTask = ExecutePollyFunction(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_iOS, _appCenterMasterBranchName, new BuildParameters(true)));
             var androidBuildTask = ExecutePollyFunction(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_Android, _appCenterMasterBranchName, new BuildParameters(true)));
