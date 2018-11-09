@@ -56,6 +56,6 @@
         <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
         <PackageReference Include="NUnit" Version="2.6.4" />
         <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
-        <PackageReference Include="Xamarin.UITest" Version="2.2.6" />
+        <PackageReference Include="Xamarin.UITest" Version="2.2.7.2001-dev" />
     </ItemGroup>
 </Project>
