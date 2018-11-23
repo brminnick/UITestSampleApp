@@ -49,7 +49,4 @@
   <Import Project="..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
 </Project>
