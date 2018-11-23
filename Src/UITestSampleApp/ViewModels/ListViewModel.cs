@@ -4,7 +4,8 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-using Xamarin.Forms;
+using AsyncAwaitBestPractices.MVVM;
+
 using Xamarin.Essentials;
 
 using UITestSampleApp.Shared;
@@ -21,7 +22,7 @@ namespace UITestSampleApp
 
         #region Properties
         public ICommand PullToRefreshCommand => _pullToRefreshCommand ??
-            (_pullToRefreshCommand = new Command(async () => await ExecutePullToRefreshCommanded()));
+            (_pullToRefreshCommand = new AsyncCommand(ExecutePullToRefreshCommanded));
 
         public List<ListPageDataModel> DataList
         {

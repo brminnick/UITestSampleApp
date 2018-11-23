@@ -2,7 +2,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-using Xamarin.Forms;
+using AsyncAwaitBestPractices.MVVM;
 
 namespace UITestSampleApp
 {
@@ -11,12 +11,12 @@ namespace UITestSampleApp
         #region Fields
         bool _isActivityIndicatorRunning;
         string _entryText, _labelText;
-        Command<string> _goButtonCommand;
+        ICommand _goButtonCommand;
         #endregion
 
         #region Properties
-        public Command<string> GoButtonCommand => 
-            _goButtonCommand ?? (_goButtonCommand = new Command<string>(async goButtonText => await ExecuteGoButtonCommand(goButtonText)));
+        public ICommand GoButtonCommand => _goButtonCommand ??
+            (_goButtonCommand = new AsyncCommand<string>(ExecuteGoButtonCommand));
 
         public bool IsActiityIndicatorRunning
         {
