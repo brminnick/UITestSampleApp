@@ -52,24 +52,4 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-      <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-        <PackageReference Include="NUnit" Version="2.6.4" />
-        <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
-        <PackageReference Include="Xamarin.UITest" Version="2.2.7.2001-dev" />
-    </ItemGroup>
-      <ItemGroup>
-        <ProjectReference Include="..\UITestSampleApp.Droid\UITestSampleApp.Droid.csproj">
-          <Project>{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}</Project>
-          <Name>UITestSampleApp.Droid</Name>
-          <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-          <Private>False</Private>
-        </ProjectReference>
-        <ProjectReference Include="..\UITestSampleApp.iOS\UITestSampleApp.iOS.csproj">
-          <Project>{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}</Project>
-          <Name>UITestSampleApp.iOS</Name>
-          <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-          <Private>False</Private>
-        </ProjectReference>
-      </ItemGroup>
 </Project>
