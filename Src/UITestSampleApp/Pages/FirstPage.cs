@@ -25,7 +25,8 @@ namespace UITestSampleApp
             {
                 Text = "Go",
                 AutomationId = AutomationIdConstants.FirstPage_GoButton, // This provides an ID that can be referenced in UITests
-            };
+                Clicked += new WeakEventHandler HandleButtonClicked;
+        };
             _goButton.SetBinding(Button.CommandProperty, nameof(ViewModel.GoButtonCommand));
 			_goButton.SetBinding(Button.CommandParameterProperty, nameof(ViewModel.EntryText));
 
@@ -53,6 +54,8 @@ namespace UITestSampleApp
                 Text = "Go to List Page",
                 AutomationId = AutomationIdConstants.FirstPage_ListViewButton // This provides an ID that can be referenced in UITests
             };
+
+            _listPageButton.Clicked += HandleListPageButtonClicked;
 
             var activityIndicator = new ActivityIndicator
             {
@@ -102,8 +105,6 @@ namespace UITestSampleApp
 
         protected override void SubscribeEventHandlers()
         {
-            _goButton.Clicked += HandleButtonClicked;
-            _listPageButton.Clicked += HandleListPageButtonClicked;
         }
         protected override void UnsubscribeEventHandlers()
         {

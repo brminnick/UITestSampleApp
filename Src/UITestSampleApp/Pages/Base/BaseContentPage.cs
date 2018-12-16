@@ -4,10 +4,6 @@ namespace UITestSampleApp
 {
     public abstract class BaseContentPage<T> : ContentPage where T : BaseViewModel, new()
     {
-        #region Fields
-        T _viewModel;
-        #endregion
-
         #region Constructors
         protected BaseContentPage(string pageTitle)
         {
@@ -18,26 +14,7 @@ namespace UITestSampleApp
         #endregion
 
         #region Properties
-        protected T ViewModel => _viewModel ?? (_viewModel = new T());
-        #endregion
-
-        #region Methods
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            SubscribeEventHandlers();
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            UnsubscribeEventHandlers();
-        }
-
-        protected abstract void SubscribeEventHandlers();
-        protected abstract void UnsubscribeEventHandlers();
+        protected T ViewModel { get; } = new T();
         #endregion
     }
 }
