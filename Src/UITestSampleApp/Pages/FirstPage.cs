@@ -13,7 +13,6 @@ namespace UITestSampleApp
     {
         #region Constant Fields
         const int _relativeLayoutPadding = 5;
-        readonly Button _goButton, _listPageButton;
         #endregion
 
         #region Constructors
@@ -21,14 +20,14 @@ namespace UITestSampleApp
         {
             const string entryTextPaceHolder = "Enter text and click 'Go'";
 
-            _goButton = new StyledButton(Borders.Thin, 1)
+            var goButton = new StyledButton(Borders.Thin, 1)
             {
                 Text = "Go",
-                AutomationId = AutomationIdConstants.FirstPage_GoButton, // This provides an ID that can be referenced in UITests
-                Clicked += new WeakEventHandler HandleButtonClicked;
-        };
-            _goButton.SetBinding(Button.CommandProperty, nameof(ViewModel.GoButtonCommand));
-			_goButton.SetBinding(Button.CommandParameterProperty, nameof(ViewModel.EntryText));
+                AutomationId = AutomationIdConstants.FirstPage_GoButton // This provides an ID that can be referenced in UITests
+            };
+            goButton.Clicked += HandleButtonClicked;
+            goButton.SetBinding(Button.CommandProperty, nameof(ViewModel.GoButtonCommand));
+            goButton.SetBinding(Button.CommandParameterProperty, nameof(ViewModel.EntryText));
 
             var textEntry = new StyledEntry(1)
             {
@@ -38,7 +37,7 @@ namespace UITestSampleApp
                 HorizontalTextAlignment = TextAlignment.Center,
                 ReturnType = ReturnType.Go
             };
-			textEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.EntryText));
+            textEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.EntryText));
             textEntry.SetBinding(Entry.ReturnCommandProperty, nameof(ViewModel.GoButtonCommand));
             textEntry.SetBinding(Entry.ReturnCommandParameterProperty, nameof(ViewModel.EntryText));
 
@@ -49,13 +48,12 @@ namespace UITestSampleApp
             };
             textLabel.SetBinding(Label.TextProperty, nameof(ViewModel.LabelText));
 
-            _listPageButton = new StyledButton(Borders.Thin, 1)
+            var listPageButton = new StyledButton(Borders.Thin, 1)
             {
                 Text = "Go to List Page",
-                AutomationId = AutomationIdConstants.FirstPage_ListViewButton // This provides an ID that can be referenced in UITests
+                AutomationId = AutomationIdConstants.FirstPage_ListViewButton,// This provides an ID that can be referenced in UITests
             };
-
-            _listPageButton.Clicked += HandleListPageButtonClicked;
+            listPageButton.Clicked += HandleListPageButtonClicked;
 
             var activityIndicator = new ActivityIndicator
             {
@@ -66,28 +64,28 @@ namespace UITestSampleApp
             activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(ViewModel.IsActiityIndicatorRunning));
 
             Func<RelativeLayout, double> getTextEntryWidth = (p) => textEntry.Measure(p.Width, p.Height).Request.Width;
-            Func<RelativeLayout, double> getGoButtonWidth = (p) => _goButton.Measure(p.Width, p.Height).Request.Width;
+            Func<RelativeLayout, double> getGoButtonWidth = (p) => goButton.Measure(p.Width, p.Height).Request.Width;
             Func<RelativeLayout, double> getActivityIndicatorWidth = (p) => activityIndicator.Measure(p.Width, p.Height).Request.Width;
             Func<RelativeLayout, double> getTextLabelWidth = (p) => textLabel.Measure(p.Width, p.Height).Request.Width;
 
-			var relativeLayout = new RelativeLayout();
+            var relativeLayout = new RelativeLayout();
             relativeLayout.Children.Add(textEntry,
                                         Constraint.RelativeToParent(parent => parent.X),
-                                        Constraint.RelativeToParent(parent => parent.Y),
-                                        Constraint.RelativeToParent(parent => parent.Width - 20));
-            relativeLayout.Children.Add(_goButton,
+                                                Constraint.RelativeToParent(parent => parent.Y),
+                                                Constraint.RelativeToParent(parent => parent.Width - 20));
+            relativeLayout.Children.Add(goButton,
                                         Constraint.RelativeToParent(parent => parent.X),
                                         Constraint.RelativeToView(textEntry, (parent, view) => view.Y + view.Height + _relativeLayoutPadding),
                                         Constraint.RelativeToParent(parent => parent.Width - 20));
             relativeLayout.Children.Add(activityIndicator,
                                         Constraint.RelativeToParent(parent => parent.Width / 2 - getActivityIndicatorWidth(parent) / 2),
-                                        Constraint.RelativeToView(_goButton, (parent, view) => view.Y + view.Height + _relativeLayoutPadding));
+                                        Constraint.RelativeToView(goButton, (parent, view) => view.Y + view.Height + _relativeLayoutPadding));
             relativeLayout.Children.Add(textLabel,
                                         Constraint.RelativeToParent(parent => parent.Width / 2 - getTextLabelWidth(parent) / 2),
-                                        Constraint.RelativeToView(_goButton, (parent, view) => view.Y + view.Height + _relativeLayoutPadding));
-            relativeLayout.Children.Add(_listPageButton,
+                                        Constraint.RelativeToView(goButton, (parent, view) => view.Y + view.Height + _relativeLayoutPadding));
+            relativeLayout.Children.Add(listPageButton,
                                         Constraint.RelativeToParent(parent => parent.X),
-                                        Constraint.RelativeToView(_goButton, (parent, view) => view.Y + view.Height + _relativeLayoutPadding * 15),
+                                        Constraint.RelativeToView(goButton, (parent, view) => view.Y + view.Height + _relativeLayoutPadding * 15),
                                         Constraint.RelativeToParent(parent => parent.Width - 20));
 
             Padding = GetPagePadding();
@@ -101,15 +99,6 @@ namespace UITestSampleApp
             base.OnAppearing();
 
             AppCenterHelpers.TrackEvent(AppCenterConstants.FirstPageOnAppeared);
-        }
-
-        protected override void SubscribeEventHandlers()
-        {
-        }
-        protected override void UnsubscribeEventHandlers()
-        {
-            _goButton.Clicked -= HandleButtonClicked;
-            _listPageButton.Clicked -= HandleListPageButtonClicked;
         }
 
         void HandleButtonClicked(object sender, EventArgs e)

@@ -22,7 +22,7 @@ namespace UITestSampleApp
 
         #region Properties
         public ICommand PullToRefreshCommand => _pullToRefreshCommand ??
-            (_pullToRefreshCommand = new AsyncCommand(ExecutePullToRefreshCommanded));
+            (_pullToRefreshCommand = new AsyncCommand(ExecutePullToRefreshCommanded, continueOnCapturedContext: false));
 
         public List<ListPageDataModel> DataList
         {
@@ -44,7 +44,7 @@ namespace UITestSampleApp
         #region Methods
         async Task RefreshDataFromAzureAsync()
         {
-            if (!(Connectivity.NetworkAccess == NetworkAccess.Internet))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
                 return;
 
             try

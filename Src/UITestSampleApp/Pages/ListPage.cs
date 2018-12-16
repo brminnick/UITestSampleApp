@@ -22,6 +22,7 @@ namespace UITestSampleApp
                 BackgroundColor = Color.FromHex("#2980b9"),
                 IsPullToRefreshEnabled = true
             };
+            _listView.ItemTapped -= HandleListViewItemTapped;
             _listView.SetBinding(ListView.ItemsSourceProperty, nameof(ViewModel.DataList));
 			_listView.SetBinding(ListView.IsRefreshingProperty, nameof(ViewModel.IsRefreshing));
             _listView.SetBinding(ListView.RefreshCommandProperty, nameof(ViewModel.PullToRefreshCommand));
@@ -38,12 +39,6 @@ namespace UITestSampleApp
 
             Device.BeginInvokeOnMainThread(_listView.BeginRefresh);
         }
-
-        protected override void SubscribeEventHandlers() =>
-            _listView.ItemTapped += HandleListViewItemTapped;
-
-        protected override void UnsubscribeEventHandlers() =>
-            _listView.ItemTapped -= HandleListViewItemTapped;
 
         async void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
         {
