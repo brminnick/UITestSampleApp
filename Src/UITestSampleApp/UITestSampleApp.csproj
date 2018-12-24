@@ -22,7 +22,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.11" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.12" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
