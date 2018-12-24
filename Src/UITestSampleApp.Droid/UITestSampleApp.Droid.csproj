@@ -236,10 +236,10 @@
       <HintPath>..\packages\System.Reactive.4.1.2\lib\netstandard2.0\System.Reactive.dll</HintPath>
     </Reference>
     <Reference Include="Akavache">
-      <HintPath>..\packages\akavache.6.1.1\lib\monoandroid80\Akavache.dll</HintPath>
+      <HintPath>..\packages\akavache.6.1.3\lib\monoandroid80\Akavache.dll</HintPath>
     </Reference>
     <Reference Include="Akavache.Sqlite3">
-      <HintPath>..\packages\akavache.sqlite3.6.1.1\lib\netstandard2.0\Akavache.Sqlite3.dll</HintPath>
+      <HintPath>..\packages\akavache.sqlite3.6.1.3\lib\netstandard2.0\Akavache.Sqlite3.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Platform.Android.AppLinks">
       <HintPath>..\packages\Xamarin.Forms.AppLinks.3.4.0.1008975\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.AppLinks.dll</HintPath>
@@ -266,7 +266,7 @@
       <HintPath>..\packages\AsyncAwaitBestPractices.MVVM.2.0.0\lib\netstandard\AsyncAwaitBestPractices.MVVM.dll</HintPath>
     </Reference>
     <Reference Include="Akavache.Core">
-      <HintPath>..\packages\akavache.core.6.1.1\lib\monoandroid80\Akavache.Core.dll</HintPath>
+      <HintPath>..\packages\akavache.core.6.1.3\lib\monoandroid80\Akavache.Core.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Arch.Core.Runtime">
       <HintPath>..\packages\Xamarin.Android.Arch.Core.Runtime.1.1.1\lib\monoandroid90\Xamarin.Android.Arch.Core.Runtime.dll</HintPath>
