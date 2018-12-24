@@ -5,7 +5,7 @@ using Akavache.Sqlite3;
 // also a good idea for Android if you enable "Link All Assemblies".
 namespace UITestSampleApp.Droid
 {
-    [Preserve(AllMembers = true)]
+    [Preserve]
     public static class LinkerPreserve
     {
         static LinkerPreserve()
