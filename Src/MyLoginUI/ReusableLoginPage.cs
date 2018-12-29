@@ -70,13 +70,8 @@ namespace MyLoginUI.Pages
         {
             base.OnAppearing();
 
-            _loginButton.Clicked += HandleLoginButtonClicked;
-
-            _newUserSignUpButton.Clicked += HandleNewUserSignUpButtonClicked;
-            _forgotPasswordButton.Clicked += async (object sender, EventArgs e) => await ForgotPassword();
-
             if (string.IsNullOrEmpty(LogoFileImageSource))
-                throw new Exception("You must set the LogoFileImageSource property to specify the logo");
+                throw new ArgumentNullException(nameof(LogoFileImageSource), "You must set the LogoFileImageSource property to specify the logo");
 
             _logo.Source = LogoFileImageSource;
 
@@ -137,16 +132,21 @@ namespace MyLoginUI.Pages
                 AutomationId = AutomationIdConstants.LoginPage_LoginButton,
                 Text = "Login",
             };
+            _loginButton.Clicked += HandleLoginButtonClicked;
+
             _newUserSignUpButton = new StyledButton(Borders.None)
             {
                 AutomationId = AutomationIdConstants.LoginPage_NewUserSignUpButton,
                 Text = "Sign-up",
             };
+            _newUserSignUpButton.Clicked += HandleNewUserSignUpButtonClicked;
+
             _forgotPasswordButton = new StyledButton(Borders.None)
             {
                 AutomationId = AutomationIdConstants.LoginPage_ForgotPasswordButton,
                 Text = "Forgot Password?",
             };
+            _forgotPasswordButton.Clicked += async (object sender, EventArgs e) => await ForgotPassword();
         }
 
         void AddConstraintsToChildren()
