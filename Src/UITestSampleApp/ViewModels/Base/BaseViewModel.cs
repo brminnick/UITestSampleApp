@@ -2,13 +2,22 @@
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using AsyncAwaitBestPractices;
 
 namespace UITestSampleApp
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        #region Constant Fields
+        readonly WeakEventManager _propertyChangedEventManager = new WeakEventManager();
+        #endregion
+
         #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
+        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+        {
+            add => _propertyChangedEventManager.AddEventHandler(value);
+            remove => _propertyChangedEventManager.RemoveEventHandler(value);
+        }
         #endregion
 
         protected void SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyname = "", Action onChanged = null)
@@ -24,6 +33,6 @@ namespace UITestSampleApp
         }
 
         void OnPropertyChanged([CallerMemberName]string name = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            _propertyChangedEventManager?.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
     }
 }
