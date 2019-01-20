@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -12,31 +13,20 @@ namespace UITestSampleApp
 {
     public class LoginPage : ReusableLoginPage
     {
-        #region Constant Fields
-#if DEBUG
-        readonly Button _crashButton;
-#endif
-        #endregion
-
-        #region Fields
-        bool isInitialized = false;
-        #endregion
-
         #region Constructors
         public LoginPage() : base("xamarin_logo")
         {
-            AutomationId = "loginPage";
-
 #if DEBUG
-            _crashButton = new Button
+            var crashButton = new Button
             {
                 Text = "x",
                 TextColor = Color.White,
                 BackgroundColor = Color.Transparent,
                 AutomationId = AutomationIdConstants.LoginPage_CrashButton
             };
+            crashButton.Clicked += HandleCrashButtonClicked;
 
-            MainLayout.Children.Add(_crashButton,
+            MainLayout.Children.Add(crashButton,
                 Constraint.RelativeToParent(parent => parent.X),
                 Constraint.RelativeToParent(parent => parent.Y)
             );
@@ -47,16 +37,16 @@ namespace UITestSampleApp
         #region Methods
         protected override async Task Login(string username, string password)
         {
-            var success = await DependencyService.Get<ILogin>().CheckLogin(username, password);
-            if (success)
-                await Navigation.PopAsync();
+            var isLoginValid = await SecureStorageService.IsLoginCorrect(username, password).ConfigureAwait(false);
+            if (isLoginValid)
+                Device.BeginInvokeOnMainThread(async () => await Navigation.PopAsync());
             else
             {
                 var isSignupSelected = await DisplayAlert("Invalid Login", "Sorry, we didn't recoginize the username or password. Feel free to sign up for free if you haven't!", "Sign up", "Try again");
 
                 if (isSignupSelected)
                 {
-                    await Navigation.PushModalAsync(new NewUserSignUpPage());
+                    Device.BeginInvokeOnMainThread(async () => await Navigation.PushModalAsync(new NewUserSignUpPage()));
 
                     AppCenterHelpers.TrackEvent("NewUserSignUp", new Dictionary<string, string> {
                         { "ActionPoint", "System Prompt" },
@@ -71,27 +61,11 @@ namespace UITestSampleApp
         {
             base.OnAppearing();
 
-#if DEBUG
-            _crashButton.Clicked += HandleCrashButtonClicked;
-#endif
-
-            if (isInitialized)
-                return;
-
-            Navigation.InsertPageBefore(new FirstPage(), this);
-            isInitialized = true;
+            if (!Navigation.NavigationStack.OfType<FirstPage>().Any())
+                Navigation.InsertPageBefore(new FirstPage(), this);
         }
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
 #if DEBUG
-            _crashButton.Clicked -= HandleCrashButtonClicked;
-#endif
-        }
-
-
         async void HandleCrashButtonClicked(object sender, EventArgs e)
         {
             try
@@ -108,6 +82,7 @@ namespace UITestSampleApp
                     throw;
             }
         }
+#endif
         #endregion
     }
 }

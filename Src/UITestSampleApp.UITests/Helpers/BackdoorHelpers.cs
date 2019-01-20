@@ -31,6 +31,8 @@ namespace UITestSampleApp.UITests
                 case AndroidApp androidApp:
                     androidApp.Invoke("BypassLoginScreen");
                     break;
+                default:
+                    throw new NotSupportedException("Platform Not Supported");
             }
 
             app.Screenshot("Backdoor Bypass Login Screen");
@@ -46,6 +48,8 @@ namespace UITestSampleApp.UITests
                 case AndroidApp androidApp:
                     androidApp.Invoke("OpenListViewPage");
                     break;
+                default:
+                    throw new NotSupportedException("Platform Not Supported");
             }
 
             app.Screenshot("Backdoor to List View Page");
@@ -58,13 +62,13 @@ namespace UITestSampleApp.UITests
             switch (app)
             {
                 case iOSApp iosApp:
-                    listPageDataAsBase64String = iosApp.Invoke("getListViewPageDataAsBase64String:", "").ToString();
+                    listPageDataAsBase64String = iosApp.Invoke("getSerializedListViewPageData:", "").ToString();
                     break;
                 case AndroidApp androidApp:
-                    listPageDataAsBase64String = androidApp.Invoke("GetListViewPageDataAsBase64String").ToString();
+                    listPageDataAsBase64String = androidApp.Invoke("GetSerializedListViewPageData").ToString();
                     break;
                 default:
-                    throw new Exception("Platform Not Supported");
+                    throw new NotSupportedException("Platform Not Supported");
             }
 
             return ConverterHelpers.DeserializeObject<List<ListPageDataModel>>(listPageDataAsBase64String);

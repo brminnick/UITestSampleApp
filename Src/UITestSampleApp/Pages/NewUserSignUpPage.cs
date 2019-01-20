@@ -1,6 +1,8 @@
 ﻿using System;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 using MyLoginUI.Views;
 
@@ -19,6 +21,8 @@ namespace UITestSampleApp
         #region Constructos
         public NewUserSignUpPage()
         {
+            On<iOS>().SetUseSafeArea(true);
+
             BackgroundColor = Color.FromHex("#2980b9");
             ConstructUI();
             AddChildrenToParentLayout();
@@ -123,20 +127,21 @@ namespace UITestSampleApp
             _layout.Children.Add(_saveUsernameButton);
             _layout.Children.Add(_cancelButton);
 
-            Content = new ScrollView
-            {
-                Content = _layout
-            };
+            Content = new Xamarin.Forms.ScrollView { Content = _layout };
         }
         #endregion
 
         async void HandleSaveUsernameButtonClicked(object sender, EventArgs e)
         {
-            var success = await DependencyService.Get<ILogin>().SetPasswordForUsername(_usernameEntry.Text, _passwordEntry.Text);
-            if (success)
+            try
+            {
+                await SecureStorageService.SaveLogin(_usernameEntry.Text, _passwordEntry.Text);
                 await Navigation.PopModalAsync();
-            else
-                await DisplayAlert("Error", "You must enter a username and a password", "Okay");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Okay");
+            }
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Akavache;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
@@ -24,8 +22,8 @@ namespace UITestSampleApp.Droid
         [Preserve, Export(nameof(OpenListViewPage))]
         public void OpenListViewPage() => BackdoorMethodHelpers.OpenListViewPage();
 
-        [Preserve, Export(nameof(GetListViewPageDataAsBase64String))]
-        public string GetListViewPageDataAsBase64String() => BackdoorMethodHelpers.GetListViewPageDataAsBase64String();
+        [Preserve, Export(nameof(GetSerializedListViewPageData))]
+        public string GetSerializedListViewPageData() => BackdoorMethodHelpers.GetSerializedListViewPageData();
 #endif
         #endregion
 
@@ -49,9 +47,6 @@ namespace UITestSampleApp.Droid
             global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.Platform.Android.AppLinks.AndroidAppLinks.Init(this);
-
-            BlobCache.ApplicationName = "SimpleUITestApp";
-            BlobCache.EnsureInitialized();
 
             Firebase.FirebaseApp.InitializeApp(this);
 

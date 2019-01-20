@@ -28,8 +28,7 @@ namespace UITestSampleApp.iOS
 		[Preserve, Export("clearKeyChain:")]
 		public NSString ClearKeychain(NSString username)
 		{
-			NSUserDefaults.StandardUserDefaults.RemoveObject("username");
-			KeychainHelpers.DeletePasswordForUsername(username, "XamarinExpenses", true);
+            Xamarin.Essentials.SecureStorage.RemoveAll();
 			return new NSString();
 		}
 
@@ -47,9 +46,9 @@ namespace UITestSampleApp.iOS
 			return new NSString();
 		}
 
-        [Preserve, Export("getListViewPageDataAsBase64String:")]
-		public NSString GetListViewPageDataAsBase64String(NSString noValue) =>
-			new NSString(BackdoorMethodHelpers.GetListViewPageDataAsBase64String());
+        [Preserve, Export("getSerializedListViewPageData:")]
+		public NSString GetSerializedListViewPageData(NSString noValue) =>
+			new NSString(BackdoorMethodHelpers.GetSerializedListViewPageData());
 		#endregion
 #endif
 	}

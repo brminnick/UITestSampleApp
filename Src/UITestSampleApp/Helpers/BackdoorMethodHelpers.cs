@@ -32,7 +32,7 @@ namespace UITestSampleApp
             }
         }
 
-        public static string GetListViewPageDataAsBase64String()
+        public static string GetSerializedListViewPageData()
         {
             var listPageData = GetListPageData();
 

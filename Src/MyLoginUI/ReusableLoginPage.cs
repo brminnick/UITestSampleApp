@@ -7,6 +7,8 @@ using Xamarin.Forms;
 using MyLoginUI.Views;
 
 using UITestSampleApp.Shared;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace MyLoginUI.Pages
 {
@@ -22,7 +24,7 @@ namespace MyLoginUI.Pages
         StyledButton _loginButton, _newUserSignUpButton, _forgotPasswordButton;
         StyledEntry _loginEntry, _passwordEntry;
         Label _logoSlogan;
-        bool _isInitialized = false;
+        bool _isInitialized;
         #endregion
 
         #region Properties
@@ -30,13 +32,14 @@ namespace MyLoginUI.Pages
 
         string LogoFileImageSource
         {
-            get { return _logoFileImageSource; }
+            get => _logoFileImageSource;
             set
             {
-                if (_logoFileImageSource == value)
-                    return;
-                _logoFileImageSource = value;
-                _logo.Source = ImageSource.FromFile(_logoFileImageSource);
+                if (_logoFileImageSource != value)
+                {
+                    _logoFileImageSource = value;
+                    _logo.Source = ImageSource.FromFile(_logoFileImageSource);
+                }
             }
         }
         #endregion
@@ -44,6 +47,8 @@ namespace MyLoginUI.Pages
         #region Constructors
         protected ReusableLoginPage(string logoFileImageSource)
         {
+            On<iOS>().SetUseSafeArea(true);
+
             BackgroundColor = Color.FromHex("#3498db");
             Padding = GetPagePadding();
             MainLayout = new RelativeLayout();
@@ -53,7 +58,7 @@ namespace MyLoginUI.Pages
             CreateGlobalChildren();
             AddConstraintsToChildren();
 
-            Content = new ScrollView { Content = MainLayout };
+            Content = new Xamarin.Forms.ScrollView { Content = MainLayout };
         }
         #endregion
 
