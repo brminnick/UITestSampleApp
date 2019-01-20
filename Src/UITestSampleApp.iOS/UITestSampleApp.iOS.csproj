@@ -41,7 +41,6 @@
         <WarningLevel>4</WarningLevel>
         <ConsolePause>false</ConsolePause>
         <MtouchArch>ARMv7, ARM64</MtouchArch>
-        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <MtouchFloat32>true</MtouchFloat32>
         <CodesignKey>iPhone Developer</CodesignKey>
         <BuildIpa>true</BuildIpa>
@@ -73,7 +72,6 @@
         <WarningLevel>4</WarningLevel>
         <ConsolePause>false</ConsolePause>
         <MtouchArch>ARMv7, ARM64</MtouchArch>
-        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <MtouchFloat32>true</MtouchFloat32>
         <CodesignKey>iPhone Developer</CodesignKey>
         <DeviceSpecificBuild>false</DeviceSpecificBuild>
