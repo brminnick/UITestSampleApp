@@ -133,18 +133,6 @@
         <Reference Include="Xamarin.Essentials">
           <HintPath>..\packages\Xamarin.Essentials.1.0.1\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
         </Reference>
-        <Reference Include="PInvoke.Windows.Core">
-          <HintPath>..\packages\PInvoke.Windows.Core.0.5.184\lib\netstandard2.0\PInvoke.Windows.Core.dll</HintPath>
-        </Reference>
-        <Reference Include="PInvoke.Kernel32">
-          <HintPath>..\packages\PInvoke.Kernel32.0.5.184\lib\netstandard2.0\PInvoke.Kernel32.dll</HintPath>
-        </Reference>
-        <Reference Include="PInvoke.BCrypt">
-          <HintPath>..\packages\PInvoke.BCrypt.0.5.184\lib\portable-net45+win8+wpa81\PInvoke.BCrypt.dll</HintPath>
-        </Reference>
-        <Reference Include="PInvoke.NCrypt">
-          <HintPath>..\packages\PInvoke.NCrypt.0.5.184\lib\netstandard2.0\PInvoke.NCrypt.dll</HintPath>
-        </Reference>
         <Reference Include="SQLitePCLRaw.core">
           <HintPath>..\packages\SQLitePCLRaw.core.1.1.12\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
         </Reference>
@@ -157,21 +145,9 @@
         <Reference Include="SQLitePCLRaw.batteries_v2">
           <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.12\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
         </Reference>
-        <Reference Include="Validation">
-          <HintPath>..\packages\Validation.2.2.8\lib\dotnet\Validation.dll</HintPath>
-        </Reference>
-        <Reference Include="PCLCrypto">
-          <HintPath>..\packages\PCLCrypto.2.0.147\lib\xamarinios10\PCLCrypto.dll</HintPath>
-        </Reference>
-        <Reference Include="Microsoft.Azure.Mobile.Client">
-          <HintPath>..\packages\Microsoft.Azure.Mobile.Client.4.1.1\lib\xamarinios10\Microsoft.Azure.Mobile.Client.dll</HintPath>
-        </Reference>
         <Reference Include="System.IdentityModel" />
         <Reference Include="System.Runtime.Serialization" />
         <Reference Include="System.Xml.Linq" />
-        <Reference Include="Microsoft.Azure.Mobile.Client.SQLiteStore">
-          <HintPath>..\packages\Microsoft.Azure.Mobile.Client.SQLiteStore.4.1.1\lib\netstandard1.4\Microsoft.Azure.Mobile.Client.SQLiteStore.dll</HintPath>
-        </Reference>
         <Reference Include="AsyncAwaitBestPractices">
           <HintPath>..\packages\AsyncAwaitBestPractices.2.1.0\lib\netstandard\AsyncAwaitBestPractices.dll</HintPath>
         </Reference>
@@ -180,6 +156,30 @@
         </Reference>
         <Reference Include="Calabash">
           <HintPath>..\packages\Xamarin.TestCloud.Agent.0.21.7\lib\Xamarin.iOS\Calabash.dll</HintPath>
+        </Reference>
+        <Reference Include="Validation">
+          <HintPath>..\packages\Validation.2.4.18\lib\netstandard1.3\Validation.dll</HintPath>
+        </Reference>
+        <Reference Include="PInvoke.Windows.Core">
+          <HintPath>..\packages\PInvoke.Windows.Core.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Windows.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="PInvoke.Kernel32">
+          <HintPath>..\packages\PInvoke.Kernel32.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Kernel32.dll</HintPath>
+        </Reference>
+        <Reference Include="PInvoke.BCrypt">
+          <HintPath>..\packages\PInvoke.BCrypt.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.BCrypt.dll</HintPath>
+        </Reference>
+        <Reference Include="PInvoke.NCrypt">
+          <HintPath>..\packages\PInvoke.NCrypt.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.NCrypt.dll</HintPath>
+        </Reference>
+        <Reference Include="PCLCrypto">
+          <HintPath>..\packages\PCLCrypto.2.0.147\lib\xamarinios10\PCLCrypto.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Azure.Mobile.Client">
+          <HintPath>..\packages\Microsoft.Azure.Mobile.Client.4.1.1\lib\xamarinios10\Microsoft.Azure.Mobile.Client.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Azure.Mobile.Client.SQLiteStore">
+          <HintPath>..\packages\Microsoft.Azure.Mobile.Client.SQLiteStore.4.1.1\lib\netstandard1.4\Microsoft.Azure.Mobile.Client.SQLiteStore.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
