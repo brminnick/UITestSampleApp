@@ -46,9 +46,9 @@ namespace UITestSampleApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Firebase.FirebaseApp.InitializeApp(this);
             global::Xamarin.Forms.Platform.Android.AppLinks.AndroidAppLinks.Init(this);
 
-            Firebase.FirebaseApp.InitializeApp(this);
 
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();

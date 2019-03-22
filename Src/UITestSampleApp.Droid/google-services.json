@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "329151313676",
+    "firebase_url": "https://uitestsampleapp-6e1bb.firebaseio.com",
+    "project_id": "uitestsampleapp-6e1bb",
+    "storage_bucket": "uitestsampleapp-6e1bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329151313676:android:700ea426dee1301c",
+        "android_client_info": {
+          "package_name": "com.minnick.uitestsampleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329151313676-m7b84aslllin7elviki6as5rvks4ndd7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-JXYWOVPJS60hUh5FlKUxbJN-SsWuokc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
