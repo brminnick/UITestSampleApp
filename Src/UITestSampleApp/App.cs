@@ -45,9 +45,6 @@ namespace UITestSampleApp
 
 		void RegisterAppLinks()
 		{
-			if (!AppLinkHelpers.IsDeepLinkingSupported)
-				return;
-
 			var listViewPageLink = AppLinkHelpers.CreateAppLink("List View Page", "Open the List View Page", DeepLinkingIdConstants.ListPageId, "icon");
 			AppLinks.RegisterLink(listViewPageLink);
 		}

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -20,16 +19,8 @@ namespace UITestSampleApp
 
         public static void OpenListViewPage()
         {
-            switch (AppLinkHelpers.IsDeepLinkingSupported)
-            {
-                case true:
-                    var app = Application.Current as App;
-                    app.OpenListViewPageUsingDeepLinking();
-                    break;
-                default:
-                    NavigateToListViewPage();
-                    break;
-            }
+            if (Application.Current is App app)
+                app.OpenListViewPageUsingDeepLinking();
         }
 
         public static string GetSerializedListViewPageData()

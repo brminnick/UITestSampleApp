@@ -23,27 +23,7 @@
     <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.13" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\EntityData.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\ListPageDataModel.cs" />
-    <Compile Remove="..\UITestSampleApp.Shared\Models\SampleDataModel.cs" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyLoginUI\MyLoginUI.csproj" />
