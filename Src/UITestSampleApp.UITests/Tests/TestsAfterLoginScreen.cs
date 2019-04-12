@@ -51,7 +51,7 @@ namespace UITestSampleApp.UITests
         public void VerifyItemsInListView()
         {
             //Arrange
-            var listItemNumber = 9;
+            const int listItemNumber = 9;
             var expectedAlertString = $"You Selected Number {listItemNumber}";
 
             //Act
@@ -60,7 +60,13 @@ namespace UITestSampleApp.UITests
             ListPage.WaitForPageToLoad();
             ListPage.WaitForNoActivityIndicator();
 
+            ListPage.TapListItemNumber(listItemNumber);
+            var actualAlertString = ListPage.GetAlertText(listItemNumber);
+
+            ListPage.TapOKOnAlert();
+
             //Assert
+            Assert.AreEqual(expectedAlertString, actualAlertString);
             Assert.IsTrue(BackdoorHelpers.GetListPageData(App)?.Count >= 30, "Less than 30 items found in List");
         }
     }

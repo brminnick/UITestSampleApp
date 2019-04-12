@@ -20,9 +20,10 @@ namespace UITestSampleApp
             {
                 ItemTemplate = new DataTemplate(typeof(WhiteTextImageCell)),
                 BackgroundColor = Color.FromHex("#2980b9"),
-                IsPullToRefreshEnabled = true
+                IsPullToRefreshEnabled = true,
+                RefreshControlColor = Color.White
             };
-            _listView.ItemTapped -= HandleListViewItemTapped;
+            _listView.ItemTapped += HandleListViewItemTapped;
             _listView.SetBinding(ListView.ItemsSourceProperty, nameof(ViewModel.DataList));
 			_listView.SetBinding(ListView.IsRefreshingProperty, nameof(ViewModel.IsRefreshing));
             _listView.SetBinding(ListView.RefreshCommandProperty, nameof(ViewModel.PullToRefreshCommand));
