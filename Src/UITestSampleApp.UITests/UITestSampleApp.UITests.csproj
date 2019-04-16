@@ -51,8 +51,7 @@
     <ItemGroup />
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-        <PackageReference Include="NUnit" Version="2.6.4" />
-        <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.2" />
-        <PackageReference Include="Xamarin.UITest" Version="2.2.7.2002-dev" />
+        <PackageReference Include="NUnit" Version="3.11.0" />
+        <PackageReference Include="Xamarin.UITest" Version="3.0.0-dev1" />
     </ItemGroup>
 </Project>
