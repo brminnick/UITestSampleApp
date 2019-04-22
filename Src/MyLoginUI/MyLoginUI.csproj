@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.14.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.14.0" />
     <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.14.0" />
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.293080" />
-    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="2.1.0" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.344457" />
+    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="README.md" />
