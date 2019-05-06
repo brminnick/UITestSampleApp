@@ -1,7 +1,7 @@
-﻿using Refit;
-
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+
+using Refit;
 
 namespace UITestSampleApp.Functions
 {

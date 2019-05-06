@@ -48,6 +48,9 @@ namespace UITestSampleApp.Functions
 
             log.LogInformation($"{nameof(iOSBuildResponse)} {nameof(iOSBuildResponse.IsSuccessStatusCode)}: {iOSBuildResponse.IsSuccessStatusCode}");
             log.LogInformation($"{nameof(androidBuildResponse)} {nameof(androidBuildResponse.IsSuccessStatusCode)}: {androidBuildResponse.IsSuccessStatusCode}");
+
+            iOSBuildResponse.EnsureSuccessStatusCode();
+            androidBuildResponse.EnsureSuccessStatusCode();
         }
 
         static HttpClient CreateHttpClient(TimeSpan timeout)
