@@ -2,7 +2,7 @@
 
 namespace UITestSampleApp.Functions
 {
-    public partial class BuildParameters
+    public class BuildParameters
     {
         public BuildParameters(bool isDebug) => IsDebug = isDebug;
 

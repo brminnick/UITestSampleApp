@@ -60,17 +60,9 @@ namespace UITestSampleApp.Functions
             return client;
         }
 
-        static Task<T> ExecutePollyFunction<T>(Func<Task<T>> action, int numRetries = 5)
+        static Task<T> ExecutePollyFunction<T>(Func<Task<T>> action, int numRetries = 3)
         {
-            return Policy
-                    .Handle<WebException>()
-                    .Or<HttpRequestException>()
-                    .Or<TimeoutException>()
-                    .WaitAndRetryAsync
-                    (
-                        numRetries,
-                        PollyRetryAttempt
-                    ).ExecuteAsync(action);
+            return Policy.Handle<Exception>().WaitAndRetryAsync(numRetries, PollyRetryAttempt).ExecuteAsync(action);
 
             TimeSpan PollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
         }
