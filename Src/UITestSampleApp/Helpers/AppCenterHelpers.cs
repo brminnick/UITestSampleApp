@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 using Microsoft.AppCenter;
+using Microsoft.AppCenter.Data;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Distribute;
 
 namespace UITestSampleApp
 {
@@ -42,18 +43,35 @@ namespace UITestSampleApp
             TrackEvent(trackIdentifier, table);
         }
 
-        public static void LogException(Exception exception, IDictionary<string, string> properties = null)
+        public static void Report(Exception exception,
+                          IDictionary<string, string> properties = null,
+                          [CallerMemberName] string callerMemberName = "",
+                          [CallerLineNumber] int lineNumber = 0,
+                          [CallerFilePath] string filePath = "")
         {
-            var exceptionType = exception.GetType().ToString();
-            var message = exception.Message;
-
-            Debug.WriteLine(exceptionType);
-            Debug.WriteLine($"Error: {message}");
-
+            PrintException(exception, callerMemberName, lineNumber, filePath, properties);
             Crashes.TrackError(exception, properties);
         }
 
+        [Conditional("DEBUG")]
+        static void PrintException(Exception exception, string callerMemberName, int lineNumber, string filePath, IDictionary<string, string> properties = null)
+        {
+            var fileName = System.IO.Path.GetFileName(filePath);
+
+            Debug.WriteLine(exception.GetType());
+            Debug.WriteLine($"Error: {exception.Message}");
+            Debug.WriteLine($"Line Number: {lineNumber}");
+            Debug.WriteLine($"Caller Name: {callerMemberName}");
+            Debug.WriteLine($"File Name: {fileName}");
+
+            if (properties != null)
+            {
+                foreach (var property in properties)
+                    Debug.WriteLine($"{property.Key}: {property.Value}");
+            }
+        }
+
         static void Start(string appSecret) =>
-            AppCenter.Start(appSecret, typeof(Analytics), typeof(Crashes), typeof(Distribute));
+            AppCenter.Start(appSecret, typeof(Analytics), typeof(Crashes), typeof(Data));
     }
 }

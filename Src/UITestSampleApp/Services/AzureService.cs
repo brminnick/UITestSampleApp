@@ -1,91 +1,39 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-using Microsoft.WindowsAzure.MobileServices;
-using Microsoft.WindowsAzure.MobileServices.Sync;
-using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
+using Microsoft.AppCenter.Data;
 
 using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
-    public class AzureService
+    public static class AzureService
     {
-        #region Constant Fields
-        readonly static Lazy<AzureService> _instanceHolder = new Lazy<AzureService>(() => new AzureService());
-        readonly Dictionary<Type, bool> _isInitializedDictionary = new Dictionary<Type, bool>();
-        readonly Lazy<MobileServiceClient> _mobileServiceClientHolder = new Lazy<MobileServiceClient>(() => new MobileServiceClient(AzureConstants.AzureDataServiceUrl));
-        #endregion
-
         #region Fields
-        int _networkIndicatorCount;
-        #endregion
-
-        #region Constructors
-        AzureService()
-        {
-            
-        }
-        #endregion
-
-        #region Properties
-        public static AzureService Instance => _instanceHolder.Value;
-
-        MobileServiceClient MobileServiceClient => _mobileServiceClientHolder.Value;
+        static int _networkIndicatorCount;
         #endregion
 
         #region Methods
-        public async Task<List<T>> GetItemsAsync<T>() where T : EntityData
+        public static async Task<List<ListPageDataModel>> GetListPageDataModels()
         {
-            await Initialize<T>().ConfigureAwait(false);
-
-            return await MobileServiceClient.GetSyncTable<T>().ToListAsync().ConfigureAwait(false);
-        }
-
-        public async Task<T> GetItem<T>(string id) where T : EntityData
-        {
-            await Initialize<T>().ConfigureAwait(false);
-
-            return await MobileServiceClient.GetSyncTable<T>().LookupAsync(id).ConfigureAwait(false);
-        }
-
-        public async Task AddItemAsync<T>(T item) where T : EntityData
-        {
-            await Initialize<T>().ConfigureAwait(false);
-
-            await MobileServiceClient.GetSyncTable<T>().InsertAsync(item).ConfigureAwait(false);
-        }
-
-        public async Task UpdateItemAsync<T>(T item) where T : EntityData
-        {
-            await Initialize<T>().ConfigureAwait(false);
-
-            await MobileServiceClient.GetSyncTable<T>().UpdateAsync(item).ConfigureAwait(false);
-        }
-
-        public async Task RemoveItemAsync<T>(T item) where T : EntityData
-        {
-            await Initialize<T>().ConfigureAwait(false);
-
-            await MobileServiceClient.GetSyncTable<T>().DeleteAsync(item).ConfigureAwait(false);
-        }
-
-        public async Task SyncItemsAsync<T>() where T : EntityData
-        {
-            await Initialize<T>().ConfigureAwait(false);
-
             UpdateNetworkActivityIndicatorStatus(true);
 
             try
             {
-                await MobileServiceClient.GetSyncTable<T>().PullAsync($"all{typeof(T).Name}", MobileServiceClient.GetSyncTable<T>().CreateQuery()).ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error during Sync occurred: {ex.Message}");
+                var itemList = new List<ListPageDataModel>();
+
+                var result = await Data.ListAsync<ListPageDataModel>(DefaultPartitions.AppDocuments).ConfigureAwait(false);
+                itemList.AddRange(result.CurrentPage.Items.Select(x => x.DeserializedValue));
+
+                while (result.HasNextPage)
+                {
+                    var nextPage = await result.GetNextPageAsync().ConfigureAwait(false);
+                    itemList.AddRange(nextPage.Items.Select(x => x.DeserializedValue));
+                }
+
+                return itemList;
             }
             finally
             {
@@ -93,34 +41,71 @@ namespace UITestSampleApp
             }
         }
 
-        async Task Initialize<T>() where T : EntityData
+        public static async Task<ListPageDataModel> GetListPageDataModel(string documentId)
         {
-            if (IsDataTypeInitialized<T>())
-                return;
+            UpdateNetworkActivityIndicatorStatus(true);
 
-            _isInitializedDictionary?.Add(typeof(T), false);
-
-            await ConfigureOnlineOfflineSync<T>().ConfigureAwait(false);
-
-            _isInitializedDictionary[typeof(T)] = true;
+            try
+            {
+                var item = await Data.ReadAsync<ListPageDataModel>(documentId, DefaultPartitions.AppDocuments).ConfigureAwait(false);
+                return item.DeserializedValue;
+            }
+            finally
+            {
+                UpdateNetworkActivityIndicatorStatus(false);
+            }
         }
 
-        Task ConfigureOnlineOfflineSync<T>() where T : EntityData
+        public static async Task<ListPageDataModel> AddListViewDataModel(ListPageDataModel item)
         {
-            var path = Path.Combine(MobileServiceClient.DefaultDatabasePath, "app.db");
-            var store = new MobileServiceSQLiteStore(path);
-            store.DefineTable<T>();
+            UpdateNetworkActivityIndicatorStatus(true);
 
-            return MobileServiceClient.SyncContext.InitializeAsync(store, new SyncHandler());
+            try
+            {
+                var response = await Data.CreateAsync(item.Id, item, DefaultPartitions.AppDocuments, new WriteOptions(TimeToLive.Infinite)).ConfigureAwait(false);
+                return response.DeserializedValue;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            finally
+            {
+                UpdateNetworkActivityIndicatorStatus(false);
+            }
         }
 
-        bool IsDataTypeInitialized<T>() where T : EntityData
+        public static async Task<ListPageDataModel> UpdateListViewDataModel(ListPageDataModel item)
         {
-            var isDataTypeInitalized = _isInitializedDictionary?.FirstOrDefault(x => x.Key.Equals(typeof(T))).Value;
-            return isDataTypeInitalized == true;
+            UpdateNetworkActivityIndicatorStatus(true);
+
+            try
+            {
+                var response = await Data.ReplaceAsync(item.Id, item, DefaultPartitions.AppDocuments).ConfigureAwait(false);
+                return response.DeserializedValue;
+            }
+            finally
+            {
+                UpdateNetworkActivityIndicatorStatus(false);
+            }
         }
 
-        void UpdateNetworkActivityIndicatorStatus(bool isActivityIndicatorDisplayed)
+        public static async Task<ListPageDataModel> RemoveListPageDataModel(string documentId)
+        {
+            UpdateNetworkActivityIndicatorStatus(true);
+
+            try
+            {
+                var response = await Data.DeleteAsync<ListPageDataModel>(documentId, DefaultPartitions.AppDocuments).ConfigureAwait(false);
+                return response.DeserializedValue;
+            }
+            finally
+            {
+                UpdateNetworkActivityIndicatorStatus(false);
+            }
+        }
+
+        static void UpdateNetworkActivityIndicatorStatus(bool isActivityIndicatorDisplayed)
         {
             if (isActivityIndicatorDisplayed)
             {

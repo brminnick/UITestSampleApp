@@ -74,7 +74,7 @@ namespace UITestSampleApp
             }
             catch (Exception ex)
             {
-                AppCenterHelpers.LogException(ex);
+                AppCenterHelpers.Report(ex);
 
                 var isCrashConfirmed = await DisplayAlert(CrashDialogConstants.Title, CrashDialogConstants.Message, CrashDialogConstants.Yes, CrashDialogConstants.No);
 

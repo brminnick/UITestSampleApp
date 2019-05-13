@@ -11,7 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Constants\AutomationIdConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ConverterHelpers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\EntityData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ListPageDataModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\PageTitles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\CrashDialogConstants.cs" />

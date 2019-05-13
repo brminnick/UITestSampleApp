@@ -49,9 +49,7 @@ namespace UITestSampleApp.Droid
             Firebase.FirebaseApp.InitializeApp(this);
             global::Xamarin.Forms.Platform.Android.AppLinks.AndroidAppLinks.Init(this);
 
-
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
-            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
             LoadApplication(new App());
         }
