@@ -140,6 +140,7 @@
         <None Include="app.config" />
         <None Include="Info.plist" />
         <None Include="Entitlements.plist" />
+        <None Include="appcenter-post-build.sh" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Main.cs" />
