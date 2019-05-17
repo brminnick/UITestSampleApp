@@ -14,7 +14,10 @@ namespace UITestSampleApp.Shared
         [JsonProperty("id")]
         public string Id { get; } = Guid.NewGuid().ToString();
 
+        [JsonProperty("detail")]
         public int Detail { get; set; }
+
+        [JsonProperty("text")]
         public string Text { get; set; }
     }
 }

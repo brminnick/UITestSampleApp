@@ -60,17 +60,6 @@ namespace UITestSampleApp
 
         async Task ExecutePullToRefreshCommanded()
         {
-            //for (int i = 1; i <= 20; i++)
-            //{
-            //    var temp = new ListPageDataModel
-            //    {
-            //        Text = "Number",
-            //        Detail = i
-            //    };
-
-            //    await AzureService.AddListViewDataModel(temp).ConfigureAwait(false);
-            //}
-
             try
             {
                 AppCenterHelpers.TrackEvent(AppCenterConstants.PullToRefreshCommanded);

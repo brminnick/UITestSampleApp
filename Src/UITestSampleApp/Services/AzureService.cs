@@ -56,25 +56,6 @@ namespace UITestSampleApp
             }
         }
 
-        public static async Task<ListPageDataModel> AddListViewDataModel(ListPageDataModel item)
-        {
-            UpdateNetworkActivityIndicatorStatus(true);
-
-            try
-            {
-                var response = await Data.CreateAsync(item.Id, item, DefaultPartitions.AppDocuments, new WriteOptions(TimeToLive.Infinite)).ConfigureAwait(false);
-                return response.DeserializedValue;
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-            finally
-            {
-                UpdateNetworkActivityIndicatorStatus(false);
-            }
-        }
-
         public static async Task<ListPageDataModel> UpdateListViewDataModel(ListPageDataModel item)
         {
             UpdateNetworkActivityIndicatorStatus(true);
