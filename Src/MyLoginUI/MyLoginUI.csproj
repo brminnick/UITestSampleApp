@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="2.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
-    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.618605-pre2" />
+    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="3.1.0-pre2" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="README.md" />

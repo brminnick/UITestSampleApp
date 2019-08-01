@@ -19,10 +19,9 @@
         <AndroidTlsProvider>
         </AndroidTlsProvider>
         <AndroidExplicitCrunch>true</AndroidExplicitCrunch>
-        <AndroidLinkMode>None</AndroidLinkMode>
         <NuGetPackageImportStamp>
         </NuGetPackageImportStamp>
-        <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+        <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugSymbols>True</DebugSymbols>
@@ -38,6 +37,9 @@
         <AndroidSupportedAbis>armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
         <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
         <AndroidTlsProvider>btls</AndroidTlsProvider>
+        <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+        <AndroidUseAapt2>true</AndroidUseAapt2>
+        <AndroidDexTool>d8</AndroidDexTool>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <DebugType>
@@ -52,6 +54,14 @@
         <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
         <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
         <AndroidTlsProvider>btls</AndroidTlsProvider>
+        <BundleAssemblies>true</BundleAssemblies>
+        <AotAssemblies>true</AotAssemblies>
+        <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+        <EnableLLVM>true</EnableLLVM>
+        <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+        <AndroidUseAapt2>true</AndroidUseAapt2>
+        <AndroidDexTool>d8</AndroidDexTool>
+        <AndroidLinkTool>r8</AndroidLinkTool>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System" />
@@ -71,16 +81,14 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.1.1" />
-        <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.13" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.0.0" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.0.0" />
-        <PackageReference Include="Microsoft.AppCenter.Distribute" Version="2.0.0" />
-        <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="2.1.1" />
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
+        <PackageReference Include="Xamarin.Forms" Version="4.2.0.618605-pre2" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="3.1.0-pre2" />
         <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.4" />
-        <PackageReference Include="Xamarin.Forms.AppLinks" Version="4.0.0.425677" />
+        <PackageReference Include="Xamarin.Forms.AppLinks" Version="4.2.0.618605-pre2" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />
@@ -89,11 +97,9 @@
         <Compile Include="CustomRenderers\StyledEntryRenderer.cs" />
     </ItemGroup>
     <ItemGroup>
-        <None Include="app.config" />
         <None Include="Resources\AboutResources.txt" />
         <None Include="Properties\AndroidManifest.xml" />
         <None Include="Assets\AboutAssets.txt" />
-        <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup />
     <ItemGroup>
@@ -124,6 +130,9 @@
     </ItemGroup>
     <ItemGroup>
         <GoogleServicesJson Include="google-services.json" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProguardConfiguration Include="proguard.cfg" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
