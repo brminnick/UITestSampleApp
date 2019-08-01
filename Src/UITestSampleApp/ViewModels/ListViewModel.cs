@@ -22,7 +22,7 @@ namespace UITestSampleApp
 
         #region Properties
         public ICommand PullToRefreshCommand => _pullToRefreshCommand ??
-            (_pullToRefreshCommand = new AsyncCommand(ExecutePullToRefreshCommanded, continueOnCapturedContext: false));
+            (_pullToRefreshCommand = new AsyncCommand(ExecutePullToRefreshCommanded));
 
         public List<ListPageDataModel> DataList
         {

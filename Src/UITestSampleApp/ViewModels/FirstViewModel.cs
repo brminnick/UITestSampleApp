@@ -16,7 +16,7 @@ namespace UITestSampleApp
 
         #region Properties
         public ICommand GoButtonCommand => _goButtonCommand ??
-            (_goButtonCommand = new AsyncCommand<string>(ExecuteGoButtonCommand, continueOnCapturedContext: false));
+            (_goButtonCommand = new AsyncCommand<string>(ExecuteGoButtonCommand));
 
         public bool IsActiityIndicatorRunning
         {
