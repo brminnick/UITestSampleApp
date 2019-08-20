@@ -85,19 +85,19 @@ namespace MyLoginUI.Pages
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await Task.Delay(500);
-                    await _logo?.TranslateTo(0, -MainLayout.Height * 0.3 - 10, 250);
-                    await _logo?.TranslateTo(0, -MainLayout.Height * 0.3 + 5, 100);
-                    await _logo?.TranslateTo(0, -MainLayout.Height * 0.3, 50);
+                    await _logo.TranslateTo(0, -MainLayout.Height * 0.3 - 10, 250);
+                    await _logo.TranslateTo(0, -MainLayout.Height * 0.3 + 5, 100);
+                    await _logo.TranslateTo(0, -MainLayout.Height * 0.3, 50);
 
-                    await _logo?.TranslateTo(0, -200 + 5, 100);
-                    await _logo?.TranslateTo(0, -200, 50);
+                    await _logo.TranslateTo(0, -200 + 5, 100);
+                    await _logo.TranslateTo(0, -200, 50);
 
-                    await Task.WhenAll(_logoSlogan?.FadeTo(1, 5),
-                                        _newUserSignUpButton?.FadeTo(1, 250),
-                                        _forgotPasswordButton?.FadeTo(1, 250),
-                                        _loginEntry?.FadeTo(1, 250),
-                                        _passwordEntry?.FadeTo(1, 250),
-                                        _loginButton?.FadeTo(1, 249));
+                    await Task.WhenAll(_logoSlogan.FadeTo(1, 5),
+                                        _newUserSignUpButton.FadeTo(1, 250),
+                                        _forgotPasswordButton.FadeTo(1, 250),
+                                        _loginEntry.FadeTo(1, 250),
+                                        _passwordEntry.FadeTo(1, 250),
+                                        _loginButton.FadeTo(1, 249));
 
                     _isInitialized = true;
 
@@ -156,11 +156,7 @@ namespace MyLoginUI.Pages
 
         void AddConstraintsToChildren()
         {
-            Func<RelativeLayout, double> getNewUserButtonWidth = (p) => _newUserSignUpButton.Measure(p.Width, p.Height).Request.Width;
-            Func<RelativeLayout, double> getForgotButtonWidth = (p) => _forgotPasswordButton.Measure(p.Width, p.Height).Request.Width;
-            Func<RelativeLayout, double> getLogoSloganWidth = (p) => _logoSlogan.Measure(p.Width, p.Height).Request.Width;
-
-            MainLayout.Children.Add(
+           MainLayout.Children.Add(
                 _logo,
                 xConstraint: Constraint.Constant(100),
                 yConstraint: Constraint.Constant(250),
@@ -202,6 +198,10 @@ namespace MyLoginUI.Pages
                 xConstraint: Constraint.RelativeToParent(p => (p.Width / 2) - (getForgotButtonWidth(p) / 2)),
                 yConstraint: Constraint.RelativeToView(_newUserSignUpButton, (p, v) => v.Y + _newUserSignUpButton.Height + _relativeLayoutPadding)
             );
+
+            double getNewUserButtonWidth(RelativeLayout p) => _newUserSignUpButton.Measure(p.Width, p.Height).Request.Width;
+            double getForgotButtonWidth(RelativeLayout p) => _forgotPasswordButton.Measure(p.Width, p.Height).Request.Width;
+            double getLogoSloganWidth(RelativeLayout p) => _logoSlogan.Measure(p.Width, p.Height).Request.Width;
         }
 
         async void HandleLoginButtonClicked(object sender, EventArgs e)

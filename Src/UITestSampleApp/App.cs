@@ -7,7 +7,6 @@ namespace UITestSampleApp
 
 	public class App : Application
 	{
-		#region Constructors
 		public App()
 		{
 			var page = new LoginPage();
@@ -19,9 +18,6 @@ namespace UITestSampleApp
 				BarTextColor = Color.White,
 			};
 		}
-		#endregion
-
-		#region Methods
 #if DEBUG
 		#region Backdoor Methods
 		public void OpenListViewPageUsingDeepLinking() =>
@@ -48,7 +44,6 @@ namespace UITestSampleApp
 			var listViewPageLink = AppLinkHelpers.CreateAppLink("List View Page", "Open the List View Page", DeepLinkingIdConstants.ListPageId, "icon");
 			AppLinks.RegisterLink(listViewPageLink);
 		}
-		#endregion
 	}
 }
 

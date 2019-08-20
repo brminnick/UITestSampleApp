@@ -49,52 +49,29 @@ namespace UITestSampleApp
 
             try
             {
-                await AzureService.Instance.SyncItemsAsync<ListPageDataModel>().ConfigureAwait(false);
-
-                var dataList = await AzureService.Instance.GetItemsAsync<ListPageDataModel>().ConfigureAwait(false);
+                var dataList = await AppCenterDataService.GetListPageDataModels().ConfigureAwait(false);
                 DataList = dataList.ToList();
             }
             catch (Exception e)
             {
-                AppCenterHelpers.LogException(e);
-            }
-        }
-
-        async Task RefreshDataFromLocalDatabaseAsync()
-        {
-            try
-            {
-                var dataList = await AzureService.Instance.GetItemsAsync<ListPageDataModel>().ConfigureAwait(false);
-                DataList = dataList?.ToList();
-            }
-            catch (Exception e)
-            {
-                AppCenterHelpers.LogException(e);
+                AppCenterHelpers.Report(e);
             }
         }
 
         async Task ExecutePullToRefreshCommanded()
         {
-            IsRefreshing = true;
-
             try
             {
                 AppCenterHelpers.TrackEvent(AppCenterConstants.PullToRefreshCommanded);
 
                 var showRefreshIndicatorForOneSecondTask = Task.Delay(1000);
 
-                await Task.WhenAll(RefreshDataAsync(), showRefreshIndicatorForOneSecondTask).ConfigureAwait(false);
+                await Task.WhenAll(RefreshDataFromAzureAsync(), showRefreshIndicatorForOneSecondTask).ConfigureAwait(false);
             }
             finally
             {
                 IsRefreshing = false;
             }
-        }
-
-        async Task RefreshDataAsync()
-        {
-            await RefreshDataFromLocalDatabaseAsync().ConfigureAwait(false);
-            await RefreshDataFromAzureAsync().ConfigureAwait(false);
         }
         #endregion
     }

@@ -80,15 +80,15 @@
         <Reference Include="System.Numerics.Vectors" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.1.1" />
         <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
-        <PackageReference Include="Xamarin.Forms" Version="4.2.0.618605-pre2" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="3.1.0-pre2" />
+        <PackageReference Include="Xamarin.Forms" Version="4.2.0.673161-pre3" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="3.1.0-pre5" />
         <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.4" />
-        <PackageReference Include="Xamarin.Forms.AppLinks" Version="4.2.0.618605-pre2" />
+        <PackageReference Include="Xamarin.Forms.AppLinks" Version="4.2.0.673161-pre3" />
+        <PackageReference Include="Microsoft.AppCenter.Data" Version="2.1.1" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />

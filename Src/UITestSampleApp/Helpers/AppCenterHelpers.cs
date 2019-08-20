@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 using Microsoft.AppCenter;
+using Microsoft.AppCenter.Data;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Analytics;
 
@@ -41,11 +42,14 @@ namespace UITestSampleApp
 
             TrackEvent(trackIdentifier, table);
         }
-
-        public static void LogException(Exception exception, IDictionary<string, string> properties = null, [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int lineNumber = 0, [CallerFilePath] string filePath = "")
+      
+        public static void Report(Exception exception,
+                          IDictionary<string, string> properties = null,
+                          [CallerMemberName] string callerMemberName = "",
+                          [CallerLineNumber] int lineNumber = 0,
+                          [CallerFilePath] string filePath = "")
         {
             PrintException(exception, callerMemberName, lineNumber, filePath, properties);
-
             Crashes.TrackError(exception, properties);
         }
 
@@ -68,6 +72,6 @@ namespace UITestSampleApp
         }
 
         static void Start(string appSecret) =>
-            AppCenter.Start(appSecret, typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(appSecret, typeof(Analytics), typeof(Crashes), typeof(Data));
     }
 }
