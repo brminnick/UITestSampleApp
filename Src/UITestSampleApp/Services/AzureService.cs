@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -9,7 +8,7 @@ using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
-    public static class AzureService
+    public static class AppCenterDataService
     {
         #region Fields
         static int _networkIndicatorCount;
@@ -18,7 +17,7 @@ namespace UITestSampleApp
         #region Methods
         public static async Task<List<ListPageDataModel>> GetListPageDataModels()
         {
-            UpdateNetworkActivityIndicatorStatus(true);
+            await UpdateNetworkActivityIndicatorStatus(true).ConfigureAwait(false);
 
             try
             {
@@ -37,13 +36,13 @@ namespace UITestSampleApp
             }
             finally
             {
-                UpdateNetworkActivityIndicatorStatus(false);
+                await UpdateNetworkActivityIndicatorStatus(false).ConfigureAwait(false);
             }
         }
 
         public static async Task<ListPageDataModel> GetListPageDataModel(string documentId)
         {
-            UpdateNetworkActivityIndicatorStatus(true);
+            await UpdateNetworkActivityIndicatorStatus(true).ConfigureAwait(false);
 
             try
             {
@@ -52,13 +51,13 @@ namespace UITestSampleApp
             }
             finally
             {
-                UpdateNetworkActivityIndicatorStatus(false);
+                await UpdateNetworkActivityIndicatorStatus(false).ConfigureAwait(false);
             }
         }
 
         public static async Task<ListPageDataModel> UpdateListViewDataModel(ListPageDataModel item)
         {
-            UpdateNetworkActivityIndicatorStatus(true);
+            await UpdateNetworkActivityIndicatorStatus(true).ConfigureAwait(false);
 
             try
             {
@@ -67,13 +66,13 @@ namespace UITestSampleApp
             }
             finally
             {
-                UpdateNetworkActivityIndicatorStatus(false);
+                await UpdateNetworkActivityIndicatorStatus(false).ConfigureAwait(false);
             }
         }
 
         public static async Task<ListPageDataModel> RemoveListPageDataModel(string documentId)
         {
-            UpdateNetworkActivityIndicatorStatus(true);
+            await UpdateNetworkActivityIndicatorStatus(true).ConfigureAwait(false);
 
             try
             {
@@ -82,21 +81,21 @@ namespace UITestSampleApp
             }
             finally
             {
-                UpdateNetworkActivityIndicatorStatus(false);
+                await UpdateNetworkActivityIndicatorStatus(false).ConfigureAwait(false);
             }
         }
 
-        static void UpdateNetworkActivityIndicatorStatus(bool isActivityIndicatorDisplayed)
+        static async Task UpdateNetworkActivityIndicatorStatus(bool shouldDisplayActivityIndicator)
         {
-            if (isActivityIndicatorDisplayed)
+            if (shouldDisplayActivityIndicator)
             {
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Xamarin.Forms.Application.Current.MainPage.IsBusy = true);
                 _networkIndicatorCount++;
+                await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() => Xamarin.Forms.Application.Current.MainPage.IsBusy = true).ConfigureAwait(false);
             }
             else if (--_networkIndicatorCount <= 0)
             {
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Xamarin.Forms.Application.Current.MainPage.IsBusy = false);
                 _networkIndicatorCount = 0;
+                await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() => Xamarin.Forms.Application.Current.MainPage.IsBusy = false).ConfigureAwait(false);
             }
         }
         #endregion

@@ -49,7 +49,7 @@ namespace UITestSampleApp
 
             try
             {
-                var dataList = await AzureService.GetListPageDataModels().ConfigureAwait(false);
+                var dataList = await AppCenterDataService.GetListPageDataModels().ConfigureAwait(false);
                 DataList = dataList.ToList();
             }
             catch (Exception e)

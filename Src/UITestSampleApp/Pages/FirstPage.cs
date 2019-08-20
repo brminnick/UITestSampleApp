@@ -11,11 +11,8 @@ namespace UITestSampleApp
 {
     public class FirstPage : BaseContentPage<FirstViewModel>
     {
-        #region Constant Fields
         const int _relativeLayoutPadding = 5;
-        #endregion
 
-        #region Constructors
         public FirstPage() : base(PageTitleConstants.FirstPage)
         {
             const string entryTextPaceHolder = "Enter text and click 'Go'";
@@ -91,9 +88,7 @@ namespace UITestSampleApp
             Padding = GetPagePadding();
             Content = relativeLayout;
         }
-        #endregion
 
-        #region Methods
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -122,7 +117,6 @@ namespace UITestSampleApp
                     throw new NotSupportedException("Runtime Platform Not Supported");
             }
         }
-        #endregion
     }
 }
 
