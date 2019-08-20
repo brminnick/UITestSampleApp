@@ -13,7 +13,6 @@ namespace UITestSampleApp.iOS
 #if DEBUG
             Xamarin.Calabash.Start();
 #endif
-
             LoadApplication(new App());
 
             return base.FinishedLaunching(uiApplication, launchOptions);

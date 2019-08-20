@@ -42,7 +42,7 @@ namespace UITestSampleApp
 
             TrackEvent(trackIdentifier, table);
         }
-
+      
         public static void Report(Exception exception,
                           IDictionary<string, string> properties = null,
                           [CallerMemberName] string callerMemberName = "",

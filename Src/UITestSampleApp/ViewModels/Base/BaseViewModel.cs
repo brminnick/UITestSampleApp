@@ -20,7 +20,7 @@ namespace UITestSampleApp
         }
         #endregion
 
-        protected void SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyname = "", Action onChanged = null)
+        protected void SetProperty<T>(ref T backingStore, in T value, in Action onChanged = null, [CallerMemberName] in string propertyname = "")
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return;
@@ -32,7 +32,7 @@ namespace UITestSampleApp
             OnPropertyChanged(propertyname);
         }
 
-        void OnPropertyChanged([CallerMemberName]string name = "") =>
-            _propertyChangedEventManager?.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
+        void OnPropertyChanged([CallerMemberName]in string name = "") =>
+            _propertyChangedEventManager.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
     }
 }

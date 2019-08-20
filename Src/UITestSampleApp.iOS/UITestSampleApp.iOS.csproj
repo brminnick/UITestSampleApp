@@ -9,6 +9,7 @@
         <RootNamespace>UITestSampleApp.iOS</RootNamespace>
         <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
         <AssemblyName>UITestSampleApp.iOS</AssemblyName>
+        <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
         <NuGetPackageImportStamp>
         </NuGetPackageImportStamp>
     </PropertyGroup>
@@ -23,12 +24,15 @@
         <ConsolePause>false</ConsolePause>
         <MtouchArch>x86_64</MtouchArch>
         <MtouchLink>None</MtouchLink>
-        <MtouchFastDev>false</MtouchFastDev>
+        <MtouchFastDev>true</MtouchFastDev>
         <MtouchDebug>true</MtouchDebug>
         <CodesignKey>iPhone Developer</CodesignKey>
         <MtouchProfiling>true</MtouchProfiling>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+        <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+        <MtouchFloat32>true</MtouchFloat32>
+        <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
         <DebugType>
@@ -39,12 +43,14 @@
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
         <ConsolePause>false</ConsolePause>
-        <MtouchArch>ARMv7, ARM64</MtouchArch>
+        <MtouchArch>ARM64</MtouchArch>
         <MtouchFloat32>true</MtouchFloat32>
         <CodesignKey>iPhone Developer</CodesignKey>
         <BuildIpa>true</BuildIpa>
         <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-        <MtouchLink>None</MtouchLink>
+        <MtouchLink>SdkOnly</MtouchLink>
+        <MtouchUseLlvm>true</MtouchUseLlvm>
+        <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
         <DebugType>
@@ -60,6 +66,8 @@
         <CodesignKey>iPhone Developer</CodesignKey>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+        <MtouchUseLlvm>true</MtouchUseLlvm>
+        <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
         <DebugSymbols>true</DebugSymbols>
@@ -70,15 +78,18 @@
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
         <ConsolePause>false</ConsolePause>
-        <MtouchArch>ARMv7, ARM64</MtouchArch>
+        <MtouchArch>ARM64</MtouchArch>
         <MtouchFloat32>true</MtouchFloat32>
         <CodesignKey>iPhone Developer</CodesignKey>
-        <DeviceSpecificBuild>false</DeviceSpecificBuild>
+        <DeviceSpecificBuild>true</DeviceSpecificBuild>
         <MtouchDebug>true</MtouchDebug>
         <MtouchProfiling>true</MtouchProfiling>
         <BuildIpa>true</BuildIpa>
         <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-        <MtouchLink>None</MtouchLink>
+        <MtouchLink>SdkOnly</MtouchLink>
+        <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+        <MtouchFastDev>true</MtouchFastDev>
+        <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System" />
@@ -135,7 +146,6 @@
         <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     </ItemGroup>
     <ItemGroup>
-        <None Include="app.config" />
         <None Include="Info.plist" />
         <None Include="Entitlements.plist" />
     </ItemGroup>
