@@ -34,6 +34,8 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
     APKFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.apk | head -1`
     echo APKFile: $APKFile
 
+    npm install -g n
+    n stable
     npm install -g appcenter-cli
 
     appcenter login --token $AppCenterAPIToken
