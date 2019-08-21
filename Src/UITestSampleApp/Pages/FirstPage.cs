@@ -23,8 +23,8 @@ namespace UITestSampleApp
                 AutomationId = AutomationIdConstants.FirstPage_GoButton // This provides an ID that can be referenced in UITests
             };
             goButton.Clicked += HandleButtonClicked;
-            goButton.SetBinding(Button.CommandProperty, nameof(ViewModel.GoButtonCommand));
-            goButton.SetBinding(Button.CommandParameterProperty, nameof(ViewModel.EntryText));
+            goButton.SetBinding(Button.CommandProperty, nameof(FirstViewModel.GoButtonCommand));
+            goButton.SetBinding(Button.CommandParameterProperty, nameof(FirstViewModel.EntryText));
 
             var textEntry = new StyledEntry(1)
             {
@@ -33,16 +33,16 @@ namespace UITestSampleApp
                 HorizontalTextAlignment = TextAlignment.Center,
                 ReturnType = ReturnType.Go
             };
-            textEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.EntryText));
-            textEntry.SetBinding(Entry.ReturnCommandProperty, nameof(ViewModel.GoButtonCommand));
-            textEntry.SetBinding(Entry.ReturnCommandParameterProperty, nameof(ViewModel.EntryText));
+            textEntry.SetBinding(Entry.TextProperty, nameof(FirstViewModel.EntryText));
+            textEntry.SetBinding(Entry.ReturnCommandProperty, nameof(FirstViewModel.GoButtonCommand));
+            textEntry.SetBinding(Entry.ReturnCommandParameterProperty, nameof(FirstViewModel.EntryText));
 
             var textLabel = new StyledLabel
             {
                 AutomationId = AutomationIdConstants.FirstPage_TextLabel, // This provides an ID that can be referenced in UITests
                 HorizontalOptions = LayoutOptions.Center
             };
-            textLabel.SetBinding(Label.TextProperty, nameof(ViewModel.LabelText));
+            textLabel.SetBinding(Label.TextProperty, nameof(FirstViewModel.LabelText));
 
             var listPageButton = new StyledButton(Borders.Thin, 1)
             {
@@ -56,8 +56,8 @@ namespace UITestSampleApp
                 AutomationId = AutomationIdConstants.FirstPage_BusyActivityIndicator, // This provides an ID that can be referenced in UITests
                 Color = Color.White
             };
-            activityIndicator.SetBinding(IsVisibleProperty, nameof(ViewModel.IsActiityIndicatorRunning));
-            activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(ViewModel.IsActiityIndicatorRunning));
+            activityIndicator.SetBinding(IsVisibleProperty, nameof(FirstViewModel.IsActiityIndicatorRunning));
+            activityIndicator.SetBinding(ActivityIndicator.IsRunningProperty, nameof(FirstViewModel.IsActiityIndicatorRunning));
 
             Func<RelativeLayout, double> getTextEntryWidth = (p) => textEntry.Measure(p.Width, p.Height).Request.Width;
             Func<RelativeLayout, double> getGoButtonWidth = (p) => goButton.Measure(p.Width, p.Height).Request.Width;

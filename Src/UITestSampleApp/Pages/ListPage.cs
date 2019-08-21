@@ -21,9 +21,9 @@ namespace UITestSampleApp
                 RefreshControlColor = Device.RuntimePlatform is Device.iOS ? Color.White : Color.Black
             };
             _listView.ItemTapped += HandleListViewItemTapped;
-            _listView.SetBinding(ListView.ItemsSourceProperty, nameof(ViewModel.DataList));
-            _listView.SetBinding(ListView.IsRefreshingProperty, nameof(ViewModel.IsRefreshing));
-            _listView.SetBinding(ListView.RefreshCommandProperty, nameof(ViewModel.PullToRefreshCommand));
+            _listView.SetBinding(ListView.ItemsSourceProperty, nameof(ListViewModel.DataList));
+            _listView.SetBinding(ListView.IsRefreshingProperty, nameof(ListViewModel.IsRefreshing));
+            _listView.SetBinding(ListView.RefreshCommandProperty, nameof(ListViewModel.PullToRefreshCommand));
 
             Content = _listView;
         }
