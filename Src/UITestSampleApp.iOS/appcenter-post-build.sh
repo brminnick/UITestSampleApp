@@ -41,5 +41,5 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     appcenter login --token $AppCenterAPIToken
 
-    appcenter test run uitest --app "bminnick/UITestSampleApp-1" --devices "bminnick/ios10-plus" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMFile --uitest-tools-dir $TestCloudExeDirectory --async
+    appcenter test run uitest --app "CDA-Global-Beta/UITestSampleApp-1" --devices "CDA-Global-Beta/current-ios-minus-1" --app-path $IPAFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --dsym-dir $DSYMFile --uitest-tools-dir $TestCloudExeDirectory --async
 fi

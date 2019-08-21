@@ -38,5 +38,5 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     appcenter login --token $AppCenterAPIToken
 
-    appcenter test run uitest --app "bminnick/uitestsampleapp" --devices "bminnick/all-supported-os-versions" --app-path $APKFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory --async
+    appcenter test run uitest --app "CDA-Global-Beta/uitestsampleapp" --devices "CDA-Global-Beta/android-os-v5-10" --app-path $APKFile --test-series "master" --locale "en_US" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory --async
 fi
