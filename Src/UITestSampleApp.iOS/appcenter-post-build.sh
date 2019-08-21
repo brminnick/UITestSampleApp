@@ -37,9 +37,7 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
     DSYMFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.dSYM | head -1`
     echo DSYMFile: $DSYMFile
 
-    npm install -g n
-    n stable
-    npm install -g appcenter-cli
+    npm install -g appcenter-cli@1.2.2
 
     appcenter login --token $AppCenterAPIToken
 
