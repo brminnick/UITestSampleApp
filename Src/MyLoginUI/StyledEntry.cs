@@ -10,7 +10,7 @@ namespace MyLoginUI.Views
 			HeightRequest = 40;
 			TextColor = Color.White;
 			Opacity = opacity;
-			PlaceholderColor = Color.White;
-		}
+            PlaceholderColor = Color.FromHex("749FA8");
+        }
 	}
 }

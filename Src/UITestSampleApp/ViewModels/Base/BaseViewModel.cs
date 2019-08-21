@@ -8,17 +8,13 @@ namespace UITestSampleApp
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        #region Constant Fields
         readonly WeakEventManager _propertyChangedEventManager = new WeakEventManager();
-        #endregion
 
-        #region Events
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
         {
             add => _propertyChangedEventManager.AddEventHandler(value);
             remove => _propertyChangedEventManager.RemoveEventHandler(value);
         }
-        #endregion
 
         protected void SetProperty<T>(ref T backingStore, in T value, in Action onChanged = null, [CallerMemberName] in string propertyname = "")
         {

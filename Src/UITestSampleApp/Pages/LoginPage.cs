@@ -13,7 +13,6 @@ namespace UITestSampleApp
 {
     public class LoginPage : ReusableLoginPage
     {
-        #region Constructors
         public LoginPage() : base("xamarin_logo")
         {
 #if DEBUG
@@ -32,9 +31,7 @@ namespace UITestSampleApp
             );
 #endif
         }
-        #endregion
 
-        #region Methods
         protected override async Task Login(string username, string password)
         {
             var isLoginValid = await SecureStorageService.IsLoginCorrect(username, password).ConfigureAwait(false);
@@ -83,6 +80,5 @@ namespace UITestSampleApp
             }
         }
 #endif
-        #endregion
     }
 }

@@ -14,20 +14,15 @@ namespace MyLoginUI.Pages
 {
     public abstract class ReusableLoginPage : ContentPage
     {
-        #region Constant Fields
         const double _relativeLayoutPadding = 10;
         readonly Image _logo = new Image();
-        #endregion
 
-        #region Fields
         string _logoFileImageSource;
         StyledButton _loginButton, _newUserSignUpButton, _forgotPasswordButton;
         StyledEntry _loginEntry, _passwordEntry;
         Label _logoSlogan;
         bool _isInitialized;
-        #endregion
 
-        #region Properties
         protected RelativeLayout MainLayout { get; }
 
         string LogoFileImageSource
@@ -42,9 +37,7 @@ namespace MyLoginUI.Pages
                 }
             }
         }
-        #endregion
 
-        #region Constructors
         protected ReusableLoginPage(string logoFileImageSource)
         {
             On<iOS>().SetUseSafeArea(true);
@@ -60,9 +53,7 @@ namespace MyLoginUI.Pages
 
             Content = new Xamarin.Forms.ScrollView { Content = MainLayout };
         }
-        #endregion
 
-        #region Methods
         protected virtual Task RunAfterAnimation() => Task.CompletedTask;
 
         protected virtual Task ForgotPassword() => Task.CompletedTask;
@@ -224,6 +215,5 @@ namespace MyLoginUI.Pages
                     throw new NotSupportedException("Runtime Platform Unsupported");
             }
         }
-        #endregion
     }
 }

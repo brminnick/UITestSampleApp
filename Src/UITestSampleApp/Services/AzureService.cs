@@ -10,11 +10,8 @@ namespace UITestSampleApp
 {
     public static class AppCenterDataService
     {
-        #region Fields
         static int _networkIndicatorCount;
-        #endregion
 
-        #region Methods
         public static async Task<List<ListPageDataModel>> GetListPageDataModels()
         {
             await UpdateNetworkActivityIndicatorStatus(true).ConfigureAwait(false);
@@ -98,6 +95,5 @@ namespace UITestSampleApp
                 await Xamarin.Forms.Device.InvokeOnMainThreadAsync(() => Xamarin.Forms.Application.Current.MainPage.IsBusy = false).ConfigureAwait(false);
             }
         }
-        #endregion
     }
 }

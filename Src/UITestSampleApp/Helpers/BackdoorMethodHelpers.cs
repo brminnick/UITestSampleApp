@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -9,19 +10,12 @@ namespace UITestSampleApp
 {
     public static class BackdoorMethodHelpers
     {
-        #region Properties
         static Page CurrentPage => GetCurrentPage();
-        #endregion
 
-        #region Methods
 #if DEBUG
         public static void BypassLoginScreen() => Application.Current.MainPage.Navigation.PopAsync();
 
-        public static void OpenListViewPage()
-        {
-            if (Application.Current is App app)
-                app.OpenListViewPageUsingDeepLinking();
-        }
+        public static Task OpenListViewPage() => NavigateToListViewPage();
 
         public static string GetSerializedListViewPageData()
         {
@@ -33,10 +27,10 @@ namespace UITestSampleApp
         }
 #endif
 
-        internal static void NavigateToListViewPage()
+        internal static Task NavigateToListViewPage()
         {
             // Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
-            Device.BeginInvokeOnMainThread(async () =>
+            return Device.InvokeOnMainThreadAsync(async () =>
             {
                 await Application.Current.MainPage.Navigation.PopAsync();
                 await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
@@ -63,6 +57,5 @@ namespace UITestSampleApp
 
             return Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
         }
-        #endregion
     }
 }

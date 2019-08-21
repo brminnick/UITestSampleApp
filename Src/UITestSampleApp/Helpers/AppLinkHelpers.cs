@@ -6,9 +6,7 @@ namespace UITestSampleApp
 {
     public static class AppLinkHelpers
     {
-        #region Properties
-        public static string BaseUrl => "http://uitestsampleapp.minnick.com/";
-        #endregion
+        public static string BaseUrl => "https://uitestsampleapp.minnick.com/";
 
         public static AppLinkEntry CreateAppLink(string title, string description, string id, string iconName = "")
         {
@@ -22,8 +20,7 @@ namespace UITestSampleApp
                 IsLinkActive = true
             };
 
-            if (Device.RuntimePlatform is Device.iOS 
-                && !string.IsNullOrEmpty(iconName))
+            if (Device.RuntimePlatform is Device.iOS && !string.IsNullOrEmpty(iconName))
                 entry.Thumbnail = ImageSource.FromFile(iconName);
 
             return entry;

@@ -14,13 +14,10 @@ namespace UITestSampleApp
 {
     public class ListViewModel : BaseViewModel
     {
-        #region Fields
         bool _isRefreshing;
         ICommand _pullToRefreshCommand;
         List<ListPageDataModel> _dataList;
-        #endregion
 
-        #region Properties
         public ICommand PullToRefreshCommand => _pullToRefreshCommand ??
             (_pullToRefreshCommand = new AsyncCommand(ExecutePullToRefreshCommanded));
 
@@ -39,9 +36,7 @@ namespace UITestSampleApp
             get => _isRefreshing;
             set => SetProperty(ref _isRefreshing, value);
         }
-        #endregion
 
-        #region Methods
         async Task RefreshDataFromAzureAsync()
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -73,6 +68,5 @@ namespace UITestSampleApp
                 IsRefreshing = false;
             }
         }
-        #endregion
     }
 }

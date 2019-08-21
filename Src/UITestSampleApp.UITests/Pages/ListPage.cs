@@ -34,6 +34,13 @@ namespace UITestSampleApp.UITests
             }
         }
 
+        public override void WaitForPageToLoad()
+        {
+            base.WaitForPageToLoad();
+
+            App.WaitForElement("Number", "List View Elements Did Not Load", TimeSpan.FromSeconds(60));
+        }
+
         public void TapListItemNumber(int listItemNumber, int timeoutInSeconds = 60)
         {
             App.ScrollDownTo(listItemNumber.ToString());

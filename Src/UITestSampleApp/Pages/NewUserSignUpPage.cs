@@ -12,13 +12,10 @@ namespace UITestSampleApp
 {
     public class NewUserSignUpPage : ContentPage
     {
-        #region Fields
         StyledButton _saveUsernameButton, _cancelButton;
         StyledEntry _usernameEntry, _passwordEntry;
         StackLayout _layout;
-        #endregion
 
-        #region Constructos
         public NewUserSignUpPage()
         {
             On<iOS>().SetUseSafeArea(true);
@@ -27,9 +24,7 @@ namespace UITestSampleApp
             ConstructUI();
             AddChildrenToParentLayout();
         }
-        #endregion
 
-        #region Methods
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -53,47 +48,27 @@ namespace UITestSampleApp
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
 
-            _usernameEntry = new StyledEntry(1)
+            _usernameEntry = new UnderlinedEntry("Username", AutomationIdConstants.NewUserSignUpPage_NewUserNameEntry)
             {
-                Style = StyleConstants.UnderlinedEntry,
-                AutomationId = AutomationIdConstants.NewUserSignUpPage_NewUserNameEntry,
-                Placeholder = "Username",
-                HorizontalOptions = LayoutOptions.Fill,
-                HorizontalTextAlignment = TextAlignment.End,
-                PlaceholderColor = Color.FromHex("749FA8"),
-                ReturnType = ReturnType.Next,
-                ReturnCommand = new Command(() => _passwordEntry.Focus())
+                ReturnType = ReturnType.Next
             };
 
-            _passwordEntry = new StyledEntry(1)
+            _passwordEntry = new UnderlinedEntry("Password", AutomationIdConstants.LoginPage_PasswordEntry)
             {
-                Style = StyleConstants.UnderlinedEntry,
-                AutomationId = AutomationIdConstants.NewUserSignUpPage_NewPasswordEntry,
-                Placeholder = "Password",
                 IsPassword = true,
-                HorizontalOptions = LayoutOptions.Fill,
-                HorizontalTextAlignment = TextAlignment.End,
-                VerticalOptions = LayoutOptions.Fill,
-                PlaceholderColor = Color.FromHex("749FA8"),
                 ReturnType = ReturnType.Go,
                 ReturnCommand = new Command(() => HandleSaveUsernameButtonClicked(_saveUsernameButton, EventArgs.Empty))
             };
 
-            _saveUsernameButton = new StyledButton(Borders.Thin, 1)
+            _saveUsernameButton = new BorderedButton("Save Username", AutomationIdConstants.NewUserSignUpPage_SaveUsernameButton)
             {
-                Style = StyleConstants.BorderedButton,
-                AutomationId = AutomationIdConstants.NewUserSignUpPage_SaveUsernameButton,
-                Text = "Save Username",
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.EndAndExpand
             };
             _saveUsernameButton.Clicked += HandleSaveUsernameButtonClicked;
 
-            _cancelButton = new StyledButton(Borders.Thin, 1)
+            _cancelButton = new BorderedButton("Cancel", AutomationIdConstants.NewUserSignUpPage_CancelButton)
             {
-                Style = StyleConstants.BorderedButton,
-                AutomationId = AutomationIdConstants.NewUserSignUpPage_CancelButton,
-                Text = "Cancel",
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.End
             };
@@ -106,30 +81,15 @@ namespace UITestSampleApp
 
         void AddChildrenToParentLayout()
         {
-            _layout.Children.Add(
-                new Label
-                {
-                    Style = StyleConstants.WhiteTextLabel,
-                    Text = "Please enter username",
-                    HorizontalOptions = LayoutOptions.Start
-                }
-            );
+            _layout.Children.Add(new WhiteTextLabel("Please enter username"));
             _layout.Children.Add(_usernameEntry);
-            _layout.Children.Add(
-                new Label
-                {
-                    Style = StyleConstants.WhiteTextLabel,
-                    Text = "Please enter password",
-                    HorizontalOptions = LayoutOptions.Start
-                }
-            );
+            _layout.Children.Add(new WhiteTextLabel("Please enter password"));
             _layout.Children.Add(_passwordEntry);
             _layout.Children.Add(_saveUsernameButton);
             _layout.Children.Add(_cancelButton);
 
             Content = new Xamarin.Forms.ScrollView { Content = _layout };
         }
-        #endregion
 
         async void HandleSaveUsernameButtonClicked(object sender, EventArgs e)
         {
@@ -141,6 +101,42 @@ namespace UITestSampleApp
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Okay");
+            }
+        }
+
+        class WhiteTextLabel : Label
+        {
+            public WhiteTextLabel(string text)
+            {
+                Text = text;
+                HorizontalOptions = LayoutOptions.Start;
+                TextColor = Color.White;
+            }
+        }
+
+        class UnderlinedEntry : StyledEntry
+        {
+            public UnderlinedEntry(string placeHolder, string automationId) : base(1)
+            {
+                AutomationId = automationId;
+                Placeholder = placeHolder;
+
+                BackgroundColor = Color.Transparent;
+                HeightRequest = 40;
+                TextColor = Color.White;
+                PlaceholderColor = Color.White;
+                HorizontalOptions = LayoutOptions.Fill;
+                HorizontalTextAlignment = TextAlignment.End;
+                VerticalOptions = LayoutOptions.Fill;
+            }
+        }
+
+        class BorderedButton : StyledButton
+        {
+            public BorderedButton(string text, string automationId) : base(Borders.Thin, 1)
+            {
+                Text = text;
+                AutomationId = automationId;
             }
         }
     }

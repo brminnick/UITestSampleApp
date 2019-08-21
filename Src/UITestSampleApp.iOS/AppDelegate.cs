@@ -27,7 +27,7 @@ namespace UITestSampleApp.iOS
         public void BypassLoginScreen(NSString noValue) => BackdoorMethodHelpers.BypassLoginScreen();
 
         [Preserve, Export("openListViewPage:")]
-        public void OpenListViewPage(NSString noValue) => BackdoorMethodHelpers.OpenListViewPage();
+        public async void OpenListViewPage(NSString noValue) => await BackdoorMethodHelpers.OpenListViewPage().ConfigureAwait(false);
 
         [Preserve, Export("getSerializedListViewPageData:")]
         public NSString GetSerializedListViewPageData(NSString noValue) => new NSString(BackdoorMethodHelpers.GetSerializedListViewPageData());

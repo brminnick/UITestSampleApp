@@ -67,7 +67,7 @@ namespace UITestSampleApp.UITests
 
             //Assert
             Assert.AreEqual(expectedAlertString, actualAlertString);
-            Assert.IsTrue(BackdoorHelpers.GetListPageData(App)?.Count >= 30, "Less than 30 items found in List");
+            Assert.GreaterOrEqual(BackdoorHelpers.GetListPageData(App).Count, 10, "Less than 10 items found in List");
         }
     }
 }

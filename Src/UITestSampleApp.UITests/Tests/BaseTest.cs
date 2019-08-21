@@ -8,23 +8,16 @@ namespace UITestSampleApp.UITests
 	[TestFixture(Platform.iOS)]
 	abstract class BaseTest
 	{
-		#region Constant Fields
 		readonly Platform _platform;
-		#endregion
 
-		#region Constructors
 		protected BaseTest(Platform platform) => _platform = platform;
-		#endregion
 
-		#region Properties
 		protected IApp App { get; private set; }
 		protected FirstPage FirstPage { get; private set; }
 		protected ListPage ListPage { get; private set; }
 		protected LoginPage LoginPage { get; private set; }
 		protected NewUserSignUpPage NewUserSignUpPage { get; private set; }
-		#endregion
 
-		#region Methods
 		[SetUp]
 		virtual public void BeforeEachTest()
 		{
@@ -38,7 +31,6 @@ namespace UITestSampleApp.UITests
 
 			LoginPage.WaitForPageToLoad();
 		}
-		#endregion
 	}
 }
 

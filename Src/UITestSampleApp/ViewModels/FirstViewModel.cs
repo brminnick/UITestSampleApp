@@ -8,13 +8,10 @@ namespace UITestSampleApp
 {
     public class FirstViewModel : BaseViewModel
     {
-        #region Fields
         bool _isActivityIndicatorRunning;
         string _entryText, _labelText;
         ICommand _goButtonCommand;
-        #endregion
 
-        #region Properties
         public ICommand GoButtonCommand => _goButtonCommand ??
             (_goButtonCommand = new AsyncCommand<string>(ExecuteGoButtonCommand));
 
@@ -35,9 +32,7 @@ namespace UITestSampleApp
             get => _labelText;
             set => SetProperty(ref _labelText, value);
         }
-        #endregion
 
-        #region Methods
         async Task ExecuteGoButtonCommand(string goButtonText)
         {
             AppCenterHelpers.TrackEvent(AppCenterConstants.GoButtonTapped, new Dictionary<string, string> {
@@ -52,6 +47,5 @@ namespace UITestSampleApp
             IsActiityIndicatorRunning = false;
             LabelText = goButtonText;
         }
-        #endregion
     }
 }

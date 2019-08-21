@@ -30,7 +30,6 @@ namespace UITestSampleApp
             {
                 Placeholder = entryTextPaceHolder,
                 AutomationId = AutomationIdConstants.FirstPage_TextEntry, // This provides an ID that can be referenced in UITests
-                PlaceholderColor = Color.FromHex("749FA8"),
                 HorizontalTextAlignment = TextAlignment.Center,
                 ReturnType = ReturnType.Go
             };

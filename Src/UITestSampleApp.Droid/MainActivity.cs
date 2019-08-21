@@ -13,14 +13,13 @@ namespace UITestSampleApp.Droid
     [Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        #region Methods
         #region Xamarin Test Cloud Back Door Methods
 #if DEBUG
         [Preserve, Export(nameof(BypassLoginScreen))]
         public void BypassLoginScreen() => BackdoorMethodHelpers.BypassLoginScreen();
 
         [Preserve, Export(nameof(OpenListViewPage))]
-        public void OpenListViewPage() => BackdoorMethodHelpers.OpenListViewPage();
+        public async void OpenListViewPage() => await BackdoorMethodHelpers.OpenListViewPage().ConfigureAwait(false);
 
         [Preserve, Export(nameof(GetSerializedListViewPageData))]
         public string GetSerializedListViewPageData() => BackdoorMethodHelpers.GetSerializedListViewPageData();
@@ -53,7 +52,6 @@ namespace UITestSampleApp.Droid
 
             LoadApplication(new App());
         }
-        #endregion
     }
 }
 
