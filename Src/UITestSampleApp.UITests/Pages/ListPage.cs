@@ -23,7 +23,7 @@ namespace UITestSampleApp.UITests
                 switch (App)
                 {
                     case AndroidApp androidApp:
-                        return (bool)(App.Query(x => x.Class("SwipeRefreshLayout").Invoke("isRefreshing")).FirstOrDefault() ?? false);
+                        return (bool)App.Query(x => x.Class("ListViewRenderer_SwipeRefreshLayoutWithFixedNestedScrolling").Invoke("isRefreshing")).First();
 
                     case iOSApp iosApp:
                         return App.Query(x => x.Class("UIRefreshControl")).Any();
