@@ -46,13 +46,13 @@ namespace UITestSampleApp.UITests
 
         public void EnterUsername(string username)
         {
-            UITestHelpers.EnterText(_usernameEntry, username, App);
+            EnterText(_usernameEntry, username);
             App.Screenshot($"Entered Username: {username}");
         }
 
         public void EnterPassword(string password)
         {
-            UITestHelpers.EnterText(_passwordEntry, password, App);
+            EnterText(_passwordEntry, password);
             App.Screenshot($"Entered Password: {password}");
         }
 
@@ -131,15 +131,11 @@ namespace UITestSampleApp.UITests
 
         void LoginWithUsernamePasswordUsingEnterButton(string username, string password)
         {
-            App.Tap(_usernameEntry);
-            App.ClearText();
-            App.EnterText(username);
+            EnterText(_usernameEntry, username, false);
             App.Screenshot($"Entered Username: {username}");
 
             App.PressEnter();
 
-
-            App.ClearText();
             App.EnterText(password);
             App.Screenshot($"Entered Password: {password}");
 

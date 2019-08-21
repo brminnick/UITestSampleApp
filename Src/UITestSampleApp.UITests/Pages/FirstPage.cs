@@ -53,7 +53,7 @@ namespace UITestSampleApp.UITests
                     _goButton = x => x.Class("UIButton").Index(1);
                     _textEntry = x => x.Class("UITextField");
                     _listViewButton = x => x.Class("UIButton").Index(0);
-					_textLabel = x => x.Class("UILabel").Index(0);
+                    _textLabel = x => x.Class("UILabel").Index(0);
                     break;
 
                 default:
@@ -63,19 +63,14 @@ namespace UITestSampleApp.UITests
 
         public void EnterTextAndPressEnter(string text)
         {
-            App.Tap(_textEntryUsingID);
-            App.ClearText();
-            App.EnterText(text);
+            EnterText(_textEntryUsingID, text, false);
             App.PressEnter();
             App.Screenshot($"Entered Text: {text}");
         }
 
         public void EnterText(string text)
         {
-            App.Tap(_textEntryUsingID);
-            App.ClearText();
-            App.EnterText(text);
-            App.DismissKeyboard();
+            EnterText(_textEntryUsingID, text);
             App.Screenshot($"Entered Text: {text}");
         }
 

@@ -23,32 +23,22 @@ namespace UITestSampleApp.UITests
 
         public void CreateNewUserWithPassword(string username, string password, bool shouldUseKeyboardReturnButton)
         {
-            switch (shouldUseKeyboardReturnButton)
-            {
-                case true:
-                    CreateNewUserWithPasswordUsingEnterButton(username, password);
-                    break;
-                case false:
-                    CreateNewUserWithPasswordNotUsingEnterButton(username, password);
-                    break;
-            }
+            if (shouldUseKeyboardReturnButton)
+                CreateNewUserWithPasswordUsingEnterButton(username, password);
+            else
+                CreateNewUserWithPasswordNotUsingEnterButton(username, password);
+
         }
 
         public void EnterUsername(string username)
         {
-            App.Tap(_usernameEntry);
-            App.ClearText();
-            App.EnterText(username);
-            App.DismissKeyboard();
+            EnterText(_usernameEntry, username);
             App.Screenshot($"Entered Username: {username}");
         }
 
         public void EnterPassword(string password)
         {
-            App.Tap(_passwordEntry);
-            App.ClearText();
-            App.EnterText(password);
-            App.DismissKeyboard();
+            EnterText(_passwordEntry, password);
             App.Screenshot($"Entered Password: {password}");
         }
 
@@ -73,14 +63,11 @@ namespace UITestSampleApp.UITests
 
         void CreateNewUserWithPasswordUsingEnterButton(string username, string password)
         {
-            App.ClearText(_usernameEntry);
-            App.EnterText(_usernameEntry, username);
+            EnterText(_usernameEntry, username, false);
             App.Screenshot($"Entered Username: {username}");
 
             App.PressEnter();
 
-
-            App.ClearText();
             App.EnterText(password);
             App.Screenshot($"Entered Password: {password}");
 

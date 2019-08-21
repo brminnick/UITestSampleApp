@@ -53,7 +53,7 @@ namespace UITestSampleApp
                 ReturnType = ReturnType.Next
             };
 
-            _passwordEntry = new UnderlinedEntry("Password", AutomationIdConstants.LoginPage_PasswordEntry)
+            _passwordEntry = new UnderlinedEntry("Password", AutomationIdConstants.NewUserSignUpPage_NewPasswordEntry)
             {
                 IsPassword = true,
                 ReturnType = ReturnType.Go,

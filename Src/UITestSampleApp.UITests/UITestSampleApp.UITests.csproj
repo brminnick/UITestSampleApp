@@ -43,7 +43,6 @@
         <Compile Include="Pages\LoginPage.cs" />
         <Compile Include="Pages\NewUserSignUpPage.cs" />
         <Compile Include="Tests\LoginTests.cs" />
-        <Compile Include="Helpers\UITestHelpers.cs" />
         <Compile Include="Helpers\BackdoorHelpers.cs" />
         <Compile Include="Tests\LaunchTests.cs" />
     </ItemGroup>
