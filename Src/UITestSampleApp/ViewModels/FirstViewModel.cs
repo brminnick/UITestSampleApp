@@ -9,11 +9,11 @@ namespace UITestSampleApp
     public class FirstViewModel : BaseViewModel
     {
         bool _isActivityIndicatorRunning;
-        string _entryText, _labelText;
-        ICommand _goButtonCommand;
+        string _entryText = string.Empty;
+        string _labelText = string.Empty;
+        ICommand? _goButtonCommand;
 
-        public ICommand GoButtonCommand => _goButtonCommand ??
-            (_goButtonCommand = new AsyncCommand<string>(ExecuteGoButtonCommand));
+        public ICommand GoButtonCommand => _goButtonCommand ??= new AsyncCommand<string>(ExecuteGoButtonCommand);
 
         public bool IsActiityIndicatorRunning
         {

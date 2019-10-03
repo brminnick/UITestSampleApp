@@ -38,15 +38,15 @@ namespace UITestSampleApp
         }
 #if DEBUG
 
-        static List<ListPageDataModel> GetListPageData()
+        static IEnumerable<ListPageDataModel> GetListPageData()
         {
-            if (CurrentPage is ListPage listPage)
+            if (CurrentPage is ListPage listPage
+                && listPage.BindingContext is ListViewModel listViewModel)
             {
-                var listViewModel = listPage.BindingContext as ListViewModel;
-                return listViewModel?.DataList;
+                return listViewModel.DataList;
             }
 
-            return null;
+            return Enumerable.Empty<ListPageDataModel>();
         }
 
 #endif

@@ -12,36 +12,16 @@ namespace UITestSampleApp
 {
     public class NewUserSignUpPage : ContentPage
     {
-        StyledButton _saveUsernameButton, _cancelButton;
-        StyledEntry _usernameEntry, _passwordEntry;
-        StackLayout _layout;
+        readonly StyledButton _saveUsernameButton, _cancelButton;
+        readonly StyledEntry _usernameEntry, _passwordEntry;
+        readonly StackLayout _layout;
 
         public NewUserSignUpPage()
         {
             On<iOS>().SetUseSafeArea(true);
 
             BackgroundColor = Color.FromHex("#2980b9");
-            ConstructUI();
-            AddChildrenToParentLayout();
-        }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            _usernameEntry.Focus();
-        }
-
-        protected override void LayoutChildren(double x, double y, double width, double height)
-        {
-            _cancelButton.WidthRequest = width - 40;
-            _saveUsernameButton.WidthRequest = width - 40;
-
-            base.LayoutChildren(x, y, width, height);
-        }
-
-        void ConstructUI()
-        {
             _layout = new StackLayout
             {
                 Padding = new Thickness(20, 50, 20, 20),
@@ -77,6 +57,23 @@ namespace UITestSampleApp
             {
                 Navigation.PopModalAsync();
             };
+
+            AddChildrenToParentLayout();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            _usernameEntry.Focus();
+        }
+
+        protected override void LayoutChildren(double x, double y, double width, double height)
+        {
+            _cancelButton.WidthRequest = width - 40;
+            _saveUsernameButton.WidthRequest = width - 40;
+
+            base.LayoutChildren(x, y, width, height);
         }
 
         void AddChildrenToParentLayout()

@@ -30,12 +30,12 @@ namespace UITestSampleApp
         [Conditional("DEBUG")]
         public static void CrashApp() => Crashes.GenerateTestCrash();
 
-        public static void TrackEvent(string trackIdentifier, IDictionary<string, string> table = null) =>
+        public static void TrackEvent(string trackIdentifier, IDictionary<string, string>? table = null) =>
             Analytics.TrackEvent(trackIdentifier, table);
 
         public static void TrackEvent(string trackIdentifier, string key, string value)
         {
-            IDictionary<string, string> table = new Dictionary<string, string> { { key, value } };
+            IDictionary<string, string>? table = new Dictionary<string, string> { { key, value } };
 
             if (string.IsNullOrWhiteSpace(key) && string.IsNullOrWhiteSpace(value))
                 table = null;
@@ -44,7 +44,7 @@ namespace UITestSampleApp
         }
       
         public static void Report(Exception exception,
-                          IDictionary<string, string> properties = null,
+                          IDictionary<string, string>? properties = null,
                           [CallerMemberName] string callerMemberName = "",
                           [CallerLineNumber] int lineNumber = 0,
                           [CallerFilePath] string filePath = "")
@@ -54,7 +54,7 @@ namespace UITestSampleApp
         }
 
         [Conditional("DEBUG")]
-        static void PrintException(Exception exception, string callerMemberName, int lineNumber, string filePath, IDictionary<string, string> properties = null)
+        static void PrintException(Exception exception, string callerMemberName, int lineNumber, string filePath, IDictionary<string, string>? properties = null)
         {
             var fileName = System.IO.Path.GetFileName(filePath);
 

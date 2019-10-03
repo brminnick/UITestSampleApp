@@ -18,6 +18,6 @@ namespace UITestSampleApp.Shared
         public int Detail { get; set; }
 
         [JsonProperty("text")]
-        public string Text { get; set; }
+        public string Text { get; set; } = string.Empty;
     }
 }

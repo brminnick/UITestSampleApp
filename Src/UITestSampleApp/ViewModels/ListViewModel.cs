@@ -1,35 +1,24 @@
 using System;
-using System.Linq;
-using System.Windows.Input;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using System.Windows.Input;
 
 using AsyncAwaitBestPractices.MVVM;
 
-using Xamarin.Essentials;
-
 using UITestSampleApp.Shared;
+
+using Xamarin.Essentials;
 
 namespace UITestSampleApp
 {
     public class ListViewModel : BaseViewModel
     {
         bool _isRefreshing;
-        ICommand _pullToRefreshCommand;
-        List<ListPageDataModel> _dataList;
+        ICommand? _pullToRefreshCommand;
 
-        public ICommand PullToRefreshCommand => _pullToRefreshCommand ??
-            (_pullToRefreshCommand = new AsyncCommand(ExecutePullToRefreshCommanded));
+        public ICommand PullToRefreshCommand => _pullToRefreshCommand ??= new AsyncCommand(ExecutePullToRefreshCommanded);
 
-        public List<ListPageDataModel> DataList
-        {
-            get => _dataList;
-            set
-            {
-                value = value.OrderBy(x => x.Detail).ToList();
-                SetProperty(ref _dataList, value);
-            }
-        }
+        public ObservableCollection<ListPageDataModel> DataList { get; } = new ObservableCollection<ListPageDataModel>();
 
         public bool IsRefreshing
         {
@@ -42,10 +31,14 @@ namespace UITestSampleApp
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
                 return;
 
+            DataList.Clear();
+
             try
             {
-                var dataList = await AppCenterDataService.GetListPageDataModels().ConfigureAwait(false);
-                DataList = dataList.ToList();
+                await foreach (var listPageDataModel in AppCenterDataService.GetListPageDataModels().ConfigureAwait(false))
+                {
+                    DataList.Add(listPageDataModel);
+                }
             }
             catch (Exception e)
             {

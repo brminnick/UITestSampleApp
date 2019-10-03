@@ -12,24 +12,26 @@ namespace UITestSampleApp
     {
         static int _networkIndicatorCount;
 
-        public static async Task<List<ListPageDataModel>> GetListPageDataModels()
+        public static async IAsyncEnumerable<ListPageDataModel> GetListPageDataModels()
         {
             await UpdateNetworkActivityIndicatorStatus(true).ConfigureAwait(false);
 
             try
             {
-                var itemList = new List<ListPageDataModel>();
-
                 var result = await Data.ListAsync<ListPageDataModel>(DefaultPartitions.AppDocuments).ConfigureAwait(false);
-                itemList.AddRange(result.CurrentPage.Items.Select(x => x.DeserializedValue));
+
+                foreach (var listPageDataModel in GetListPageDataModel(result))
+                    yield return listPageDataModel;
 
                 while (result.HasNextPage)
                 {
                     var nextPage = await result.GetNextPageAsync().ConfigureAwait(false);
-                    itemList.AddRange(nextPage.Items.Select(x => x.DeserializedValue));
+
+                    foreach (var listPageDataModel in GetListPageDataModel(result))
+                        yield return listPageDataModel;
                 }
 
-                return itemList;
+                static IEnumerable<ListPageDataModel> GetListPageDataModel(PaginatedDocuments<ListPageDataModel> documents) => documents.CurrentPage.Items.Select(x => x.DeserializedValue);
             }
             finally
             {

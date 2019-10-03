@@ -97,7 +97,7 @@ namespace UITestSampleApp
 
         void HandleButtonClicked(object sender, EventArgs e)
         {
-            var goButton = sender as Button;
+            var goButton = (Button)sender;
             Device.BeginInvokeOnMainThread(goButton.Unfocus);
         }
 
