@@ -15,12 +15,12 @@ namespace MyLoginUI.Pages
     public abstract class ReusableLoginPage : ContentPage
     {
         const double _relativeLayoutPadding = 10;
-        readonly Image _logo = new Image();
+        readonly Image _logo;
+        readonly StyledButton _loginButton, _newUserSignUpButton, _forgotPasswordButton;
+        readonly StyledEntry _loginEntry, _passwordEntry;
+        readonly Label _logoSlogan;
 
-        string _logoFileImageSource;
-        StyledButton _loginButton, _newUserSignUpButton, _forgotPasswordButton;
-        StyledEntry _loginEntry, _passwordEntry;
-        Label _logoSlogan;
+        string _logoFileImageSource = string.Empty;
         bool _isInitialized;
 
         protected RelativeLayout MainLayout { get; }
@@ -48,8 +48,84 @@ namespace MyLoginUI.Pages
 
             LogoFileImageSource = logoFileImageSource;
 
-            CreateGlobalChildren();
-            AddConstraintsToChildren();
+            _logo = new Image();
+
+            _logoSlogan = new StyledLabel
+            {
+                Opacity = 0,
+                Text = "Delighting Developers."
+            };
+            _loginEntry = new StyledEntry
+            {
+                AutomationId = AutomationIdConstants.LoginPage_UsernameEntry,
+                Placeholder = "Username",
+                ReturnType = ReturnType.Next,
+                ReturnCommand = new Command(() => _passwordEntry.Focus())
+            };
+
+            _passwordEntry = new StyledEntry
+            {
+                AutomationId = AutomationIdConstants.LoginPage_PasswordEntry,
+                Placeholder = "Password",
+                IsPassword = true,
+                ReturnType = ReturnType.Go,
+                ReturnCommand = new Command(() => HandleLoginButtonClicked(_passwordEntry, EventArgs.Empty))
+            };
+
+            _loginButton = new StyledButton(Borders.Thin)
+            {
+                AutomationId = AutomationIdConstants.LoginPage_LoginButton,
+                Text = "Login",
+            };
+            _loginButton.Clicked += HandleLoginButtonClicked;
+
+            _newUserSignUpButton = new StyledButton(Borders.None)
+            {
+                AutomationId = AutomationIdConstants.LoginPage_NewUserSignUpButton,
+                Text = "Sign-up",
+            };
+            _newUserSignUpButton.Clicked += HandleNewUserSignUpButtonClicked;
+
+            _forgotPasswordButton = new StyledButton(Borders.None)
+            {
+                AutomationId = AutomationIdConstants.LoginPage_ForgotPasswordButton,
+                Text = "Forgot Password?",
+            };
+            _forgotPasswordButton.Clicked += HandleForgotPasswordButtonClicked;
+
+            MainLayout.Children.Add(_logo,
+                Constraint.Constant(100),
+                Constraint.Constant(250),
+                Constraint.RelativeToParent(p => p.Width - 200));
+
+            MainLayout.Children.Add(_logoSlogan,
+                Constraint.RelativeToParent(p => (p.Width / 2) - (getLogoSloganWidth(p) / 2)),
+                Constraint.Constant(125));
+
+            MainLayout.Children.Add(_loginEntry,
+                Constraint.Constant(40),
+                Constraint.RelativeToView(_logoSlogan, (p, v) => v.Y + v.Height + _relativeLayoutPadding),
+                Constraint.RelativeToParent(p => p.Width - 80));
+            MainLayout.Children.Add(_passwordEntry,
+                Constraint.Constant(40),
+                Constraint.RelativeToView(_loginEntry, (p, v) => v.Y + v.Height + _relativeLayoutPadding),
+                Constraint.RelativeToParent(p => p.Width - 80));
+
+            MainLayout.Children.Add(_loginButton,
+                Constraint.Constant(40),
+                Constraint.RelativeToView(_passwordEntry, (p, v) => v.Y + v.Height + _relativeLayoutPadding),
+                Constraint.RelativeToParent(p => p.Width - 80));
+            MainLayout.Children.Add(_newUserSignUpButton,
+                Constraint.RelativeToParent(p => (p.Width / 2) - (getNewUserButtonWidth(p) / 2)),
+                Constraint.RelativeToView(_loginButton, (p, v) => v.Y + _loginButton.Height + 15));
+            MainLayout.Children.Add(_forgotPasswordButton,
+                Constraint.RelativeToParent(p => (p.Width / 2) - (getForgotButtonWidth(p) / 2)),
+                Constraint.RelativeToView(_newUserSignUpButton, (p, v) => v.Y + _newUserSignUpButton.Height + _relativeLayoutPadding));
+
+            double getNewUserButtonWidth(RelativeLayout p) => _newUserSignUpButton.Measure(p.Width, p.Height).Request.Width;
+            double getForgotButtonWidth(RelativeLayout p) => _forgotPasswordButton.Measure(p.Width, p.Height).Request.Width;
+            double getLogoSloganWidth(RelativeLayout p) => _logoSlogan.Measure(p.Width, p.Height).Request.Width;
+
 
             Content = new Xamarin.Forms.ScrollView { Content = MainLayout };
         }
@@ -97,103 +173,9 @@ namespace MyLoginUI.Pages
             }
         }
 
+        async void HandleForgotPasswordButtonClicked(object sender, EventArgs e) => await ForgotPassword();
+
         async void HandleNewUserSignUpButtonClicked(object sender, EventArgs e) => await NewUserSignUp();
-
-        void CreateGlobalChildren()
-        {
-            _logoSlogan = new StyledLabel
-            {
-                Opacity = 0,
-                Text = "Delighting Developers."
-            };
-            _loginEntry = new StyledEntry
-            {
-                AutomationId = AutomationIdConstants.LoginPage_UsernameEntry,
-                Placeholder = "Username",
-                ReturnType = ReturnType.Next,
-                ReturnCommand = new Command(() => _passwordEntry.Focus())
-            };
-
-            _passwordEntry = new StyledEntry
-            {
-                AutomationId = AutomationIdConstants.LoginPage_PasswordEntry,
-                Placeholder = "Password",
-                IsPassword = true,
-                ReturnType = ReturnType.Go,
-                ReturnCommand = new Command(() => HandleLoginButtonClicked(_passwordEntry, EventArgs.Empty))
-            };
-
-            _loginButton = new StyledButton(Borders.Thin)
-            {
-                AutomationId = AutomationIdConstants.LoginPage_LoginButton,
-                Text = "Login",
-            };
-            _loginButton.Clicked += HandleLoginButtonClicked;
-
-            _newUserSignUpButton = new StyledButton(Borders.None)
-            {
-                AutomationId = AutomationIdConstants.LoginPage_NewUserSignUpButton,
-                Text = "Sign-up",
-            };
-            _newUserSignUpButton.Clicked += HandleNewUserSignUpButtonClicked;
-
-            _forgotPasswordButton = new StyledButton(Borders.None)
-            {
-                AutomationId = AutomationIdConstants.LoginPage_ForgotPasswordButton,
-                Text = "Forgot Password?",
-            };
-            _forgotPasswordButton.Clicked += async (object sender, EventArgs e) => await ForgotPassword();
-        }
-
-        void AddConstraintsToChildren()
-        {
-           MainLayout.Children.Add(
-                _logo,
-                xConstraint: Constraint.Constant(100),
-                yConstraint: Constraint.Constant(250),
-                widthConstraint: Constraint.RelativeToParent(p => p.Width - 200)
-            );
-
-            MainLayout.Children.Add(
-                _logoSlogan,
-                xConstraint: Constraint.RelativeToParent(p => (p.Width / 2) - (getLogoSloganWidth(p) / 2)),
-                yConstraint: Constraint.Constant(125)
-            );
-
-            MainLayout.Children.Add(
-                _loginEntry,
-                xConstraint: Constraint.Constant(40),
-                yConstraint: Constraint.RelativeToView(_logoSlogan, (p, v) => v.Y + v.Height + _relativeLayoutPadding),
-                widthConstraint: Constraint.RelativeToParent(p => p.Width - 80)
-            );
-            MainLayout.Children.Add(
-                _passwordEntry,
-                xConstraint: Constraint.Constant(40),
-                yConstraint: Constraint.RelativeToView(_loginEntry, (p, v) => v.Y + v.Height + _relativeLayoutPadding),
-                widthConstraint: Constraint.RelativeToParent(p => p.Width - 80)
-            );
-
-            MainLayout.Children.Add(
-                _loginButton,
-                xConstraint: Constraint.Constant(40),
-                yConstraint: Constraint.RelativeToView(_passwordEntry, (p, v) => v.Y + v.Height + _relativeLayoutPadding),
-                widthConstraint: Constraint.RelativeToParent(p => p.Width - 80)
-            );
-            MainLayout.Children.Add(
-                _newUserSignUpButton,
-                xConstraint: Constraint.RelativeToParent(p => (p.Width / 2) - (getNewUserButtonWidth(p) / 2)),
-                yConstraint: Constraint.RelativeToView(_loginButton, (p, v) => v.Y + _loginButton.Height + 15)
-            );
-            MainLayout.Children.Add(
-                _forgotPasswordButton,
-                xConstraint: Constraint.RelativeToParent(p => (p.Width / 2) - (getForgotButtonWidth(p) / 2)),
-                yConstraint: Constraint.RelativeToView(_newUserSignUpButton, (p, v) => v.Y + _newUserSignUpButton.Height + _relativeLayoutPadding)
-            );
-
-            double getNewUserButtonWidth(RelativeLayout p) => _newUserSignUpButton.Measure(p.Width, p.Height).Request.Width;
-            double getForgotButtonWidth(RelativeLayout p) => _forgotPasswordButton.Measure(p.Width, p.Height).Request.Width;
-            double getLogoSloganWidth(RelativeLayout p) => _logoSlogan.Measure(p.Width, p.Height).Request.Width;
-        }
 
         async void HandleLoginButtonClicked(object sender, EventArgs e)
         {
@@ -203,17 +185,11 @@ namespace MyLoginUI.Pages
                 await Login(_loginEntry.Text, _passwordEntry.Text);
         }
 
-        Thickness GetPagePadding()
+        Thickness GetPagePadding() => Device.RuntimePlatform switch
         {
-            switch (Device.RuntimePlatform)
-            {
-                case Device.Android:
-                    return new Thickness(0, 20, 0, 0);
-                case Device.iOS:
-                    return new Thickness(0, 0, 0, 0);
-                default:
-                    throw new NotSupportedException("Runtime Platform Unsupported");
-            }
-        }
+            Device.Android => new Thickness(0, 20, 0, 0),
+            Device.iOS => new Thickness(0, 0, 0, 0),
+            _ => throw new NotSupportedException("Runtime Platform Unsupported"),
+        };
     }
 }
