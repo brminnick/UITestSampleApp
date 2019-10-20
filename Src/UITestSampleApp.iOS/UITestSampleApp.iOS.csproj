@@ -107,7 +107,7 @@
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.4.0-preview" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="3.1.0" />
         <PackageReference Include="Xamarin.TestCloud.Agent" Version="0.21.8" />
-        <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />
+        <PackageReference Include="Xamarin.Forms" Version="4.3.0.851321-pre3" />
         <PackageReference Include="Microsoft.AppCenter.Data" Version="2.4.0-preview" />
     </ItemGroup>
     <ItemGroup>

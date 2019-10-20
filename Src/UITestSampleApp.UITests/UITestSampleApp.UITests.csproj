@@ -54,4 +54,18 @@
         <PackageReference Include="NUnit" Version="3.12.0" />
         <PackageReference Include="Xamarin.UITest" Version="3.0.4-dev2" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\UITestSampleApp.Droid\UITestSampleApp.Droid.csproj">
+        <Project>{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}</Project>
+        <Name>UITestSampleApp.Droid</Name>
+        <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+        <Private>False</Private>
+      </ProjectReference>
+      <ProjectReference Include="..\UITestSampleApp.iOS\UITestSampleApp.iOS.csproj">
+        <Project>{807CCD2A-05F5-4CC3-BD9E-8C5C4DDC6DEE}</Project>
+        <Name>UITestSampleApp.iOS</Name>
+        <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+        <Private>False</Private>
+      </ProjectReference>
+    </ItemGroup>
 </Project>

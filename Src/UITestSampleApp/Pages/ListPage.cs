@@ -4,28 +4,34 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 
 using UITestSampleApp.Shared;
+using System.Linq;
 
 namespace UITestSampleApp
 {
     public class ListPage : BaseContentPage<ListViewModel>
     {
-        readonly ListView _listView;
+        readonly RefreshView _collectionRefreshView;
 
         public ListPage() : base(PageTitleConstants.ListPage)
         {
-            _listView = new ListView(ListViewCachingStrategy.RecycleElement)
+            var collectionView = new CollectionView
             {
-                ItemTemplate = new DataTemplate(typeof(WhiteTextImageCell)),
+                ItemTemplate = new ListPageDataTemplate(),
                 BackgroundColor = Color.FromHex("#2980b9"),
-                IsPullToRefreshEnabled = true,
-                RefreshControlColor = Device.RuntimePlatform is Device.iOS ? Color.White : Color.Black
+                SelectionMode = SelectionMode.Single
             };
-            _listView.ItemTapped += HandleListViewItemTapped;
-            _listView.SetBinding(ListView.ItemsSourceProperty, nameof(ListViewModel.DataList));
-            _listView.SetBinding(ListView.IsRefreshingProperty, nameof(ListViewModel.IsRefreshing));
-            _listView.SetBinding(ListView.RefreshCommandProperty, nameof(ListViewModel.PullToRefreshCommand));
+            collectionView.SelectionChanged += HandleCollectionViewSelectionChanged;
+            collectionView.SetBinding(CollectionView.ItemsSourceProperty, nameof(ListViewModel.DataList));
 
-            Content = _listView;
+            _collectionRefreshView = new RefreshView
+            {
+                RefreshColor = Device.RuntimePlatform is Device.iOS ? Color.White : Color.Black,
+                Content = collectionView
+            };
+            _collectionRefreshView.SetBinding(RefreshView.IsRefreshingProperty, nameof(ListViewModel.IsRefreshing));
+            _collectionRefreshView.SetBinding(RefreshView.CommandProperty, nameof(ListViewModel.PullToRefreshCommand));
+
+            Content = _collectionRefreshView;
         }
 
         protected override void OnAppearing()
@@ -33,25 +39,21 @@ namespace UITestSampleApp
             base.OnAppearing();
             AppCenterHelpers.TrackEvent(AppCenterConstants.ListViewPageAppeared);
 
-            Device.BeginInvokeOnMainThread(_listView.BeginRefresh);
+            _collectionRefreshView.IsRefreshing = true;
         }
 
-        async void HandleListViewItemTapped(object sender, ItemTappedEventArgs e)
+        async void HandleCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sender is ListView listView)
+            var collectionView = (CollectionView)sender;
+            collectionView.SelectedItem = null;
+
+            if (e?.CurrentSelection.FirstOrDefault() is ListPageDataModel tappedListPageDataModel)
             {
-                if (e?.Item is ListPageDataModel tappedListPageDataModel)
-                {
-                    AppCenterHelpers.TrackEvent(AppCenterConstants.ListViewItemTapped,
-                        new Dictionary<string, string> {
-                    { AppCenterConstants.ListViewItemNumber, tappedListPageDataModel.Detail.ToString() }
-                        }
-                    );
+                AppCenterHelpers.TrackEvent(AppCenterConstants.ListViewItemTapped,
+                    new Dictionary<string, string> { { AppCenterConstants.ListViewItemNumber, tappedListPageDataModel.Detail.ToString() } }
+                );
 
-                    await DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.Detail}", "OK");
-                }
-
-                listView.SelectedItem = null;
+                await DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.Detail}", "OK");
             }
         }
 

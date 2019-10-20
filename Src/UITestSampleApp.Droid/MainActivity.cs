@@ -43,7 +43,7 @@ namespace UITestSampleApp.Droid
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Firebase.FirebaseApp.InitializeApp(this);
             global::Xamarin.Forms.Platform.Android.AppLinks.AndroidAppLinks.Init(this);
