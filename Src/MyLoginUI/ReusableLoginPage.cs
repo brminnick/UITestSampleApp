@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-
 using MyLoginUI.Views;
-
 using UITestSampleApp.Shared;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
@@ -22,21 +18,6 @@ namespace MyLoginUI.Pages
 
         string _logoFileImageSource = string.Empty;
         bool _isInitialized;
-
-        protected RelativeLayout MainLayout { get; }
-
-        string LogoFileImageSource
-        {
-            get => _logoFileImageSource;
-            set
-            {
-                if (_logoFileImageSource != value)
-                {
-                    _logoFileImageSource = value;
-                    _logo.Source = ImageSource.FromFile(_logoFileImageSource);
-                }
-            }
-        }
 
         protected ReusableLoginPage(string logoFileImageSource)
         {
@@ -122,12 +103,26 @@ namespace MyLoginUI.Pages
                 Constraint.RelativeToParent(p => (p.Width / 2) - (getForgotButtonWidth(p) / 2)),
                 Constraint.RelativeToView(_newUserSignUpButton, (p, v) => v.Y + _newUserSignUpButton.Height + _relativeLayoutPadding));
 
+            Content = new Xamarin.Forms.ScrollView { Content = MainLayout };
+
             double getNewUserButtonWidth(RelativeLayout p) => _newUserSignUpButton.Measure(p.Width, p.Height).Request.Width;
             double getForgotButtonWidth(RelativeLayout p) => _forgotPasswordButton.Measure(p.Width, p.Height).Request.Width;
             double getLogoSloganWidth(RelativeLayout p) => _logoSlogan.Measure(p.Width, p.Height).Request.Width;
+        }
 
+        protected RelativeLayout MainLayout { get; }
 
-            Content = new Xamarin.Forms.ScrollView { Content = MainLayout };
+        string LogoFileImageSource
+        {
+            get => _logoFileImageSource;
+            set
+            {
+                if (_logoFileImageSource != value)
+                {
+                    _logoFileImageSource = value;
+                    _logo.Source = ImageSource.FromFile(_logoFileImageSource);
+                }
+            }
         }
 
         protected virtual Task RunAfterAnimation() => Task.CompletedTask;
