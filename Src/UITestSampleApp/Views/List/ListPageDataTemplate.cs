@@ -11,21 +11,28 @@ namespace UITestSampleApp
 
         static Grid CreateDataTemplate()
         {
-            var image = new Image { Source = "Hash" };
-
-            var titleLabel = new WhiteLabel(14)
+            var image = new Image
             {
+                Source = "Hash",
+            };
+
+            var titleLabel = new WhiteLabel(16)
+            {
+                VerticalTextAlignment = TextAlignment.Start,
                 FontAttributes = FontAttributes.Bold
             };
             titleLabel.SetBinding(Label.TextProperty, nameof(ListPageDataModel.Text));
 
-            var detailLabel = new WhiteLabel(11);
+            var detailLabel = new WhiteLabel(13)
+            {
+                FontAttributes = FontAttributes.Italic
+            };
             detailLabel.SetBinding(Label.TextProperty, nameof(ListPageDataModel.Detail));
 
             var grid = new Grid
             {
-                Margin = new Thickness(10,0),
-                RowSpacing = 10,
+                Margin = new Thickness(5),
+                RowSpacing = 1,
 
                 RowDefinitions =
                 {
@@ -34,8 +41,8 @@ namespace UITestSampleApp
                 },
                 ColumnDefinitions =
                 {
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) }
+                    new ColumnDefinition { Width = new GridLength(50, GridUnitType.Absolute) },
+                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }
                 }
             };
 
