@@ -14,19 +14,12 @@ namespace UITestSampleApp
     {
         readonly StyledButton _saveUsernameButton, _cancelButton;
         readonly StyledEntry _usernameEntry, _passwordEntry;
-        readonly StackLayout _layout;
 
         public NewUserSignUpPage()
         {
             On<iOS>().SetUseSafeArea(true);
 
             BackgroundColor = Color.FromHex("#2980b9");
-
-            _layout = new StackLayout
-            {
-                Padding = new Thickness(20, 50, 20, 20),
-                VerticalOptions = LayoutOptions.FillAndExpand,
-            };
 
             _usernameEntry = new UnderlinedEntry("Username", AutomationIdConstants.NewUserSignUpPage_NewUserNameEntry)
             {
@@ -58,7 +51,22 @@ namespace UITestSampleApp
                 Navigation.PopModalAsync();
             };
 
-            AddChildrenToParentLayout();
+            var layout = new StackLayout
+            {
+                Padding = new Thickness(20, 50, 20, 20),
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                Children =
+                {
+                    new WhiteTextLabel("Please enter username"),
+                    _usernameEntry,
+                    new WhiteTextLabel("Please enter password"),
+                    _passwordEntry,
+                    _saveUsernameButton,
+                    _cancelButton
+                }
+            };
+
+            Content = new Xamarin.Forms.ScrollView { Content = layout };
         }
 
         protected override void OnAppearing()
@@ -74,18 +82,6 @@ namespace UITestSampleApp
             _saveUsernameButton.WidthRequest = width - 40;
 
             base.LayoutChildren(x, y, width, height);
-        }
-
-        void AddChildrenToParentLayout()
-        {
-            _layout.Children.Add(new WhiteTextLabel("Please enter username"));
-            _layout.Children.Add(_usernameEntry);
-            _layout.Children.Add(new WhiteTextLabel("Please enter password"));
-            _layout.Children.Add(_passwordEntry);
-            _layout.Children.Add(_saveUsernameButton);
-            _layout.Children.Add(_cancelButton);
-
-            Content = new Xamarin.Forms.ScrollView { Content = _layout };
         }
 
         async void HandleSaveUsernameButtonClicked(object sender, EventArgs e)

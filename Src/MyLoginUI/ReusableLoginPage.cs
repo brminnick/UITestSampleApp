@@ -11,7 +11,8 @@ namespace MyLoginUI.Pages
     public abstract class ReusableLoginPage : ContentPage
     {
         const double _relativeLayoutPadding = 10;
-        readonly Image _logo;
+
+        readonly Image _logo = new Image();
         readonly StyledButton _loginButton, _newUserSignUpButton, _forgotPasswordButton;
         readonly StyledEntry _loginEntry, _passwordEntry;
         readonly Label _logoSlogan;
@@ -29,8 +30,6 @@ namespace MyLoginUI.Pages
 
             LogoFileImageSource = logoFileImageSource;
 
-            _logo = new Image();
-
             _logoSlogan = new StyledLabel
             {
                 Opacity = 0,
@@ -40,8 +39,7 @@ namespace MyLoginUI.Pages
             {
                 AutomationId = AutomationIdConstants.LoginPage_UsernameEntry,
                 Placeholder = "Username",
-                ReturnType = ReturnType.Next,
-                ReturnCommand = new Command(() => _passwordEntry.Focus())
+                ReturnType = ReturnType.Next
             };
 
             _passwordEntry = new StyledEntry
