@@ -8,10 +8,7 @@ namespace UITestSampleApp.UITests
 {
     class NewUserSignUpPage : BasePage
     {
-        readonly Query _cancelButton;
-        readonly Query _passwordEntry;
-        readonly Query _saveUsernameButton;
-        readonly Query _usernameEntry;
+        readonly Query _cancelButton, _passwordEntry, _saveUsernameButton, _usernameEntry;
 
         public NewUserSignUpPage(IApp app) : base(app, PageTitleConstants.NewUserSignUpPage)
         {
@@ -21,22 +18,21 @@ namespace UITestSampleApp.UITests
             _usernameEntry = x => x.Marked(AutomationIdConstants.NewUserSignUpPage_NewUserNameEntry);
         }
 
-        public void CreateNewUserWithPassword(string username, string password, bool shouldUseKeyboardReturnButton)
+        public void CreateNewUserWithPassword(in string username, in string password, in bool shouldUseKeyboardReturnButton)
         {
             if (shouldUseKeyboardReturnButton)
                 CreateNewUserWithPasswordUsingEnterButton(username, password);
             else
                 CreateNewUserWithPasswordNotUsingEnterButton(username, password);
-
         }
 
-        public void EnterUsername(string username)
+        public void EnterUsername(in string username)
         {
             EnterText(_usernameEntry, username);
             App.Screenshot($"Entered Username: {username}");
         }
 
-        public void EnterPassword(string password)
+        public void EnterPassword(in string password)
         {
             EnterText(_passwordEntry, password);
             App.Screenshot($"Entered Password: {password}");
@@ -54,14 +50,14 @@ namespace UITestSampleApp.UITests
             App.Screenshot("Tapped Cancel Button");
         }
 
-        void CreateNewUserWithPasswordNotUsingEnterButton(string username, string password)
+        void CreateNewUserWithPasswordNotUsingEnterButton(in string username, in string password)
         {
             EnterUsername(username);
             EnterPassword(password);
             TapSave();
         }
 
-        void CreateNewUserWithPasswordUsingEnterButton(string username, string password)
+        void CreateNewUserWithPasswordUsingEnterButton(in string username, in string password)
         {
             EnterText(_usernameEntry, username, false);
             App.Screenshot($"Entered Username: {username}");

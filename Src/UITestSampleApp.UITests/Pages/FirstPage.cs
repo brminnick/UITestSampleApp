@@ -58,14 +58,14 @@ namespace UITestSampleApp.UITests
             }
         }
 
-        public void EnterTextAndPressEnter(string text)
+        public void EnterTextAndPressEnter(in string text)
         {
             EnterText(_textEntryUsingID, text, false);
             App.PressEnter();
             App.Screenshot($"Entered Text: {text}");
         }
 
-        public void EnterText(string text)
+        public void EnterText(in string text)
         {
             EnterText(_textEntryUsingID, text);
             App.Screenshot($"Entered Text: {text}");

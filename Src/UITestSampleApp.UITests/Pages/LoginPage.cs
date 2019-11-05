@@ -10,14 +10,8 @@ namespace UITestSampleApp.UITests
 {
     class LoginPage : BasePage
     {
-        readonly Query _forgotPasswordButton;
-        readonly Query _loginButton;
-        readonly Query _passwordEntry;
-        readonly Query _signUpButton;
-        readonly Query _usernameEntry;
-        readonly Query _crashButton;
-        readonly Query _crashButtonDialogYesButton;
-        readonly Query _crashButtonDialogNoButton;
+        readonly Query _forgotPasswordButton, _loginButton, _passwordEntry, _signUpButton,
+            _usernameEntry, _crashButton, _crashButtonDialogYesButton, _crashButtonDialogNoButton;
 
         public LoginPage(IApp app) : base(app, PageTitleConstants.LoginPage)
         {
@@ -31,7 +25,7 @@ namespace UITestSampleApp.UITests
             _crashButtonDialogNoButton = x => x.Marked(CrashDialogConstants.No);
         }
 
-        public void LoginWithUsernamePassword(string username, string password, bool shouldUseKeyboardReturnButton)
+        public void LoginWithUsernamePassword(in string username, in string password, in bool shouldUseKeyboardReturnButton)
         {
             switch (shouldUseKeyboardReturnButton)
             {
@@ -44,13 +38,13 @@ namespace UITestSampleApp.UITests
             }
         }
 
-        public void EnterUsername(string username)
+        public void EnterUsername(in string username)
         {
             EnterText(_usernameEntry, username);
             App.Screenshot($"Entered Username: {username}");
         }
 
-        public void EnterPassword(string password)
+        public void EnterPassword(in string password)
         {
             EnterText(_passwordEntry, password);
             App.Screenshot($"Entered Password: {password}");
@@ -80,7 +74,7 @@ namespace UITestSampleApp.UITests
             TapSignUpFromDialog();
         }
 
-        public void TapSignUpFromDialog(int timeoutInSeconds = 60)
+        public void TapSignUpFromDialog(in int timeoutInSeconds = 60)
         {
             App.WaitForElement("Sign up", "Sign Up Dialog Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
             App.Tap("Sign up");
@@ -122,14 +116,14 @@ namespace UITestSampleApp.UITests
             App.Screenshot("No Tapped on Crash Button Dialog");
         }
 
-        void LoginWithUsernamePasswordNotUsingEnterButton(string username, string password)
+        void LoginWithUsernamePasswordNotUsingEnterButton(in string username, in string password)
         {
             EnterUsername(username);
             EnterPassword(password);
             PressLoginButton();
         }
 
-        void LoginWithUsernamePasswordUsingEnterButton(string username, string password)
+        void LoginWithUsernamePasswordUsingEnterButton(in string username, in string password)
         {
             EnterText(_usernameEntry, username, false);
             App.Screenshot($"Entered Username: {username}");

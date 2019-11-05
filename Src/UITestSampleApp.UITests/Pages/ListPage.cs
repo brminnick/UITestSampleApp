@@ -28,7 +28,7 @@ namespace UITestSampleApp.UITests
             App.WaitForElement("Number", "List View Elements Did Not Load", TimeSpan.FromSeconds(60));
         }
 
-        public void TapListItemNumber(int listItemNumber, int timeoutInSeconds = 60)
+        public void TapListItemNumber(int listItemNumber, in int timeoutInSeconds = 60)
         {
             App.ScrollDownTo(listItemNumber.ToString());
 
@@ -38,7 +38,7 @@ namespace UITestSampleApp.UITests
             App.Screenshot($"Tap {listItemNumber} on List View Page");
         }
 
-        public void TapOKOnAlert(int timeoutInSeconds = 60)
+        public void TapOKOnAlert(in int timeoutInSeconds = 60)
         {
             App.WaitForElement("OK", "Ok Alert Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
 
@@ -47,7 +47,7 @@ namespace UITestSampleApp.UITests
             App.Screenshot("Tap OK On Alert");
         }
 
-        public string GetAlertText(int numberSelected) =>
+        public string GetAlertText(in int numberSelected) =>
             App.Query($"You Selected Number {numberSelected}").First().Text;
 
         public void TapBackButton()
@@ -56,7 +56,7 @@ namespace UITestSampleApp.UITests
             App.Screenshot("Tap Back Button");
         }
 
-        public void WaitForNoActivityIndicator(int timeoutInSeconds = 25)
+        public void WaitForNoActivityIndicator(in int timeoutInSeconds = 25)
         {
             int counter = 0;
             while (IsRefreshActivityIndicatorDisplayed && counter < timeoutInSeconds)

@@ -17,7 +17,7 @@ namespace UITestSampleApp.UITests
 
         public virtual void WaitForPageToLoad() => App.WaitForElement(x => x.Marked(PageTitle));
 
-        protected void EnterText(Query textEntryQuery, string text, bool shouldDismissKeyboard = true)
+        protected void EnterText(in Query textEntryQuery, in string text, in bool shouldDismissKeyboard = true)
         {
             App.ClearText(textEntryQuery);
             App.EnterText(textEntryQuery, text);

@@ -26,7 +26,7 @@ namespace UITestSampleApp.UITests
         protected NewUserSignUpPage NewUserSignUpPage => _newUserSignUpPage ?? throw new NullReferenceException();
 
         [SetUp]
-        virtual public void BeforeEachTest()
+        public virtual void BeforeEachTest()
         {
             _app = AppInitializer.StartApp(_platform);
 
