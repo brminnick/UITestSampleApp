@@ -31,7 +31,7 @@ namespace UITestSampleApp
                         yield return listPageDataModel;
                 }
 
-                static IEnumerable<ListPageDataModel> GetListPageDataModel(PaginatedDocuments<ListPageDataModel> documents) => documents.CurrentPage.Items.Select(x => x.DeserializedValue);
+                static IEnumerable<ListPageDataModel> GetListPageDataModel(in PaginatedDocuments<ListPageDataModel> documents) => documents.CurrentPage.Items.Select(x => x.DeserializedValue);
             }
             finally
             {

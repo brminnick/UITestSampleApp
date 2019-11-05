@@ -35,7 +35,7 @@ namespace UITestSampleApp
 
             try
             {
-                await foreach (var listPageDataModel in AppCenterDataService.GetListPageDataModels().ConfigureAwait(false))
+                await foreach (var listPageDataModel in AppCenterDataService.GetListPageDataModels())
                 {
                     DataList.Add(listPageDataModel);
                 }

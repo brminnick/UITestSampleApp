@@ -11,6 +11,7 @@ namespace MyLoginUI.Views
 			TextColor = Color.White;
 			Opacity = opacity;
             PlaceholderColor = Color.FromHex("749FA8");
+            ClearButtonVisibility = ClearButtonVisibility.WhileEditing;
         }
 	}
 }
