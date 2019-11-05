@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Linq;
-
-using Xamarin.UITest;
-
 using UITestSampleApp.Shared;
-
-using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
+using Xamarin.UITest;
 using Xamarin.UITest.Android;
 using Xamarin.UITest.iOS;
+using Query = System.Func<Xamarin.UITest.Queries.AppQuery, Xamarin.UITest.Queries.AppQuery>;
 
 namespace UITestSampleApp.UITests
 {
@@ -104,13 +101,7 @@ namespace UITestSampleApp.UITests
             App.Screenshot("Rotate Device to Portrait");
         }
 
-        public string GetEntryFieldText()
-        {
-            var entryFieldQuery = App.Query(_textEntryUsingID);
-            return entryFieldQuery?.FirstOrDefault()?.Text;
-        }
-
-
+        public string GetEntryFieldText() => App.Query(_textEntryUsingID).First().Text;
     }
 }
 

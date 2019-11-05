@@ -6,7 +6,6 @@ using NUnit.Framework;
 
 namespace UITestSampleApp.UITests
 {
-    [Category(nameof(LoginTests))]
     class LoginTests : BaseTest
     {
         const string _username = "Brandon";

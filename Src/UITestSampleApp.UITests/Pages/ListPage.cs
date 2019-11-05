@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
-
-using Xamarin.UITest;
-using Xamarin.UITest.iOS;
-using Xamarin.UITest.Android;
-
 using UITestSampleApp.Shared;
+using Xamarin.UITest;
+using Xamarin.UITest.Android;
+using Xamarin.UITest.iOS;
 
 namespace UITestSampleApp.UITests
 {
@@ -16,23 +14,12 @@ namespace UITestSampleApp.UITests
         {
         }
 
-        public bool IsRefreshActivityIndicatorDisplayed
+        public bool IsRefreshActivityIndicatorDisplayed => App switch
         {
-            get
-            {
-                switch (App)
-                {
-                    case AndroidApp androidApp:
-                        return (bool)App.Query(x => x.Class("ListViewRenderer_SwipeRefreshLayoutWithFixedNestedScrolling").Invoke("isRefreshing")).First();
-
-                    case iOSApp iosApp:
-                        return App.Query(x => x.Class("UIRefreshControl")).Any();
-
-                    default:
-                        throw new NotSupportedException();
-                }
-            }
-        }
+            AndroidApp androidApp => (bool)androidApp.Query(x => x.Class("RefreshViewRenderer").Invoke("isRefreshing")).First(),
+            iOSApp iosApp => iosApp.Query(x => x.Class("UIRefreshControl")).Any(),
+            _ => throw new NotSupportedException(),
+        };
 
         public override void WaitForPageToLoad()
         {
@@ -44,7 +31,9 @@ namespace UITestSampleApp.UITests
         public void TapListItemNumber(int listItemNumber, int timeoutInSeconds = 60)
         {
             App.ScrollDownTo(listItemNumber.ToString());
+
             App.Tap(x => x.Marked(listItemNumber.ToString()));
+
             App.WaitForElement("OK", "Ok Alert Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
             App.Screenshot($"Tap {listItemNumber} on List View Page");
         }
@@ -52,15 +41,14 @@ namespace UITestSampleApp.UITests
         public void TapOKOnAlert(int timeoutInSeconds = 60)
         {
             App.WaitForElement("OK", "Ok Alert Did Not Appear", TimeSpan.FromSeconds(timeoutInSeconds));
+
             App.Tap("OK");
+
             App.Screenshot("Tap OK On Alert");
         }
 
-        public string GetAlertText(int numberSelected)
-        {
-            var alertTextQuery = App.Query($"You Selected Number {numberSelected}");
-            return alertTextQuery?.FirstOrDefault()?.Text;
-        }
+        public string GetAlertText(int numberSelected) =>
+            App.Query($"You Selected Number {numberSelected}").First().Text;
 
         public void TapBackButton()
         {

@@ -1,36 +1,43 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 using Xamarin.UITest;
 
 namespace UITestSampleApp.UITests
 {
-	[TestFixture(Platform.Android)]
-	[TestFixture(Platform.iOS)]
-	abstract class BaseTest
-	{
-		readonly Platform _platform;
+    [TestFixture(Platform.Android)]
+    [TestFixture(Platform.iOS)]
+    abstract class BaseTest
+    {
+        readonly Platform _platform;
 
-		protected BaseTest(Platform platform) => _platform = platform;
+        IApp? _app;
+        FirstPage? _firstPage;
+        ListPage? _listPage;
+        LoginPage? _loginPage;
+        NewUserSignUpPage? _newUserSignUpPage;
 
-		protected IApp App { get; private set; }
-		protected FirstPage FirstPage { get; private set; }
-		protected ListPage ListPage { get; private set; }
-		protected LoginPage LoginPage { get; private set; }
-		protected NewUserSignUpPage NewUserSignUpPage { get; private set; }
+        protected BaseTest(Platform platform) => _platform = platform;
 
-		[SetUp]
-		virtual public void BeforeEachTest()
-		{
-			App = AppInitializer.StartApp(_platform);
-			App.Screenshot("App Initialized");
+        protected IApp App => _app ?? throw new NullReferenceException();
+        protected FirstPage FirstPage => _firstPage ?? throw new NullReferenceException();
+        protected ListPage ListPage => _listPage ?? throw new NullReferenceException();
+        protected LoginPage LoginPage => _loginPage ?? throw new NullReferenceException();
+        protected NewUserSignUpPage NewUserSignUpPage => _newUserSignUpPage ?? throw new NullReferenceException();
 
-			FirstPage = new FirstPage(App);
-			ListPage = new ListPage(App);
-			LoginPage = new LoginPage(App);
-			NewUserSignUpPage = new NewUserSignUpPage(App);
+        [SetUp]
+        virtual public void BeforeEachTest()
+        {
+            _app = AppInitializer.StartApp(_platform);
 
-			LoginPage.WaitForPageToLoad();
-		}
-	}
+            _firstPage = new FirstPage(App);
+            _listPage = new ListPage(App);
+            _loginPage = new LoginPage(App);
+            _newUserSignUpPage = new NewUserSignUpPage(App);
+
+            App.Screenshot("App Initialized");
+            LoginPage.WaitForPageToLoad();
+        }
+    }
 }
 

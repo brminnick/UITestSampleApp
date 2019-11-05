@@ -4,7 +4,6 @@ using Xamarin.UITest;
 
 namespace UITestSampleApp.UITests
 {
-    [Category(nameof(TestsAfterLoginScreen))]
     class TestsAfterLoginScreen : BaseTest
     {
         public TestsAfterLoginScreen(Platform platform) : base(platform)
