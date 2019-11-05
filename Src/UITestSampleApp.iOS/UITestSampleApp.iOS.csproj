@@ -10,6 +10,8 @@
         <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
         <AssemblyName>UITestSampleApp.iOS</AssemblyName>
         <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+        <LangVersion>8.0</LangVersion>
+        <Nullable>enable</Nullable>
         <NuGetPackageImportStamp>
         </NuGetPackageImportStamp>
     </PropertyGroup>

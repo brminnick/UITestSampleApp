@@ -16,6 +16,8 @@
         <AssemblyName>UITestSampleApp.Droid</AssemblyName>
         <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
         <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+        <LangVersion>8.0</LangVersion>
+        <Nullable>enable</Nullable>
         <AndroidTlsProvider>
         </AndroidTlsProvider>
         <AndroidExplicitCrunch>true</AndroidExplicitCrunch>

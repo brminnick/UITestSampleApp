@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -15,10 +17,15 @@ namespace UITestSampleApp
     {
         bool _isRefreshing;
         ICommand? _pullToRefreshCommand;
+        IReadOnlyList<ListPageDataModel> _dataList = Enumerable.Empty<ListPageDataModel>().ToList();
 
         public ICommand PullToRefreshCommand => _pullToRefreshCommand ??= new AsyncCommand(ExecutePullToRefreshCommanded);
 
-        public ObservableCollection<ListPageDataModel> DataList { get; } = new ObservableCollection<ListPageDataModel>();
+        public IReadOnlyList<ListPageDataModel> DataList
+        {
+            get => _dataList;
+            set => SetProperty(ref _dataList, value);
+        }
 
         public bool IsRefreshing
         {
@@ -31,14 +38,16 @@ namespace UITestSampleApp
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
                 return;
 
-            DataList.Clear();
+            var dataList = new List<ListPageDataModel>();
 
             try
             {
-                await foreach (var listPageDataModel in AppCenterDataService.GetListPageDataModels())
+                await foreach (var listPageDataModel in AppCenterDataService.GetListPageDataModels().ConfigureAwait(false))
                 {
-                    DataList.Add(listPageDataModel);
+                    dataList.Add(listPageDataModel);
                 }
+
+                DataList = dataList;
             }
             catch (Exception e)
             {
