@@ -20,10 +20,10 @@ namespace UITestSampleApp.Functions
         static IAppServiceAPI AppServiceApiClient => _appServiceApiClientHolder.Value;
 
         public static Task<HttpResponseMessage> BuildiOSApp() =>
-            ExecutePollyFunction(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_iOS, _appCenterMasterBranchName, new BuildParameters(true)));
+            AttemptAndRetry(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_iOS, _appCenterMasterBranchName, new BuildParameters(true)));
 
         public static Task<HttpResponseMessage> BuildAndroidApp() =>
-            ExecutePollyFunction(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_Android, _appCenterMasterBranchName, new BuildParameters(true)));
+            AttemptAndRetry(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_Android, _appCenterMasterBranchName, new BuildParameters(true)));
 
         static HttpClient CreateHttpClient(in string baseUrl)
         {
@@ -34,11 +34,11 @@ namespace UITestSampleApp.Functions
             return client;
         }
 
-        static Task<T> ExecutePollyFunction<T>(Func<Task<T>> action, int numRetries = 3)
+        static Task<T> AttemptAndRetry<T>(Func<Task<T>> action, int numRetries = 3)
         {
             return Policy.Handle<Exception>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(action);
 
-            TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
+            static TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
         }
     }
 }
