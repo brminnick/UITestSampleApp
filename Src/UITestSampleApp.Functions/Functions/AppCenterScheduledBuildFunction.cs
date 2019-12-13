@@ -5,13 +5,17 @@ using Microsoft.Extensions.Logging;
 
 namespace UITestSampleApp.Functions
 {
-    public static class AppCenterScheduledBuildFunction
+    public class AppCenterScheduledBuildFunction
     {
+        readonly AppCenterApiService _appCenterApiService;
+
+        public AppCenterScheduledBuildFunction(AppCenterApiService appCenterApiService) => _appCenterApiService = appCenterApiService;
+
         [FunctionName(nameof(AppCenterScheduledBuildFunction))]
-        public static async Task Run([TimerTrigger("0 0 9 * * *")]TimerInfo myTimer, ILogger log)
+        public async Task Run([TimerTrigger("0 0 9 * * *")]TimerInfo myTimer, ILogger log)
         {
-            var iOSBuildTask = AppCenterApiService.BuildiOSApp();
-            var androidBuildTask = AppCenterApiService.BuildAndroidApp();
+            var iOSBuildTask = _appCenterApiService.BuildiOSApp();
+            var androidBuildTask = _appCenterApiService.BuildAndroidApp();
 
             try
             {

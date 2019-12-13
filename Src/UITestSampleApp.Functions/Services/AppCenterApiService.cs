@@ -6,34 +6,22 @@ using Refit;
 
 namespace UITestSampleApp.Functions
 {
-    public static class AppCenterApiService
+    public class AppCenterApiService
     {
         const string _appCenterOwnerName = "CDA-Global-BETA";
         const string _appCenterAppName_iOS = "uitestsampleapp-1";
         const string _appCenterAppName_Android = "uitestsampleapp";
         const string _appCenterMasterBranchName = "master";
-        const string _appCenterBaseUrl = "https://api.appcenter.ms";
 
-        readonly static string _appCenterApiToken = Environment.GetEnvironmentVariable("AppCenterAPIToken") ?? string.Empty;
-        readonly static Lazy<IAppServiceAPI> _appServiceApiClientHolder = new Lazy<IAppServiceAPI>(() => RestService.For<IAppServiceAPI>(CreateHttpClient(_appCenterBaseUrl)));
+        public AppCenterApiService(AppCenterServiceClient appCenterServiceClient) => AppServiceApiClient = appCenterServiceClient.Client;
 
-        static IAppServiceAPI AppServiceApiClient => _appServiceApiClientHolder.Value;
+        IAppCenterAPI AppServiceApiClient { get; }
 
-        public static Task<HttpResponseMessage> BuildiOSApp() =>
+        public Task<HttpResponseMessage> BuildiOSApp() =>
             AttemptAndRetry(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_iOS, _appCenterMasterBranchName, new BuildParameters(true)));
 
-        public static Task<HttpResponseMessage> BuildAndroidApp() =>
+        public Task<HttpResponseMessage> BuildAndroidApp() =>
             AttemptAndRetry(() => AppServiceApiClient.QueueBuild(_appCenterOwnerName, _appCenterAppName_Android, _appCenterMasterBranchName, new BuildParameters(true)));
-
-        static HttpClient CreateHttpClient(in string baseUrl)
-        {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("X-API-Token", _appCenterApiToken);
-            client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestVersion = new Version(2, 0);
-
-            return client;
-        }
 
         static Task<T> AttemptAndRetry<T>(Func<Task<T>> action, int numRetries = 3)
         {
@@ -41,5 +29,22 @@ namespace UITestSampleApp.Functions
 
             static TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
         }
+    }
+
+    public class AppCenterServiceClient : HttpClient
+    {
+        const string _appCenterBaseUrl = "https://api.appcenter.ms";
+        readonly static string _appCenterApiToken = Environment.GetEnvironmentVariable("AppCenterAPIToken") ?? string.Empty;
+
+        public AppCenterServiceClient(HttpClient client)
+        {
+            client.DefaultRequestHeaders.Add("X-API-Token", _appCenterApiToken);
+            client.BaseAddress = new Uri(_appCenterBaseUrl);
+            client.DefaultRequestVersion = new Version(2, 0);
+
+            Client = RestService.For<IAppCenterAPI>(client);
+        }
+
+        public IAppCenterAPI Client { get; }
     }
 }
