@@ -14,7 +14,7 @@ namespace UITestSampleApp.Functions
         const string _appCenterMasterBranchName = "master";
         const string _appCenterBaseUrl = "https://api.appcenter.ms";
 
-        readonly static string _appCenterApiToken = Environment.GetEnvironmentVariable("AppCenterAPIToken");
+        readonly static string _appCenterApiToken = Environment.GetEnvironmentVariable("AppCenterAPIToken") ?? string.Empty;
         readonly static Lazy<IAppServiceAPI> _appServiceApiClientHolder = new Lazy<IAppServiceAPI>(() => RestService.For<IAppServiceAPI>(CreateHttpClient(_appCenterBaseUrl)));
 
         static IAppServiceAPI AppServiceApiClient => _appServiceApiClientHolder.Value;
@@ -30,6 +30,7 @@ namespace UITestSampleApp.Functions
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("X-API-Token", _appCenterApiToken);
             client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestVersion = new Version(2, 0);
 
             return client;
         }
