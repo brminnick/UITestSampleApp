@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
 using Refit;
 using UITestSampleApp.Functions;
 
@@ -23,9 +24,12 @@ namespace UITestSampleApp.Functions
                     client.BaseAddress = new Uri(_appCenterBaseUrl);
                     client.DefaultRequestVersion = new Version(2, 0);
                 })
-                .ConfigurePrimaryHttpMessageHandler(config => new HttpClientHandler { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip });
+                .ConfigurePrimaryHttpMessageHandler(config => new HttpClientHandler { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip })
+                .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(3, sleepDurationProvider));
 
             builder.Services.AddSingleton<AppCenterApiService>();
+
+            static TimeSpan sleepDurationProvider(int attemptNumber) => TimeSpan.FromSeconds(Math.Pow(2, attemptNumber));
         }
     }
 }
