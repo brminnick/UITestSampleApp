@@ -9,7 +9,7 @@
         <AssemblyName>UITestSampleApp.UITests</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
-        <LangVersion>8.0</LangVersion>
+        <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
