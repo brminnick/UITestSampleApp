@@ -3,6 +3,8 @@
 using Xamarin.UITest;
 
 using NUnit.Framework;
+using UITestSampleApp.Shared;
+using Xamarin.UITest.iOS;
 
 namespace UITestSampleApp.UITests
 {
@@ -18,7 +20,8 @@ namespace UITestSampleApp.UITests
         {
             base.BeforeEachTest();
 
-            BackdoorHelpers.CleariOSKeyChain(App, _username);
+            if (App is iOSApp)
+                App.InvokeBackdoorMethod(BackdoorMethodConstants.ClearKeychain, _username);
         }
 
         [TestCase(true)]

@@ -1,5 +1,6 @@
-﻿using NUnit.Framework;
-
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using UITestSampleApp.Shared;
 using Xamarin.UITest;
 
 namespace UITestSampleApp.UITests
@@ -16,7 +17,7 @@ namespace UITestSampleApp.UITests
 
             LoginPage.WaitForPageToLoad();
 
-            BackdoorHelpers.BypassLoginScreen(App);
+            App.InvokeBackdoorMethod(BackdoorMethodConstants.BypassLoginScreen);
 
             FirstPage.WaitForPageToLoad();
         }
@@ -54,7 +55,7 @@ namespace UITestSampleApp.UITests
             var expectedAlertString = $"You Selected Number {listItemNumber}";
 
             //Act
-            BackdoorHelpers.OpenListViewPage(App);
+            App.InvokeBackdoorMethod(BackdoorMethodConstants.OpenListViewPage);
 
             ListPage.WaitForPageToLoad();
             ListPage.WaitForNoActivityIndicator();
@@ -66,7 +67,7 @@ namespace UITestSampleApp.UITests
 
             //Assert
             Assert.AreEqual(expectedAlertString, actualAlertString);
-            Assert.GreaterOrEqual(BackdoorHelpers.GetListPageData(App).Count, 10, "Less than 10 items found in List");
+            Assert.GreaterOrEqual(App.InvokeBackdoorMethod<IReadOnlyList<ListPageDataModel>>(BackdoorMethodConstants.GetListViewPageData).Count, 10, "Less than 10 items found in List");
         }
     }
 }

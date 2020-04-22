@@ -11,29 +11,10 @@ namespace UITestSampleApp.iOS
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
 
-#if DEBUG
-            Xamarin.Calabash.Start();
-#endif
             LoadApplication(new App());
 
             return base.FinishedLaunching(uiApplication, launchOptions);
         }
-
-#if DEBUG
-        #region Xamarin Test Cloud Back Door Methods
-        [Preserve, Export("clearKeyChain:")]
-        public void ClearKeychain(NSString noValue) => Xamarin.Essentials.SecureStorage.RemoveAll();
-
-        [Preserve, Export("bypassLoginScreen:")]
-        public void BypassLoginScreen(NSString noValue) => BackdoorMethodHelpers.BypassLoginScreen();
-
-        [Preserve, Export("openListViewPage:")]
-        public async void OpenListViewPage(NSString noValue) => await BackdoorMethodHelpers.OpenListViewPage().ConfigureAwait(false);
-
-        [Preserve, Export("getSerializedListViewPageData:")]
-        public NSString GetSerializedListViewPageData(NSString noValue) => new NSString(BackdoorMethodHelpers.GetSerializedListViewPageData());
-        #endregion
-#endif
     }
 }
 

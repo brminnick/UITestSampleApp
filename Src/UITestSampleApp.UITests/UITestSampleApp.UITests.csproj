@@ -45,8 +45,8 @@
         <Compile Include="Pages\LoginPage.cs" />
         <Compile Include="Pages\NewUserSignUpPage.cs" />
         <Compile Include="Tests\LoginTests.cs" />
-        <Compile Include="Helpers\BackdoorHelpers.cs" />
         <Compile Include="Tests\LaunchTests.cs" />
+        <Compile Include="BackdoorServices.cs" />
     </ItemGroup>
     <Import Project="..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems" Label="Shared" Condition="Exists('..\UITestSampleApp.Shared\UITestSampleApp.Shared.projitems')" />
     <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -54,6 +54,6 @@
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageReference Include="NUnit" Version="3.12.0" />
-        <PackageReference Include="Xamarin.UITest" Version="3.0.6-dev1" />
+        <PackageReference Include="Xamarin.UITest" Version="3.0.8-dev1" />
     </ItemGroup>
 </Project>

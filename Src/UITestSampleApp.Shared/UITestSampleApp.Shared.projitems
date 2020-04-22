@@ -14,5 +14,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ListPageDataModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\PageTitles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants\CrashDialogConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\BackdoorMethodConstants.cs" />
   </ItemGroup>
 </Project>

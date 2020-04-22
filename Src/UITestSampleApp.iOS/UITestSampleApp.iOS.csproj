@@ -103,12 +103,12 @@
         <Reference Include="System.IO.Compression" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Essentials" Version="1.4.0-pre2" />
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.4" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.4" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.0" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.5.3" />
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.1.0" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.1.0" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.1-pre1" />
         <PackageReference Include="Xamarin.TestCloud.Agent" Version="0.21.9" />
-        <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />
+        <PackageReference Include="Xamarin.Forms" Version="4.6.0.616-pre4" />
         <PackageReference Include="Microsoft.AppCenter.Data" Version="2.6.4" />
     </ItemGroup>
     <ItemGroup>
@@ -154,6 +154,7 @@
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
         <Compile Include="CustomRenderers\StyledEntryRenderer.cs" />
+        <Compile Include="AppDelegate.BackdoorMethods.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
     <ItemGroup>

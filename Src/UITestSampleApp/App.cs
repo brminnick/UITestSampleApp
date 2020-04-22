@@ -28,7 +28,7 @@ namespace UITestSampleApp
         protected override async void OnAppLinkRequestReceived(Uri uri)
         {
             if (uri.ToString().Equals($"{AppLinkHelpers.BaseUrl}{DeepLinkingIdConstants.ListPageId}"))
-                await BackdoorMethodHelpers.NavigateToListViewPage();
+                await AppLinkHelpers.NavigateToListViewPage();
 
             base.OnAppLinkRequestReceived(uri);
         }

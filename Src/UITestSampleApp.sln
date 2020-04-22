@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReusableLoginPage", "Reusab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLoginUI", "MyLoginUI\MyLoginUI.csproj", "{4D3FBD7F-84D7-4552-8042-CFE23F077378}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UITestSampleApp", "UITestSampleApp\UITestSampleApp.csproj", "{BE8DD6B5-2C8F-447A-AA32-B7395DC051F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp", "UITestSampleApp\UITestSampleApp.csproj", "{BE8DD6B5-2C8F-447A-AA32-B7395DC051F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp.Droid", "UITestSampleApp.Droid\UITestSampleApp.Droid.csproj", "{74F83F09-82B3-47B4-93F8-59B6FAA89EFA}"
 EndProject

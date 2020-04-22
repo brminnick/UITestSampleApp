@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿#if DEBUG
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,46 +11,21 @@ namespace UITestSampleApp
 {
     public static class BackdoorMethodHelpers
     {
-        static Page CurrentPage => GetCurrentPage();
-
-#if DEBUG
         public static void BypassLoginScreen() => Application.Current.MainPage.Navigation.PopAsync();
 
-        public static Task OpenListViewPage() => NavigateToListViewPage();
+        public static Task OpenListViewPage() => AppLinkHelpers.NavigateToListViewPage();
 
-        public static string GetSerializedListViewPageData()
+        public static IReadOnlyList<ListPageDataModel> GetListViewPageData()
         {
-            var listPageData = GetListPageData();
-
-            var listPageDataAsBase64String = ConverterHelpers.SerializeObject(listPageData);
-
-            return listPageDataAsBase64String;
-        }
-#endif
-
-        internal static Task NavigateToListViewPage()
-        {
-            // Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
-            return Device.InvokeOnMainThreadAsync(async () =>
-            {
-                await Application.Current.MainPage.Navigation.PopAsync();
-                await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
-            });
-        }
-#if DEBUG
-
-        static IEnumerable<ListPageDataModel> GetListPageData()
-        {
-            if (CurrentPage is ListPage listPage
+            if (GetCurrentPage() is ListPage listPage
                 && listPage.BindingContext is ListViewModel listViewModel)
             {
                 return listViewModel.DataList;
             }
 
-            return Enumerable.Empty<ListPageDataModel>();
+            return Enumerable.Empty<ListPageDataModel>().ToList();
         }
 
-#endif
         static Page GetCurrentPage()
         {
             if (Application.Current.MainPage.Navigation.ModalStack.Any())
@@ -59,3 +35,4 @@ namespace UITestSampleApp
         }
     }
 }
+#endif
