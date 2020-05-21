@@ -5,6 +5,8 @@ using Xamarin.Forms;
 
 using UITestSampleApp.Shared;
 using System.Linq;
+using Xamarin.Forms.Markup;
+using Xamarin.Essentials;
 
 namespace UITestSampleApp
 {
@@ -14,32 +16,31 @@ namespace UITestSampleApp
 
         public ListPage() : base(PageTitleConstants.ListPage)
         {
-            var collectionView = new CollectionView
-            {
-                ItemTemplate = new ListPageDataTemplate(),
-                BackgroundColor = Color.FromHex("#2980b9"),
-                SelectionMode = SelectionMode.Single
-            };
-            collectionView.SelectionChanged += HandleCollectionViewSelectionChanged;
-            collectionView.SetBinding(CollectionView.ItemsSourceProperty, nameof(ListViewModel.DataList));
-
-            _collectionRefreshView = new RefreshView
+            Content = new RefreshView
             {
                 RefreshColor = Device.RuntimePlatform is Device.iOS ? Color.White : Color.Black,
-                Content = collectionView
-            };
-            _collectionRefreshView.SetBinding(RefreshView.IsRefreshingProperty, nameof(ListViewModel.IsRefreshing));
-            _collectionRefreshView.SetBinding(RefreshView.CommandProperty, nameof(ListViewModel.PullToRefreshCommand));
 
-            Content = _collectionRefreshView;
+                Content = new CollectionView
+                {
+                    ItemTemplate = new ListPageDataTemplate(),
+                    BackgroundColor = Color.FromHex("#2980b9"),
+                    SelectionMode = SelectionMode.Single
+                }.Assign(out CollectionView collectionView)
+                 .Bind(CollectionView.ItemsSourceProperty, nameof(ListViewModel.DataList))
+
+            }.Assign(out _collectionRefreshView)
+             .Bind(RefreshView.IsRefreshingProperty, nameof(ListViewModel.IsRefreshing))
+             .Bind(RefreshView.CommandProperty, nameof(ListViewModel.PullToRefreshCommand));
+
+            collectionView.SelectionChanged += HandleCollectionViewSelectionChanged;
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
             AppCenterHelpers.TrackEvent(AppCenterConstants.ListViewPageAppeared);
 
-            _collectionRefreshView.IsRefreshing = true;
+            await MainThread.InvokeOnMainThreadAsync(() => _collectionRefreshView.IsRefreshing = true);
         }
 
         async void HandleCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -54,19 +55,6 @@ namespace UITestSampleApp
                 );
 
                 await DisplayAlert("Number Tapped", $"You Selected Number {tappedListPageDataModel.Detail}", "OK");
-            }
-        }
-
-        class WhiteTextImageCell : ImageCell
-        {
-            public WhiteTextImageCell()
-            {
-                TextColor = Color.White;
-                DetailColor = Color.White;
-                ImageSource = "Hash";
-
-                this.SetBinding(DetailProperty, nameof(ListPageDataModel.Detail));
-                this.SetBinding(TextProperty, nameof(ListPageDataModel.Text));
             }
         }
     }

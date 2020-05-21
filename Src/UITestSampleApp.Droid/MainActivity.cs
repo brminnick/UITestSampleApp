@@ -10,11 +10,9 @@ namespace UITestSampleApp.Droid
     [Activity(Theme = "@style/MyTheme", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public partial class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
@@ -22,15 +20,14 @@ namespace UITestSampleApp.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            TabLayoutResource = Resource.Layout.tabs;
-            ToolbarResource = Resource.Layout.toolbar;
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
 
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            Firebase.FirebaseApp.InitializeApp(this);
+            global::Firebase.FirebaseApp.InitializeApp(this);
             global::Xamarin.Forms.Platform.Android.AppLinks.AndroidAppLinks.Init(this);
 
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);

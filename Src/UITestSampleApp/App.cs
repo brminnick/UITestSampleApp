@@ -9,6 +9,8 @@ namespace UITestSampleApp
     {
         public App()
         {
+            Device.SetFlags(new[] { "Markup_Experimental" });
+
             var page = new LoginPage();
             NavigationPage.SetHasNavigationBar(page, false);
 

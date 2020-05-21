@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReusableLoginPage", "ReusableLoginPage", "{B4BC40AE-EB0F-48D8-BB36-65DE380F32CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLoginUI", "MyLoginUI\MyLoginUI.csproj", "{4D3FBD7F-84D7-4552-8042-CFE23F077378}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLoginUI", "MyLoginUI\MyLoginUI.csproj", "{4D3FBD7F-84D7-4552-8042-CFE23F077378}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestSampleApp", "UITestSampleApp\UITestSampleApp.csproj", "{BE8DD6B5-2C8F-447A-AA32-B7395DC051F0}"
 EndProject

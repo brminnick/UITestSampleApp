@@ -5,6 +5,8 @@ using Xamarin.UITest;
 using NUnit.Framework;
 using UITestSampleApp.Shared;
 using Xamarin.UITest.iOS;
+using System.Threading.Tasks;
+using System;
 
 namespace UITestSampleApp.UITests
 {
@@ -101,12 +103,20 @@ namespace UITestSampleApp.UITests
             LoginPage.TapCrashButton();
 
             if (shouldAcceptCrashConfirmationDialog)
+            {
                 LoginPage.TapYes_CrashButtonDialog();
+
+                //Assert
+                Assert.Throws<Exception>(LoginPage.WaitForPageToLoad);
+            }
             else
+            {
                 LoginPage.TapNo_CrashButtonDialog();
 
-            //Assert
-            LoginPage.WaitForPageToLoad();
+                //Assert
+                LoginPage.WaitForPageToLoad();
+            }
+
         }
     }
 }

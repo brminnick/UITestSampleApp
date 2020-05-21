@@ -6,8 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="4.6.0.616-pre4" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.1-pre1" />
+        <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.1" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     </ItemGroup>
     <ItemGroup>
