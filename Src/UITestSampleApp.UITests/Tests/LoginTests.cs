@@ -1,12 +1,9 @@
-﻿using System.Linq;
-
-using Xamarin.UITest;
-
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using UITestSampleApp.Shared;
+using Xamarin.UITest;
 using Xamarin.UITest.iOS;
-using System.Threading.Tasks;
-using System;
 
 namespace UITestSampleApp.UITests
 {
@@ -116,7 +113,6 @@ namespace UITestSampleApp.UITests
                 //Assert
                 LoginPage.WaitForPageToLoad();
             }
-
         }
     }
 }
