@@ -105,10 +105,10 @@
     <ItemGroup>
         <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.4" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.1.1" />
         <PackageReference Include="Xamarin.TestCloud.Agent" Version="0.21.9" />
-        <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />
+        <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />
         <PackageReference Include="Microsoft.AppCenter.Data" Version="2.6.4" />
     </ItemGroup>
     <ItemGroup>

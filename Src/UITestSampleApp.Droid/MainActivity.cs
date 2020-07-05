@@ -30,7 +30,7 @@ namespace UITestSampleApp.Droid
             global::Firebase.FirebaseApp.InitializeApp(this);
             global::Xamarin.Forms.Platform.Android.AppLinks.AndroidAppLinks.Init(this);
 
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            Window?.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             LoadApplication(new App());
         }

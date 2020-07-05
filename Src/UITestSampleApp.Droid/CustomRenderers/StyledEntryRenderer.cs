@@ -27,10 +27,10 @@ namespace UITestSampleApp.Droid
 
 			if (e.NewElement != null)
 			{
-				var droidEditText = Control as EditText;
+				var droidEditText = (EditText)Control;
 				droidEditText.SetHintTextColor(Xamarin.Forms.Color.White.ToAndroid());
 
-				Typeface font = Typeface.Create("Droid Sans Mono", TypefaceStyle.Normal);
+				var font = Typeface.Create("Droid Sans Mono", TypefaceStyle.Normal);
 				droidEditText.Typeface = font;
 			}
 		}
