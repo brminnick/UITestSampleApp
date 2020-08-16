@@ -8,7 +8,7 @@ namespace UITestSampleApp.Functions
         const string _appCenterOwnerName = "CDA-Global-BETA";
         const string _appCenterAppName_iOS = "uitestsampleapp-1";
         const string _appCenterAppName_Android = "uitestsampleapp";
-        const string _appCenterMasterBranchName = "master";
+        const string _appCenterMasterBranchName = "main";
 
         readonly IAppCenterAPI _appServiceApiClient;
 
