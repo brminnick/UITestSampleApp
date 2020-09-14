@@ -27,7 +27,7 @@
         <PackageReference Include="Microsoft.AppCenter.Data" Version="2.6.4" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.4" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.4" />
-        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
+        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\MyLoginUI\MyLoginUI.csproj" />
