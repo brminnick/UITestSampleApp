@@ -103,12 +103,12 @@
         <Reference Include="System.IO.Compression" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.6.0-pre2" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.4" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.4" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="4.3.0-pre1" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.0-pre2" />
         <PackageReference Include="Xamarin.TestCloud.Agent" Version="0.21.9" />
-        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.1487-pre1" />
         <PackageReference Include="Microsoft.AppCenter.Data" Version="2.6.4" />
     </ItemGroup>
     <ItemGroup>
