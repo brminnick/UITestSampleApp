@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace UITestSampleApp.Functions
 {
-    public class AppCenterScheduledBuildFunction
+    class AppCenterScheduledBuildFunction
     {
         readonly AppCenterApiService _appCenterApiService;
 

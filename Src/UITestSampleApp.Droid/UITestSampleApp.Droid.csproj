@@ -86,10 +86,10 @@
         <PackageReference Include="Xamarin.Essentials" Version="1.6.0-pre2" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.4" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.4" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.1487-pre1" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.1539-pre2" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.0-pre2" />
         <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.4" />
-        <PackageReference Include="Xamarin.Forms.AppLinks" Version="5.0.0.1487-pre1" />
+        <PackageReference Include="Xamarin.Forms.AppLinks" Version="5.0.0.1539-pre2" />
         <PackageReference Include="Microsoft.AppCenter.Data" Version="2.6.4" />
         <PackageReference Include="Xamarin.Google.Android.Material" Version="1.1.0.5-rc3" />
     </ItemGroup>
