@@ -14,12 +14,6 @@ namespace UITestSampleApp.iOS
         [Preserve, Export(BackdoorMethodConstants.BypassLoginScreen + ":")]
         public void BypassLoginScreen(NSString noValue) => BackdoorMethodHelpers.BypassLoginScreen();
 
-        [Preserve, Export(BackdoorMethodConstants.OpenListViewPage + ":")]
-        public async void OpenListViewPage(NSString noValue) => await BackdoorMethodHelpers.OpenListViewPage().ConfigureAwait(false);
-
-        [Preserve, Export(BackdoorMethodConstants.GetListViewPageData + ":")]
-        public NSString GetListViewPageData(NSString noValue) => SerializeObject(BackdoorMethodHelpers.GetListViewPageData());
-
         static NSString SerializeObject<T>(T value) => new NSString(Newtonsoft.Json.JsonConvert.SerializeObject(value));
     }
 }

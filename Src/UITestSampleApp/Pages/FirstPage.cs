@@ -1,13 +1,10 @@
 using System;
-
-using Xamarin.Forms;
-
 using MyLoginUI;
 using MyLoginUI.Views;
-
 using UITestSampleApp.Shared;
-using Xamarin.Forms.Markup;
+using Xamarin.CommunityToolkit.Markup;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace UITestSampleApp
 {
@@ -41,9 +38,9 @@ namespace UITestSampleApp
                         Text = "Go",
                         AutomationId = AutomationIdConstants.FirstPage_GoButton // This provides an ID that can be referenced in UITests
                     }.FillExpandHorizontal()
-                     .Assign(out Button goButton)
                      .Bind(Button.CommandProperty, nameof(FirstViewModel.GoButtonCommand))
-                     .Bind(Button.CommandParameterProperty, nameof(FirstViewModel.EntryText)),
+                     .Bind(Button.CommandParameterProperty, nameof(FirstViewModel.EntryText))
+                     .Invoke(goButton => goButton.Clicked += HandleButtonClicked),
 
                     new StyledLabel
                     {
@@ -51,13 +48,6 @@ namespace UITestSampleApp
                         HorizontalOptions = LayoutOptions.Center
                     }.FillExpandHorizontal().TextCenter()
                      .Bind(Label.TextProperty, nameof(FirstViewModel.LabelText)),
-
-                    new StyledButton(Borders.Thin, 1)
-                    {
-                        Text = "Go to List Page",
-                        AutomationId = AutomationIdConstants.FirstPage_ListViewButton,// This provides an ID that can be referenced in UITests
-                    }.FillExpandHorizontal()
-                     .Assign(out Button listPageButton),
 
                     new ActivityIndicator
                     {
@@ -68,9 +58,6 @@ namespace UITestSampleApp
                      .Bind(ActivityIndicator.IsRunningProperty, nameof(FirstViewModel.IsActiityIndicatorRunning))
                 }
             }.Top();
-
-            listPageButton.Clicked += HandleListPageButtonClicked;
-            goButton.Clicked += HandleButtonClicked;
         }
 
         protected override void OnAppearing()
@@ -85,9 +72,6 @@ namespace UITestSampleApp
             var goButton = (Button)sender;
             MainThread.BeginInvokeOnMainThread(goButton.Unfocus);
         }
-
-        void HandleListPageButtonClicked(object sender, EventArgs e) =>
-            MainThread.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(new ListPage()));
 
         Thickness GetPagePadding() => Device.RuntimePlatform switch
         {

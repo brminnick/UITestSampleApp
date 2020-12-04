@@ -25,16 +25,6 @@ namespace UITestSampleApp
 
             return entry;
         }
-
-        internal static Task NavigateToListViewPage()
-        {
-            // Navigate to List View Page by recreating the Navigation Stack to mimic the user journey
-            return Device.InvokeOnMainThreadAsync(async () =>
-            {
-                await Application.Current.MainPage.Navigation.PopAsync();
-                await Application.Current.MainPage.Navigation.PushAsync(new ListPage());
-            });
-        }
     }
 }
 

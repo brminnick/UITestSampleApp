@@ -27,8 +27,6 @@ namespace UITestSampleApp.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            global::Firebase.FirebaseApp.InitializeApp(this);
-            global::Xamarin.Forms.Platform.Android.AppLinks.AndroidAppLinks.Init(this);
 
             Window?.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 

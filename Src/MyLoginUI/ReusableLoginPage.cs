@@ -170,7 +170,7 @@ namespace MyLoginUI.Pages
 
         async void HandleNewUserSignUpButtonClicked(object sender, EventArgs e) => await NewUserSignUp();
 
-        async void HandleLoginButtonClicked(object sender, EventArgs e)
+        async void HandleLoginButtonClicked(object? sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(_loginEntry.Text) || string.IsNullOrWhiteSpace(_passwordEntry.Text))
                 await DisplayAlert("Error", "You must enter a username and password.", "Okay");

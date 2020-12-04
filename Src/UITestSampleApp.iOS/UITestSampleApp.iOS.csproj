@@ -103,13 +103,12 @@
         <Reference Include="System.IO.Compression" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Essentials" Version="1.6.0-pre2" />
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.6.4" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.6.4" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.0-pre2" />
-        <PackageReference Include="Xamarin.TestCloud.Agent" Version="0.21.9" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.1539-pre2" />
-        <PackageReference Include="Microsoft.AppCenter.Data" Version="2.6.4" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.6.0-pre4" />
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.0.0" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.0.0" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.0.2" />
+        <PackageReference Include="Xamarin.TestCloud.Agent" Version="0.22.1" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.1709-pre4" />
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">

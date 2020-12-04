@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
-
 using Microsoft.AppCenter;
-using Microsoft.AppCenter.Data;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace UITestSampleApp
 {
@@ -42,7 +40,7 @@ namespace UITestSampleApp
 
             TrackEvent(trackIdentifier, table);
         }
-      
+
         public static void Report(Exception exception,
                           IDictionary<string, string>? properties = null,
                           [CallerMemberName] string callerMemberName = "",
@@ -71,7 +69,6 @@ namespace UITestSampleApp
             }
         }
 
-        static void Start(string appSecret) =>
-            AppCenter.Start(appSecret, typeof(Analytics), typeof(Crashes), typeof(Data));
+        static void Start(string appSecret) => AppCenter.Start(appSecret, typeof(Analytics), typeof(Crashes));
     }
 }

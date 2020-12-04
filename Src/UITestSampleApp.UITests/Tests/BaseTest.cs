@@ -13,7 +13,6 @@ namespace UITestSampleApp.UITests
 
         IApp? _app;
         FirstPage? _firstPage;
-        ListPage? _listPage;
         LoginPage? _loginPage;
         NewUserSignUpPage? _newUserSignUpPage;
 
@@ -21,7 +20,6 @@ namespace UITestSampleApp.UITests
 
         protected IApp App => _app ?? throw new NullReferenceException();
         protected FirstPage FirstPage => _firstPage ?? throw new NullReferenceException();
-        protected ListPage ListPage => _listPage ?? throw new NullReferenceException();
         protected LoginPage LoginPage => _loginPage ?? throw new NullReferenceException();
         protected NewUserSignUpPage NewUserSignUpPage => _newUserSignUpPage ?? throw new NullReferenceException();
 
@@ -31,7 +29,6 @@ namespace UITestSampleApp.UITests
             _app = AppInitializer.StartApp(_platform);
 
             _firstPage = new FirstPage(App);
-            _listPage = new ListPage(App);
             _loginPage = new LoginPage(App);
             _newUserSignUpPage = new NewUserSignUpPage(App);
 

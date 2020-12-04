@@ -1,12 +1,9 @@
 ﻿using System;
-
+using MyLoginUI.Views;
+using UITestSampleApp.Shared;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
-
-using MyLoginUI.Views;
-
-using UITestSampleApp.Shared;
 
 namespace UITestSampleApp
 {
@@ -84,7 +81,7 @@ namespace UITestSampleApp
             base.LayoutChildren(x, y, width, height);
         }
 
-        async void HandleSaveUsernameButtonClicked(object sender, EventArgs e)
+        async void HandleSaveUsernameButtonClicked(object? sender, EventArgs e)
         {
             try
             {

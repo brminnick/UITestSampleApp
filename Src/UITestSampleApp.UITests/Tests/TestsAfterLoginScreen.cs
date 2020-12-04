@@ -46,29 +46,6 @@ namespace UITestSampleApp.UITests
             //Assert
             Assert.AreEqual(FirstPage.GetEntryFieldText(), textInput);
         }
-
-        [Test]
-        public void VerifyItemsInListView()
-        {
-            //Arrange
-            const int listItemNumber = 9;
-            var expectedAlertString = $"You Selected Number {listItemNumber}";
-
-            //Act
-            App.InvokeBackdoorMethod(BackdoorMethodConstants.OpenListViewPage);
-
-            ListPage.WaitForPageToLoad();
-            ListPage.WaitForNoActivityIndicator();
-
-            ListPage.TapListItemNumber(listItemNumber);
-            var actualAlertString = ListPage.GetAlertText(listItemNumber);
-
-            ListPage.TapOKOnAlert();
-
-            //Assert
-            Assert.AreEqual(expectedAlertString, actualAlertString);
-            Assert.GreaterOrEqual(App.InvokeBackdoorMethod<IReadOnlyList<ListPageDataModel>>(BackdoorMethodConstants.GetListViewPageData).Count, 10, "Less than 10 items found in List");
-        }
     }
 }
 
