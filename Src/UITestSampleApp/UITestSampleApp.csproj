@@ -27,7 +27,7 @@
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
-        <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.0.3" />
+        <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.1.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\MyLoginUI\MyLoginUI.csproj" />
