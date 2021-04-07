@@ -17,7 +17,7 @@ namespace UITestSampleApp.Functions
 
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            builder.Services.AddRefitClient<IAppCenterAPI>()
+            builder.Services.AddRefitClient<IAppCenterAPI>(RefitExtensions.GetNewtonsoftJsonRefitSettings())
                 .ConfigureHttpClient(client =>
                 {
                     client.DefaultRequestHeaders.Add("X-API-Token", _appCenterApiToken);

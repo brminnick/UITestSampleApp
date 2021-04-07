@@ -2,8 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
-        <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;MOBILE</DefineConstants>
@@ -26,8 +24,6 @@
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
-        <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.1.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\MyLoginUI\MyLoginUI.csproj" />

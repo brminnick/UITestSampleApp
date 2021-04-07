@@ -9,9 +9,6 @@
         <RootNamespace>UITestSampleApp.iOS</RootNamespace>
         <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
         <AssemblyName>UITestSampleApp.iOS</AssemblyName>
-        <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
-        <LangVersion>latest</LangVersion>
-        <Nullable>enable</Nullable>
         <NuGetPackageImportStamp>
         </NuGetPackageImportStamp>
     </PropertyGroup>
@@ -108,7 +105,7 @@
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.1.0" />
         <PackageReference Include="Xamarin.TestCloud.Agent" Version="0.22.2" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">

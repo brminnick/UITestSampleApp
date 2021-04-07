@@ -13,7 +13,11 @@ namespace UITestSampleApp
         string _labelText = string.Empty;
         ICommand? _goButtonCommand;
 
-        public ICommand GoButtonCommand => _goButtonCommand ??= new AsyncCommand<string>(ExecuteGoButtonCommand);
+        public ICommand GoButtonCommand => _goButtonCommand ??= new AsyncCommand<string>(text => text switch
+        {
+            null => Task.CompletedTask,
+            _ => ExecuteGoButtonCommand(text)
+        });
 
         public bool IsActiityIndicatorRunning
         {
@@ -35,9 +39,7 @@ namespace UITestSampleApp
 
         async Task ExecuteGoButtonCommand(string goButtonText)
         {
-            AppCenterHelpers.TrackEvent(AppCenterConstants.GoButtonTapped, new Dictionary<string, string> {
-                { AppCenterConstants.FirstPageTextEntered, goButtonText }
-            });
+            AppCenterHelpers.TrackEvent(AppCenterConstants.GoButtonTapped, AppCenterConstants.FirstPageTextEntered, goButtonText);
 
             LabelText = string.Empty;
             IsActiityIndicatorRunning = true;
