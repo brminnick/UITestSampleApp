@@ -4,6 +4,7 @@
 |---------------------------|---|
 | App Center, iOS           |  [![Build status](https://build.appcenter.ms/v0.1/apps/0184bf48-f102-400c-aed0-629fdeb38696/branches/main/badge)](https://appcenter.ms)|
 | App Center, Android       | [![Build status](https://build.appcenter.ms/v0.1/apps/864df958-bcca-401d-8f93-ae159cd5a9d3/branches/main/badge)](https://appcenter.ms) |
+| GitHub Actions | [![Xamarin](https://github.com/brminnick/UITestSampleApp/actions/workflows/mobile.yml/badge.svg)](https://github.com/brminnick/UITestSampleApp/actions/workflows/mobile.yml) |
 
 # Sample App Demonstrating UITests
 This app shows how to implement UITests into a Xamarin.Forms project.
