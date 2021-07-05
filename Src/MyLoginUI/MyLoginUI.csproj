@@ -5,7 +5,7 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="5.1.0" />
+        <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="6.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.1.0" />
     </ItemGroup>
