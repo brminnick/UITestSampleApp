@@ -28,7 +28,7 @@ jobs:
         
       - name: Restore NuGet 
         run: |
-          nuget restore **/**.sln
+          dotnet restore **/**.sln
           
       - name: Build Android App
         run: |                    
