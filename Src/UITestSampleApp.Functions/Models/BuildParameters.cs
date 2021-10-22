@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace UITestSampleApp.Functions
 {
@@ -6,7 +6,7 @@ namespace UITestSampleApp.Functions
     {
         public BuildParameters(bool isDebug) => IsDebug = isDebug;
 
-        [JsonProperty("debug")]
+        [JsonPropertyName("debug")]
         public bool IsDebug { get; } = true;
     }
 }

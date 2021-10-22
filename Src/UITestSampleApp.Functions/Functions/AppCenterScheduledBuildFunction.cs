@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
 namespace UITestSampleApp.Functions
@@ -11,9 +11,11 @@ namespace UITestSampleApp.Functions
 
         public AppCenterScheduledBuildFunction(AppCenterApiService appCenterApiService) => _appCenterApiService = appCenterApiService;
 
-        [FunctionName(nameof(AppCenterScheduledBuildFunction))]
-        public async Task Run([TimerTrigger("0 0 9 * * *")]TimerInfo myTimer, ILogger log)
+        [Function(nameof(AppCenterScheduledBuildFunction))]
+        public async Task Run([TimerTrigger("0 0 9 * * *")] TimerInfo myTimer, FunctionContext context)
         {
+            var log = context.GetLogger<AppCenterScheduledBuildFunction>();
+
             var iOSBuildTask = _appCenterApiService.BuildiOSApp();
             var androidBuildTask = _appCenterApiService.BuildAndroidApp();
 
