@@ -82,7 +82,7 @@
     <ItemGroup>
         <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
-        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
+        <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="6.0.4" />
         <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.4" />
