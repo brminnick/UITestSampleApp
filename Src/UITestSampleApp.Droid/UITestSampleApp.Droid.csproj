@@ -14,7 +14,7 @@
         <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
         <AndroidApplication>True</AndroidApplication>
         <AssemblyName>UITestSampleApp.Droid</AssemblyName>
-        <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+        <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
         <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
         <AndroidTlsProvider>
         </AndroidTlsProvider>
@@ -83,7 +83,7 @@
         <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="6.0.4" />
         <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.4" />
     </ItemGroup>
@@ -126,10 +126,12 @@
         <ProjectReference Include="..\UITestSampleApp\UITestSampleApp.csproj">
             <Project>{BE8DD6B5-2C8F-447A-AA32-B7395DC051F0}</Project>
             <Name>UITestSampleApp</Name>
+            <ReferenceSourceTarget></ReferenceSourceTarget>
         </ProjectReference>
         <ProjectReference Include="..\MyLoginUI\MyLoginUI.csproj">
             <Project>{4D3FBD7F-84D7-4552-8042-CFE23F077378}</Project>
             <Name>MyLoginUI</Name>
+            <ReferenceSourceTarget></ReferenceSourceTarget>
         </ProjectReference>
     </ItemGroup>
     <ItemGroup>
