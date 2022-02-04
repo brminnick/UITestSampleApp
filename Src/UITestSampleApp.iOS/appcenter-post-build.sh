@@ -14,6 +14,7 @@ if [ "$APPCENTER_XAMARIN_CONFIGURATION" == "Debug" ];then
 
     chmod -R 777 $SolutionFileFolder
 
+    nuget restore $UITestProject
     msbuild "$UITestProject" /property:Configuration=$APPCENTER_XAMARIN_CONFIGURATION
 
     UITestDLL=`find "$APPCENTER_SOURCE_DIRECTORY" -name "UITestSampleApp.UITests.dll" | grep bin | grep -v /ref/ | head -1`
