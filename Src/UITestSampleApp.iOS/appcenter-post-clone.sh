@@ -3,7 +3,3 @@
 wget https://dot.net/v1/dotnet-install.sh
 chmod +x dotnet-install.sh
 ./dotnet-install.sh --version $netcoreversion --install-dir "$AGENT_TOOLSDIRECTORY/dotnet"
-
-SolutionFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name UITestSampleApp.sln`
-SolutionFileFolder=`dirname $SolutionFile`
-dotnet restore $SolutionFile
