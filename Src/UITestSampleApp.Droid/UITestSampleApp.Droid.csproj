@@ -106,8 +106,8 @@
         <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
         <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
         <AndroidResource Include="Resources\drawable\Hash.png" />
-        <AndroidResource Include="Resources\values\Styles.xml" />
-        <AndroidResource Include="Resources\values-v21\Styles.xml" />
+        <AndroidResource Include="Resources\values\styles.xml" />
+        <AndroidResource Include="Resources\values-v21\styles.xml" />
         <AndroidResource Include="Resources\drawable-xxhdpi\xamarin_logo.png" />
         <AndroidResource Include="Resources\drawable-xhdpi\xamarin_logo.png" />
         <AndroidResource Include="Resources\drawable-hdpi\xamarin_logo.png" />
