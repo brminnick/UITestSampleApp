@@ -15,15 +15,7 @@ jobs:
 
       steps:
       - uses: actions/checkout@v1
-      
-      - name: Install Boots
-        run : |
-          dotnet tool install --global boots
-          boots --stable Mono
-          boots --preview Xamarin.Android
-          boots --preview Xamarin.iOS
-          boots --preview Xamarin.Mac
-        
+
       - name: Setup .NET v6.0
         uses: actions/setup-dotnet@v1
         with:
@@ -34,6 +26,14 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x'
+      
+      - name: Install Boots
+        run : |
+          dotnet tool install --global boots
+          boots --stable Mono
+          boots --preview Xamarin.Android
+          boots --preview Xamarin.iOS
+          boots --preview Xamarin.Mac
         
       - name: Restore NuGet 
         run: |
@@ -41,4 +41,4 @@ jobs:
           
       - name: Build Android App
         run: |                    
-          mono /Applications/Visual\ studio.app/Contents/Resources/lib/monodevelop/bin/MSBuild/Current/bin/MSBuild.dll ./Src/UITestSampleApp.Droid/UITestSampleApp.Droid.csproj /verbosity:normal /p:Configuration=Release /t:Restore
+          msbuild ./Src/UITestSampleApp.Droid/UITestSampleApp.Droid.csproj /verbosity:normal /p:Configuration=Release /t:Restore
