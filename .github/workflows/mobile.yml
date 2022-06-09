@@ -41,4 +41,4 @@ jobs:
           
       - name: Build Android App
         run: |                    
-          mono /Applications/Visual\ studio.app/Contents/Resources/lib/monodevelop/bin/MSBuild/Current/bin/MSBuild.dll ./Src/UITestSampleApp.Droid/UITestSampleApp.Droid.csproj /verbosity:normal /p:Configuration=Release /t:Restore
+          msbuild ./Src/UITestSampleApp.Droid/UITestSampleApp.Droid.csproj /verbosity:normal /p:Configuration=Release /t:Restore
