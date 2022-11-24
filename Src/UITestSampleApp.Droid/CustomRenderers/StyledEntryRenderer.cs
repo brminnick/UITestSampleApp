@@ -25,7 +25,7 @@ namespace UITestSampleApp.Droid
 		{
 			base.OnElementChanged(e);
 
-			if (e.NewElement != null)
+			if (e.NewElement is not null)
 			{
 				var droidEditText = (EditText)Control;
 				droidEditText.SetHintTextColor(Xamarin.Forms.Color.White.ToAndroid());
