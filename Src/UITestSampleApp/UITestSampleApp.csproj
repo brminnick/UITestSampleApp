@@ -23,7 +23,7 @@
     <ItemGroup>
         <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.1" />
-        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.1" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\MyLoginUI\MyLoginUI.csproj" />
