@@ -21,7 +21,7 @@
         <Folder Include="Views\List\" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.1" />
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.1" />
     </ItemGroup>
