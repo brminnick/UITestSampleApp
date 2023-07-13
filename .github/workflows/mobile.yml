@@ -24,16 +24,12 @@ jobs:
           boots --preview Xamarin.iOS
           boots --preview Xamarin.Mac
         
-      - name: Setup .NET v6.0
-        uses: actions/setup-dotnet@v1
+      - name: Install .NET 7.0 and 3.1
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'
-          include-prerelease: true
-          
-      - name: Setup .NET Core v3.1
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '3.1.x'
+          dotnet-version: |
+            7.0.x
+            3.1.x
         
       - name: Restore NuGet 
         run: |
